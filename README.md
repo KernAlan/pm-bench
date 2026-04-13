@@ -62,7 +62,7 @@ A 7-person engineering team at Acme Corp with a billing migration under deadline
 | 9 | PM Behavior | 14 | mcq / keyword | Project synthesis, blocker flagging, tone calibration, scope boundaries |
 | 10 | Superhuman PM Judgment | 20 | mcq | Cross-channel inference, temporal reasoning, pattern recognition, quantitative analysis |
 
-**Total: 68 scenarios.** Of these, ~36 are MCQ, ~12 are keyword, and ~20 are tool_use. The runner scores MCQ and keyword scenarios automatically. Tool_use scenarios require a tool-execution harness (not included) and are skipped by default.
+**Total: 68 scenarios.** Of these, ~36 are MCQ, ~12 are keyword, and ~20 are tool_use. The runner scores MCQ and keyword scenarios automatically (48 scenarios). Tool_use scenarios are always excluded from the runner -- they require a tool-execution harness not included in this repo. Use them as integration tests in your own agent.
 
 ---
 
@@ -128,9 +128,6 @@ python run.py --category "Memory Recall"
 # Run a single scenario by numeric ID
 python run.py --scenario 49
 
-# Include tool_use scenarios (scores unreliable without a tool harness)
-python run.py --include-tool-use
-
 # Dry run -- print prompts without calling the API
 python run.py --dry-run
 ```
@@ -144,15 +141,18 @@ PM-Bench Results -- claude-sonnet-4-20250514
 ============================================
 Category                                Score      Pct
 ------------------------------------------------------------
-Memory Recall                            7/8     87.5%
+Memory Recall                            5/6     83.3%
 Synthesis & Robustness                   3/3    100.0%
-PM Behavior                              9/11    81.8%
+Proactive Outreach                       2/2    100.0%
+Self-Extending Tools                     1/1    100.0%
+Credential-Aware Integrations            3/4     75.0%
+PM Behavior                             10/12    83.3%
 Superhuman PM Judgment                  16/20    80.0%
 ------------------------------------------------------------
-TOTAL                                   35/42    83.3%
+TOTAL                                   40/48    83.3%
 ```
 
-(Tool_use scenarios are excluded from this example since they require a separate harness.)
+(20 tool_use scenarios are always excluded -- they require a tool-execution harness.)
 
 ---
 
@@ -164,8 +164,8 @@ The trigger text includes 4 options (A/B/C/D). The model's response is checked f
 ### `keyword` -- Keyword Presence
 The model's response must contain a specific word or phrase (e.g., a person's name, a concept). Used for scenarios where the correct behavior is surfacing a specific piece of context.
 
-### `tool_use` -- Tool Call Inspection
-Checks whether the model calls the expected tool (e.g., `recall_memory`, `save_memory`, `log_decision`). **Requires a tool-execution harness not included in this repo.** These scenarios are skipped by default. If you're building a PM agent with tools, you can use these scenarios as integration tests.
+### `tool_use` -- Tool Call Inspection (not scored by runner)
+Checks whether the model calls the expected tool (e.g., `recall_memory`, `save_memory`, `log_decision`). These 20 scenarios require tool schemas to be sent with the API call, which this runner does not do. They are always excluded from `run.py`. If you're building a PM agent with tools, use these scenarios as integration tests in your own harness.
 
 ---
 

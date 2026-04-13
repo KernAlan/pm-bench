@@ -14,9 +14,10 @@ Usage:
 
 Notes:
     - "mcq" and "keyword" scenarios are fully automated.
-    - "tool_use" scenarios require a tool-execution harness that this runner
-      does not provide; they are skipped by default (use --include-tool-use
-      to attempt them anyway, but scores will be unreliable).
+    - "tool_use" scenarios are always excluded. This runner does not send tool
+      schemas to the model, so tool calls cannot occur and scoring would be
+      meaningless. Use tool_use scenarios as integration tests in your own
+      agent harness instead.
 """
 
 import argparse
@@ -154,18 +155,60 @@ def call_openai(messages: list[dict], model: str) -> dict:
 # Scoring
 # ---------------------------------------------------------------------------
 
+def extract_mcq_choice(text: str) -> str | None:
+    """Extract the model's chosen letter from its response.
+
+    Designed to avoid false positives: "Not B. C is correct." must NOT
+    return B, and "B is tempting, but C is correct." must return C.
+
+    Strategy: check high-confidence patterns first, fall back carefully.
+    All matching is case-insensitive.
+    """
+    stripped = text.strip()
+
+    # 1. Entire response is one letter.
+    if len(stripped) == 1 and stripped.upper() in "ABCD":
+        return stripped.upper()
+
+    # 2. Explicit "answer is X" / "correct answer is X" / "X is correct"
+    #    These are the strongest signals of a chosen answer.
+    m = re.search(
+        r"(?:the\s+)?(?:correct\s+)?answer\s*(?:is|:)\s*\(?([A-Da-d])\)?",
+        stripped, re.IGNORECASE,
+    )
+    if m:
+        return m.group(1).upper()
+    m = re.search(r"\b([A-Da-d])\s+is\s+correct\b", stripped, re.IGNORECASE)
+    if m:
+        return m.group(1).upper()
+
+    # 3. Starts with letter + optional whitespace + non-word delimiter (period,
+    #    paren, colon, dash, newline). Excludes "B is..." / "A because..." where
+    #    the letter begins a sentence about a choice rather than selecting it.
+    m = re.match(
+        r"^\*{0,2}([A-Da-d])\*{0,2}\s*(?:[.):\-\u2014,]|\n|$)",
+        stripped,
+    )
+    if m:
+        return m.group(1).upper()
+
+    # 4. Letter on its own line (e.g. model outputs "B\n\nExplanation...").
+    for line in stripped.splitlines():
+        line = line.strip()
+        m = re.match(r"^\*{0,2}\(?([A-Da-d])\)?\*{0,2}[.):]*$", line)
+        if m:
+            return m.group(1).upper()
+
+    return None
+
+
 def score_mcq(scenario: dict, response: dict) -> bool:
-    """Check if the response contains the correct answer letter."""
+    """Check if the model's chosen answer matches the correct one."""
     correct = scenario.get("correct_answer", "").strip().upper()
     if not correct or len(correct) != 1:
         return False
-    text = response["text"].strip().upper()
-    # Match patterns: "B", "The answer is B", "(B)", "B)", "**B**"
-    if text == correct:
-        return True
-    if re.search(rf"(?<![A-Z]){re.escape(correct)}(?![A-Z])", text):
-        return True
-    return False
+    chosen = extract_mcq_choice(response["text"])
+    return chosen == correct
 
 
 def score_keyword(scenario: dict, response: dict) -> bool:
@@ -176,24 +219,13 @@ def score_keyword(scenario: dict, response: dict) -> bool:
     return keyword.lower() in response["text"].lower()
 
 
-def score_tool_use(scenario: dict, response: dict) -> bool:
-    """Check if the model called any of the expected tools (best-effort)."""
-    expected = scenario.get("expected_tools", [])
-    if not expected:
-        # No tools expected — pass if model also made no tool calls.
-        return len(response.get("tool_calls", [])) == 0
-    called = {tc["name"] for tc in response.get("tool_calls", [])}
-    return bool(called & set(expected))
-
-
 def score_scenario(scenario: dict, response: dict) -> bool:
     scoring = scenario.get("scoring", "mcq")
     if scoring == "mcq":
         return score_mcq(scenario, response)
     elif scoring == "keyword":
         return score_keyword(scenario, response)
-    elif scoring == "tool_use":
-        return score_tool_use(scenario, response)
+    # tool_use scenarios are filtered out before reaching the scorer.
     return False
 
 
@@ -258,14 +290,13 @@ def filter_scenarios(
     scenario_id: int | None,
     category: str | None,
     superhuman_only: bool,
-    include_tool_use: bool,
 ) -> list[dict]:
+    # Apply content filters first.
     if scenario_id is not None:
-        matches = [s for s in scenarios if s["id"] == scenario_id]
-        if not matches:
+        scenarios = [s for s in scenarios if s["id"] == scenario_id]
+        if not scenarios:
             print(f"Scenario {scenario_id} not found.", file=sys.stderr)
             sys.exit(1)
-        return matches
     if superhuman_only:
         scenarios = [s for s in scenarios if s.get("category") == "Superhuman PM Judgment"]
     if category:
@@ -273,12 +304,15 @@ def filter_scenarios(
         if not scenarios:
             print(f"Category '{category}' not found.", file=sys.stderr)
             sys.exit(1)
-    if not include_tool_use:
-        before = len(scenarios)
-        scenarios = [s for s in scenarios if s.get("scoring") != "tool_use"]
-        skipped = before - len(scenarios)
-        if skipped:
-            print(f"(Skipping {skipped} tool_use scenarios — use --include-tool-use to attempt them)\n")
+
+    # Always exclude tool_use scenarios — this runner sends no tool schemas,
+    # so tool calls cannot occur and scoring would be meaningless.
+    before = len(scenarios)
+    scenarios = [s for s in scenarios if s.get("scoring") != "tool_use"]
+    skipped = before - len(scenarios)
+    if skipped:
+        print(f"(Excluding {skipped} tool_use scenario(s) — requires an agent harness with tool definitions)\n")
+
     return scenarios
 
 
@@ -290,8 +324,6 @@ def main() -> None:
     parser.add_argument("--scenario", type=int, default=None, help="Run a single scenario by numeric ID (e.g., 49)")
     parser.add_argument("--category", type=str, default=None, help='Run a category (e.g., "Memory Recall")')
     parser.add_argument("--superhuman-only", action="store_true", help="Run only Superhuman PM Judgment (20 MCQ)")
-    parser.add_argument("--include-tool-use", action="store_true",
-                        help="Include tool_use scenarios (scores unreliable without a tool harness)")
     parser.add_argument("--dry-run", action="store_true", help="Print prompts without calling the API")
     args = parser.parse_args()
 
@@ -300,10 +332,10 @@ def main() -> None:
 
     all_scenarios = load_scenarios()
     scenarios = filter_scenarios(all_scenarios, args.scenario, args.category,
-                                args.superhuman_only, args.include_tool_use)
+                                args.superhuman_only)
 
     if not scenarios:
-        print("No scenarios to run.", file=sys.stderr)
+        print("No scorable scenarios to run. (tool_use scenarios require an external harness)", file=sys.stderr)
         sys.exit(1)
 
     print(f"PM-Bench  |  provider={args.provider}  model={args.model}")
