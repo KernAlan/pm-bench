@@ -2,15 +2,21 @@
 """
 PM-Bench Evaluation Runner
 
-Loads scenarios from scenarios/scenarios.json, assembles context from workspace
-and fixture files, calls an LLM, scores the response, and prints a scorecard.
+Runs scenarios from scenarios/scenarios.json against an LLM and scores responses.
 
 Usage:
-    python run.py                                # Run all scenarios with Anthropic
+    python run.py                                # Run all scorable scenarios
     python run.py --provider openai --model gpt-4o
-    python run.py --superhuman-only              # Run only Superhuman PM Judgment
+    python run.py --superhuman-only              # Run only Superhuman PM Judgment (20)
     python run.py --category "Memory Recall"     # Run one category
-    python run.py --scenario S01                 # Run a single scenario by ID
+    python run.py --scenario 49                  # Run a single scenario by numeric ID
+    python run.py --dry-run                      # Print prompts, don't call the API
+
+Notes:
+    - "mcq" and "keyword" scenarios are fully automated.
+    - "tool_use" scenarios require a tool-execution harness that this runner
+      does not provide; they are skipped by default (use --include-tool-use
+      to attempt them anyway, but scores will be unreliable).
 """
 
 import argparse
@@ -29,76 +35,30 @@ from typing import Any
 ROOT = Path(__file__).resolve().parent
 SCENARIOS_FILE = ROOT / "scenarios" / "scenarios.json"
 FIXTURES_DIR = ROOT / "fixtures"
-WORKSPACE_DIR = ROOT / "workspace"
 RESULTS_DIR = ROOT / "results"
 
 # ---------------------------------------------------------------------------
-# Fixture & workspace resolution
+# Context resolution
 # ---------------------------------------------------------------------------
 
-def load_fixture(ref: str) -> str:
-    """Resolve a @fixtures/ or @workspace/ reference to file content."""
+def resolve_ref(ref: str) -> str:
+    """If *ref* starts with @fixtures/, load file content; otherwise return as-is."""
     if ref.startswith("@fixtures/"):
         path = FIXTURES_DIR / ref[len("@fixtures/"):]
-    elif ref.startswith("@workspace/"):
-        path = WORKSPACE_DIR / ref[len("@workspace/"):]
-    else:
-        path = ROOT / ref
-    if not path.exists():
-        print(f"  [warn] fixture not found: {path}", file=sys.stderr)
-        return ""
-    return path.read_text(encoding="utf-8")
+        if not path.exists():
+            print(f"  [warn] fixture not found: {path}", file=sys.stderr)
+            return ""
+        return path.read_text(encoding="utf-8")
+    return ref  # inline content
 
 
-def resolve_context(scenario: dict) -> str:
-    """
-    Build the full context string for a scenario.
-
-    Each scenario may declare:
-      - "context_files": list of @fixtures/... or @workspace/... refs
-      - "context_inline": a literal string block
-      - "workspace": true  -> include all core workspace files
-    """
+def build_context(scenario: dict) -> str:
+    """Assemble all workspace_files into a single context string."""
     parts: list[str] = []
-
-    # If the scenario requests the full workspace, include core files.
-    if scenario.get("workspace", False):
-        for name in ("IDENTITY.md", "INTENTS.md", "MEMORY.md", "HEARTBEAT.md"):
-            ws_file = WORKSPACE_DIR / name
-            if ws_file.exists():
-                parts.append(f"--- {name} ---\n{ws_file.read_text(encoding='utf-8')}")
-
-        # Include logs
-        logs_dir = WORKSPACE_DIR / "logs"
-        if logs_dir.is_dir():
-            for log_file in sorted(logs_dir.iterdir()):
-                if log_file.suffix == ".md":
-                    parts.append(
-                        f"--- logs/{log_file.name} ---\n"
-                        f"{log_file.read_text(encoding='utf-8')}"
-                    )
-
-        # Include memory files
-        mem_dir = WORKSPACE_DIR / "memory"
-        if mem_dir.is_dir():
-            for mem_file in sorted(mem_dir.iterdir()):
-                if mem_file.suffix == ".md":
-                    parts.append(
-                        f"--- memory/{mem_file.name} ---\n"
-                        f"{mem_file.read_text(encoding='utf-8')}"
-                    )
-
-    # Explicit context files
-    for ref in scenario.get("context_files", []):
-        content = load_fixture(ref)
+    for filename, content_or_ref in scenario.get("workspace_files", {}).items():
+        content = resolve_ref(content_or_ref)
         if content:
-            label = ref.split("/")[-1]
-            parts.append(f"--- {label} ---\n{content}")
-
-    # Inline context
-    if scenario.get("context_inline"):
-        parts.append(scenario["context_inline"])
-
+            parts.append(f"--- {filename} ---\n{content}")
     return "\n\n".join(parts)
 
 
@@ -106,54 +66,33 @@ def resolve_context(scenario: dict) -> str:
 # Prompt assembly
 # ---------------------------------------------------------------------------
 
+SYSTEM_PROMPT = (
+    "You are the acting PM for this team. "
+    "Use the workspace context provided to answer the question. "
+    "For multiple-choice questions, respond with the correct letter "
+    "(A, B, C, or D) and a brief explanation. "
+    "Be concise and specific."
+)
+
+
 def build_messages(scenario: dict, context: str) -> list[dict]:
     """Return a message list suitable for chat-completion APIs."""
-    system = scenario.get(
-        "system_prompt",
-        (
-            "You are the acting PM for Acme Corp's Platform Team. "
-            "Use the workspace context provided to answer the question. "
-            "Be concise and specific."
-        ),
-    )
-
     user_content = ""
     if context:
         user_content += f"<workspace>\n{context}\n</workspace>\n\n"
-    user_content += scenario["prompt"]
-
-    # For MCQ scenarios, append the choices.
-    if scenario.get("scoring") == "mcq" and "choices" in scenario:
-        user_content += "\n\nChoices:\n"
-        for letter, text in scenario["choices"].items():
-            user_content += f"  {letter}) {text}\n"
-        user_content += (
-            "\nRespond with ONLY the letter of the correct answer (A, B, C, or D)."
-        )
-
+    user_content += scenario["trigger"]
     return [
-        {"role": "system", "content": system},
+        {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": user_content},
     ]
-
-
-def build_tools(scenario: dict) -> list[dict] | None:
-    """If the scenario defines available tools, return them in OpenAI format."""
-    if "tools" not in scenario:
-        return None
-    return scenario["tools"]
 
 
 # ---------------------------------------------------------------------------
 # LLM clients
 # ---------------------------------------------------------------------------
 
-def call_anthropic(
-    messages: list[dict],
-    model: str,
-    tools: list[dict] | None = None,
-) -> dict:
-    """Call the Anthropic Messages API. Returns {text, tool_calls, raw}."""
+def call_anthropic(messages: list[dict], model: str) -> dict:
+    """Call the Anthropic Messages API. Returns {text, tool_calls}."""
     try:
         from anthropic import Anthropic
     except ImportError:
@@ -161,8 +100,6 @@ def call_anthropic(
         sys.exit(1)
 
     client = Anthropic()
-
-    # Separate system from messages for Anthropic's API.
     system_text = ""
     chat_messages = []
     for m in messages:
@@ -172,55 +109,25 @@ def call_anthropic(
             chat_messages.append(m)
 
     kwargs: dict[str, Any] = dict(
-        model=model,
-        max_tokens=1024,
-        messages=chat_messages,
+        model=model, max_tokens=1024, messages=chat_messages,
     )
     if system_text.strip():
         kwargs["system"] = system_text.strip()
 
-    if tools:
-        # Convert OpenAI-style tool defs to Anthropic format.
-        anthropic_tools = []
-        for t in tools:
-            if t.get("type") == "function":
-                fn = t["function"]
-                anthropic_tools.append({
-                    "name": fn["name"],
-                    "description": fn.get("description", ""),
-                    "input_schema": fn.get("parameters", {"type": "object", "properties": {}}),
-                })
-            else:
-                anthropic_tools.append(t)
-        if anthropic_tools:
-            kwargs["tools"] = anthropic_tools
-
     resp = client.messages.create(**kwargs)
-
     text_parts = []
     tool_calls = []
     for block in resp.content:
         if block.type == "text":
             text_parts.append(block.text)
         elif block.type == "tool_use":
-            tool_calls.append({
-                "name": block.name,
-                "arguments": block.input,
-            })
+            tool_calls.append({"name": block.name, "arguments": block.input})
 
-    return {
-        "text": "\n".join(text_parts),
-        "tool_calls": tool_calls,
-        "raw": resp.model_dump() if hasattr(resp, "model_dump") else str(resp),
-    }
+    return {"text": "\n".join(text_parts), "tool_calls": tool_calls}
 
 
-def call_openai(
-    messages: list[dict],
-    model: str,
-    tools: list[dict] | None = None,
-) -> dict:
-    """Call the OpenAI Chat Completions API. Returns {text, tool_calls, raw}."""
+def call_openai(messages: list[dict], model: str) -> dict:
+    """Call the OpenAI Chat Completions API. Returns {text, tool_calls}."""
     try:
         from openai import OpenAI
     except ImportError:
@@ -228,16 +135,7 @@ def call_openai(
         sys.exit(1)
 
     client = OpenAI()
-
-    kwargs: dict[str, Any] = dict(
-        model=model,
-        messages=messages,
-        max_tokens=1024,
-    )
-    if tools:
-        kwargs["tools"] = tools
-
-    resp = client.chat.completions.create(**kwargs)
+    resp = client.chat.completions.create(model=model, messages=messages, max_tokens=1024)
     choice = resp.choices[0]
 
     tool_calls = []
@@ -247,16 +145,9 @@ def call_openai(
                 args = json.loads(tc.function.arguments)
             except (json.JSONDecodeError, TypeError):
                 args = tc.function.arguments
-            tool_calls.append({
-                "name": tc.function.name,
-                "arguments": args,
-            })
+            tool_calls.append({"name": tc.function.name, "arguments": args})
 
-    return {
-        "text": choice.message.content or "",
-        "tool_calls": tool_calls,
-        "raw": resp.model_dump() if hasattr(resp, "model_dump") else str(resp),
-    }
+    return {"text": choice.message.content or "", "tool_calls": tool_calls}
 
 
 # ---------------------------------------------------------------------------
@@ -264,59 +155,38 @@ def call_openai(
 # ---------------------------------------------------------------------------
 
 def score_mcq(scenario: dict, response: dict) -> bool:
-    """Check if the model's text response contains the correct answer letter."""
-    correct = scenario.get("answer", "").strip().upper()
-    if not correct:
+    """Check if the response contains the correct answer letter."""
+    correct = scenario.get("correct_answer", "").strip().upper()
+    if not correct or len(correct) != 1:
         return False
-
     text = response["text"].strip().upper()
-
-    # Check for the letter appearing as the first non-whitespace character,
-    # or as a standalone word.
-    # Common patterns: "B", "The answer is B", "(B)", "B)"
+    # Match patterns: "B", "The answer is B", "(B)", "B)", "**B**"
     if text == correct:
         return True
-    if re.search(rf"\b{re.escape(correct)}\b", text):
-        return True
-    if text.startswith(correct):
+    if re.search(rf"(?<![A-Z]){re.escape(correct)}(?![A-Z])", text):
         return True
     return False
 
 
 def score_keyword(scenario: dict, response: dict) -> bool:
-    """Check if the model's response contains the required keyword(s)."""
-    keywords = scenario.get("keywords", [])
-    if isinstance(keywords, str):
-        keywords = [keywords]
-    text = response["text"].lower()
-    return all(kw.lower() in text for kw in keywords)
+    """Check if the response contains the required keyword from correct_answer."""
+    keyword = scenario.get("correct_answer", "").strip()
+    if not keyword:
+        return False
+    return keyword.lower() in response["text"].lower()
 
 
 def score_tool_use(scenario: dict, response: dict) -> bool:
-    """Check if the model called the expected tool with expected arguments."""
-    expected = scenario.get("expected_tool", {})
-    expected_name = expected.get("name", "")
-    expected_args = expected.get("arguments", {})
-
-    for tc in response.get("tool_calls", []):
-        if tc["name"] == expected_name:
-            # If specific arguments are required, check them.
-            if expected_args:
-                actual_args = tc.get("arguments", {})
-                match = all(
-                    str(actual_args.get(k, "")).lower() == str(v).lower()
-                    for k, v in expected_args.items()
-                )
-                if match:
-                    return True
-            else:
-                # Tool name match is sufficient.
-                return True
-    return False
+    """Check if the model called any of the expected tools (best-effort)."""
+    expected = scenario.get("expected_tools", [])
+    if not expected:
+        # No tools expected — pass if model also made no tool calls.
+        return len(response.get("tool_calls", [])) == 0
+    called = {tc["name"] for tc in response.get("tool_calls", [])}
+    return bool(called & set(expected))
 
 
 def score_scenario(scenario: dict, response: dict) -> bool:
-    """Score a scenario based on its scoring type."""
     scoring = scenario.get("scoring", "mcq")
     if scoring == "mcq":
         return score_mcq(scenario, response)
@@ -324,30 +194,20 @@ def score_scenario(scenario: dict, response: dict) -> bool:
         return score_keyword(scenario, response)
     elif scoring == "tool_use":
         return score_tool_use(scenario, response)
-    else:
-        print(f"  [warn] unknown scoring type: {scoring}", file=sys.stderr)
-        return False
+    return False
 
 
 # ---------------------------------------------------------------------------
-# Results
+# Output
 # ---------------------------------------------------------------------------
 
-def save_results(
-    results: list[dict],
-    model: str,
-    provider: str,
-) -> Path:
-    """Save detailed results to a JSON file in results/."""
+def save_results(results: list[dict], model: str, provider: str) -> Path:
     RESULTS_DIR.mkdir(exist_ok=True)
     ts = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
     safe_model = re.sub(r"[^a-zA-Z0-9_\-.]", "_", model)
     out_path = RESULTS_DIR / f"{ts}_{provider}_{safe_model}.json"
-
     summary = {
-        "timestamp": ts,
-        "provider": provider,
-        "model": model,
+        "timestamp": ts, "provider": provider, "model": model,
         "total": len(results),
         "correct": sum(1 for r in results if r["correct"]),
         "scenarios": results,
@@ -357,32 +217,21 @@ def save_results(
 
 
 def print_scorecard(results: list[dict], model: str) -> None:
-    """Print a formatted scorecard to stdout."""
-    # Group by category.
     categories: dict[str, list[bool]] = {}
     for r in results:
-        cat = r.get("category", "Unknown")
-        categories.setdefault(cat, []).append(r["correct"])
-
+        categories.setdefault(r.get("category", "?"), []).append(r["correct"])
     header = f"PM-Bench Results -- {model}"
     print(f"\n{header}")
     print("=" * len(header))
     print(f"{'Category':<40} {'Score':>8}  {'Pct':>7}")
     print("-" * 60)
-
-    total_correct = 0
-    total_count = 0
+    total_c, total_n = 0, 0
     for cat, scores in categories.items():
-        correct = sum(scores)
-        count = len(scores)
-        total_correct += correct
-        total_count += count
-        pct = (correct / count * 100) if count else 0
-        print(f"{cat:<40} {correct:>3}/{count:<4} {pct:>6.1f}%")
-
+        c, n = sum(scores), len(scores)
+        total_c += c; total_n += n
+        print(f"{cat:<40} {c:>3}/{n:<4} {c/n*100 if n else 0:>6.1f}%")
     print("-" * 60)
-    pct = (total_correct / total_count * 100) if total_count else 0
-    print(f"{'TOTAL':<40} {total_correct:>3}/{total_count:<4} {pct:>6.1f}%")
+    print(f"{'TOTAL':<40} {total_c:>3}/{total_n:<4} {total_c/total_n*100 if total_n else 0:>6.1f}%")
     print()
 
 
@@ -391,104 +240,71 @@ def print_scorecard(results: list[dict], model: str) -> None:
 # ---------------------------------------------------------------------------
 
 def load_scenarios() -> list[dict]:
-    """Load scenarios from the JSON file."""
     if not SCENARIOS_FILE.exists():
-        print(
-            f"Scenarios file not found: {SCENARIOS_FILE}\n"
-            "Create scenarios/scenarios.json with your scenario definitions.",
-            file=sys.stderr,
-        )
+        print(f"Scenarios file not found: {SCENARIOS_FILE}", file=sys.stderr)
         sys.exit(1)
-    return json.loads(SCENARIOS_FILE.read_text(encoding="utf-8"))
+    data = json.loads(SCENARIOS_FILE.read_text(encoding="utf-8"))
+    # The file has a top-level object with a "scenarios" array.
+    if isinstance(data, dict) and "scenarios" in data:
+        return data["scenarios"]
+    if isinstance(data, list):
+        return data
+    print("Unexpected scenarios.json format.", file=sys.stderr)
+    sys.exit(1)
 
 
 def filter_scenarios(
     scenarios: list[dict],
-    scenario_id: str | None,
+    scenario_id: int | None,
     category: str | None,
     superhuman_only: bool,
+    include_tool_use: bool,
 ) -> list[dict]:
-    """Filter scenarios based on CLI arguments."""
-    if scenario_id:
+    if scenario_id is not None:
         matches = [s for s in scenarios if s["id"] == scenario_id]
         if not matches:
-            print(f"Scenario '{scenario_id}' not found.", file=sys.stderr)
+            print(f"Scenario {scenario_id} not found.", file=sys.stderr)
             sys.exit(1)
         return matches
-
     if superhuman_only:
-        return [
-            s for s in scenarios
-            if s.get("category", "").lower().startswith("superhuman")
-            or s.get("category", "") == "Superhuman PM Judgment"
-        ]
-
+        scenarios = [s for s in scenarios if s.get("category") == "Superhuman PM Judgment"]
     if category:
-        matches = [
-            s for s in scenarios
-            if s.get("category", "").lower() == category.lower()
-        ]
-        if not matches:
+        scenarios = [s for s in scenarios if s.get("category", "").lower() == category.lower()]
+        if not scenarios:
             print(f"Category '{category}' not found.", file=sys.stderr)
-            cats = sorted(set(s.get("category", "") for s in scenarios))
-            print(f"Available categories: {', '.join(cats)}", file=sys.stderr)
             sys.exit(1)
-        return matches
-
+    if not include_tool_use:
+        before = len(scenarios)
+        scenarios = [s for s in scenarios if s.get("scoring") != "tool_use"]
+        skipped = before - len(scenarios)
+        if skipped:
+            print(f"(Skipping {skipped} tool_use scenarios — use --include-tool-use to attempt them)\n")
     return scenarios
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(
-        description="PM-Bench: Evaluate AI models on product management scenarios.",
-    )
-    parser.add_argument(
-        "--provider",
-        choices=["anthropic", "openai"],
-        default="anthropic",
-        help="LLM provider (default: anthropic)",
-    )
-    parser.add_argument(
-        "--model",
-        type=str,
-        default=None,
-        help="Model name override (default: claude-sonnet-4-20250514 for Anthropic, gpt-4o for OpenAI)",
-    )
-    parser.add_argument(
-        "--scenario",
-        type=str,
-        default=None,
-        help="Run a specific scenario by ID (e.g., S01)",
-    )
-    parser.add_argument(
-        "--category",
-        type=str,
-        default=None,
-        help='Run all scenarios in a category (e.g., "Memory Recall")',
-    )
-    parser.add_argument(
-        "--superhuman-only",
-        action="store_true",
-        help="Run only the 20 Superhuman PM Judgment scenarios",
-    )
-    parser.add_argument(
-        "--dry-run",
-        action="store_true",
-        help="Print prompts without calling the API",
-    )
+    parser = argparse.ArgumentParser(description="PM-Bench: Evaluate AI models on PM judgment scenarios.")
+    parser.add_argument("--provider", choices=["anthropic", "openai"], default="anthropic")
+    parser.add_argument("--model", type=str, default=None,
+                        help="Model override (default: claude-sonnet-4-20250514 / gpt-4o)")
+    parser.add_argument("--scenario", type=int, default=None, help="Run a single scenario by numeric ID (e.g., 49)")
+    parser.add_argument("--category", type=str, default=None, help='Run a category (e.g., "Memory Recall")')
+    parser.add_argument("--superhuman-only", action="store_true", help="Run only Superhuman PM Judgment (20 MCQ)")
+    parser.add_argument("--include-tool-use", action="store_true",
+                        help="Include tool_use scenarios (scores unreliable without a tool harness)")
+    parser.add_argument("--dry-run", action="store_true", help="Print prompts without calling the API")
     args = parser.parse_args()
 
-    # Defaults
     if args.model is None:
-        args.model = (
-            "claude-sonnet-4-20250514" if args.provider == "anthropic" else "gpt-4o"
-        )
+        args.model = "claude-sonnet-4-20250514" if args.provider == "anthropic" else "gpt-4o"
 
-    # Load and filter
-    scenarios = load_scenarios()
-    scenarios = filter_scenarios(
-        scenarios, args.scenario, args.category, args.superhuman_only
-    )
+    all_scenarios = load_scenarios()
+    scenarios = filter_scenarios(all_scenarios, args.scenario, args.category,
+                                args.superhuman_only, args.include_tool_use)
+
+    if not scenarios:
+        print("No scenarios to run.", file=sys.stderr)
+        sys.exit(1)
 
     print(f"PM-Bench  |  provider={args.provider}  model={args.model}")
     print(f"Running {len(scenarios)} scenario(s)...\n")
@@ -498,79 +314,45 @@ def main() -> None:
 
     for i, scenario in enumerate(scenarios, 1):
         sid = scenario["id"]
-        name = scenario.get("name", sid)
-        category = scenario.get("category", "Unknown")
+        name = scenario.get("name", str(sid))
+        cat = scenario.get("category", "?")
         scoring = scenario.get("scoring", "mcq")
+        print(f"[{i}/{len(scenarios)}] #{sid} {name}  ({cat}, {scoring})")
 
-        print(f"[{i}/{len(scenarios)}] {sid}: {name}  ({category}, {scoring})")
-
-        # Build context and messages
-        context = resolve_context(scenario)
+        context = build_context(scenario)
         messages = build_messages(scenario, context)
-        tools = build_tools(scenario)
 
         if args.dry_run:
             print(f"  system: {messages[0]['content'][:80]}...")
-            print(f"  user:   {messages[1]['content'][:120]}...")
-            if tools:
-                print(f"  tools:  {[t.get('function', {}).get('name', t.get('name', '?')) for t in tools]}")
-            results.append({
-                "id": sid,
-                "name": name,
-                "category": category,
-                "scoring": scoring,
-                "correct": False,
-                "response": "(dry run)",
-            })
+            trigger_preview = scenario['trigger'][:120].replace('\n', ' ')
+            print(f"  trigger: {trigger_preview}...")
+            print(f"  answer: {scenario.get('correct_answer', '(none)')}")
+            results.append({"id": sid, "name": name, "category": cat,
+                            "scoring": scoring, "correct": False, "response": "(dry run)"})
             continue
 
-        # Call the model
         try:
-            response = call_fn(messages, args.model, tools)
+            response = call_fn(messages, args.model)
         except Exception as e:
             print(f"  ERROR: {e}")
-            results.append({
-                "id": sid,
-                "name": name,
-                "category": category,
-                "scoring": scoring,
-                "correct": False,
-                "error": str(e),
-                "response": None,
-            })
+            results.append({"id": sid, "name": name, "category": cat,
+                            "scoring": scoring, "correct": False, "error": str(e)})
             continue
 
-        # Score
         correct = score_scenario(scenario, response)
         status = "PASS" if correct else "FAIL"
-        print(f"  {status}", end="")
-        if response["text"]:
-            preview = response["text"][:100].replace("\n", " ")
-            print(f"  -> {preview}")
-        elif response["tool_calls"]:
-            tc = response["tool_calls"][0]
-            print(f"  -> tool: {tc['name']}({json.dumps(tc['arguments'], default=str)[:80]})")
-        else:
-            print()
+        preview = response["text"][:100].replace("\n", " ") if response["text"] else "(no text)"
+        print(f"  {status}  -> {preview}")
 
-        results.append({
-            "id": sid,
-            "name": name,
-            "category": category,
-            "scoring": scoring,
-            "correct": correct,
-            "response_text": response["text"],
-            "tool_calls": response["tool_calls"],
-        })
+        results.append({"id": sid, "name": name, "category": cat, "scoring": scoring,
+                        "correct": correct, "response_text": response["text"],
+                        "tool_calls": response["tool_calls"]})
 
-        # Be polite to rate limits.
         if i < len(scenarios):
             time.sleep(0.5)
 
-    # Print scorecard
     print_scorecard(results, args.model)
 
-    # Save results
     if not args.dry_run:
         out_path = save_results(results, args.model, args.provider)
         print(f"Results saved to: {out_path}")
