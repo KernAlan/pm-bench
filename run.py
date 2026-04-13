@@ -182,17 +182,28 @@ def extract_mcq_choice(text: str) -> str | None:
     if m:
         return m.group(1).upper()
 
-    # 3. Starts with letter + optional whitespace + non-word delimiter (period,
-    #    paren, colon, dash, newline). Excludes "B is..." / "A because..." where
-    #    the letter begins a sentence about a choice rather than selecting it.
+    # 3. "I would pick C", "Option C", "go with B", "select A"
+    m = re.search(
+        r"(?:pick|choose|go\s+with|select)\s+\(?([A-Da-d])\)?",
+        stripped, re.IGNORECASE,
+    )
+    if m:
+        return m.group(1).upper()
+    m = re.search(r"\boption\s+([A-Da-d])\b", stripped, re.IGNORECASE)
+    if m:
+        return m.group(1).upper()
+
+    # 4. Starts with letter + delimiter or "because" / explanation connector.
+    #    Matches: "B.", "B)", "B:", "B —", "B,", "C because", "(C) because"
+    #    Excludes: "B is tempting" (letter starts a sentence about the choice).
     m = re.match(
-        r"^\*{0,2}([A-Da-d])\*{0,2}\s*(?:[.):\-\u2014,]|\n|$)",
-        stripped,
+        r"^\*{0,2}\(?([A-Da-d])\)?\*{0,2}\s*(?:[.):\-\u2014,]|\bbecause\b|\n|$)",
+        stripped, re.IGNORECASE,
     )
     if m:
         return m.group(1).upper()
 
-    # 4. Letter on its own line (e.g. model outputs "B\n\nExplanation...").
+    # 5. Letter on its own line (e.g. model outputs "B\n\nExplanation...").
     for line in stripped.splitlines():
         line = line.strip()
         m = re.match(r"^\*{0,2}\(?([A-Da-d])\)?\*{0,2}[.):]*$", line)
