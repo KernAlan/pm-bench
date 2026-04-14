@@ -1,6 +1,6 @@
 # Upcoming Meetings
 
-## API v2 Design Review — Thursday March 9, 2pm PST
+## API v2 Design Review - Thursday March 9, 2pm PST
 - Attendees: Alan, Josh, Sarah, Maria (observer), plus 4 senior engineers
 - Duration: 1 hour (8 person-hours total)
 - Agenda: Review API v2 endpoint design, decide on pagination strategy, approve webhook payload format
@@ -14,6 +14,6 @@
 
 ## Design doc summary
 - 2 open questions:
-  1. Cursor vs offset pagination — Sarah recommends cursor, Alan agrees
-  2. Webhook payload: nested vs flat — still debated (see thread)
+  1. Cursor vs offset pagination - Sarah recommends cursor, Alan agrees
+  2. Webhook payload: nested vs flat - still debated (see thread)
 - Everything else in the doc has implicit consensus (no objections in 5 days)

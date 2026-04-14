@@ -1,4 +1,4 @@
-# Slack mentions of workarounds — last 30 days
+# Slack mentions of workarounds - last 30 days
 
 ## Hardcoded API URL (from sprint Feb 10)
 - Feb 12, Alan: 'had to manually change the billing URL in 3 places for staging'
@@ -8,14 +8,14 @@
 - **Estimated cost**: ~1 hour/week across team
 
 ## Retry logic without backoff (from sprint Jan 27)
-- Feb 8, Sarah: 'webhook endpoint got hammered — our retry has no backoff, sent 200 requests in 10 seconds'
+- Feb 8, Sarah: 'webhook endpoint got hammered - our retry has no backoff, sent 200 requests in 10 seconds'
 - Feb 22, Alan: 'customer complained about duplicate webhooks, same retry issue'
 - Mar 1, Sarah: 'manually adding delays to retry calls, this needs a real fix'
 - **Estimated cost**: ~45 min/week + customer impact
 
 ## Generic error messages (from sprint Feb 3)
-- Feb 10, Josh: 'customer ticket, they got "something went wrong" — spent 30 min reproducing to find the actual error'
-- Feb 24, Alan: 'billing error, logs just say "error processing request" — had to add debug logging, find the issue, then remove the debug logging'
+- Feb 10, Josh: 'customer ticket, they got "something went wrong" - spent 30 min reproducing to find the actual error'
+- Feb 24, Alan: 'billing error, logs just say "error processing request" - had to add debug logging, find the issue, then remove the debug logging'
 - Mar 6, Josh: 'another "something went wrong" ticket, 45 min to diagnose'
 - **Estimated cost**: ~1 hour/week
 

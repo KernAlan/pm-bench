@@ -51,7 +51,7 @@ class Validator:
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
         except json.JSONDecodeError as e:
-            self.err(f"{path.name}: invalid JSON — {e}")
+            self.err(f"{path.name}: invalid JSON - {e}")
             return None
         if isinstance(data, dict) and "scenarios" in data:
             return data["scenarios"]

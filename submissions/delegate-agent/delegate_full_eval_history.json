@@ -193,7 +193,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B — Need to reconcile 847 legacy subscriptions with mismatched plan IDs. It's the recorded blocker for the billing migration (status: Phase 2).",
+        "response_excerpt": "B - Need to reconcile 847 legacy subscriptions with mismatched plan IDs. It's the recorded blocker for the billing migration (status: Phase 2).",
         "scenario": "cross_file_synthesis",
         "status": "PASS",
         "tokens_used": 7365,
@@ -246,7 +246,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) Async written updates — Josh prefers async standups (written updates). I have this saved in memory (standup-preferences, 2026-03-05).\nB) Async written updates — Josh prefers async standups (written",
+        "response_excerpt": "B) Async written updates - Josh prefers async standups (written updates). I have this saved in memory (standup-preferences, 2026-03-05).\nB) Async written updates - Josh prefers async standups (written",
         "scenario": "recall_standup_preference",
         "status": "PASS",
         "tokens_used": 7154,
@@ -265,7 +265,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "C) PostgreSQL — we decided to use PostgreSQL for the billing service (team has more Postgres expertise and we needed complex joins).\nC) PostgreSQL — we decided to use PostgreSQL for the billing servic",
+        "response_excerpt": "C) PostgreSQL - we decided to use PostgreSQL for the billing service (team has more Postgres expertise and we needed complex joins).\nC) PostgreSQL - we decided to use PostgreSQL for the billing servic",
         "scenario": "recall_decision_from_noisy_log",
         "status": "PASS",
         "tokens_used": 7684,
@@ -284,7 +284,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) Billing dashboard redesign — Josh is the product/frontend lead and is currently working on the billing dashboard redesign.",
+        "response_excerpt": "B) Billing dashboard redesign - Josh is the product/frontend lead and is currently working on the billing dashboard redesign.",
         "scenario": "recall_person_role",
         "status": "PASS",
         "tokens_used": 7077,
@@ -299,7 +299,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "D — I don't have that information. I couldn't find any project or memory indicating which CI/CD pipeline you use.\nD — I don't have that information. I couldn't find any project or memory indicating wh",
+        "response_excerpt": "D - I don't have that information. I couldn't find any project or memory indicating which CI/CD pipeline you use.\nD - I don't have that information. I couldn't find any project or memory indicating wh",
         "scenario": "no_memory_available",
         "status": "PASS",
         "tokens_used": 9841,
@@ -317,7 +317,7 @@
         "expected_tools": [
           "set_reminder"
         ],
-        "response_excerpt": "Got it — I'll remind you in 5 minutes to check if the deploy went through.\nGot it — I'll remind you in 5 minutes to check if the deploy went through.",
+        "response_excerpt": "Got it - I'll remind you in 5 minutes to check if the deploy went through.\nGot it - I'll remind you in 5 minutes to check if the deploy went through.",
         "scenario": "set_reminder_natural",
         "status": "PASS",
         "tokens_used": 3664,
@@ -354,7 +354,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B — Need to reconcile 847 legacy subscriptions with mismatched plan IDs (current blocker per billing-migration notes).\nB — Need to reconcile 847 legacy subscriptions with mismatched plan IDs (current ",
+        "response_excerpt": "B - Need to reconcile 847 legacy subscriptions with mismatched plan IDs (current blocker per billing-migration notes).\nB - Need to reconcile 847 legacy subscriptions with mismatched plan IDs (current ",
         "scenario": "cross_file_synthesis",
         "status": "PASS",
         "tokens_used": 7562,
@@ -369,7 +369,7 @@
         "answer_correct": true,
         "duration_ms": 9406,
         "expected_tools": [],
-        "response_excerpt": "Yep — saw it. Oof. Classic Friday-deploy horror story. Want me to add a “no risky deploys after Thursday” note to our release checklist, or set up a pre-Friday approval/reminder so we don’t end up lik",
+        "response_excerpt": "Yep - saw it. Oof. Classic Friday-deploy horror story. Want me to add a “no risky deploys after Thursday” note to our release checklist, or set up a pre-Friday approval/reminder so we don’t end up lik",
         "scenario": "casual_banter_no_action",
         "status": "PASS",
         "tokens_used": 3511,
@@ -426,7 +426,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "C) PostgreSQL — we decided to use PostgreSQL for the billing service (decision 2026-02-28). Reason: more Postgres expertise on the team and we need complex joins; didn’t want to learn a new ORM mid-sp",
+        "response_excerpt": "C) PostgreSQL - we decided to use PostgreSQL for the billing service (decision 2026-02-28). Reason: more Postgres expertise on the team and we need complex joins; didn’t want to learn a new ORM mid-sp",
         "scenario": "recall_decision_from_noisy_log",
         "status": "PASS",
         "tokens_used": 8958,
@@ -445,7 +445,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) Billing dashboard redesign — Josh is listed in memory as working on the billing dashboard redesign right now.\nB) Billing dashboard redesign — Josh is listed in memory as working on the billing dash",
+        "response_excerpt": "B) Billing dashboard redesign - Josh is listed in memory as working on the billing dashboard redesign right now.\nB) Billing dashboard redesign - Josh is listed in memory as working on the billing dash",
         "scenario": "recall_person_role",
         "status": "PASS",
         "tokens_used": 8861,
@@ -464,7 +464,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "D) I don't have that information — I checked channel history and our memory and couldn't find any mention of which CI/CD system we use. I can look through the repo for .github/workflows, .circleci/con",
+        "response_excerpt": "D) I don't have that information - I checked channel history and our memory and couldn't find any mention of which CI/CD system we use. I can look through the repo for .github/workflows, .circleci/con",
         "scenario": "no_memory_available",
         "status": "PASS",
         "tokens_used": 12394,
@@ -482,7 +482,7 @@
         "expected_tools": [
           "set_reminder"
         ],
-        "response_excerpt": "Got it — I'll remind you in 5 minutes to check whether the deploy went through. I'll DM you when it's time.\nGot it — I'll remind you in 5 minutes to check whether the deploy went through. I'll DM you ",
+        "response_excerpt": "Got it - I'll remind you in 5 minutes to check whether the deploy went through. I'll DM you when it's time.\nGot it - I'll remind you in 5 minutes to check whether the deploy went through. I'll DM you ",
         "scenario": "set_reminder_natural",
         "status": "PASS",
         "tokens_used": 4757,
@@ -502,7 +502,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B — 1 approval. Team norms say “All PRs need at least 1 approval” (changed from 2 after the retro).",
+        "response_excerpt": "B - 1 approval. Team norms say “All PRs need at least 1 approval” (changed from 2 after the retro).",
         "scenario": "recall_team_norms",
         "status": "PASS",
         "tokens_used": 9178,
@@ -517,7 +517,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) Need to reconcile legacy subscriptions with mismatched plan IDs — there are 847 legacy subscriptions that need reconciliation (status noted 2026-03-03).\nB) Need to reconcile legacy subscriptions wi",
+        "response_excerpt": "B) Need to reconcile legacy subscriptions with mismatched plan IDs - there are 847 legacy subscriptions that need reconciliation (status noted 2026-03-03).\nB) Need to reconcile legacy subscriptions wi",
         "scenario": "cross_file_synthesis",
         "status": "PASS",
         "tokens_used": 9336,
@@ -532,7 +532,7 @@
         "answer_correct": true,
         "duration_ms": 14221,
         "expected_tools": [],
-        "response_excerpt": "Saw it — classic 'deploy on Friday' disaster. If anyone's planning a late-week deploy between now and end-of-month, ping here with scope + rollback plan and I’ll pair/check. Let's keep weekends unruin",
+        "response_excerpt": "Saw it - classic 'deploy on Friday' disaster. If anyone's planning a late-week deploy between now and end-of-month, ping here with scope + rollback plan and I’ll pair/check. Let's keep weekends unruin",
         "scenario": "casual_banter_no_action",
         "status": "PASS",
         "tokens_used": 4544,
@@ -566,7 +566,7 @@
         "expected_tools": [
           "log_decision"
         ],
-        "response_excerpt": "Agreed — switching to Stripe makes sense given the time pressure. Logged the decision and updated billing memory.\n\nQuick proposed next steps (confirm or change):\n1) Stop further work on the homegrown ",
+        "response_excerpt": "Agreed - switching to Stripe makes sense given the time pressure. Logged the decision and updated billing memory.\n\nQuick proposed next steps (confirm or change):\n1) Stop further work on the homegrown ",
         "scenario": "log_implicit_decision",
         "status": "PASS",
         "tokens_used": 10797,
@@ -605,7 +605,7 @@
         "expected_tools": [
           "save_memory"
         ],
-        "response_excerpt": "Got it — updated notes: Josh → backend (owns API) and you're on frontend now. Logged to memory.\nGot it — updated notes: Josh → backend (owns API) and you're on frontend now. Logged to memory.",
+        "response_excerpt": "Got it - updated notes: Josh → backend (owns API) and you're on frontend now. Logged to memory.\nGot it - updated notes: Josh → backend (owns API) and you're on frontend now. Logged to memory.",
         "scenario": "save_correction",
         "status": "PASS",
         "tokens_used": 5446,
@@ -625,7 +625,7 @@
         "expected_tools": [
           "react"
         ],
-        "response_excerpt": "Nice — huge win, congrats! 🚀\n\nQuick checklist now that it’s live:\n- Confirm analytics/events are firing for key onboarding steps\n- Do a quick smoke test of the primary happy path and a couple edge cas",
+        "response_excerpt": "Nice - huge win, congrats! 🚀\n\nQuick checklist now that it’s live:\n- Confirm analytics/events are firing for key onboarding steps\n- Do a quick smoke test of the primary happy path and a couple edge cas",
         "scenario": "react_only_no_reply",
         "status": "FAIL",
         "tokens_used": 4902,
@@ -645,7 +645,7 @@
         "answer_correct": true,
         "duration_ms": 8238,
         "expected_tools": [],
-        "response_excerpt": "Nice — build passed and all tests green. Artifact: delegate-bot-v0.4.12-rc1.tar.gz. Recommend promoting this to staging and running smoke tests. Want me to set a reminder to follow up in 1 hour?\nNice ",
+        "response_excerpt": "Nice - build passed and all tests green. Artifact: delegate-bot-v0.4.12-rc1.tar.gz. Recommend promoting this to staging and running smoke tests. Want me to set a reminder to follow up in 1 hour?\nNice ",
         "scenario": "ignore_bot_noise",
         "status": "PASS",
         "tokens_used": 4248,
@@ -663,7 +663,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "A — I pulled the billing-migration memory and can summarize it for Josh.\n\nBrief summary: Phase 2 (data migration running), new Postgres schema deployed, target = end of March 2026. Owner split: Alan o",
+        "response_excerpt": "A - I pulled the billing-migration memory and can summarize it for Josh.\n\nBrief summary: Phase 2 (data migration running), new Postgres schema deployed, target = end of March 2026. Owner split: Alan o",
         "scenario": "recall_then_reply_with_context",
         "status": "PASS",
         "tokens_used": 9233,
@@ -678,7 +678,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B — Project Atlas is in Phase 2 (data migration). Notes show target = End of March 2026 and Team = Engineering, but no PM is recorded in my notes.\nB — Project Atlas is in Phase 2 (data migration). Not",
+        "response_excerpt": "B - Project Atlas is in Phase 2 (data migration). Notes show target = End of March 2026 and Team = Engineering, but no PM is recorded in my notes.\nB - Project Atlas is in Phase 2 (data migration). Not",
         "scenario": "partial_info_honest",
         "status": "PASS",
         "tokens_used": 8640,
@@ -713,7 +713,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "Thanks — good catch. Quick triage checklist and next steps so we can fix this fast:\n\n1) Quick ask for the reporter: please drop one example customer (email or subscription id), a screenshot, and the t",
+        "response_excerpt": "Thanks - good catch. Quick triage checklist and next steps so we can fix this fast:\n\n1) Quick ask for the reporter: please drop one example customer (email or subscription id), a screenshot, and the t",
         "scenario": "mention_relevant_person",
         "status": "PASS",
         "tokens_used": 10534,
@@ -764,7 +764,7 @@
         "expected_tools": [
           "invite_to_channel"
         ],
-        "response_excerpt": "Done — I invited Sarah (U_SARAH) to this channel and saved that she starts on 2026-03-06 to help with the billing migration. Want me to DM her onboarding notes or add her to any other channels?\nDone —",
+        "response_excerpt": "Done - I invited Sarah (U_SARAH) to this channel and saved that she starts on 2026-03-06 to help with the billing migration. Want me to DM her onboarding notes or add her to any other channels?\nDone -",
         "scenario": "invite_missing_person",
         "status": "PASS",
         "tokens_used": 5131,
@@ -824,7 +824,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B — Async written updates. Josh prefers async standups (saved in standup-preferences, 2026-03-05).\nB — Async written updates. Josh prefers async standups (see saved standup-preferences, 2026-03-05).",
+        "response_excerpt": "B - Async written updates. Josh prefers async standups (saved in standup-preferences, 2026-03-05).\nB - Async written updates. Josh prefers async standups (see saved standup-preferences, 2026-03-05).",
         "scenario": "recall_standup_preference",
         "status": "PASS",
         "tokens_used": 13587,
@@ -841,7 +841,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "C — PostgreSQL. We decided to use PostgreSQL for the billing service (team has more Postgres expertise and we need complex joins).\nC — PostgreSQL. We decided to use PostgreSQL for the billing service ",
+        "response_excerpt": "C - PostgreSQL. We decided to use PostgreSQL for the billing service (team has more Postgres expertise and we need complex joins).\nC - PostgreSQL. We decided to use PostgreSQL for the billing service ",
         "scenario": "recall_decision_from_noisy_log",
         "status": "PASS",
         "tokens_used": 14572,
@@ -858,7 +858,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B — Billing dashboard redesign. Josh is listed as working on the billing dashboard redesign right now.",
+        "response_excerpt": "B - Billing dashboard redesign. Josh is listed as working on the billing dashboard redesign right now.",
         "scenario": "recall_person_role",
         "status": "PASS",
         "tokens_used": 13030,
@@ -875,7 +875,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "D) I don't have that information — I couldn't find any CI/CD references in this channel. If you want, tell me the repo or let me scan common places (.github/workflows/, .circleci/config.yml, Jenkinsfi",
+        "response_excerpt": "D) I don't have that information - I couldn't find any CI/CD references in this channel. If you want, tell me the repo or let me scan common places (.github/workflows/, .circleci/config.yml, Jenkinsfi",
         "scenario": "no_memory_available",
         "status": "PARTIAL",
         "tokens_used": 8964,
@@ -905,7 +905,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) 1 approval — per team norms: \"All PRs need at least 1 approval\" (updated 2026-03-02).\nB) 1 approval — per team norms: \"All PRs need at least 1 approval\" (updated 2026-03-02).",
+        "response_excerpt": "B) 1 approval - per team norms: \"All PRs need at least 1 approval\" (updated 2026-03-02).\nB) 1 approval - per team norms: \"All PRs need at least 1 approval\" (updated 2026-03-02).",
         "scenario": "recall_team_norms",
         "status": "PASS",
         "tokens_used": 13442,
@@ -922,7 +922,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B — Need to reconcile 847 legacy subscriptions with mismatched plan IDs. (From the billing-migration status note: Phase 2, blocker is reconciling legacy subscriptions.)",
+        "response_excerpt": "B - Need to reconcile 847 legacy subscriptions with mismatched plan IDs. (From the billing-migration status note: Phase 2, blocker is reconciling legacy subscriptions.)",
         "scenario": "cross_file_synthesis",
         "status": "PASS",
         "tokens_used": 14563,
@@ -937,7 +937,7 @@
         "answer_correct": true,
         "duration_ms": 8054,
         "expected_tools": [],
-        "response_excerpt": "Yep — saw it. Brutal timing. Friday deploys are a crime. Hope he had a rollback. My rule: avoid risky deploys before the weekend; if you must, use feature flags, canaries, and a tested rollback plan.",
+        "response_excerpt": "Yep - saw it. Brutal timing. Friday deploys are a crime. Hope he had a rollback. My rule: avoid risky deploys before the weekend; if you must, use feature flags, canaries, and a tested rollback plan.",
         "scenario": "casual_banter_no_action",
         "status": "PASS",
         "tokens_used": 4358,
@@ -968,7 +968,7 @@
         "expected_tools": [
           "log_decision"
         ],
-        "response_excerpt": "Agreed — Stripe makes sense to get us to first revenue fast. I logged the decision: “Use Stripe for payments instead of building a homegrown billing solution” (proposed by U_EVAL).\n\nImmediate next ste",
+        "response_excerpt": "Agreed - Stripe makes sense to get us to first revenue fast. I logged the decision: “Use Stripe for payments instead of building a homegrown billing solution” (proposed by U_EVAL).\n\nImmediate next ste",
         "scenario": "log_implicit_decision",
         "status": "PASS",
         "tokens_used": 5465,
@@ -985,7 +985,7 @@
         "expected_tools": [
           "log_decision"
         ],
-        "response_excerpt": "Got it — hiring freeze until Q3. I’ll log this and save it to memory.\n\nImmediate suggestions (I can do these now unless you say otherwise):\n- Pause all open reqs and halt recruiter outreach.\n- Flag an",
+        "response_excerpt": "Got it - hiring freeze until Q3. I’ll log this and save it to memory.\n\nImmediate suggestions (I can do these now unless you say otherwise):\n- Pause all open reqs and halt recruiter outreach.\n- Flag an",
         "scenario": "learn_and_acknowledge",
         "status": "PASS",
         "tokens_used": 5709,
@@ -1003,7 +1003,7 @@
         "expected_tools": [
           "save_memory"
         ],
-        "response_excerpt": "Got it — updated notes and logged the role change. Thanks for the heads up! Anything I should flag for handoff (open API tickets, keys, or contracts)?",
+        "response_excerpt": "Got it - updated notes and logged the role change. Thanks for the heads up! Anything I should flag for handoff (open API tickets, keys, or contracts)?",
         "scenario": "save_correction",
         "status": "FAIL",
         "tokens_used": 15567,
@@ -1021,7 +1021,7 @@
         "expected_tools": [
           "react"
         ],
-        "response_excerpt": "Nice — congrats! 🚀 Quick checklist:\n• Confirm rollout percentage (100% or staged)\n• Watch activation / drop-off and core funnel over the next 24–72h\n• Monitor error logs and alerts (Sentry/Datadog)\n• ",
+        "response_excerpt": "Nice - congrats! 🚀 Quick checklist:\n• Confirm rollout percentage (100% or staged)\n• Watch activation / drop-off and core funnel over the next 24–72h\n• Monitor error logs and alerts (Sentry/Datadog)\n• ",
         "scenario": "react_only_no_reply",
         "status": "FAIL",
         "tokens_used": 5433,
@@ -1038,7 +1038,7 @@
         "answer_correct": false,
         "duration_ms": 18346,
         "expected_tools": [],
-        "response_excerpt": "Nice — build #4521 is green ✅ (main, 3m22s, 847 tests). Artifact: delegate-bot-v0.4.12-rc1.tar.gz.\n\nRecommended next steps: promote the artifact to staging and run a canary, tag v0.4.12-rc1 and draft ",
+        "response_excerpt": "Nice - build #4521 is green ✅ (main, 3m22s, 847 tests). Artifact: delegate-bot-v0.4.12-rc1.tar.gz.\n\nRecommended next steps: promote the artifact to staging and run a canary, tag v0.4.12-rc1 and draft ",
         "scenario": "ignore_bot_noise",
         "status": "FAIL",
         "tokens_used": 5205,
@@ -1055,7 +1055,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "A — I already recalled memory and can summarize.\n\nCurrent state: migrating off the legacy Stripe integration to a new billing service. Backend (Alan) has the new Postgres schema and Stripe webhook han",
+        "response_excerpt": "A - I already recalled memory and can summarize.\n\nCurrent state: migrating off the legacy Stripe integration to a new billing service. Backend (Alan) has the new Postgres schema and Stripe webhook han",
         "scenario": "recall_then_reply_with_context",
         "status": "PASS",
         "tokens_used": 9585,
@@ -1070,7 +1070,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) Phase 2, but PM not recorded in my notes — Project Atlas is in Phase 2 (data migration), target End of March 2026, team: Engineering; no PM listed in memory.",
+        "response_excerpt": "B) Phase 2, but PM not recorded in my notes - Project Atlas is in Phase 2 (data migration), target End of March 2026, team: Engineering; no PM listed in memory.",
         "scenario": "partial_info_honest",
         "status": "PASS",
         "tokens_used": 13404,
@@ -1087,7 +1087,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B — PostgreSQL, 1 approval.\nWe decided to use PostgreSQL for billing (decision: “Use Postgres for billing” 2026-02-28) and team norms state all PRs need at least 1 approval.",
+        "response_excerpt": "B - PostgreSQL, 1 approval.\nWe decided to use PostgreSQL for billing (decision: “Use Postgres for billing” 2026-02-28) and team norms state all PRs need at least 1 approval.",
         "scenario": "multi_question_single_message",
         "status": "PASS",
         "tokens_used": 13809,
@@ -1105,7 +1105,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "Thanks — definitely not good. Quick triage plan:\n\nWhat I already know: we’re in billing migration Phase 2 and there are 847 legacy subscriptions with mismatched plan IDs (likely related).\n\nImmediate c",
+        "response_excerpt": "Thanks - definitely not good. Quick triage plan:\n\nWhat I already know: we’re in billing migration Phase 2 and there are 847 legacy subscriptions with mismatched plan IDs (likely related).\n\nImmediate c",
         "scenario": "mention_relevant_person",
         "status": "PASS",
         "tokens_used": 15839,
@@ -1123,7 +1123,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "Reacted with :warning:\n\nGot it — breaking change (camelCase -> snake_case) to webhook payloads noted.\n\nJosh: this blocks the dashboard — you'll need to update the field mappings in the frontend. \n\nQui",
+        "response_excerpt": "Reacted with :warning:\n\nGot it - breaking change (camelCase -> snake_case) to webhook payloads noted.\n\nJosh: this blocks the dashboard - you'll need to update the field mappings in the frontend. \n\nQui",
         "scenario": "spontaneous_outreach",
         "status": "PARTIAL",
         "tokens_used": 15790,
@@ -1173,7 +1173,7 @@
         "expected_tools": [
           "group_dm"
         ],
-        "response_excerpt": "On it — starting a DM with Alan and Sarah to triage now. Alan, paste logs and the staging endpoint in the DM. Sarah, please share your checklist and availability. I’ll coordinate a 30-minute pairing s",
+        "response_excerpt": "On it - starting a DM with Alan and Sarah to triage now. Alan, paste logs and the staging endpoint in the DM. Sarah, please share your checklist and availability. I’ll coordinate a 30-minute pairing s",
         "scenario": "strategic_group_dm",
         "status": "PASS",
         "tokens_used": 5358,
@@ -1212,7 +1212,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) Async written updates — Josh prefers async standups (written updates). I saved this preference to memory on 2026-03-05.\nB) Async written updates — Josh prefers async standups (written updates), sav",
+        "response_excerpt": "B) Async written updates - Josh prefers async standups (written updates). I saved this preference to memory on 2026-03-05.\nB) Async written updates - Josh prefers async standups (written updates), sav",
         "scenario": "recall_standup_preference",
         "status": "PASS",
         "tokens_used": 13660,
@@ -1229,7 +1229,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "C) PostgreSQL — we decided to use Postgres for billing (more Postgres expertise and complex joins needed). Logged decision on 2026-02-28.",
+        "response_excerpt": "C) PostgreSQL - we decided to use Postgres for billing (more Postgres expertise and complex joins needed). Logged decision on 2026-02-28.",
         "scenario": "recall_decision_from_noisy_log",
         "status": "PASS",
         "tokens_used": 13702,
@@ -1246,7 +1246,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) Billing dashboard redesign — Josh is our co-founder handling product and frontend; memory shows he’s currently working on the billing dashboard redesign.\nB) Billing dashboard redesign — Josh is our",
+        "response_excerpt": "B) Billing dashboard redesign - Josh is our co-founder handling product and frontend; memory shows he’s currently working on the billing dashboard redesign.\nB) Billing dashboard redesign - Josh is our",
         "scenario": "recall_person_role",
         "status": "PASS",
         "tokens_used": 13723,
@@ -1263,7 +1263,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "D — I don't have that information. I checked memory and recent channel history and found no record of which CI/CD system we use. To confirm: look in the repo for .github/workflows (GitHub Actions), .c",
+        "response_excerpt": "D - I don't have that information. I checked memory and recent channel history and found no record of which CI/CD system we use. To confirm: look in the repo for .github/workflows (GitHub Actions), .c",
         "scenario": "no_memory_available",
         "status": "PASS",
         "tokens_used": 16730,
@@ -1296,7 +1296,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) 1 approval — per team norms (updated 2026-03-02) all PRs need at least 1 approval. Alan reviews backend/infra; Josh reviews frontend/product.\nB) 1 approval — per team norms (updated 2026-03-02) all",
+        "response_excerpt": "B) 1 approval - per team norms (updated 2026-03-02) all PRs need at least 1 approval. Alan reviews backend/infra; Josh reviews frontend/product.\nB) 1 approval - per team norms (updated 2026-03-02) all",
         "scenario": "recall_team_norms",
         "status": "PASS",
         "tokens_used": 13401,
@@ -1313,7 +1313,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B — Need to reconcile legacy subscriptions with mismatched plan IDs (blocking the data migration; noted in billing-migration memory, last updated 2026-03-03).\nB — Need to reconcile 847 legacy subscrip",
+        "response_excerpt": "B - Need to reconcile legacy subscriptions with mismatched plan IDs (blocking the data migration; noted in billing-migration memory, last updated 2026-03-03).\nB - Need to reconcile 847 legacy subscrip",
         "scenario": "cross_file_synthesis",
         "status": "PASS",
         "tokens_used": 14531,
@@ -1328,7 +1328,7 @@
         "answer_correct": true,
         "duration_ms": 8092,
         "expected_tools": [],
-        "response_excerpt": "Yep — saw it. Classic Friday-deploy nightmare. Want me to add a quick deploy-guardrail checklist or block Friday-night deploys?",
+        "response_excerpt": "Yep - saw it. Classic Friday-deploy nightmare. Want me to add a quick deploy-guardrail checklist or block Friday-night deploys?",
         "scenario": "casual_banter_no_action",
         "status": "PASS",
         "tokens_used": 4464,
@@ -1359,7 +1359,7 @@
         "expected_tools": [
           "log_decision"
         ],
-        "response_excerpt": "Agreed — makes sense given the deadline. I'll log this decision to use Stripe and pause the homegrown billing work.\n\nProposed next steps (I can take these on unless someone else wants ownership):\n1) C",
+        "response_excerpt": "Agreed - makes sense given the deadline. I'll log this decision to use Stripe and pause the homegrown billing work.\n\nProposed next steps (I can take these on unless someone else wants ownership):\n1) C",
         "scenario": "log_implicit_decision",
         "status": "PASS",
         "tokens_used": 5170,
@@ -1376,7 +1376,7 @@
         "expected_tools": [
           "log_decision"
         ],
-        "response_excerpt": "Noted — hiring freeze until Q3 to prioritize shipping billing. I'll log the decision and save it to memory.\n\nSuggested next steps I can take if you want:\n- Notify external recruiters and pause active ",
+        "response_excerpt": "Noted - hiring freeze until Q3 to prioritize shipping billing. I'll log the decision and save it to memory.\n\nSuggested next steps I can take if you want:\n- Notify external recruiters and pause active ",
         "scenario": "learn_and_acknowledge",
         "status": "PASS",
         "tokens_used": 5295,
@@ -1394,7 +1394,7 @@
         "expected_tools": [
           "save_memory"
         ],
-        "response_excerpt": "Got it — noted. I'll update our team notes: Josh → backend & API owner; you're handling frontend. Can I save your name or handle so I can attribute it correctly in memory?\nGot it — noted. I'll update ",
+        "response_excerpt": "Got it - noted. I'll update our team notes: Josh → backend & API owner; you're handling frontend. Can I save your name or handle so I can attribute it correctly in memory?\nGot it - noted. I'll update ",
         "scenario": "save_correction",
         "status": "PASS",
         "tokens_used": 15121,
@@ -1440,7 +1440,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "A — recall memory and summarize.\n\nI pulled the billing-migration memory and here’s the concise catch-up you can send Josh:\n- Status: Phase 2 — data migration running, new Postgres schema deployed, Str",
+        "response_excerpt": "A - recall memory and summarize.\n\nI pulled the billing-migration memory and here’s the concise catch-up you can send Josh:\n- Status: Phase 2 - data migration running, new Postgres schema deployed, Str",
         "scenario": "recall_then_reply_with_context",
         "status": "PASS",
         "tokens_used": 9326,
@@ -1455,7 +1455,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B — Project Atlas is in Phase 2 (data migration); my notes show the engineering team and target = end of March 2026, but no PM is recorded.",
+        "response_excerpt": "B - Project Atlas is in Phase 2 (data migration); my notes show the engineering team and target = end of March 2026, but no PM is recorded.",
         "scenario": "partial_info_honest",
         "status": "PASS",
         "tokens_used": 9020,
@@ -1470,7 +1470,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) PostgreSQL, 1 approval — decision: Use Postgres for billing (2026-02-28). Team norm: all PRs need at least 1 approval.",
+        "response_excerpt": "B) PostgreSQL, 1 approval - decision: Use Postgres for billing (2026-02-28). Team norm: all PRs need at least 1 approval.",
         "scenario": "multi_question_single_message",
         "status": "PASS",
         "tokens_used": 13655,
@@ -1549,7 +1549,7 @@
         "expected_tools": [
           "group_dm"
         ],
-        "response_excerpt": "On it — I’ll pull the right people together now. I’m starting a focused troubleshooting DM with Alan (backend owner), Sarah (Stripe expert), and Josh (billing UI). Goal: unblock the Stripe webhook sig",
+        "response_excerpt": "On it - I’ll pull the right people together now. I’m starting a focused troubleshooting DM with Alan (backend owner), Sarah (Stripe expert), and Josh (billing UI). Goal: unblock the Stripe webhook sig",
         "scenario": "strategic_group_dm",
         "status": "PASS",
         "tokens_used": 5486,
@@ -1587,7 +1587,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B — Async written updates. Josh prefers async standups (written updates).",
+        "response_excerpt": "B - Async written updates. Josh prefers async standups (written updates).",
         "scenario": "recall_standup_preference",
         "status": "PASS",
         "tokens_used": 14205,
@@ -1604,7 +1604,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "C) PostgreSQL — we decided on PostgreSQL for the billing service (decision made 2026-02-28: team has more Postgres expertise and we need complex joins).\nC) PostgreSQL — we decided on PostgreSQL for th",
+        "response_excerpt": "C) PostgreSQL - we decided on PostgreSQL for the billing service (decision made 2026-02-28: team has more Postgres expertise and we need complex joins).\nC) PostgreSQL - we decided on PostgreSQL for th",
         "scenario": "recall_decision_from_noisy_log",
         "status": "PASS",
         "tokens_used": 15162,
@@ -1621,7 +1621,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B — Josh is working on the billing dashboard redesign right now (from our people memory).",
+        "response_excerpt": "B - Josh is working on the billing dashboard redesign right now (from our people memory).",
         "scenario": "recall_person_role",
         "status": "PASS",
         "tokens_used": 14256,
@@ -1638,7 +1638,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "D — I don't have that information. I checked channel history and saved memory (empty) and attempted to read common CI config files (.github/workflows, .circleci/config.yml, Jenkinsfile) but none were ",
+        "response_excerpt": "D - I don't have that information. I checked channel history and saved memory (empty) and attempted to read common CI config files (.github/workflows, .circleci/config.yml, Jenkinsfile) but none were ",
         "scenario": "no_memory_available",
         "status": "PASS",
         "tokens_used": 18810,
@@ -1658,7 +1658,7 @@
         "expected_tools": [
           "set_reminder"
         ],
-        "response_excerpt": "Got it — I'll remind you in 5 minutes to check the deploy.",
+        "response_excerpt": "Got it - I'll remind you in 5 minutes to check the deploy.",
         "scenario": "set_reminder_natural",
         "status": "PASS",
         "tokens_used": 5366,
@@ -1675,7 +1675,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) 1 approval — Team norms state: \"All PRs need at least 1 approval\" (changed from 2 after the retro).\nB) 1 approval — Team norms state: \"All PRs need at least 1 approval\" (changed from 2 after the re",
+        "response_excerpt": "B) 1 approval - Team norms state: \"All PRs need at least 1 approval\" (changed from 2 after the retro).\nB) 1 approval - Team norms state: \"All PRs need at least 1 approval\" (changed from 2 after the re",
         "scenario": "recall_team_norms",
         "status": "PASS",
         "tokens_used": 14443,
@@ -1692,7 +1692,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B — Need to reconcile 847 legacy subscriptions with mismatched plan IDs (blocker recorded in billing-migration, last updated 2026-03-03).",
+        "response_excerpt": "B - Need to reconcile 847 legacy subscriptions with mismatched plan IDs (blocker recorded in billing-migration, last updated 2026-03-03).",
         "scenario": "cross_file_synthesis",
         "status": "PASS",
         "tokens_used": 15548,
@@ -1707,7 +1707,7 @@
         "answer_correct": true,
         "duration_ms": 11614,
         "expected_tools": [],
-        "response_excerpt": "I did — classic. Friday deploys = gamble. Let’s avoid risky changes before the weekend unless we’ve got on-call coverage. Want me to add a quick reminder/rule?",
+        "response_excerpt": "I did - classic. Friday deploys = gamble. Let’s avoid risky changes before the weekend unless we’ve got on-call coverage. Want me to add a quick reminder/rule?",
         "scenario": "casual_banter_no_action",
         "status": "PASS",
         "tokens_used": 4912,
@@ -1723,7 +1723,7 @@
         "expected_tools": [
           "save_memory"
         ],
-        "response_excerpt": "Got it — updated notes. Sarah's last day is Friday and she's transitioning her API work to Josh before then. Anything I should flag for the handoff (open PRs, pending deploys, docs)? I can set a remin",
+        "response_excerpt": "Got it - updated notes. Sarah's last day is Friday and she's transitioning her API work to Josh before then. Anything I should flag for the handoff (open PRs, pending deploys, docs)? I can set a remin",
         "scenario": "save_new_person_info",
         "status": "PASS",
         "tokens_used": 15471,
@@ -1741,7 +1741,7 @@
         "expected_tools": [
           "log_decision"
         ],
-        "response_excerpt": "Got it — switching to Stripe. Logged the decision and updated billing-migration notes.\n\nImmediate questions / next steps:\n- Who will own the Stripe integration (who's taking this ticket)?\n- Quick inve",
+        "response_excerpt": "Got it - switching to Stripe. Logged the decision and updated billing-migration notes.\n\nImmediate questions / next steps:\n- Who will own the Stripe integration (who's taking this ticket)?\n- Quick inve",
         "scenario": "log_implicit_decision",
         "status": "PASS",
         "tokens_used": 5907,
@@ -1759,7 +1759,7 @@
         "expected_tools": [
           "log_decision"
         ],
-        "response_excerpt": "Got it — noted the hiring freeze. A few quick clarifying questions so I can act: 1) Does the freeze include contractors, interns, and offers already extended? 2) Any exceptions (critical roles we stil",
+        "response_excerpt": "Got it - noted the hiring freeze. A few quick clarifying questions so I can act: 1) Does the freeze include contractors, interns, and offers already extended? 2) Any exceptions (critical roles we stil",
         "scenario": "learn_and_acknowledge",
         "status": "PASS",
         "tokens_used": 5709,
@@ -1777,7 +1777,7 @@
         "expected_tools": [
           "save_memory"
         ],
-        "response_excerpt": "Got it — updated notes. Noted: Josh now owns backend/API and you're handling frontend. Anything I should flag or capture for the handoff (docs, outstanding tasks, access, or blockers)?",
+        "response_excerpt": "Got it - updated notes. Noted: Josh now owns backend/API and you're handling frontend. Anything I should flag or capture for the handoff (docs, outstanding tasks, access, or blockers)?",
         "scenario": "save_correction",
         "status": "PASS",
         "tokens_used": 6029,
@@ -1795,7 +1795,7 @@
         "expected_tools": [
           "react"
         ],
-        "response_excerpt": "Awesome — nice work! Quick checks: is this behind a feature flag / gradual rollout? Anything you want me to monitor today (activation, dropoff, errors)? Did you post release notes / notify support? I ",
+        "response_excerpt": "Awesome - nice work! Quick checks: is this behind a feature flag / gradual rollout? Anything you want me to monitor today (activation, dropoff, errors)? Did you post release notes / notify support? I ",
         "scenario": "react_only_no_reply",
         "status": "PASS",
         "tokens_used": 4842,
@@ -1810,7 +1810,7 @@
         "answer_correct": false,
         "duration_ms": 19038,
         "expected_tools": [],
-        "response_excerpt": "Nice — all tests green and artifact delegate-bot-v0.4.12-rc1.tar.gz is ready. Who's handling the staging deploy? Want me to schedule/promote it now and add a quick release note?",
+        "response_excerpt": "Nice - all tests green and artifact delegate-bot-v0.4.12-rc1.tar.gz is ready. Who's handling the staging deploy? Want me to schedule/promote it now and add a quick release note?",
         "scenario": "ignore_bot_noise",
         "status": "FAIL",
         "tokens_used": 5295,
@@ -1827,7 +1827,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "A — We already have a memory entry to pull from; best move is to recall it and give Josh a concise summary (status: Phase 2 — data migration running, schema deployed; target end of March; blocker: rec",
+        "response_excerpt": "A - We already have a memory entry to pull from; best move is to recall it and give Josh a concise summary (status: Phase 2 - data migration running, schema deployed; target end of March; blocker: rec",
         "scenario": "recall_then_reply_with_context",
         "status": "PASS",
         "tokens_used": 9963,
@@ -1842,7 +1842,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) Phase 2, but PM not recorded in my notes — memory shows Project Atlas is in Phase 2 (data migration) with target end of March 2026; no PM listed.",
+        "response_excerpt": "B) Phase 2, but PM not recorded in my notes - memory shows Project Atlas is in Phase 2 (data migration) with target end of March 2026; no PM listed.",
         "scenario": "partial_info_honest",
         "status": "PASS",
         "tokens_used": 14471,
@@ -1890,7 +1890,7 @@
         "answer_correct": true,
         "duration_ms": 61854,
         "expected_tools": [],
-        "response_excerpt": "Replying in thread: Noted — breaking change to webhook payload (camelCase → snake_case). This will break the billing dashboard field mappings and is a blocker for the frontend. Josh owns the dashboard",
+        "response_excerpt": "Replying in thread: Noted - breaking change to webhook payload (camelCase → snake_case). This will break the billing dashboard field mappings and is a blocker for the frontend. Josh owns the dashboard",
         "scenario": "spontaneous_outreach",
         "status": "PASS",
         "tokens_used": 17387,
@@ -1924,7 +1924,7 @@
         "expected_tools": [
           "invite_to_channel"
         ],
-        "response_excerpt": "Done — invited Sarah to this channel (U_SARAH). Want me to also add her to #billing-migration or share the handoff notes in here?",
+        "response_excerpt": "Done - invited Sarah to this channel (U_SARAH). Want me to also add her to #billing-migration or share the handoff notes in here?",
         "scenario": "invite_missing_person",
         "status": "PASS",
         "tokens_used": 5129,
@@ -1941,7 +1941,7 @@
         "expected_tools": [
           "group_dm"
         ],
-        "response_excerpt": "Alan, Sarah, Josh — pulling you into a quick DM to unblock the Stripe webhook signature verification failing in staging.\n\nAlan: you’ve been debugging this 2 days — can you paste the exact error messag",
+        "response_excerpt": "Alan, Sarah, Josh - pulling you into a quick DM to unblock the Stripe webhook signature verification failing in staging.\n\nAlan: you’ve been debugging this 2 days - can you paste the exact error messag",
         "scenario": "strategic_group_dm",
         "status": "PASS",
         "tokens_used": 16141,
@@ -2113,7 +2113,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) Async written updates\n\nFrom memory — I noted this back on March 5th when you both discussed it. Josh prefers async written updates, while Alan prefers morning syncs.\nB) Async written updates\n\nFrom ",
+        "response_excerpt": "B) Async written updates\n\nFrom memory - I noted this back on March 5th when you both discussed it. Josh prefers async written updates, while Alan prefers morning syncs.\nB) Async written updates\n\nFrom ",
         "scenario": "recall_standup_preference",
         "status": "PARTIAL",
         "tokens_used": 5633,
@@ -2187,7 +2187,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) 1 approval\n\nThe team norm was updated after retro on 2026-03-02 — PRs need at least 1 approval (changed from 2 because the team is small).",
+        "response_excerpt": "B) 1 approval\n\nThe team norm was updated after retro on 2026-03-02 - PRs need at least 1 approval (changed from 2 because the team is small).",
         "scenario": "recall_team_norms",
         "status": "PARTIAL",
         "tokens_used": 5435,
@@ -2231,7 +2231,7 @@
         "expected_tools": [
           "save_memory"
         ],
-        "response_excerpt": "Got it — updated my notes. Anything specific I should flag for the handoff?",
+        "response_excerpt": "Got it - updated my notes. Anything specific I should flag for the handoff?",
         "scenario": "save_new_person_info",
         "status": "PASS",
         "tokens_used": 5533,
@@ -2248,7 +2248,7 @@
         "expected_tools": [
           "log_decision"
         ],
-        "response_excerpt": "Got it — Stripe it is. Smart call given the timeline. Anyone blocked on this decision that should know?",
+        "response_excerpt": "Got it - Stripe it is. Smart call given the timeline. Anyone blocked on this decision that should know?",
         "scenario": "log_implicit_decision",
         "status": "PASS",
         "tokens_used": 5884,
@@ -2266,7 +2266,7 @@
         "expected_tools": [
           "log_decision"
         ],
-        "response_excerpt": "I'll acknowledge this and capture it properly — this is a significant decision that affects everything.",
+        "response_excerpt": "I'll acknowledge this and capture it properly - this is a significant decision that affects everything.",
         "scenario": "learn_and_acknowledge",
         "status": "PASS",
         "tokens_used": 5850,
@@ -2283,7 +2283,7 @@
         "expected_tools": [
           "save_memory"
         ],
-        "response_excerpt": "Updated my notes with the role changes.\nGot it — updated. Josh on backend/API, you on frontend.",
+        "response_excerpt": "Updated my notes with the role changes.\nGot it - updated. Josh on backend/API, you on frontend.",
         "scenario": "save_correction",
         "status": "PASS",
         "tokens_used": 16934,
@@ -2374,7 +2374,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "We've got a known blocker on the billing migration — 847 legacy subscriptions have mismatched plan IDs that need reconciliation. That's likely what you're hitting.\n\nJosh owns the dashboard frontend, A",
+        "response_excerpt": "We've got a known blocker on the billing migration - 847 legacy subscriptions have mismatched plan IDs that need reconciliation. That's likely what you're hitting.\n\nJosh owns the dashboard frontend, A",
         "scenario": "mention_relevant_person",
         "status": "PARTIAL",
         "tokens_used": 5812,
@@ -2388,7 +2388,7 @@
         "answer_correct": true,
         "duration_ms": 25043,
         "expected_tools": [],
-        "response_excerpt": "Got it. Josh owns the dashboard — he's already blocked on webhook schema changes from what I have. Is he in the loop on this, or should I flag it to him?",
+        "response_excerpt": "Got it. Josh owns the dashboard - he's already blocked on webhook schema changes from what I have. Is he in the loop on this, or should I flag it to him?",
         "scenario": "spontaneous_outreach",
         "status": "PASS",
         "tokens_used": 5992,
@@ -2420,7 +2420,7 @@
         "expected_tools": [
           "invite_to_channel"
         ],
-        "response_excerpt": "Done — Sarah's in #billing-migration now.",
+        "response_excerpt": "Done - Sarah's in #billing-migration now.",
         "scenario": "invite_missing_person",
         "status": "PASS",
         "tokens_used": 5463,
@@ -2436,7 +2436,7 @@
         "expected_tools": [
           "group_dm"
         ],
-        "response_excerpt": "Hey both — pulling you together on this Stripe webhook blocker. Alan's been stuck on signature verification failing in staging for 2 days, and Sarah you mentioned you dealt with this exact issue at yo",
+        "response_excerpt": "Hey both - pulling you together on this Stripe webhook blocker. Alan's been stuck on signature verification failing in staging for 2 days, and Sarah you mentioned you dealt with this exact issue at yo",
         "scenario": "strategic_group_dm",
         "status": "PASS",
         "tokens_used": 5785,
@@ -2667,7 +2667,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) Async written updates\n\nSaved this from our standup preferences conversation on March 5th — Josh prefers async, Alan prefers morning syncs.",
+        "response_excerpt": "B) Async written updates\n\nSaved this from our standup preferences conversation on March 5th - Josh prefers async, Alan prefers morning syncs.",
         "scenario": "recall_standup_preference",
         "status": "PARTIAL",
         "tokens_used": 6488,
@@ -2682,7 +2682,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "C) PostgreSQL\n\nLogged on Feb 28 — the team chose Postgres over DynamoDB because you have more Postgres expertise, needed complex joins, and didn't want to learn a new ORM mid-sprint.\n**C) PostgreSQL**",
+        "response_excerpt": "C) PostgreSQL\n\nLogged on Feb 28 - the team chose Postgres over DynamoDB because you have more Postgres expertise, needed complex joins, and didn't want to learn a new ORM mid-sprint.\n**C) PostgreSQL**",
         "scenario": "recall_decision_from_noisy_log",
         "status": "PARTIAL",
         "tokens_used": 6507,
@@ -2787,7 +2787,7 @@
         "expected_tools": [
           "save_memory"
         ],
-        "response_excerpt": "Got it — updated. Anything I should flag for the handoff?",
+        "response_excerpt": "Got it - updated. Anything I should flag for the handoff?",
         "scenario": "save_new_person_info",
         "status": "PASS",
         "tokens_used": 6593,
@@ -2837,7 +2837,7 @@
         "expected_tools": [
           "save_memory"
         ],
-        "response_excerpt": "Got it — updated. Josh on backend/API, you on frontend.",
+        "response_excerpt": "Got it - updated. Josh on backend/API, you on frontend.",
         "scenario": "save_correction",
         "status": "PASS",
         "tokens_used": 6489,
@@ -2925,7 +2925,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "Done. I provided context about the ongoing migration and the known blocker, and pointed you to Alan (migration scripts) or Josh (dashboard) depending on where the issue lies.\nYeah — data migration is ",
+        "response_excerpt": "Done. I provided context about the ongoing migration and the known blocker, and pointed you to Alan (migration scripts) or Josh (dashboard) depending on where the issue lies.\nYeah - data migration is ",
         "scenario": "mention_relevant_person",
         "status": "PASS",
         "tokens_used": 20981,
@@ -2939,7 +2939,7 @@
         "answer_correct": true,
         "duration_ms": 15453,
         "expected_tools": [],
-        "response_excerpt": "Got it. Josh owns the dashboard and he's not in this thread — this blocks his field mappings. Want me to flag it to him?",
+        "response_excerpt": "Got it. Josh owns the dashboard and he's not in this thread - this blocks his field mappings. Want me to flag it to him?",
         "scenario": "spontaneous_outreach",
         "status": "PASS",
         "tokens_used": 6794,
@@ -2988,7 +2988,7 @@
         "expected_tools": [
           "group_dm"
         ],
-        "response_excerpt": "Sarah — Alan's been stuck on the Stripe webhook signature verification issue in staging for 2 days. You mentioned you dealt with this exact problem at your last company. Can you help him get unblocked",
+        "response_excerpt": "Sarah - Alan's been stuck on the Stripe webhook signature verification issue in staging for 2 days. You mentioned you dealt with this exact problem at your last company. Can you help him get unblocked",
         "scenario": "strategic_group_dm",
         "status": "PASS",
         "tokens_used": 6763,
@@ -3005,7 +3005,7 @@
         "expected_tools": [
           "load_skill"
         ],
-        "response_excerpt": "Got it — logged as **T-001**: Billing page crashes when clicking 'Export' (status: open) 🎫",
+        "response_excerpt": "Got it - logged as **T-001**: Billing page crashes when clicking 'Export' (status: open) 🎫",
         "scenario": "load_skill_progressive_disclosure",
         "status": "FAIL",
         "tokens_used": 20002,
@@ -3021,7 +3021,7 @@
         "expected_tools": [
           "http_request"
         ],
-        "response_excerpt": "I hit a 404 — the repo's either private or doesn't exist at that path. I asked for clarification on whether you have an API token or if the org/repo name is different.\nGot a 404 — either the repo does",
+        "response_excerpt": "I hit a 404 - the repo's either private or doesn't exist at that path. I asked for clarification on whether you have an API token or if the org/repo name is different.\nGot a 404 - either the repo does",
         "scenario": "http_request_external_api",
         "status": "PASS",
         "tokens_used": 26039,
@@ -3101,7 +3101,7 @@
         "expected_tools": [
           "jira_search"
         ],
-        "response_excerpt": "Tried to search but got a 404 — looks like the Jira connection isn't fully set up in this environment. The credentials are there but the API endpoint isn't responding.\n\nWant me to check the integratio",
+        "response_excerpt": "Tried to search but got a 404 - looks like the Jira connection isn't fully set up in this environment. The credentials are there but the API endpoint isn't responding.\n\nWant me to check the integratio",
         "scenario": "skill_with_credentials",
         "status": "PASS",
         "tokens_used": 20373,
@@ -3115,7 +3115,7 @@
         "answer_correct": true,
         "duration_ms": 30647,
         "expected_tools": [],
-        "response_excerpt": "**B**\n\nI know what Jira is (I have a skill ready to search issues), but I can't access it until the Atlassian integration is connected. I generated the connection link above — once you click that and ",
+        "response_excerpt": "**B**\n\nI know what Jira is (I have a skill ready to search issues), but I can't access it until the Atlassian integration is connected. I generated the connection link above - once you click that and ",
         "scenario": "skill_missing_no_credentials",
         "status": "PASS",
         "tokens_used": 19946,
@@ -3131,7 +3131,7 @@
         "expected_tools": [
           "connect_integration"
         ],
-        "response_excerpt": "Got you — click this link to authorize Jira:\n\nhttp://localhost:3456/connect/atlassian?user=U_EVAL\n\nThis covers both Jira and Confluence. Once you click through and authorize, I'll be able to pull tick",
+        "response_excerpt": "Got you - click this link to authorize Jira:\n\nhttp://localhost:3456/connect/atlassian?user=U_EVAL\n\nThis covers both Jira and Confluence. Once you click through and authorize, I'll be able to pull tick",
         "scenario": "connect_integration",
         "status": "PASS",
         "tokens_used": 12625,
@@ -3147,7 +3147,7 @@
         "expected_tools": [
           "integration_status"
         ],
-        "response_excerpt": "A — I called `integration_status` to check the actual connection status.\n\nRight now I have **Jira + Confluence (Atlassian)** connected. I can also connect Linear, Notion, and Google (Calendar + Gmail)",
+        "response_excerpt": "A - I called `integration_status` to check the actual connection status.\n\nRight now I have **Jira + Confluence (Atlassian)** connected. I can also connect Linear, Notion, and Google (Calendar + Gmail)",
         "scenario": "integration_status",
         "status": "PASS",
         "tokens_used": 12943,
@@ -3162,7 +3162,7 @@
         "expected_tools": [
           "connect_integration"
         ],
-        "response_excerpt": "Google covers both — Calendar and Gmail are bundled in one OAuth connection. Want me to generate the link for you?",
+        "response_excerpt": "Google covers both - Calendar and Gmail are bundled in one OAuth connection. Want me to generate the link for you?",
         "scenario": "connect_google_covers_both",
         "status": "PARTIAL",
         "tokens_used": 6375,
@@ -3178,7 +3178,7 @@
         "expected_tools": [
           "gcal_list_events"
         ],
-        "response_excerpt": "Bad news on both fronts:\n\n**Google Calendar:** Shows as connected but the auth token is failing. Might be a stale connection — you may need to re-auth.\n\n**Jira:** Not connected yet. I can get you a li",
+        "response_excerpt": "Bad news on both fronts:\n\n**Google Calendar:** Shows as connected but the auth token is failing. Might be a stale connection - you may need to re-auth.\n\n**Jira:** Not connected yet. I can get you a li",
         "scenario": "partial_connectivity",
         "status": "PASS",
         "tokens_used": 14247,
@@ -3231,7 +3231,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "C) PostgreSQL\n\nWe decided on Postgres for the billing service back on 2026-02-28 — team has more expertise with it and we need complex joins. DynamoDB was the alternative but we didn't want to learn a",
+        "response_excerpt": "C) PostgreSQL\n\nWe decided on Postgres for the billing service back on 2026-02-28 - team has more expertise with it and we need complex joins. DynamoDB was the alternative but we didn't want to learn a",
         "scenario": "recall_decision_from_noisy_log",
         "status": "PARTIAL",
         "tokens_used": 6429,
@@ -3261,7 +3261,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "I've noted this gap in my memory so I can follow up when you're ready to share. I'm a blank slate on your infrastructure right now — happy to learn as we go.",
+        "response_excerpt": "I've noted this gap in my memory so I can follow up when you're ready to share. I'm a blank slate on your infrastructure right now - happy to learn as we go.",
         "scenario": "no_memory_available",
         "status": "PASS",
         "tokens_used": 35084,
@@ -3298,7 +3298,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) 1 approval\n\nPer the team norms updated after the retro (2026-03-02), PRs need at least 1 approval — it was 2 before, but changed since the team is small.",
+        "response_excerpt": "B) 1 approval\n\nPer the team norms updated after the retro (2026-03-02), PRs need at least 1 approval - it was 2 before, but changed since the team is small.",
         "scenario": "recall_team_norms",
         "status": "PARTIAL",
         "tokens_used": 6373,
@@ -3313,7 +3313,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "**B** — Need to reconcile legacy subscriptions with mismatched plan IDs\n\nThe billing migration is currently blocked on reconciling 847 legacy subscriptions with mismatched plan IDs. This was last upda",
+        "response_excerpt": "**B** - Need to reconcile legacy subscriptions with mismatched plan IDs\n\nThe billing migration is currently blocked on reconciling 847 legacy subscriptions with mismatched plan IDs. This was last upda",
         "scenario": "cross_file_synthesis",
         "status": "PASS",
         "tokens_used": 20817,
@@ -3359,7 +3359,7 @@
         "expected_tools": [
           "log_decision"
         ],
-        "response_excerpt": "Smart call. Stripe gets you shipping faster and you can revisit custom stuff later if it ever actually matters. What does this mean for the existing billing service work — is there anything already bu",
+        "response_excerpt": "Smart call. Stripe gets you shipping faster and you can revisit custom stuff later if it ever actually matters. What does this mean for the existing billing service work - is there anything already bu",
         "scenario": "log_implicit_decision",
         "status": "PASS",
         "tokens_used": 6658,
@@ -3482,7 +3482,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "The migration is in Phase 2 with data migration still running — there's a known blocker reconciling 847 legacy subscriptions with mismatched plan IDs. That could definitely cause stale data to show th",
+        "response_excerpt": "The migration is in Phase 2 with data migration still running - there's a known blocker reconciling 847 legacy subscriptions with mismatched plan IDs. That could definitely cause stale data to show th",
         "scenario": "mention_relevant_person",
         "status": "PARTIAL",
         "tokens_used": 6782,
@@ -3496,7 +3496,7 @@
         "answer_correct": true,
         "duration_ms": 13662,
         "expected_tools": [],
-        "response_excerpt": "Got it. Josh owns the dashboard — he's going to need to update those field mappings. Is he aware of this already, or should I ping him?",
+        "response_excerpt": "Got it. Josh owns the dashboard - he's going to need to update those field mappings. Is he aware of this already, or should I ping him?",
         "scenario": "spontaneous_outreach",
         "status": "PASS",
         "tokens_used": 6714,
@@ -3529,7 +3529,7 @@
         "expected_tools": [
           "invite_to_channel"
         ],
-        "response_excerpt": "Done — Sarah's in #billing-migration now.",
+        "response_excerpt": "Done - Sarah's in #billing-migration now.",
         "scenario": "invite_missing_person",
         "status": "PASS",
         "tokens_used": 19654,
@@ -3547,7 +3547,7 @@
         "expected_tools": [
           "group_dm"
         ],
-        "response_excerpt": "Stripe webhook signature verification blocker — you've been stuck 2 days and the deadline's tight. Sarah, you mentioned you dealt with this exact issue before. Alan's been debugging. Let's get this so",
+        "response_excerpt": "Stripe webhook signature verification blocker - you've been stuck 2 days and the deadline's tight. Sarah, you mentioned you dealt with this exact issue before. Alan's been debugging. Let's get this so",
         "scenario": "strategic_group_dm",
         "status": "PASS",
         "tokens_used": 20007,
@@ -3566,7 +3566,7 @@
         "expected_tools": [
           "load_skill"
         ],
-        "response_excerpt": "Done! Ticket T-001 is now tracked in the system.\nGot it — created ticket **T-001**: Billing page crashes when clicking 'Export'",
+        "response_excerpt": "Done! Ticket T-001 is now tracked in the system.\nGot it - created ticket **T-001**: Billing page crashes when clicking 'Export'",
         "scenario": "load_skill_progressive_disclosure",
         "status": "PASS",
         "tokens_used": 26579,
@@ -3585,7 +3585,7 @@
         "expected_tools": [
           "http_request"
         ],
-        "response_excerpt": "I got a 404 when trying to access that repo — it's either private, doesn't exist, or the name is slightly different. If it's a private repo, I'd need GitHub authentication to access it. Let me know if",
+        "response_excerpt": "I got a 404 when trying to access that repo - it's either private, doesn't exist, or the name is slightly different. If it's a private repo, I'd need GitHub authentication to access it. Let me know if",
         "scenario": "http_request_external_api",
         "status": "PASS",
         "tokens_used": 26374,
@@ -3661,7 +3661,7 @@
         "expected_tools": [
           "jira_search"
         ],
-        "response_excerpt": "Got a 404 when trying to hit the Jira API — looks like the endpoint isn't responding correctly, even though the integration shows as connected. Could be a sandbox environment issue.\n\nWant me to try a ",
+        "response_excerpt": "Got a 404 when trying to hit the Jira API - looks like the endpoint isn't responding correctly, even though the integration shows as connected. Could be a sandbox environment issue.\n\nWant me to try a ",
         "scenario": "skill_with_credentials",
         "status": "PASS",
         "tokens_used": 20308,
@@ -3708,7 +3708,7 @@
         "expected_tools": [
           "integration_status"
         ],
-        "response_excerpt": "**A) Agent calls integration_status to check**\n\nI have access to 4 integrations:\n- **Atlassian** (Jira + Confluence) — ✅ Connected\n- **Linear** — Not connected\n- **Notion** — Not connected  \n- **Googl",
+        "response_excerpt": "**A) Agent calls integration_status to check**\n\nI have access to 4 integrations:\n- **Atlassian** (Jira + Confluence) - ✅ Connected\n- **Linear** - Not connected\n- **Notion** - Not connected  \n- **Googl",
         "scenario": "integration_status",
         "status": "PASS",
         "tokens_used": 19640,
@@ -3724,7 +3724,7 @@
         "expected_tools": [
           "connect_integration"
         ],
-        "response_excerpt": "Done! Once you click that link and authorize, I'll have access to both your calendar and Gmail — then I can check your schedule and draft whatever emails you need.\nHere's your Google connection link —",
+        "response_excerpt": "Done! Once you click that link and authorize, I'll have access to both your calendar and Gmail - then I can check your schedule and draft whatever emails you need.\nHere's your Google connection link -",
         "scenario": "connect_google_covers_both",
         "status": "PASS",
         "tokens_used": 19250,
@@ -3740,7 +3740,7 @@
         "expected_tools": [
           "gcal_list_events"
         ],
-        "response_excerpt": "Done — I checked both and let them know the status. Google Calendar's token isn't working (likely an eval environment limitation), and Jira isn't connected. Offered to help connect Jira.\nRan into two ",
+        "response_excerpt": "Done - I checked both and let them know the status. Google Calendar's token isn't working (likely an eval environment limitation), and Jira isn't connected. Offered to help connect Jira.\nRan into two ",
         "scenario": "partial_connectivity",
         "status": "PASS",
         "tokens_used": 28718,
@@ -3779,7 +3779,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) Async written updates\n\nI have this saved in memory — Josh prefers async standups with written updates, while Alan prefers morning syncs. Saved on March 5th when you discussed this.",
+        "response_excerpt": "B) Async written updates\n\nI have this saved in memory - Josh prefers async standups with written updates, while Alan prefers morning syncs. Saved on March 5th when you discussed this.",
         "scenario": "recall_standup_preference",
         "status": "PASS",
         "tokens_used": 15220,
@@ -3794,7 +3794,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "C) PostgreSQL\n\nWe decided on 2026-02-28 in #platform-eng — team has more Postgres expertise, we need complex joins, and didn't want to learn a new ORM mid-sprint.",
+        "response_excerpt": "C) PostgreSQL\n\nWe decided on 2026-02-28 in #platform-eng - team has more Postgres expertise, we need complex joins, and didn't want to learn a new ORM mid-sprint.",
         "scenario": "recall_decision_from_noisy_log",
         "status": "PASS",
         "tokens_used": 15397,
@@ -3809,7 +3809,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) Billing dashboard redesign\n\nFrom my notes on Josh — he's the co-founder handling product/frontend, and he's currently working on the billing dashboard redesign.",
+        "response_excerpt": "B) Billing dashboard redesign\n\nFrom my notes on Josh - he's the co-founder handling product/frontend, and he's currently working on the billing dashboard redesign.",
         "scenario": "recall_person_role",
         "status": "PARTIAL",
         "tokens_used": 7532,
@@ -3824,7 +3824,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "D) I don't have that information\n\nI responded honestly that I don't have access to this information yet — no integrations are configured and my memory is empty. I offered to either connect to GitHub t",
+        "response_excerpt": "D) I don't have that information\n\nI responded honestly that I don't have access to this information yet - no integrations are configured and my memory is empty. I offered to either connect to GitHub t",
         "scenario": "no_memory_available",
         "status": "PASS",
         "tokens_used": 30163,
@@ -3874,7 +3874,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "**B** — Need to reconcile legacy subscriptions with mismatched plan IDs\n\nFrom the billing migration notes: there are 847 legacy subscriptions with plan IDs that don't match the new schema, and that's ",
+        "response_excerpt": "**B** - Need to reconcile legacy subscriptions with mismatched plan IDs\n\nFrom the billing migration notes: there are 847 legacy subscriptions with plan IDs that don't match the new schema, and that's ",
         "scenario": "cross_file_synthesis",
         "status": "PARTIAL",
         "tokens_used": 15594,
@@ -3903,7 +3903,7 @@
         "expected_tools": [
           "save_memory"
         ],
-        "response_excerpt": "Got it — updated my notes. Anything I should flag for the handoff, or tracking you need help with before Friday?",
+        "response_excerpt": "Got it - updated my notes. Anything I should flag for the handoff, or tracking you need help with before Friday?",
         "scenario": "save_new_person_info",
         "status": "PASS",
         "tokens_used": 7713,
@@ -3920,7 +3920,7 @@
         "expected_tools": [
           "log_decision"
         ],
-        "response_excerpt": "Logged the decision and updated my notes. This should help with the March deadline — curious what the integration path looks like from here.\nSmart call. Dropping the custom build should shave real tim",
+        "response_excerpt": "Logged the decision and updated my notes. This should help with the March deadline - curious what the integration path looks like from here.\nSmart call. Dropping the custom build should shave real tim",
         "scenario": "log_implicit_decision",
         "status": "PASS",
         "tokens_used": 24602,
@@ -3974,7 +3974,7 @@
         "expected_tools": [
           "react"
         ],
-        "response_excerpt": "Nice work! 🚀\n\nAnything that needs to follow this — docs to update, users to notify, or dependencies I should be tracking?\nNice! 🚀 \n\nAnything need to follow this? Docs, notifying early users, or depend",
+        "response_excerpt": "Nice work! 🚀\n\nAnything that needs to follow this - docs to update, users to notify, or dependencies I should be tracking?\nNice! 🚀 \n\nAnything need to follow this? Docs, notifying early users, or depend",
         "scenario": "react_only_no_reply",
         "status": "PASS",
         "tokens_used": 22067,
@@ -4047,7 +4047,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "I've flagged the known blocker — the 847 subscriptions with mismatched plan IDs from the migration could definitely be causing the stale data you're seeing. Offered to pull Alan in since he owns the m",
+        "response_excerpt": "I've flagged the known blocker - the 847 subscriptions with mismatched plan IDs from the migration could definitely be causing the stale data you're seeing. Offered to pull Alan in since he owns the m",
         "scenario": "mention_relevant_person",
         "status": "PASS",
         "tokens_used": 24062,
@@ -4062,7 +4062,7 @@
         "answer_correct": true,
         "duration_ms": 18176,
         "expected_tools": [],
-        "response_excerpt": "Noted. Is Josh aware of this? He's on the dashboard — this blocks his field mapping work until he updates to the new schema.",
+        "response_excerpt": "Noted. Is Josh aware of this? He's on the dashboard - this blocks his field mapping work until he updates to the new schema.",
         "scenario": "spontaneous_outreach",
         "status": "PASS",
         "tokens_used": 7809,
@@ -4079,7 +4079,7 @@
         "expected_tools": [
           "create_channel"
         ],
-        "response_excerpt": "Done — #api-v2 is live, Sarah and Alan are in.",
+        "response_excerpt": "Done - #api-v2 is live, Sarah and Alan are in.",
         "scenario": "create_channel_for_project",
         "status": "PASS",
         "tokens_used": 7817,
@@ -4111,7 +4111,7 @@
         "expected_tools": [
           "group_dm"
         ],
-        "response_excerpt": "Stripe webhook signature verification issue in staging. Alan's been debugging for 2 days. Sarah — you mentioned you dealt with this exact issue at your last company. Can you help unblock this?\nDone. P",
+        "response_excerpt": "Stripe webhook signature verification issue in staging. Alan's been debugging for 2 days. Sarah - you mentioned you dealt with this exact issue at your last company. Can you help unblock this?\nDone. P",
         "scenario": "strategic_group_dm",
         "status": "PASS",
         "tokens_used": 7654,
@@ -4128,7 +4128,7 @@
         "expected_tools": [
           "load_skill"
         ],
-        "response_excerpt": "Got it — logged as T-001. I'll keep an eye on it.",
+        "response_excerpt": "Got it - logged as T-001. I'll keep an eye on it.",
         "scenario": "load_skill_progressive_disclosure",
         "status": "PASS",
         "tokens_used": 31257,
@@ -4147,7 +4147,7 @@
         "expected_tools": [
           "http_request"
         ],
-        "response_excerpt": "Got a 404 from the GitHub API — either the repo doesn't exist at `acme-corp/delegate-bot`, it's private, or the org/repo name is different.\n\nIf it's a private repo, you'll need to either:\n1. Set up a ",
+        "response_excerpt": "Got a 404 from the GitHub API - either the repo doesn't exist at `acme-corp/delegate-bot`, it's private, or the org/repo name is different.\n\nIf it's a private repo, you'll need to either:\n1. Set up a ",
         "scenario": "http_request_external_api",
         "status": "PASS",
         "tokens_used": 22781,
@@ -4211,7 +4211,7 @@
         "answer_correct": true,
         "duration_ms": 19545,
         "expected_tools": [],
-        "response_excerpt": "I don't have the ability to run deploy pipelines yet — I don't have a CI/CD integration connected and no deployment tools available.\n\nIf you want, I can:\n1. Connect an integration (GitHub Actions, Cir",
+        "response_excerpt": "I don't have the ability to run deploy pipelines yet - I don't have a CI/CD integration connected and no deployment tools available.\n\nIf you want, I can:\n1. Connect an integration (GitHub Actions, Cir",
         "scenario": "skill_not_found_honest",
         "status": "PASS",
         "tokens_used": 7784,
@@ -4226,7 +4226,7 @@
         "expected_tools": [
           "jira_search"
         ],
-        "response_excerpt": "I hit an issue with the Jira connection — it shows as \"connected\" but the API calls are failing with a 404. The credentials look like placeholder values for the evaluation environment.\n\nLet me know if",
+        "response_excerpt": "I hit an issue with the Jira connection - it shows as \"connected\" but the API calls are failing with a 404. The credentials look like placeholder values for the evaluation environment.\n\nLet me know if",
         "scenario": "skill_with_credentials",
         "status": "PASS",
         "tokens_used": 31764,
@@ -4242,7 +4242,7 @@
         "answer_correct": true,
         "duration_ms": 26074,
         "expected_tools": [],
-        "response_excerpt": "**Answer: B**\n\nI checked for Jira access, found no integration configured, and suggested connecting it (with a link to do so). This is the right behavior — acknowledge what's missing and offer to fix ",
+        "response_excerpt": "**Answer: B**\n\nI checked for Jira access, found no integration configured, and suggested connecting it (with a link to do so). This is the right behavior - acknowledge what's missing and offer to fix ",
         "scenario": "skill_missing_no_credentials",
         "status": "PASS",
         "tokens_used": 22926,
@@ -4258,7 +4258,7 @@
         "expected_tools": [
           "connect_integration"
         ],
-        "response_excerpt": "Got it — here's your connection link:\n\nhttp://localhost:3456/connect/atlassian?user=U_EVAL\n\nClick that to authorize Jira (and Confluence — they come bundled). Once you've connected, I'll be able to pu",
+        "response_excerpt": "Got it - here's your connection link:\n\nhttp://localhost:3456/connect/atlassian?user=U_EVAL\n\nClick that to authorize Jira (and Confluence - they come bundled). Once you've connected, I'll be able to pu",
         "scenario": "connect_integration",
         "status": "PASS",
         "tokens_used": 30663,
@@ -4291,7 +4291,7 @@
         "expected_tools": [
           "connect_integration"
         ],
-        "response_excerpt": "Got it — you'll need to authorize Google (it covers both Calendar and Gmail in one click). Once you do that, I'll be able to check your calendar and draft emails for you.\n\n<http://localhost:3456/conne",
+        "response_excerpt": "Got it - you'll need to authorize Google (it covers both Calendar and Gmail in one click). Once you do that, I'll be able to check your calendar and draft emails for you.\n\n<http://localhost:3456/conne",
         "scenario": "connect_google_covers_both",
         "status": "PASS",
         "tokens_used": 15000,
@@ -4355,7 +4355,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "This tightens the window significantly. Sarah's API v2 work is blocked on this format — she can't finalize endpoint contracts until it's locked. That leaves only 16 days before the March 31 deadline.\n",
+        "response_excerpt": "This tightens the window significantly. Sarah's API v2 work is blocked on this format - she can't finalize endpoint contracts until it's locked. That leaves only 16 days before the March 31 deadline.\n",
         "scenario": "flag_blocker_proactively",
         "status": "PARTIAL",
         "tokens_used": 7802,
@@ -4388,7 +4388,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "Pulled from the daily log and organized by project. Called out the two key blockers — Alan's webhook review is the critical path since it unblocks Sarah's API v2 work. Let me know if you want this pos",
+        "response_excerpt": "Pulled from the daily log and organized by project. Called out the two key blockers - Alan's webhook review is the critical path since it unblocks Sarah's API v2 work. Let me know if you want this pos",
         "scenario": "write_standup_from_state",
         "status": "FAIL",
         "tokens_used": 24564,
@@ -4407,7 +4407,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "Let me know if you want me to soften the risk language or add more context. I can also pull more detail if you need it.\nHere's a draft:\n\n---\n\n*Billing Migration (Phase 2)* — Phase 1 shipped on Februar",
+        "response_excerpt": "Let me know if you want me to soften the risk language or add more context. I can also pull more detail if you need it.\nHere's a draft:\n\n---\n\n*Billing Migration (Phase 2)* - Phase 1 shipped on Februar",
         "scenario": "tone_calibrate_executive",
         "status": "PASS",
         "tokens_used": 23164,
@@ -4424,7 +4424,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "Got it — pulled from memory and logs. I've got project state, decisions, blockers, recent activity, and risks all in one place. Let me know if you want me to dig into anything specific or grab more re",
+        "response_excerpt": "Got it - pulled from memory and logs. I've got project state, decisions, blockers, recent activity, and risks all in one place. Let me know if you want me to dig into anything specific or grab more re",
         "scenario": "memory_transparency_sources",
         "status": "PASS",
         "tokens_used": 43949,
@@ -4458,7 +4458,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "Here's everything Maria needs to know:\n\n*Team*\n• **Alan** — founder, billing migration lead, working through legacy subscription reconciliation\n• **Josh** — founder, reviewing API v2\n• **Sarah** — par",
+        "response_excerpt": "Here's everything Maria needs to know:\n\n*Team*\n• **Alan** - founder, billing migration lead, working through legacy subscription reconciliation\n• **Josh** - founder, reviewing API v2\n• **Sarah** - par",
         "scenario": "onboard_new_team_member",
         "status": "PASS",
         "tokens_used": 36019,
@@ -4525,7 +4525,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "**A** — Today was quiet. Just morning greetings and a routine staging deploy (v2.4.1). Nothing requiring action.",
+        "response_excerpt": "**A** - Today was quiet. Just morning greetings and a routine staging deploy (v2.4.1). Nothing requiring action.",
         "scenario": "cross_channel_digest",
         "status": "FAIL",
         "tokens_used": 8050,
@@ -4567,7 +4567,7 @@
         "answer_correct": true,
         "duration_ms": 14895,
         "expected_tools": [],
-        "response_excerpt": "C) Sarah — she only works Monday, Wednesday, Friday\n\nThursday March 13 falls on a day she's not scheduled to work per her part-time contract.",
+        "response_excerpt": "C) Sarah - she only works Monday, Wednesday, Friday\n\nThursday March 13 falls on a day she's not scheduled to work per her part-time contract.",
         "scenario": "calendar_blindspot",
         "status": "PASS",
         "tokens_used": 8063,
@@ -4580,7 +4580,7 @@
         "answer_correct": true,
         "duration_ms": 31392,
         "expected_tools": [],
-        "response_excerpt": "Looking at the retrieved context, I can see the gap:\n\n**B) SAML SSO — Josh promised Acme Corp it would come after the auth migration, but Alan explicitly scoped it out**\n\nFrom the logs:\n- Josh told Ac",
+        "response_excerpt": "Looking at the retrieved context, I can see the gap:\n\n**B) SAML SSO - Josh promised Acme Corp it would come after the auth migration, but Alan explicitly scoped it out**\n\nFrom the logs:\n- Josh told Ac",
         "scenario": "unasked_question",
         "status": "PASS",
         "tokens_used": 8146,
@@ -4606,7 +4606,7 @@
         "answer_correct": true,
         "duration_ms": 15128,
         "expected_tools": [],
-        "response_excerpt": "C — staging-3 was created for load testing but never actually used for it, with last deploy on January 22. It's costing $500/mo for nothing.",
+        "response_excerpt": "C - staging-3 was created for load testing but never actually used for it, with last deploy on January 22. It's costing $500/mo for nothing.",
         "scenario": "budget_interpreter",
         "status": "PASS",
         "tokens_used": 7868,
@@ -4619,7 +4619,7 @@
         "answer_correct": true,
         "duration_ms": 20512,
         "expected_tools": [],
-        "response_excerpt": "**B) All three were in migration batch-7, run on February 25**\n\nAll three tickets show \"Last migration batch: batch-7, run 2026-02-25\" — same batch, same day. The different symptoms (wrong invoice, sl",
+        "response_excerpt": "**B) All three were in migration batch-7, run on February 25**\n\nAll three tickets show \"Last migration batch: batch-7, run 2026-02-25\" - same batch, same day. The different symptoms (wrong invoice, sl",
         "scenario": "three_ticket_pattern",
         "status": "PASS",
         "tokens_used": 8193,
@@ -4632,7 +4632,7 @@
         "answer_correct": true,
         "duration_ms": 22118,
         "expected_tools": [],
-        "response_excerpt": "Looking at the design doc summary from memory:\n\n- **Cursor vs offset pagination**: Sarah recommends cursor, Alan agrees ✓ (consensus)\n- **Webhook payload format**: nested vs flat — still debated (see ",
+        "response_excerpt": "Looking at the design doc summary from memory:\n\n- **Cursor vs offset pagination**: Sarah recommends cursor, Alan agrees ✓ (consensus)\n- **Webhook payload format**: nested vs flat - still debated (see ",
         "scenario": "meeting_assassin",
         "status": "PASS",
         "tokens_used": 8310,
@@ -4645,7 +4645,7 @@
         "answer_correct": true,
         "duration_ms": 13892,
         "expected_tools": [],
-        "response_excerpt": "**B** — `src/billing/mapping.rs` is what Alan calls \"the rosetta stone file\" that maps between `plan_id` (billing_v1), `tier_id` (billing_v2), and `subscription` (Stripe API).\nB — `src/billing/mapping",
+        "response_excerpt": "**B** - `src/billing/mapping.rs` is what Alan calls \"the rosetta stone file\" that maps between `plan_id` (billing_v1), `tier_id` (billing_v2), and `subscription` (Stripe API).\nB - `src/billing/mapping",
         "scenario": "first_day_briefing",
         "status": "PASS",
         "tokens_used": 8238,
@@ -4658,7 +4658,7 @@
         "answer_correct": true,
         "duration_ms": 12720,
         "expected_tools": [],
-        "response_excerpt": "B) CSV only — all 3 customers confirmed CSV is sufficient; PDF was never requested and Excel came from the sales rep, not the customer\n\nJosh's research with Acme Corp, Pinnacle Inc, and Waverly Labs s",
+        "response_excerpt": "B) CSV only - all 3 customers confirmed CSV is sufficient; PDF was never requested and Excel came from the sales rep, not the customer\n\nJosh's research with Acme Corp, Pinnacle Inc, and Waverly Labs s",
         "scenario": "scope_surgeon",
         "status": "PASS",
         "tokens_used": 7917,
@@ -4669,7 +4669,7 @@
         "answer_correct": true,
         "duration_ms": 21917,
         "expected_tools": [],
-        "response_excerpt": "C\n\nFrom the test suite data: 7 end-to-end tests (2% of 342 total), with 82% unit tests and 16% integration tests. The customer bugs — timezone-dependent billing, webhook payloads > 1MB, N+1 query perf",
+        "response_excerpt": "C\n\nFrom the test suite data: 7 end-to-end tests (2% of 342 total), with 82% unit tests and 16% integration tests. The customer bugs - timezone-dependent billing, webhook payloads > 1MB, N+1 query perf",
         "scenario": "green_test_trap",
         "status": "PASS",
         "tokens_used": 8068,
@@ -4682,7 +4682,7 @@
         "answer_correct": true,
         "duration_ms": 22868,
         "expected_tools": [],
-        "response_excerpt": "**B) Long-lived JWT tokens with bearer auth — gives JWT security (rotation, revocation) with API-key simplicity for developers**\n\nSarah's key insight (Mar 7, 09:00): *\"You're conflating two things. Th",
+        "response_excerpt": "**B) Long-lived JWT tokens with bearer auth - gives JWT security (rotation, revocation) with API-key simplicity for developers**\n\nSarah's key insight (Mar 7, 09:00): *\"You're conflating two things. Th",
         "scenario": "thread_therapist",
         "status": "PASS",
         "tokens_used": 16712,
@@ -4695,7 +4695,7 @@
         "answer_correct": true,
         "duration_ms": 19394,
         "expected_tools": [],
-        "response_excerpt": "**C**\n\nThe retrieved context from memory/launch.md explicitly states: *\"No delivery confirmation mechanism — if a webhook is sent and the customer's endpoint returns 200 but doesn't actually process i",
+        "response_excerpt": "**C**\n\nThe retrieved context from memory/launch.md explicitly states: *\"No delivery confirmation mechanism - if a webhook is sent and the customer's endpoint returns 200 but doesn't actually process i",
         "scenario": "silent_failure_premortem",
         "status": "PASS",
         "tokens_used": 8041,
@@ -4706,7 +4706,7 @@
         "answer_correct": true,
         "duration_ms": 17709,
         "expected_tools": [],
-        "response_excerpt": "The answer is **B** — Takeshi at NovaTech in Tokyo.\n\nAccording to the decision context, Takeshi \"offered to review the proposal from an API consumer perspective\" and responds to email within 2 hours, ",
+        "response_excerpt": "The answer is **B** - Takeshi at NovaTech in Tokyo.\n\nAccording to the decision context, Takeshi \"offered to review the proposal from an API consumer perspective\" and responds to email within 2 hours, ",
         "scenario": "timezone_play",
         "status": "PASS",
         "tokens_used": 7951,
@@ -4732,7 +4732,7 @@
         "answer_correct": true,
         "duration_ms": 24173,
         "expected_tools": [],
-        "response_excerpt": "**C**\n\nTwo prospects (Acme Corp and Pinnacle Inc) specifically asked about Ed25519 support in the last two weeks. It's cheap to add because Sarah's existing webhook signature module already exists — a",
+        "response_excerpt": "**C**\n\nTwo prospects (Acme Corp and Pinnacle Inc) specifically asked about Ed25519 support in the last two weeks. It's cheap to add because Sarah's existing webhook signature module already exists - a",
         "scenario": "competitor_signal",
         "status": "PASS",
         "tokens_used": 15676,
@@ -4758,7 +4758,7 @@
         "answer_correct": true,
         "duration_ms": 16153,
         "expected_tools": [],
-        "response_excerpt": "Based on the escalation context in memory, the answer is **B**.\n\nThe root cause is spec ambiguity — the product spec says \"Display subscription start date\" but that phrase could mean:\n- Signup date (J",
+        "response_excerpt": "Based on the escalation context in memory, the answer is **B**.\n\nThe root cause is spec ambiguity - the product spec says \"Display subscription start date\" but that phrase could mean:\n- Signup date (J",
         "scenario": "reverse_escalation",
         "status": "PASS",
         "tokens_used": 7943,
@@ -4782,7 +4782,7 @@
         "answer_correct": true,
         "duration_ms": 12832,
         "expected_tools": [],
-        "response_excerpt": "B) 12 minutes detection; root cause was a process gap — no testing against production-scale data with historical records\n\nFrom the incident report: Sarah's monitoring alert fired at 09:12, 12 minutes ",
+        "response_excerpt": "B) 12 minutes detection; root cause was a process gap - no testing against production-scale data with historical records\n\nFrom the incident report: Sarah's monitoring alert fired at 09:12, 12 minutes ",
         "scenario": "postmortem_reframe",
         "status": "PASS",
         "tokens_used": 7899,
@@ -4795,7 +4795,7 @@
         "answer_correct": true,
         "duration_ms": 22995,
         "expected_tools": [],
-        "response_excerpt": "**C**\n\nNormal combined usage is 95 req/sec (60 + 35), which is 95% of the 100 req/sec limit. During typical 1.5-2x traffic spikes, that becomes 143-190 req/sec — well above the limit — triggering 429 ",
+        "response_excerpt": "**C**\n\nNormal combined usage is 95 req/sec (60 + 35), which is 95% of the 100 req/sec limit. During typical 1.5-2x traffic spikes, that becomes 143-190 req/sec - well above the limit - triggering 429 ",
         "scenario": "rate_limit_ghost",
         "status": "PASS",
         "tokens_used": 16522,
@@ -4808,7 +4808,7 @@
         "answer_correct": true,
         "duration_ms": 26952,
         "expected_tools": [],
-        "response_excerpt": "**Answer: B**\n\nIn Slack's mrkdwn, you use *single asterisks* for bold — `*bold*`. Double asterisks (`**bold**`) will render literally with the asterisks visible. This is different from standard markdo",
+        "response_excerpt": "**Answer: B**\n\nIn Slack's mrkdwn, you use *single asterisks* for bold - `*bold*`. Double asterisks (`**bold**`) will render literally with the asterisks visible. This is different from standard markdo",
         "scenario": "slack_markdown",
         "status": "PASS",
         "tokens_used": 23007,
@@ -5165,7 +5165,7 @@
         "expected_tools": [
           "create_channel"
         ],
-        "response_excerpt": "Done — #api-v2 channel is set up for the rewrite and Sarah and Alan are invited.",
+        "response_excerpt": "Done - #api-v2 channel is set up for the rewrite and Sarah and Alan are invited.",
         "scenario": "create_channel_for_project",
         "status": "PASS",
         "tokens_used": 17596,
@@ -5524,7 +5524,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "A) DynamoDB and MongoDB were considered — DynamoDB rejected for eventual consistency, MongoDB rejected because Postgres JSONB covers the need\nThe correct answer is A) DynamoDB and MongoDB were conside",
+        "response_excerpt": "A) DynamoDB and MongoDB were considered - DynamoDB rejected for eventual consistency, MongoDB rejected because Postgres JSONB covers the need\nThe correct answer is A) DynamoDB and MongoDB were conside",
         "scenario": "recall_decision_alternatives",
         "status": "PASS",
         "tokens_used": 18058,
@@ -5692,7 +5692,7 @@
         "answer_correct": true,
         "duration_ms": 1367,
         "expected_tools": [],
-        "response_excerpt": "The staging environment that was never used for its intended purpose is:\n\nC) staging-3 — created for load testing but never actually used for load testing (last deploy January 22)",
+        "response_excerpt": "The staging environment that was never used for its intended purpose is:\n\nC) staging-3 - created for load testing but never actually used for load testing (last deploy January 22)",
         "scenario": "budget_interpreter",
         "status": "PASS",
         "tokens_used": 6114,
@@ -5719,7 +5719,7 @@
         "answer_correct": true,
         "duration_ms": 4447,
         "expected_tools": [],
-        "response_excerpt": "C) 1 — only webhook payload format; cursor pagination already has consensus between Sarah and Alan. The design doc summary shows only 2 open questions, but pagination is agreed upon (cursor) by Sarah ",
+        "response_excerpt": "C) 1 - only webhook payload format; cursor pagination already has consensus between Sarah and Alan. The design doc summary shows only 2 open questions, but pagination is agreed upon (cursor) by Sarah ",
         "scenario": "meeting_assassin",
         "status": "PASS",
         "tokens_used": 19695,
@@ -5746,7 +5746,7 @@
         "answer_correct": true,
         "duration_ms": 1507,
         "expected_tools": [],
-        "response_excerpt": "The correct answer is B) CSV only — all 3 customers confirmed CSV is sufficient; PDF was never requested and Excel came from the sales rep, not the customer.",
+        "response_excerpt": "The correct answer is B) CSV only - all 3 customers confirmed CSV is sufficient; PDF was never requested and Excel came from the sales rep, not the customer.",
         "scenario": "scope_surgeon",
         "status": "PASS",
         "tokens_used": 6159,
@@ -5759,7 +5759,7 @@
         "answer_correct": true,
         "duration_ms": 4507,
         "expected_tools": [],
-        "response_excerpt": "C) 0 edge case tests and 7 e2e tests — the suite is 82% unit tests and 16% integration tests with zero coverage for the boundary conditions (race conditions, timezone, large payloads) customers are hi",
+        "response_excerpt": "C) 0 edge case tests and 7 e2e tests - the suite is 82% unit tests and 16% integration tests with zero coverage for the boundary conditions (race conditions, timezone, large payloads) customers are hi",
         "scenario": "green_test_trap",
         "status": "PASS",
         "tokens_used": 19167,
@@ -5786,7 +5786,7 @@
         "answer_correct": true,
         "duration_ms": 1647,
         "expected_tools": [],
-        "response_excerpt": "The specific gap in the webhook delivery system causing silent failures weeks after launch is: C) No delivery confirmation — if a webhook is sent and the customer's endpoint returns 200 but doesn't ac",
+        "response_excerpt": "The specific gap in the webhook delivery system causing silent failures weeks after launch is: C) No delivery confirmation - if a webhook is sent and the customer's endpoint returns 200 but doesn't ac",
         "scenario": "silent_failure_premortem",
         "status": "PASS",
         "tokens_used": 6107,
@@ -5799,7 +5799,7 @@
         "answer_correct": true,
         "duration_ms": 2242,
         "expected_tools": [],
-        "response_excerpt": "The answer is B) Takeshi at NovaTech in Tokyo — he has offered to review the webhook format proposal from an API consumer perspective but hasn't been consulted yet.",
+        "response_excerpt": "The answer is B) Takeshi at NovaTech in Tokyo - he has offered to review the webhook format proposal from an API consumer perspective but hasn't been consulted yet.",
         "scenario": "timezone_play",
         "status": "PASS",
         "tokens_used": 12467,
@@ -5853,7 +5853,7 @@
         "answer_correct": true,
         "duration_ms": 1454,
         "expected_tools": [],
-        "response_excerpt": "The root cause is B) The spec is ambiguous — 'subscription start date' could mean either signup date (Jan 15, what Acme expects) or billing period start (Feb 1, what engineering built). It's a 1-line ",
+        "response_excerpt": "The root cause is B) The spec is ambiguous - 'subscription start date' could mean either signup date (Jan 15, what Acme expects) or billing period start (Feb 1, what engineering built). It's a 1-line ",
         "scenario": "reverse_escalation",
         "status": "PASS",
         "tokens_used": 6085,
@@ -5879,7 +5879,7 @@
         "answer_correct": true,
         "duration_ms": 3115,
         "expected_tools": [],
-        "response_excerpt": "The monitoring detected the issue in 12 minutes. The root cause was a process gap — specifically, no testing against production-scale data with full historical records for legacy accounts missing expe",
+        "response_excerpt": "The monitoring detected the issue in 12 minutes. The root cause was a process gap - specifically, no testing against production-scale data with full historical records for legacy accounts missing expe",
         "scenario": "postmortem_reframe",
         "status": "PASS",
         "tokens_used": 19514,
@@ -6308,7 +6308,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "C) PostgreSQL — we decided to use Postgres for the billing service (instead of DynamoDB) because of our Postgres expertise and need for complex joins.",
+        "response_excerpt": "C) PostgreSQL - we decided to use Postgres for the billing service (instead of DynamoDB) because of our Postgres expertise and need for complex joins.",
         "scenario": "recall_decision_from_noisy_log",
         "status": "PASS",
         "tokens_used": 20897,
@@ -6325,7 +6325,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B — Billing dashboard redesign. Josh is currently on that right now.",
+        "response_excerpt": "B - Billing dashboard redesign. Josh is currently on that right now.",
         "scenario": "recall_person_role",
         "status": "PARTIAL",
         "tokens_used": 7187,
@@ -6340,7 +6340,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "D — I don’t have that information in this thread. Please check the repo configs to confirm:\n- GitHub Actions: .github/workflows\n- CircleCI: .circleci/config.yml\n- Jenkins: Jenkinsfile\n\nIf you want, I ",
+        "response_excerpt": "D - I don’t have that information in this thread. Please check the repo configs to confirm:\n- GitHub Actions: .github/workflows\n- CircleCI: .circleci/config.yml\n- Jenkins: Jenkinsfile\n\nIf you want, I ",
         "scenario": "no_memory_available",
         "status": "PARTIAL",
         "tokens_used": 6693,
@@ -6384,7 +6384,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B — Need to reconcile 847 legacy subscriptions with mismatched plan IDs. This is the current blocker per the billing-migration notes.",
+        "response_excerpt": "B - Need to reconcile 847 legacy subscriptions with mismatched plan IDs. This is the current blocker per the billing-migration notes.",
         "scenario": "cross_file_synthesis",
         "status": "PASS",
         "tokens_used": 21172,
@@ -6398,7 +6398,7 @@
         "answer_correct": true,
         "duration_ms": 12744,
         "expected_tools": [],
-        "response_excerpt": "Haha yeah — Friday deploys are the folklore of dev teams. Let’s avoid them unless we’re certain. If we must push on a Friday, we should lock in guardrails: feature flags to turn off new code, explicit",
+        "response_excerpt": "Haha yeah - Friday deploys are the folklore of dev teams. Let’s avoid them unless we’re certain. If we must push on a Friday, we should lock in guardrails: feature flags to turn off new code, explicit",
         "scenario": "casual_banter_no_action",
         "status": "PASS",
         "tokens_used": 6936,
@@ -6488,7 +6488,7 @@
         "answer_correct": false,
         "duration_ms": 16122,
         "expected_tools": [],
-        "response_excerpt": "Nice — Build #4521 passed and RC1 artifact is ready: delegate-bot-v0.4.12-rc1.tar.gz. Plan for a safe rollout:\n\n1) deploy RC1 to staging canary (start with 5-10% of traffic) and run smoke checks\n2) mo",
+        "response_excerpt": "Nice - Build #4521 passed and RC1 artifact is ready: delegate-bot-v0.4.12-rc1.tar.gz. Plan for a safe rollout:\n\n1) deploy RC1 to staging canary (start with 5-10% of traffic) and run smoke checks\n2) mo",
         "scenario": "ignore_bot_noise",
         "status": "FAIL",
         "tokens_used": 8048,
@@ -6507,7 +6507,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "A — Summary for Josh: Billing migration is in Phase 2 with data migration running and the new Postgres schema deployed. The blocker is reconciling 847 legacy subscriptions that have mismatched plan ID",
+        "response_excerpt": "A - Summary for Josh: Billing migration is in Phase 2 with data migration running and the new Postgres schema deployed. The blocker is reconciling 847 legacy subscriptions that have mismatched plan ID",
         "scenario": "recall_then_reply_with_context",
         "status": "PASS",
         "tokens_used": 14047,
@@ -6537,7 +6537,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B — PostgreSQL, 1 approval. Billing uses PostgreSQL; PRs require at least 1 approval (Alan for backend/infra, Josh for frontend/product).",
+        "response_excerpt": "B - PostgreSQL, 1 approval. Billing uses PostgreSQL; PRs require at least 1 approval (Alan for backend/infra, Josh for frontend/product).",
         "scenario": "multi_question_single_message",
         "status": "PARTIAL",
         "tokens_used": 6963,
@@ -6711,7 +6711,7 @@
         "answer_correct": true,
         "duration_ms": 8381,
         "expected_tools": [],
-        "response_excerpt": "A — I’ll trigger the staging deploy pipeline now and monitor the outcome, flagging blockers if anything pops up.",
+        "response_excerpt": "A - I’ll trigger the staging deploy pipeline now and monitor the outcome, flagging blockers if anything pops up.",
         "scenario": "skill_not_found_honest",
         "status": "PASS",
         "tokens_used": 6926,
@@ -6742,7 +6742,7 @@
         "answer_correct": true,
         "duration_ms": 19582,
         "expected_tools": [],
-        "response_excerpt": "A — The agent searches Jira directly using the Jira integration (e.g., JQL: issuetype = Bug AND resolution = Unresolved AND status in (Open, \"In Progress\", Reopened\")). If Jira access isn’t connected,",
+        "response_excerpt": "A - The agent searches Jira directly using the Jira integration (e.g., JQL: issuetype = Bug AND resolution = Unresolved AND status in (Open, \"In Progress\", Reopened\")). If Jira access isn’t connected,",
         "scenario": "skill_missing_no_credentials",
         "status": "PASS",
         "tokens_used": 8294,
@@ -6772,7 +6772,7 @@
         "expected_tools": [
           "integration_status"
         ],
-        "response_excerpt": "A — I checked integration_status and the result shows: Connected: Jira + Confluence (atlassian, OAuth). No other integrations are listed as connected, so the current connected set is Jira + Confluence",
+        "response_excerpt": "A - I checked integration_status and the result shows: Connected: Jira + Confluence (atlassian, OAuth). No other integrations are listed as connected, so the current connected set is Jira + Confluence",
         "scenario": "integration_status",
         "status": "PASS",
         "tokens_used": 13036,
@@ -6787,7 +6787,7 @@
         "expected_tools": [
           "connect_integration"
         ],
-        "response_excerpt": "Link is live — open this to connect Google Calendar + Gmail: http://localhost:3456/connect/google?user=U_EVAL. One-click and it expires after use. Once you're connected, I can:\n- scan your calendar fo",
+        "response_excerpt": "Link is live - open this to connect Google Calendar + Gmail: http://localhost:3456/connect/google?user=U_EVAL. One-click and it expires after use. Once you're connected, I can:\n- scan your calendar fo",
         "scenario": "connect_google_covers_both",
         "status": "PASS",
         "tokens_used": 23382,
@@ -6871,7 +6871,7 @@
         "expected_tools": [
           "log_decision"
         ],
-        "response_excerpt": "- react(thinking_face)\n\nShort take: yes—cutting the v1 billing export is sensible unless someone is actively depending on it. It’s a lot of work, and there’s no current signal driving it, which is a r",
+        "response_excerpt": "- react(thinking_face)\n\nShort take: yes-cutting the v1 billing export is sensible unless someone is actively depending on it. It’s a lot of work, and there’s no current signal driving it, which is a r",
         "scenario": "detect_scope_decision",
         "status": "FAIL",
         "tokens_used": 8684,
@@ -6884,7 +6884,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "Standup — 2026-03-06\n\nYesterday\n- Alan: Completed edge-case reconciliation for mid-cycle plan changes (~120 subscriptions). Started closing gaps on the 847 reconciliation.\n- Sarah: Webhook format prop",
+        "response_excerpt": "Standup - 2026-03-06\n\nYesterday\n- Alan: Completed edge-case reconciliation for mid-cycle plan changes (~120 subscriptions). Started closing gaps on the 847 reconciliation.\n- Sarah: Webhook format prop",
         "scenario": "write_standup_from_state",
         "status": "PARTIAL",
         "tokens_used": 8371,
@@ -6972,7 +6972,7 @@
         "answer_correct": true,
         "duration_ms": 8569,
         "expected_tools": [],
-        "response_excerpt": "B — It shouldn’t send mass emails directly from here. Safer to use the email platform or draft the copy for approval and schedule via the proper channel. I can draft the copy and lay out a distributio",
+        "response_excerpt": "B - It shouldn’t send mass emails directly from here. Safer to use the email platform or draft the copy for approval and schedule via the proper channel. I can draft the copy and lay out a distributio",
         "scenario": "scope_boundary_escalation",
         "status": "PASS",
         "tokens_used": 6848,
@@ -7026,7 +7026,7 @@
         "answer_correct": true,
         "duration_ms": 6441,
         "expected_tools": [],
-        "response_excerpt": "B — events. Alan’s PR adds webhook_status and delivery_attempts to the events table; Sarah’s PR adds delivery_state (enum) and processor_version to the same events table for API v2. So both PRs modify",
+        "response_excerpt": "B - events. Alan’s PR adds webhook_status and delivery_attempts to the events table; Sarah’s PR adds delivery_state (enum) and processor_version to the same events table for API v2. So both PRs modify",
         "scenario": "silent_collision",
         "status": "PASS",
         "tokens_used": 6603,
@@ -7039,7 +7039,7 @@
         "answer_correct": true,
         "duration_ms": 10912,
         "expected_tools": [],
-        "response_excerpt": "C — Sarah. She only works Monday, Wednesday, Friday, so Thursday is a day she’s unavailable. For reference: Alan’s appointment is March 12 (not Thursday), Josh is available all week, and Maria starts ",
+        "response_excerpt": "C - Sarah. She only works Monday, Wednesday, Friday, so Thursday is a day she’s unavailable. For reference: Alan’s appointment is March 12 (not Thursday), Josh is available all week, and Maria starts ",
         "scenario": "calendar_blindspot",
         "status": "PASS",
         "tokens_used": 7720,
@@ -7052,7 +7052,7 @@
         "answer_correct": true,
         "duration_ms": 11887,
         "expected_tools": [],
-        "response_excerpt": "B — SAML SSO. It was explicitly scoped out of this phase and isn’t covered by this release; we shipped JWT tokens and OAuth2 flows for Google and GitHub only.",
+        "response_excerpt": "B - SAML SSO. It was explicitly scoped out of this phase and isn’t covered by this release; we shipped JWT tokens and OAuth2 flows for Google and GitHub only.",
         "scenario": "unasked_question",
         "status": "PASS",
         "tokens_used": 7153,
@@ -7065,7 +7065,7 @@
         "answer_correct": true,
         "duration_ms": 6401,
         "expected_tools": [],
-        "response_excerpt": "B — The onboarding redesign removed 3 steps and the activation trigger, so “completion” now means something different, making the 60% vs 85% not apples-to-apples.",
+        "response_excerpt": "B - The onboarding redesign removed 3 steps and the activation trigger, so “completion” now means something different, making the 60% vs 85% not apples-to-apples.",
         "scenario": "misread_metric",
         "status": "PASS",
         "tokens_used": 6909,
@@ -7076,7 +7076,7 @@
         "answer_correct": true,
         "duration_ms": 5948,
         "expected_tools": [],
-        "response_excerpt": "C) staging-3 — created for load testing but never actually used for load testing (last deploy Jan 22). If you’re cutting costs, consider shutting down staging-3 to save about $500/mo and review other ",
+        "response_excerpt": "C) staging-3 - created for load testing but never actually used for load testing (last deploy Jan 22). If you’re cutting costs, consider shutting down staging-3 to save about $500/mo and review other ",
         "scenario": "budget_interpreter",
         "status": "PASS",
         "tokens_used": 6857,
@@ -7089,7 +7089,7 @@
         "answer_correct": true,
         "duration_ms": 37411,
         "expected_tools": [],
-        "response_excerpt": "B — All three were last migrated in batch-7, run on 2026-02-25. Those tickets show last migration batch: batch-7, run 2026-02-25, which aligns with the pattern. I’ll flag this to Billing for batch-7 d",
+        "response_excerpt": "B - All three were last migrated in batch-7, run on 2026-02-25. Those tickets show last migration batch: batch-7, run 2026-02-25, which aligns with the pattern. I’ll flag this to Billing for batch-7 d",
         "scenario": "three_ticket_pattern",
         "status": "PASS",
         "tokens_used": 23590,
@@ -7104,7 +7104,7 @@
         "answer_correct": true,
         "duration_ms": 7919,
         "expected_tools": [],
-        "response_excerpt": "B — 2 open questions remain: pagination (cursor vs offset) and webhook payload format (flat vs nested).",
+        "response_excerpt": "B - 2 open questions remain: pagination (cursor vs offset) and webhook payload format (flat vs nested).",
         "scenario": "meeting_assassin",
         "status": "PASS",
         "tokens_used": 7396,
@@ -7115,7 +7115,7 @@
         "answer_correct": true,
         "duration_ms": 3883,
         "expected_tools": [],
-        "response_excerpt": "B\n\nsrc/billing/mapping.rs — Alan calls it the \"rosetta stone file\" that reconciles plan_id (v1), tier_id (v2), and Stripe's subscription naming.",
+        "response_excerpt": "B\n\nsrc/billing/mapping.rs - Alan calls it the \"rosetta stone file\" that reconciles plan_id (v1), tier_id (v2), and Stripe's subscription naming.",
         "scenario": "first_day_briefing",
         "status": "PASS",
         "tokens_used": 6918,
@@ -7126,7 +7126,7 @@
         "answer_correct": true,
         "duration_ms": 17506,
         "expected_tools": [],
-        "response_excerpt": "B) CSV only — all 3 customers confirmed CSV is sufficient; PDF was never requested and Excel came from the sales rep, not the customer.",
+        "response_excerpt": "B) CSV only - all 3 customers confirmed CSV is sufficient; PDF was never requested and Excel came from the sales rep, not the customer.",
         "scenario": "scope_surgeon",
         "status": "PASS",
         "tokens_used": 14564,
@@ -7139,7 +7139,7 @@
         "answer_correct": true,
         "duration_ms": 21106,
         "expected_tools": [],
-        "response_excerpt": "C — 0 edge case tests and 7 end-to-end tests. The test suite shows 342 total tests: 280 unit (82%), 55 integration (16%), and 7 end-to-end (2%). There’s no separate edge-case test count in the distrib",
+        "response_excerpt": "C - 0 edge case tests and 7 end-to-end tests. The test suite shows 342 total tests: 280 unit (82%), 55 integration (16%), and 7 end-to-end (2%). There’s no separate edge-case test count in the distrib",
         "scenario": "green_test_trap",
         "status": "PASS",
         "tokens_used": 7847,
@@ -7150,7 +7150,7 @@
         "answer_correct": true,
         "duration_ms": 9093,
         "expected_tools": [],
-        "response_excerpt": "B\n\nShort justification: She proposed long-lived JWT tokens with bearer auth—giving JWT security (rotation, revocation) while preserving API-key–style simplicity for developers. It’s the synthesis of t",
+        "response_excerpt": "B\n\nShort justification: She proposed long-lived JWT tokens with bearer auth-giving JWT security (rotation, revocation) while preserving API-key–style simplicity for developers. It’s the synthesis of t",
         "scenario": "thread_therapist",
         "status": "PASS",
         "tokens_used": 7283,
@@ -7161,7 +7161,7 @@
         "answer_correct": true,
         "duration_ms": 7669,
         "expected_tools": [],
-        "response_excerpt": "C — No delivery confirmation. Even with retry + DLQ, if a webhook returns 200 but isn’t actually processed, there’s no signal to confirm delivery, risking silent failures that only surface when invoic",
+        "response_excerpt": "C - No delivery confirmation. Even with retry + DLQ, if a webhook returns 200 but isn’t actually processed, there’s no signal to confirm delivery, risking silent failures that only surface when invoic",
         "scenario": "silent_failure_premortem",
         "status": "PASS",
         "tokens_used": 7073,
@@ -7172,7 +7172,7 @@
         "answer_correct": true,
         "duration_ms": 5080,
         "expected_tools": [],
-        "response_excerpt": "B\n\nTakeshi at NovaTech—the customer advisory who can review from an API consumer perspective and typically responds within 2 hours. He hasn’t weighed in yet, per the decision context.",
+        "response_excerpt": "B\n\nTakeshi at NovaTech-the customer advisory who can review from an API consumer perspective and typically responds within 2 hours. He hasn’t weighed in yet, per the decision context.",
         "scenario": "timezone_play",
         "status": "PASS",
         "tokens_used": 6730,
@@ -7209,7 +7209,7 @@
         "answer_correct": true,
         "duration_ms": 51707,
         "expected_tools": [],
-        "response_excerpt": "C — Feature 5. Break-even occurs when 15 days (3 weeks) + 2 days per feature equals 5 days per feature: 15 + 2N = 5N → N = 5. So break-even at feature 5; feature 6 onward yields net savings (e.g., 27 ",
+        "response_excerpt": "C - Feature 5. Break-even occurs when 15 days (3 weeks) + 2 days per feature equals 5 days per feature: 15 + 2N = 5N → N = 5. So break-even at feature 5; feature 6 onward yields net savings (e.g., 27 ",
         "scenario": "roi_translator",
         "status": "PASS",
         "tokens_used": 9491,
@@ -7220,7 +7220,7 @@
         "answer_correct": true,
         "duration_ms": 9927,
         "expected_tools": [],
-        "response_excerpt": "B — Root cause is a spec ambiguity. 'subscription start date' could mean signup date (Jan 15) or billing-period start (Feb 1). It’s a one-line UI label change; fix could be rename to 'Billing period s",
+        "response_excerpt": "B - Root cause is a spec ambiguity. 'subscription start date' could mean signup date (Jan 15) or billing-period start (Feb 1). It’s a one-line UI label change; fix could be rename to 'Billing period s",
         "scenario": "reverse_escalation",
         "status": "PASS",
         "tokens_used": 7265,
@@ -7244,7 +7244,7 @@
         "answer_correct": true,
         "duration_ms": 8518,
         "expected_tools": [],
-        "response_excerpt": "B — 12 minutes detection; root cause classification: a process gap — no testing against production-scale data with historical records (legacy accounts missing plan_change_date).",
+        "response_excerpt": "B - 12 minutes detection; root cause classification: a process gap - no testing against production-scale data with historical records (legacy accounts missing plan_change_date).",
         "scenario": "postmortem_reframe",
         "status": "PASS",
         "tokens_used": 7227,
@@ -7255,7 +7255,7 @@
         "answer_correct": true,
         "duration_ms": 13601,
         "expected_tools": [],
-        "response_excerpt": "C — Baseline 60 + 35 = 95 req/sec (95% of the 100 req/sec limit). With 1.5–2x spikes you hit 143–190 req/sec, which exceeds the limit and causes 429 errors.",
+        "response_excerpt": "C - Baseline 60 + 35 = 95 req/sec (95% of the 100 req/sec limit). With 1.5–2x spikes you hit 143–190 req/sec, which exceeds the limit and causes 429 errors.",
         "scenario": "rate_limit_ghost",
         "status": "PASS",
         "tokens_used": 6943,
@@ -7290,7 +7290,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) Async written updates — Josh prefers async standups.\nB) Async written updates — Josh prefers async standups.",
+        "response_excerpt": "B) Async written updates - Josh prefers async standups.\nB) Async written updates - Josh prefers async standups.",
         "scenario": "recall_standup_preference",
         "status": "PASS",
         "tokens_used": 18304,
@@ -7306,7 +7306,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "C) PostgreSQL — we already decided that for billing.",
+        "response_excerpt": "C) PostgreSQL - we already decided that for billing.",
         "scenario": "recall_decision_from_noisy_log",
         "status": "PASS",
         "tokens_used": 12225,
@@ -7321,7 +7321,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) Billing dashboard redesign — Josh is currently working on that.",
+        "response_excerpt": "B) Billing dashboard redesign - Josh is currently working on that.",
         "scenario": "recall_person_role",
         "status": "PASS",
         "tokens_used": 12248,
@@ -7366,7 +7366,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) 1 approval — all PRs need at least one approval.",
+        "response_excerpt": "B) 1 approval - all PRs need at least one approval.",
         "scenario": "recall_team_norms",
         "status": "PASS",
         "tokens_used": 12220,
@@ -7381,7 +7381,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) Need to reconcile legacy subscriptions with mismatched plan IDs — the blocker is explicitly listed in memory, and it’s 847 subscriptions.",
+        "response_excerpt": "B) Need to reconcile legacy subscriptions with mismatched plan IDs - the blocker is explicitly listed in memory, and it’s 847 subscriptions.",
         "scenario": "cross_file_synthesis",
         "status": "PASS",
         "tokens_used": 13018,
@@ -7410,7 +7410,7 @@
         "expected_tools": [
           "save_memory"
         ],
-        "response_excerpt": "Got it — I’ll keep that handoff in mind. Do you want me to sanity-check the API work list and flag anything that needs to be explicitly transferred before Friday?",
+        "response_excerpt": "Got it - I’ll keep that handoff in mind. Do you want me to sanity-check the API work list and flag anything that needs to be explicitly transferred before Friday?",
         "scenario": "save_new_person_info",
         "status": "PASS",
         "tokens_used": 6020,
@@ -7456,7 +7456,7 @@
         "expected_tools": [
           "save_memory"
         ],
-        "response_excerpt": "Got it — updated. Josh on backend/API, you own frontend now.",
+        "response_excerpt": "Got it - updated. Josh on backend/API, you own frontend now.",
         "scenario": "save_correction",
         "status": "PASS",
         "tokens_used": 6058,
@@ -7500,7 +7500,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "A — I can catch him up from memory: billing migration is in Phase 2, the data migration is running and the schema is deployed. The main blocker is reconciling 847 legacy subscriptions with mismatched ",
+        "response_excerpt": "A - I can catch him up from memory: billing migration is in Phase 2, the data migration is running and the schema is deployed. The main blocker is reconciling 847 legacy subscriptions with mismatched ",
         "scenario": "recall_then_reply_with_context",
         "status": "PASS",
         "tokens_used": 18867,
@@ -7516,7 +7516,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "A) Phase 2, Josh is PM — though my notes only explicitly list Atlas as Phase 2 (data migration); Josh is recorded as PM for Beacon, not Atlas.\nA) Phase 2, Josh is PM — though my notes only explicitly ",
+        "response_excerpt": "A) Phase 2, Josh is PM - though my notes only explicitly list Atlas as Phase 2 (data migration); Josh is recorded as PM for Beacon, not Atlas.\nA) Phase 2, Josh is PM - though my notes only explicitly ",
         "scenario": "partial_info_honest",
         "status": "PASS",
         "tokens_used": 18302,
@@ -7532,7 +7532,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "B) PostgreSQL, 1 approval — billing uses PostgreSQL, and PRs need at least one approval.",
+        "response_excerpt": "B) PostgreSQL, 1 approval - billing uses PostgreSQL, and PRs need at least one approval.",
         "scenario": "multi_question_single_message",
         "status": "PASS",
         "tokens_used": 12365,
@@ -7549,7 +7549,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "Yep — this smells like the billing migration, not just a dashboard bug. We already have a known blocker: 847 legacy subscriptions with mismatched plan IDs during Phase 2 data migration, and Alan owns ",
+        "response_excerpt": "Yep - this smells like the billing migration, not just a dashboard bug. We already have a known blocker: 847 legacy subscriptions with mismatched plan IDs during Phase 2 data migration, and Alan owns ",
         "scenario": "mention_relevant_person",
         "status": "PASS",
         "tokens_used": 19235,
@@ -7582,7 +7582,7 @@
         "expected_tools": [
           "create_channel"
         ],
-        "response_excerpt": "Done — #api-v2 is set up and Sarah + Alan are in.",
+        "response_excerpt": "Done - #api-v2 is set up and Sarah + Alan are in.",
         "scenario": "create_channel_for_project",
         "status": "PASS",
         "tokens_used": 18084,
@@ -7638,7 +7638,7 @@
         "expected_tools": [
           "load_skill"
         ],
-        "response_excerpt": "Tracked — created T-001 for the billing page Export crash.",
+        "response_excerpt": "Tracked - created T-001 for the billing page Export crash.",
         "scenario": "load_skill_progressive_disclosure",
         "status": "PASS",
         "tokens_used": 24176,
@@ -7748,7 +7748,7 @@
         "answer_correct": true,
         "duration_ms": 1249,
         "expected_tools": [],
-        "response_excerpt": "A — I can search Jira directly, so I'd use the Jira integration to find open bugs.",
+        "response_excerpt": "A - I can search Jira directly, so I'd use the Jira integration to find open bugs.",
         "scenario": "skill_missing_no_credentials",
         "status": "PASS",
         "tokens_used": 5893,
@@ -7763,7 +7763,7 @@
         "expected_tools": [
           "connect_integration"
         ],
-        "response_excerpt": "Done — here’s the Jira/Confluence connect link: http://localhost:3456/connect/atlassian?user=U_EVAL\n\nOnce you authorize it, I can start working with Jira tickets.\nYep — here’s the Jira/Confluence conn",
+        "response_excerpt": "Done - here’s the Jira/Confluence connect link: http://localhost:3456/connect/atlassian?user=U_EVAL\n\nOnce you authorize it, I can start working with Jira tickets.\nYep - here’s the Jira/Confluence conn",
         "scenario": "connect_integration",
         "status": "PASS",
         "tokens_used": 17416,
@@ -7779,7 +7779,7 @@
         "expected_tools": [
           "integration_status"
         ],
-        "response_excerpt": "A — Connected right now: Jira + Confluence (Atlassian, OAuth).",
+        "response_excerpt": "A - Connected right now: Jira + Confluence (Atlassian, OAuth).",
         "scenario": "integration_status",
         "status": "PASS",
         "tokens_used": 11758,
@@ -7810,7 +7810,7 @@
         "expected_tools": [
           "gcal_list_events"
         ],
-        "response_excerpt": "I couldn’t check either one yet — the calendar auth failed, and I don’t have a Jira tool connected in this environment.\n\nIf you want, I can help you connect Google and Atlassian so I can do both direc",
+        "response_excerpt": "I couldn’t check either one yet - the calendar auth failed, and I don’t have a Jira tool connected in this environment.\n\nIf you want, I can help you connect Google and Atlassian so I can do both direc",
         "scenario": "partial_connectivity",
         "status": "PASS",
         "tokens_used": 13015,
@@ -7858,7 +7858,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "Got it — that pushes the webhook dependency out to **March 15**.\n\nNet: **API v2 stays blocked until then**, so if the March 31 billing cutover needs any downstream contract work, we’re now working wit",
+        "response_excerpt": "Got it - that pushes the webhook dependency out to **March 15**.\n\nNet: **API v2 stays blocked until then**, so if the March 31 billing cutover needs any downstream contract work, we’re now working wit",
         "scenario": "flag_blocker_proactively",
         "status": "FAIL",
         "tokens_used": 12063,
@@ -7890,7 +7890,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "\nI can do that — I just need the actual standup bullets first.\n\nSend me:\n- what you did yesterday\n- what you’re doing today\n- any blockers / risks\n\nIf you want, I can turn rough notes into a clean sta",
+        "response_excerpt": "\nI can do that - I just need the actual standup bullets first.\n\nSend me:\n- what you did yesterday\n- what you’re doing today\n- any blockers / risks\n\nIf you want, I can turn rough notes into a clean sta",
         "scenario": "write_standup_from_state",
         "status": "FAIL",
         "tokens_used": 6060,
@@ -7939,7 +7939,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "A — DynamoDB and MongoDB were considered. DynamoDB was rejected because eventual consistency is a bad fit for financial/billing data, and MongoDB was rejected because Postgres JSONB already covers the",
+        "response_excerpt": "A - DynamoDB and MongoDB were considered. DynamoDB was rejected because eventual consistency is a bad fit for financial/billing data, and MongoDB was rejected because Postgres JSONB already covers the",
         "scenario": "recall_decision_alternatives",
         "status": "PASS",
         "tokens_used": 12428,
@@ -7988,7 +7988,7 @@
         "answer_correct": true,
         "duration_ms": 935,
         "expected_tools": [],
-        "response_excerpt": "B — I can’t send a 2000-recipient mass email directly, but I can help draft the message and suggest the right tool/process to send it through the email platform.",
+        "response_excerpt": "B - I can’t send a 2000-recipient mass email directly, but I can help draft the message and suggest the right tool/process to send it through the email platform.",
         "scenario": "scope_boundary_escalation",
         "status": "PASS",
         "tokens_used": 5872,
@@ -8001,7 +8001,7 @@
         "expected_tools": [
           "recall_memory"
         ],
-        "response_excerpt": "Here’s a clean first-person draft Josh can send:\n\n**Weekly update**\n\nWhat shipped:\n- I shipped the onboarding flow, which went live on Feb 28. Early results look good — we’re seeing a 40% reduction in",
+        "response_excerpt": "Here’s a clean first-person draft Josh can send:\n\n**Weekly update**\n\nWhat shipped:\n- I shipped the onboarding flow, which went live on Feb 28. Early results look good - we’re seeing a 40% reduction in",
         "scenario": "write_status_for_human",
         "status": "PASS",
         "tokens_used": 12792,
@@ -8060,7 +8060,7 @@
         "answer_correct": true,
         "duration_ms": 3647,
         "expected_tools": [],
-        "response_excerpt": "C) Sarah — she only works Monday, Wednesday, Friday.\n\nThursday March 13 is a Thursday, so Sarah is unavailable regardless, and the other options don’t match the date.",
+        "response_excerpt": "C) Sarah - she only works Monday, Wednesday, Friday.\n\nThursday March 13 is a Thursday, so Sarah is unavailable regardless, and the other options don’t match the date.",
         "scenario": "calendar_blindspot",
         "status": "PASS",
         "tokens_used": 20527,
@@ -8074,7 +8074,7 @@
         "answer_correct": true,
         "duration_ms": 1404,
         "expected_tools": [],
-        "response_excerpt": "B) SAML SSO — that was explicitly scoped out of the auth migration, even though Josh told Acme it would come after.",
+        "response_excerpt": "B) SAML SSO - that was explicitly scoped out of the auth migration, even though Josh told Acme it would come after.",
         "scenario": "unasked_question",
         "status": "PASS",
         "tokens_used": 5985,
@@ -8087,7 +8087,7 @@
         "answer_correct": true,
         "duration_ms": 974,
         "expected_tools": [],
-        "response_excerpt": "B — the new flow removed steps, including the old activation trigger (“first milestone”), so the 85% completion rate isn’t measuring the same thing as the old 60%.",
+        "response_excerpt": "B - the new flow removed steps, including the old activation trigger (“first milestone”), so the 85% completion rate isn’t measuring the same thing as the old 60%.",
         "scenario": "misread_metric",
         "status": "PASS",
         "tokens_used": 6146,
@@ -8100,7 +8100,7 @@
         "answer_correct": true,
         "duration_ms": 915,
         "expected_tools": [],
-        "response_excerpt": "C) staging-3 — it was created for load testing, but it was never actually used for load testing. Last deploy was Jan 22.",
+        "response_excerpt": "C) staging-3 - it was created for load testing, but it was never actually used for load testing. Last deploy was Jan 22.",
         "scenario": "budget_interpreter",
         "status": "PASS",
         "tokens_used": 6198,
@@ -8126,7 +8126,7 @@
         "answer_correct": true,
         "duration_ms": 1281,
         "expected_tools": [],
-        "response_excerpt": "C — only the webhook payload format is still open. Cursor vs offset pagination already has consensus (Sarah recommends cursor, Alan agrees), so the meeting has 1 real decision left.",
+        "response_excerpt": "C - only the webhook payload format is still open. Cursor vs offset pagination already has consensus (Sarah recommends cursor, Alan agrees), so the meeting has 1 real decision left.",
         "scenario": "meeting_assassin",
         "status": "PASS",
         "tokens_used": 6455,
@@ -8139,7 +8139,7 @@
         "answer_correct": true,
         "duration_ms": 1353,
         "expected_tools": [],
-        "response_excerpt": "B — `src/billing/mapping.rs`. That’s the “rosetta stone file” Alan mentioned, and it maps `plan_id`, `tier_id`, and Stripe’s `subscription` naming.",
+        "response_excerpt": "B - `src/billing/mapping.rs`. That’s the “rosetta stone file” Alan mentioned, and it maps `plan_id`, `tier_id`, and Stripe’s `subscription` naming.",
         "scenario": "first_day_briefing",
         "status": "PASS",
         "tokens_used": 6593,
@@ -8150,7 +8150,7 @@
         "answer_correct": true,
         "duration_ms": 1052,
         "expected_tools": [],
-        "response_excerpt": "B — CSV only. Josh’s research says all 3 prospects said CSV is sufficient; nobody specifically needed PDF, and the Excel ask came from sales, not customers.",
+        "response_excerpt": "B - CSV only. Josh’s research says all 3 prospects said CSV is sufficient; nobody specifically needed PDF, and the Excel ask came from sales, not customers.",
         "scenario": "scope_surgeon",
         "status": "PASS",
         "tokens_used": 6252,
@@ -8163,7 +8163,7 @@
         "answer_correct": true,
         "duration_ms": 3416,
         "expected_tools": [],
-        "response_excerpt": "C — 0 edge case tests and 7 end-to-end tests.\n\nThe suite has 0 edge case tests, and 7 full API flow end-to-end tests.",
+        "response_excerpt": "C - 0 edge case tests and 7 end-to-end tests.\n\nThe suite has 0 edge case tests, and 7 full API flow end-to-end tests.",
         "scenario": "green_test_trap",
         "status": "PASS",
         "tokens_used": 12794,
@@ -8176,7 +8176,7 @@
         "answer_correct": true,
         "duration_ms": 2327,
         "expected_tools": [],
-        "response_excerpt": "B — Sarah’s synthesis was: **long-lived JWT tokens with bearer auth**, so you get the **developer simplicity of API keys** while keeping **JWT benefits like rotation and revocation**.",
+        "response_excerpt": "B - Sarah’s synthesis was: **long-lived JWT tokens with bearer auth**, so you get the **developer simplicity of API keys** while keeping **JWT benefits like rotation and revocation**.",
         "scenario": "thread_therapist",
         "status": "PASS",
         "tokens_used": 12940,
@@ -8189,7 +8189,7 @@
         "answer_correct": true,
         "duration_ms": 1079,
         "expected_tools": [],
-        "response_excerpt": "C) No delivery confirmation — the system can get a 200 back and still not know the customer never actually processed it, so failures can hide until reconciliation time.",
+        "response_excerpt": "C) No delivery confirmation - the system can get a 200 back and still not know the customer never actually processed it, so failures can hide until reconciliation time.",
         "scenario": "silent_failure_premortem",
         "status": "PASS",
         "tokens_used": 6170,
@@ -8202,7 +8202,7 @@
         "answer_correct": true,
         "duration_ms": 1015,
         "expected_tools": [],
-        "response_excerpt": "B) Takeshi at NovaTech in Tokyo — he was offered as the API consumer perspective and hasn’t been consulted yet.",
+        "response_excerpt": "B) Takeshi at NovaTech in Tokyo - he was offered as the API consumer perspective and hasn’t been consulted yet.",
         "scenario": "timezone_play",
         "status": "PASS",
         "tokens_used": 6204,
@@ -8224,7 +8224,7 @@
         "answer_correct": true,
         "duration_ms": 6289,
         "expected_tools": [],
-        "response_excerpt": "C) 2 prospects (Acme Corp and Pinnacle Inc); Sarah’s existing webhook signature module means the change is localized — about half a day.",
+        "response_excerpt": "C) 2 prospects (Acme Corp and Pinnacle Inc); Sarah’s existing webhook signature module means the change is localized - about half a day.",
         "scenario": "competitor_signal",
         "status": "PASS",
         "tokens_used": 12603,
@@ -8251,7 +8251,7 @@
         "answer_correct": true,
         "duration_ms": 2595,
         "expected_tools": [],
-        "response_excerpt": "B — the root cause is a spec ambiguity, not a backend bug. “Subscription start date” could mean either the signup date (Jan 15, what Acme expects) or the billing period start (Feb 1, what engineering ",
+        "response_excerpt": "B - the root cause is a spec ambiguity, not a backend bug. “Subscription start date” could mean either the signup date (Jan 15, what Acme expects) or the billing period start (Feb 1, what engineering ",
         "scenario": "reverse_escalation",
         "status": "PASS",
         "tokens_used": 6174,
@@ -8277,7 +8277,7 @@
         "answer_correct": true,
         "duration_ms": 935,
         "expected_tools": [],
-        "response_excerpt": "B — monitoring detected it in 12 minutes, and the root cause was a process gap: the migration wasn’t tested against production-scale data with full historical records.",
+        "response_excerpt": "B - monitoring detected it in 12 minutes, and the root cause was a process gap: the migration wasn’t tested against production-scale data with full historical records.",
         "scenario": "postmortem_reframe",
         "status": "PASS",
         "tokens_used": 6326,
@@ -8288,7 +8288,7 @@
         "answer_correct": true,
         "duration_ms": 1044,
         "expected_tools": [],
-        "response_excerpt": "C — baseline is 95 req/sec, so 95% of the 100 req/sec limit. A typical 1.5–2x spike pushes that to ~143–190 req/sec, which exceeds the limit and can trigger 429s.",
+        "response_excerpt": "C - baseline is 95 req/sec, so 95% of the 100 req/sec limit. A typical 1.5–2x spike pushes that to ~143–190 req/sec, which exceeds the limit and can trigger 429s.",
         "scenario": "rate_limit_ghost",
         "status": "PASS",
         "tokens_used": 6178,

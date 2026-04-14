@@ -1,4 +1,4 @@
-# Webhook Format Decision — Stakeholder Input Needed
+# Webhook Format Decision - Stakeholder Input Needed
 
 ## Decision needed by: March 12 (Wednesday)
 - Blocking: Webhook implementation (Alan), API v2 endpoint contracts (Sarah)

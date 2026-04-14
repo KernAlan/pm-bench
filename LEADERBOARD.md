@@ -1,6 +1,6 @@
 # PM-Bench Leaderboard
 
-PM-Bench v1.0.0. All scores are from a real PM agent running all 68 scenarios end-to-end. The canonical harness is [Delegate](https://github.com/J-Reed700/delegate). Other harnesses must be equivalently rich (persistent memory, full PM tool surface, multi-turn orchestration) to be accepted — see [SUBMISSIONS.md](SUBMISSIONS.md).
+PM-Bench v1.0.0. All scores are from a real PM agent running all 68 scenarios end-to-end. The canonical harness is [Delegate](https://github.com/J-Reed700/delegate). Other harnesses must be equivalently rich (persistent memory, full PM tool surface, multi-turn orchestration) to be accepted - see [SUBMISSIONS.md](SUBMISSIONS.md).
 
 Score = `(PASS + PARTIAL) / 68`, the same rule Delegate's Rust eval harness reports.
 
@@ -22,15 +22,15 @@ Human-PM baselines help contextualize model scores. To contribute, see [HUMAN_BA
 
 | Participant Background | Score | N Scenarios | Time per Scenario |
 |------------------------|-------|-------------|-------------------|
-| (no baselines yet)     | —     | —           | —                 |
+| (no baselines yet)     | -     | -           | -                 |
 
 ## How scoring works
 
 PM-Bench delivers 68 scenarios through a PM-agent harness. Each scenario presents a realistic workspace state (Slack logs, Jira activity, memory files) and a trigger message. The agent responds using its tools. The Rust scorer in Delegate awards:
 
-- **PASS** — agent answered correctly AND used appropriate tools
-- **PARTIAL** — answer correct, tool use suboptimal
-- **FAIL** — wrong answer or wrong tool usage that caused a wrong outcome
+- **PASS** - agent answered correctly AND used appropriate tools
+- **PARTIAL** - answer correct, tool use suboptimal
+- **FAIL** - wrong answer or wrong tool usage that caused a wrong outcome
 
 Reported score in this leaderboard is `(PASS + PARTIAL) / total`. Separate PASS-only columns can be added if needed.
 
@@ -45,6 +45,6 @@ Reported score in this leaderboard is `(PASS + PARTIAL) / total`. Separate PASS-
 
 ## Notes on comparability
 
-- Delegate's scoring is deterministic given identical model outputs — but model outputs are not deterministic. Three or more iterations with 95% CI are strongly recommended before citing a rank.
+- Delegate's scoring is deterministic given identical model outputs - but model outputs are not deterministic. Three or more iterations with 95% CI are strongly recommended before citing a rank.
 - If you run Delegate with a customized fork (different tool descriptions, different system prompt, different memory layout), disclose that in the submission. Such runs may be listed under a separate "modified-harness" section rather than the canonical leaderboard.
 - Human baselines are scored the same way: present the scenario, accept whatever action the human takes (written response, Slack mockup, tool-simulation), then apply the Rust scorer's rubric. Details in `HUMAN_BASELINE.md`.

@@ -18,7 +18,7 @@ Specifically:
 
 A raw LLM is not a PM agent. Without persistent memory, tools for team coordination, credential-aware integrations, and a proactive loop, a model cannot do the work the scenarios ask about. Every scenario assumes an agent architecture with: a tool surface, memory that persists across turns, multi-turn orchestration, and retrieval over workspace state.
 
-Evaluating PM-Bench scenarios against a raw model through static prompting is a different test — of reading comprehension, not PM capability. Stripped-down tool harnesses (e.g. only `list_files`/`read_file`/`grep`) are also insufficient because they do not expose the PM-specific decisions most scenarios hinge on.
+Evaluating PM-Bench scenarios against a raw model through static prompting is a different test - of reading comprehension, not PM capability. Stripped-down tool harnesses (e.g. only `list_files`/`read_file`/`grep`) are also insufficient because they do not expose the PM-specific decisions most scenarios hinge on.
 
 The canonical harness is [Delegate](https://github.com/J-Reed700/delegate). Alternative harnesses are accepted only if equivalently rich (persistent memory, full PM tool surface including write-side tools like `save_memory`/`log_decision`/`react`/`reply`, multi-turn orchestration). Submissions from non-qualifying harnesses are rejected.
 
@@ -34,9 +34,9 @@ Scenarios were authored by Alan Kern and Josh Reed based on patterns observed du
 
 Scoring is delegated to the Delegate Rust eval harness, which classifies each scenario as:
 
-- **PASS** — agent answered correctly AND used appropriate tools
-- **PARTIAL** — answer correct, tool use suboptimal
-- **FAIL** — wrong answer or wrong tool sequence
+- **PASS** - agent answered correctly AND used appropriate tools
+- **PARTIAL** - answer correct, tool use suboptimal
+- **FAIL** - wrong answer or wrong tool sequence
 
 Headline score reported on the leaderboard is `(PASS + PARTIAL) / 68`. Separate PASS-only columns can be requested for any submission.
 

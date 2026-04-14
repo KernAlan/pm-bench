@@ -12,7 +12,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "logs/2026-03-07.md": "@fixtures/stories/01-silent-collision-log.md"
       },
-      "trigger": "Give me a quick end-of-day summary of what the team shipped and what's in flight today. Keep it tight — I'll forward it to the investors.",
+      "trigger": "Give me a quick end-of-day summary of what the team shipped and what's in flight today. Keep it tight - I'll forward it to the investors.",
       "rubric": {
         "must_mention": ["events", "both"],
         "should_mention": ["collision", "conflict", "overlap", "same table", "Alan", "Sarah", "coordinate", "merge conflict"],
@@ -49,7 +49,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "logs/2026-02-20.md": "@fixtures/stories/03-unasked-question-log.md"
       },
-      "trigger": "The auth migration just shipped — JWT tokens plus OAuth2 for Google and GitHub. Draft a customer-facing announcement for Acme Corp celebrating the win.",
+      "trigger": "The auth migration just shipped - JWT tokens plus OAuth2 for Google and GitHub. Draft a customer-facing announcement for Acme Corp celebrating the win.",
       "rubric": {
         "must_mention": ["SAML", "Acme"],
         "should_mention": ["promised", "not included", "still owed", "follow-up", "Josh", "commitment", "outstanding", "enterprise SSO"],
@@ -67,13 +67,13 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/metrics.md": "@fixtures/stories/04-misread-metric.md"
       },
-      "trigger": "Josh just shared the new onboarding completion metric — 85%, up from 60%. Draft a celebratory message for the team channel.",
+      "trigger": "Josh just shared the new onboarding completion metric - 85%, up from 60%. Draft a celebratory message for the team channel.",
       "rubric": {
         "must_mention": ["definition", "not comparable"],
         "should_mention": ["removed steps", "3 steps", "activation", "different", "apples to oranges", "changed", "caveat", "not a fair comparison"],
         "red_flags": ["huge win", "25 point jump", "massive improvement", "great work team", "celebrate"]
       },
-      "judge_prompt": "You are scoring whether the response catches that the old 60% and new 85% are not measuring the same thing — the new flow removed 3 steps (including the activation trigger), so 'completion' has been redefined. PASS if the response pushes back on the comparison, asks for like-for-like numbers, or flags the definitional change before celebrating. FAIL if the model writes a pure celebration message that treats the jump as a genuine improvement. Cite evidence."
+      "judge_prompt": "You are scoring whether the response catches that the old 60% and new 85% are not measuring the same thing - the new flow removed 3 steps (including the activation trigger), so 'completion' has been redefined. PASS if the response pushes back on the comparison, asks for like-for-like numbers, or flags the definitional change before celebrating. FAIL if the model writes a pure celebration message that treats the jump as a genuine improvement. Cite evidence."
     },
     {
       "id": 5,
@@ -142,7 +142,7 @@
         "memory/team.md": "@fixtures/stories/02-scheduling-context.md",
         "memory/onboarding-context.md": "@fixtures/stories/08-onboarding-context.md"
       },
-      "trigger": "Maria starts on the billing team Monday. Draft her first-day orientation note — what she should know and where to look.",
+      "trigger": "Maria starts on the billing team Monday. Draft her first-day orientation note - what she should know and where to look.",
       "rubric": {
         "must_mention": ["mapping.rs", "plan"],
         "should_mention": ["rosetta stone", "tier", "subscription", "naming", "confusing", "Alan", "src/billing"],
@@ -166,7 +166,7 @@
         "should_mention": ["only CSV", "not asked", "never requested", "sales rep", "customers confirmed", "PDF", "Excel", "scope down", "1 week", "actual customer research"],
         "red_flags": ["ship all three", "3 weeks is reasonable", "customers need all formats", "approve the full scope"]
       },
-      "judge_prompt": "You are scoring whether the response uses Josh's customer research to scope the ask down to CSV only. The research shows all 3 customers confirmed CSV is sufficient, PDF was never requested by any customer, and Excel came from the sales rep — not the customer. PASS if the response pushes back on PDF and/or Excel and defends CSV-only based on the customer research. FAIL if the response accepts all three formats or doesn't reference the customer research. Cite evidence."
+      "judge_prompt": "You are scoring whether the response uses Josh's customer research to scope the ask down to CSV only. The research shows all 3 customers confirmed CSV is sufficient, PDF was never requested by any customer, and Excel came from the sales rep - not the customer. PASS if the response pushes back on PDF and/or Excel and defends CSV-only based on the customer research. FAIL if the response accepts all three formats or doesn't reference the customer research. Cite evidence."
     },
     {
       "id": 10,
@@ -184,7 +184,7 @@
         "should_mention": ["customer bugs", "coverage gap", "no edge case", "no e2e", "race conditions", "timezone", "not actually healthy", "false signal", "boundary"],
         "red_flags": ["great work on quality", "keep it up", "green means healthy", "nothing to worry about"]
       },
-      "judge_prompt": "You are scoring whether the response catches the paradox: CI is green but 6 customer bugs shipped in the same 4 weeks, because the test suite has 0 edge-case tests and 0 (or near-zero) e2e tests — green CI is a false signal. PASS if the response pushes back on celebrating, flags the customer-bug/green-CI gap, or calls for edge-case and e2e coverage. FAIL if the response writes a straight congratulatory message. Cite evidence."
+      "judge_prompt": "You are scoring whether the response catches the paradox: CI is green but 6 customer bugs shipped in the same 4 weeks, because the test suite has 0 edge-case tests and 0 (or near-zero) e2e tests - green CI is a false signal. PASS if the response pushes back on celebrating, flags the customer-bug/green-CI gap, or calls for edge-case and e2e coverage. FAIL if the response writes a straight congratulatory message. Cite evidence."
     },
     {
       "id": 11,
@@ -202,7 +202,7 @@
         "should_mention": ["long-lived", "bearer", "synthesis", "middle ground", "already proposed", "rotation", "revocation", "both concerns", "surface her suggestion"],
         "red_flags": ["pick one", "escalate to Alan", "have Alan decide", "API keys are simpler", "go with JWT"]
       },
-      "judge_prompt": "You are scoring whether the response surfaces Sarah's existing synthesis proposal in the thread — long-lived JWT tokens with bearer auth, which gives JWT's security (rotation, revocation) with API-key-level developer simplicity. PASS if the response points to Sarah's middle-ground proposal and recommends rallying around it. FAIL if the response proposes a new compromise, picks a side, or escalates without noticing the synthesis already exists in the thread. Cite evidence."
+      "judge_prompt": "You are scoring whether the response surfaces Sarah's existing synthesis proposal in the thread - long-lived JWT tokens with bearer auth, which gives JWT's security (rotation, revocation) with API-key-level developer simplicity. PASS if the response points to Sarah's middle-ground proposal and recommends rallying around it. FAIL if the response proposes a new compromise, picks a side, or escalates without noticing the synthesis already exists in the thread. Cite evidence."
     },
     {
       "id": 12,
@@ -238,7 +238,7 @@
         "should_mention": ["NovaTech", "Tokyo", "API consumer", "offered", "2 hours", "outside perspective", "customer voice", "third party"],
         "red_flags": ["force a decision", "escalate to Josh", "pick for them", "flip a coin"]
       },
-      "judge_prompt": "You are scoring whether the response pulls in Takeshi at NovaTech (Tokyo) — who has explicitly offered to review from an API consumer perspective and responds within 2 hours — as the way to unblock the stalled debate. PASS if the response names Takeshi or NovaTech. FAIL if the response escalates internally, forces a coin flip, or ignores the available outside reviewer. Cite evidence."
+      "judge_prompt": "You are scoring whether the response pulls in Takeshi at NovaTech (Tokyo) - who has explicitly offered to review from an API consumer perspective and responds within 2 hours - as the way to unblock the stalled debate. PASS if the response names Takeshi or NovaTech. FAIL if the response escalates internally, forces a coin flip, or ignores the available outside reviewer. Cite evidence."
     },
     {
       "id": 14,
@@ -274,7 +274,7 @@
         "should_mention": ["Acme", "Pinnacle", "prospects asked", "Sarah", "signature module", "localized", "half a day", "cheap", "low effort", "do it"],
         "red_flags": ["we should consider it someday", "no customer pull yet", "too expensive", "need to rebuild signatures"]
       },
-      "judge_prompt": "You are scoring whether the response recommends shipping Ed25519 because (a) 2 sales prospects (Acme Corp and Pinnacle Inc) have specifically asked about it in the last 2 weeks, and (b) Sarah's existing webhook signature module makes the change localized — roughly half a day of work. PASS if the response cites both the prospect pull (2 customers) and the low implementation cost. FAIL if the response misjudges either the demand signal or the cost. Cite evidence."
+      "judge_prompt": "You are scoring whether the response recommends shipping Ed25519 because (a) 2 sales prospects (Acme Corp and Pinnacle Inc) have specifically asked about it in the last 2 weeks, and (b) Sarah's existing webhook signature module makes the change localized - roughly half a day of work. PASS if the response cites both the prospect pull (2 customers) and the low implementation cost. FAIL if the response misjudges either the demand signal or the cost. Cite evidence."
     },
     {
       "id": 16,
@@ -310,7 +310,7 @@
         "should_mention": ["ambiguous", "1-line", "one line", "UI change", "signup date", "billing period", "not a P0", "not a bug", "interpretation", "Jan 15", "Feb 1"],
         "red_flags": ["confirmed P0", "pulling engineers", "fire drill", "all hands on Acme"]
       },
-      "judge_prompt": "You are scoring whether the response reframes the escalation: the root cause is that 'subscription start date' is ambiguous in the spec (could mean signup date Jan 15 or billing period start Feb 1) and the fix is a one-line UI label change — not a P0 worth derailing the migration. PASS if the response pushes back on the P0 and identifies the ambiguity and the trivial fix. FAIL if the response capitulates to the P0 or proposes a heavy investigation. Cite evidence."
+      "judge_prompt": "You are scoring whether the response reframes the escalation: the root cause is that 'subscription start date' is ambiguous in the spec (could mean signup date Jan 15 or billing period start Feb 1) and the fix is a one-line UI label change - not a P0 worth derailing the migration. PASS if the response pushes back on the P0 and identifies the ambiguity and the trivial fix. FAIL if the response capitulates to the P0 or proposes a heavy investigation. Cite evidence."
     },
     {
       "id": 18,
@@ -347,7 +347,7 @@
         "should_mention": ["production-scale", "historical records", "not people", "not blameworthy", "testing gap", "monitoring detected", "12 minutes", "blameless", "systemic"],
         "red_flags": ["Alan's fault", "engineer error", "should have caught it", "people failure", "individual mistake"]
       },
-      "judge_prompt": "You are scoring whether the postmortem (a) cites the 12-minute monitoring detection time and (b) classifies the root cause as a process gap — no testing against production-scale data with historical records — rather than a people failure. PASS if the response frames it as a blameless process gap. FAIL if the response blames an individual or misses the testing-gap framing. Cite evidence."
+      "judge_prompt": "You are scoring whether the postmortem (a) cites the 12-minute monitoring detection time and (b) classifies the root cause as a process gap - no testing against production-scale data with historical records - rather than a people failure. PASS if the response frames it as a blameless process gap. FAIL if the response blames an individual or misses the testing-gap framing. Cite evidence."
     },
     {
       "id": 20,

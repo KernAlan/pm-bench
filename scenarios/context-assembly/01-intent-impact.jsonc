@@ -5,7 +5,7 @@
 
   "id": "01-intent-impact",
   "name": "Intent Impact",
-  "hypothesis": "INTENTS.md dramatically changes output quality — the with-intents variant should be obviously, dramatically better, not subtly better.",
+  "hypothesis": "INTENTS.md dramatically changes output quality - the with-intents variant should be obviously, dramatically better, not subtly better.",
 
   "trigger": {
     "type": "slack_message",
@@ -51,6 +51,6 @@
       "Does Variant B consider the March 15 deadline implications?",
       "Does Variant A just say 'hope she feels better' or equivalent generic response?"
     ],
-    "killCondition": "No meaningful difference between variants — both provide similar depth of analysis."
+    "killCondition": "No meaningful difference between variants - both provide similar depth of analysis."
   }
 }

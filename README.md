@@ -30,13 +30,13 @@ All scores from [Delegate](https://github.com/J-Reed700/delegate) running all 68
 
 | Participant Background | Score | N Scenarios | Time per Scenario |
 |---|---|---|---|
-| (no baselines yet) | — | — | — |
+| (no baselines yet) | - | - | - |
 
 [How to contribute a human baseline](#how-to-contribute-a-human-baseline)
 
 ### Findings from the current leaderboard
 
-**Reasoning models don't automatically win at multi-tool PM work.** `gpt-5-nano` drops 22 points behind the mini-model tier when given Delegate's 15-tool surface. Inspection of the tool-call traces shows the reasoning models over-think `react`-vs-`reply`-vs-`log_decision` decisions — each intermediate turn burns context on deliberation rather than action. Non-reasoning mini models (`gpt-4.1-mini`, `gpt-5.4-mini`) tie at 88.2% with 5–7× faster wall time.
+**Reasoning models don't automatically win at multi-tool PM work.** `gpt-5-nano` drops 22 points behind the mini-model tier when given Delegate's 15-tool surface. Inspection of the tool-call traces shows the reasoning models over-think `react`-vs-`reply`-vs-`log_decision` decisions - each intermediate turn burns context on deliberation rather than action. Non-reasoning mini models (`gpt-4.1-mini`, `gpt-5.4-mini`) tie at 88.2% with 5–7× faster wall time.
 
 **Practitioner takeaway.** If you are choosing a brain for a PM agent in production, tool-surface complexity dominates model class. Pick a fast mini model for a rich tool surface; pick a reasoning model only if the tool menu is narrow.
 
@@ -120,7 +120,7 @@ pm-bench/
 
 ### The Superhuman 20
 
-These are the headline scenarios — each tests a specific real PM failure mode:
+These are the headline scenarios - each tests a specific real PM failure mode:
 
 | # | Story | What it tests |
 |---|-------|---------------|
@@ -151,13 +151,13 @@ Per-scenario audit notes and distractor quality analysis are in [docs/CONSTRUCT_
 
 ## How scoring works
 
-PM-Bench delivers 68 scenarios through the PM-agent harness (Delegate). Each scenario presents a realistic workspace state — Slack logs, Jira activity, memory files — and a trigger message. The agent responds using its tools. Delegate's Rust scorer classifies each scenario as:
+PM-Bench delivers 68 scenarios through the PM-agent harness (Delegate). Each scenario presents a realistic workspace state - Slack logs, Jira activity, memory files - and a trigger message. The agent responds using its tools. Delegate's Rust scorer classifies each scenario as:
 
-- **PASS** — agent answered correctly AND used appropriate tools
-- **PARTIAL** — answer correct, tool use suboptimal
-- **FAIL** — wrong answer or wrong tool sequence that caused a wrong outcome
+- **PASS** - agent answered correctly AND used appropriate tools
+- **PARTIAL** - answer correct, tool use suboptimal
+- **FAIL** - wrong answer or wrong tool sequence that caused a wrong outcome
 
-Headline score reported here is `(PASS + PARTIAL) / 68`. Separate PASS-only columns are accepted on request. The scoring rubric is deterministic given the agent's output — it's encoded in `apps/delegate/bot/src/eval/scoring.rs` in the Delegate repo.
+Headline score reported here is `(PASS + PARTIAL) / 68`. Separate PASS-only columns are accepted on request. The scoring rubric is deterministic given the agent's output - it's encoded in `apps/delegate/bot/src/eval/scoring.rs` in the Delegate repo.
 
 Model outputs are not deterministic, so 3 or more iterations with 95% CI are strongly recommended before citing a rank.
 
@@ -176,8 +176,8 @@ Model outputs are not deterministic, so 3 or more iterations with 95% CI are str
 **Not accepted:**
 
 - Static-prompt evaluations (workspace dumped into the prompt, no tool use)
-- Stripped-down tool harnesses (e.g. only `list_files`/`read_file`/`grep`) — these don't expose the PM-specific decisions
-- Modified scenarios or correct answers — open an Issue if you believe a scenario is broken
+- Stripped-down tool harnesses (e.g. only `list_files`/`read_file`/`grep`) - these don't expose the PM-specific decisions
+- Modified scenarios or correct answers - open an Issue if you believe a scenario is broken
 - Ensemble/multi-model submissions without explicit disclosure
 
 Full submission guide: [SUBMISSIONS.md](SUBMISSIONS.md).
@@ -202,7 +202,7 @@ Full protocol: [HUMAN_BASELINE.md](HUMAN_BASELINE.md). Template: [human_baseline
 
 ## Context-assembly experiments
 
-In addition to the 68 scored scenarios, PM-Bench includes 5 hypothesis-driven experiments that test how different prompt-construction strategies affect PM-quality output. Each includes an explicit **kill condition** — a result that would mean the approach isn't worth pursuing.
+In addition to the 68 scored scenarios, PM-Bench includes 5 hypothesis-driven experiments that test how different prompt-construction strategies affect PM-quality output. Each includes an explicit **kill condition** - a result that would mean the approach isn't worth pursuing.
 
 | # | Experiment | Hypothesis | Kill Condition |
 |---|-----------|-----------|----------------|
@@ -263,10 +263,10 @@ PM-Bench and [Delegate](https://github.com/J-Reed700/delegate) are authored by [
 
 Further reading:
 
-- [METHODOLOGY.md](METHODOLOGY.md) — construct, scoring, threats to validity, comparison to related benchmarks
-- [LEADERBOARD.md](LEADERBOARD.md) — full leaderboard (mirror of the table above)
-- [SUBMISSIONS.md](SUBMISSIONS.md) — detailed submission requirements
-- [HUMAN_BASELINE.md](HUMAN_BASELINE.md) — human baseline protocol
-- [CONTRIBUTING.md](CONTRIBUTING.md) — contribution guide
-- [CHANGELOG.md](CHANGELOG.md) — version history
-- [docs/CONSTRUCT_VALIDITY.md](docs/CONSTRUCT_VALIDITY.md) — per-scenario self-audit
+- [METHODOLOGY.md](METHODOLOGY.md) - construct, scoring, threats to validity, comparison to related benchmarks
+- [LEADERBOARD.md](LEADERBOARD.md) - full leaderboard (mirror of the table above)
+- [SUBMISSIONS.md](SUBMISSIONS.md) - detailed submission requirements
+- [HUMAN_BASELINE.md](HUMAN_BASELINE.md) - human baseline protocol
+- [CONTRIBUTING.md](CONTRIBUTING.md) - contribution guide
+- [CHANGELOG.md](CHANGELOG.md) - version history
+- [docs/CONSTRUCT_VALIDITY.md](docs/CONSTRUCT_VALIDITY.md) - per-scenario self-audit

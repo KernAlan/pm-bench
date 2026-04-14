@@ -1,4 +1,4 @@
-# Support Tickets — Week of March 3
+# Support Tickets - Week of March 3
 
 ## TICKET-1041 (March 3, 14:00)
 - Customer: Pinnacle Inc (Enterprise)

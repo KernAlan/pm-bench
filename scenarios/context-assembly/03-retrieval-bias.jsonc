@@ -21,7 +21,7 @@
     {
       "id": "unbiased-retrieval",
       "label": "A: Unbiased Retrieval",
-      "description": "Search only for 'API team' — no intent-based augmentation",
+      "description": "Search only for 'API team' - no intent-based augmentation",
       "includeIntents": true,
       "retrievalBias": [],
       "retrievalTerms": ["API team", "Marcus", "API gateway"],
@@ -53,6 +53,6 @@
       "Does Variant A answer accurately but miss the strategic connection?",
       "Does Variant A treat the question as a simple status check?"
     ],
-    "killCondition": "Both variants produce roughly equivalent responses — the biased retrieval adds no strategic value."
+    "killCondition": "Both variants produce roughly equivalent responses - the biased retrieval adds no strategic value."
   }
 }

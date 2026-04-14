@@ -9,7 +9,7 @@ We need human PM baselines to contextualize model scores. If you have PM or engi
 - Pick a subset: Superhuman 20 (recommended), or full 48 MCQ, or 20 open-ended
 - Time-box: 3-5 minutes per scenario (realistic PM response time)
 - No external tools: no Google, no internal docs, only the workspace provided
-- Be honest about uncertainty — guessing hurts the baseline
+- Be honest about uncertainty - guessing hurts the baseline
 
 ### Procedure
 For each scenario:

@@ -1,4 +1,4 @@
-# CI / Test Health — March 8
+# CI / Test Health - March 8
 
 ## Test suite stats
 - Total tests: 342

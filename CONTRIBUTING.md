@@ -55,7 +55,7 @@ We are interested in co-authoring a short paper on the benchmark and findings. I
 
 ## PR checklist
 
-- [ ] The change is scoped (one scenario set, or one fixture cluster, or one doc change — not all three in one PR)
+- [ ] The change is scoped (one scenario set, or one fixture cluster, or one doc change - not all three in one PR)
 - [ ] If adding a scenario, the rubric/answer is in the PR
 - [ ] If changing scoring, existing leaderboard entries are recomputed or a migration plan is stated
 - [ ] Doc changes pass a spellcheck

@@ -2,7 +2,7 @@
 
 All notable changes to PM-Bench are tracked here. Follows [Keep a Changelog](https://keepachangelog.com/).
 
-## [1.0.0] — 2026-04-14
+## [1.0.0] - 2026-04-14
 
 ### Scenarios
 - 68 scenarios across 10 categories:
@@ -26,18 +26,18 @@ All notable changes to PM-Bench are tracked here. Follows [Keep a Changelog](htt
 - Anthropic, Google baselines pending
 
 ### Tools (scenario infrastructure only)
-- `tools/validate_schema.py` — JSON Schema validation of scenario files
-- `tools/workspace_variants.py` — procedural workspace variants for contamination resistance (`v2-neon`, `v3-helix`, `v4-orbit`)
+- `tools/validate_schema.py` - JSON Schema validation of scenario files
+- `tools/workspace_variants.py` - procedural workspace variants for contamination resistance (`v2-neon`, `v3-helix`, `v4-orbit`)
 
 ### Documentation
-- `README.md` — overview, canonical leaderboard, how to run
-- `METHODOLOGY.md` — construct, limitations, reproducibility
-- `LEADERBOARD.md` — Delegate + model scores
-- `SUBMISSIONS.md` — submission requirements
-- `HUMAN_BASELINE.md` — protocol for human-PM baselines
-- `CONTRIBUTING.md` — scenario contribution process
-- `docs/CONSTRUCT_VALIDITY.md` — per-scenario self-audit of Superhuman 20
-- `CITATION.cff` — machine-readable citation
+- `README.md` - overview, canonical leaderboard, how to run
+- `METHODOLOGY.md` - construct, limitations, reproducibility
+- `LEADERBOARD.md` - Delegate + model scores
+- `SUBMISSIONS.md` - submission requirements
+- `HUMAN_BASELINE.md` - protocol for human-PM baselines
+- `CONTRIBUTING.md` - scenario contribution process
+- `docs/CONSTRUCT_VALIDITY.md` - per-scenario self-audit of Superhuman 20
+- `CITATION.cff` - machine-readable citation
 
 ### Known limitations
 - No independent human validation of answer keys

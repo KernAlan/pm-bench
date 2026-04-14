@@ -21,7 +21,7 @@ PM-Bench scores are only accepted from a real PM-agent harness. The canonical ha
 Open a PR that:
 - Adds your row to [LEADERBOARD.md](LEADERBOARD.md), preserving rank ordering by score.
 - Includes your trace file(s) under `submissions/<handle>/<date>/`.
-- Discloses any Delegate code modifications in the PR description. If you ran a fork with modified tool schemas, system prompt, memory layout, or scoring, disclose it — forked-harness submissions are listed in a separate section rather than on the canonical leaderboard.
+- Discloses any Delegate code modifications in the PR description. If you ran a fork with modified tool schemas, system prompt, memory layout, or scoring, disclose it - forked-harness submissions are listed in a separate section rather than on the canonical leaderboard.
 - References the source repo and commit SHA used.
 
 Maintainers may re-run your submission independently before accepting.

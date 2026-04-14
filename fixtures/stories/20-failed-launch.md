@@ -1,4 +1,4 @@
-# Incident Report — March 6 billing migration dry-run failure
+# Incident Report - March 6 billing migration dry-run failure
 
 ## What happened
 - Ran billing migration dry-run against production data snapshot
@@ -8,7 +8,7 @@
 
 ## Timeline
 - 09:00 Alan started dry-run against prod snapshot
-- 09:12 Sarah's monitoring alert fired — data anomalies detected
+- 09:12 Sarah's monitoring alert fired - data anomalies detected
 - 09:15 Alan confirmed corruption, stopped script
 - 09:30 Josh sent customer communication (no actual customer impact since this was a snapshot, not prod)
 - 13:00 All records restored, root cause identified

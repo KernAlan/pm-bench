@@ -52,7 +52,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 #
 # Keep these *value-for-value* swaps: a first name maps to a first name, a
 # full name maps to a full name, a company maps to a company. Do NOT map a
-# person to a company or vice versa — the scoring rubrics can key off either.
+# person to a company or vice versa - the scoring rubrics can key off either.
 
 VariantPack = List[Tuple[str, str]]
 
@@ -288,7 +288,7 @@ def _transform_workspace_files(
         if isinstance(ref, str) and ref.startswith("@fixtures/"):
             out[fn] = _rewrite_fixture_ref(ref, variant)
         elif isinstance(ref, str):
-            # Inline markdown content — substitute in place.
+            # Inline markdown content - substitute in place.
             out[fn] = substitute_text(ref, pack)
         else:
             out[fn] = ref
@@ -313,7 +313,7 @@ def _transform_rubric(rubric: dict, pack: VariantPack) -> dict:
 
 def transform_scenario(s: dict, pack: VariantPack, variant: str) -> dict:
     out = dict(s)
-    # id, correct_answer, scoring, expected_tools — untouched on purpose.
+    # id, correct_answer, scoring, expected_tools - untouched on purpose.
     if isinstance(s.get("trigger"), str):
         out["trigger"] = substitute_text(s["trigger"], pack)
     if isinstance(s.get("name"), str):

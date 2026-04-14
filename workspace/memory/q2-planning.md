@@ -11,10 +11,10 @@ Background priority. No urgency until billing migration pressure eases. Target: 
 
 ## Sarah's Draft Prioritization (not shared yet)
 1. Platform reliability and monitoring (aligns with Nina, low controversy)
-2. Enterprise features — multi-region billing, advanced analytics (aligns with Jordan)
-3. Developer experience — API versioning, webhook improvements (aligns with product)
-4. Tech debt — reduce legacy system surface area, finish deprecating old APIs
-5. Team investment — knowledge transfer sessions, onboarding improvements, documentation
+2. Enterprise features - multi-region billing, advanced analytics (aligns with Jordan)
+3. Developer experience - API versioning, webhook improvements (aligns with product)
+4. Tech debt - reduce legacy system surface area, finish deprecating old APIs
+5. Team investment - knowledge transfer sessions, onboarding improvements, documentation
 
 ## Open Questions
 - How much capacity did the billing migration actually consume? Can't plan Q2 without knowing.

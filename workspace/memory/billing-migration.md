@@ -1,4 +1,4 @@
-# Billing Migration — Project History
+# Billing Migration - Project History
 
 ## Overview
 Migration from legacy per-product billing tables (`billing_accounts`, `customer_billing_profiles`, `product_charges`) to a unified billing schema supporting metered usage, tiered pricing, and multi-currency. Unlocks the enterprise tier that Sales has been promising since Q4 2025.
@@ -16,7 +16,7 @@ On November 12, 2025, a billing calculation bug charged ~200 enterprise customer
 
 **Impact:** $340K in credits issued. Trust damage with enterprise customers. All-hands postmortem. New requirement: staging validation for ANY billing change, no exceptions.
 
-**Cultural impact:** The team is skittish about billing changes. Extra caution is warranted but shouldn't become paralysis. Sarah has internalized this most — she insists on staging validation even for minor billing changes.
+**Cultural impact:** The team is skittish about billing changes. Extra caution is warranted but shouldn't become paralysis. Sarah has internalized this most - she insists on staging validation even for minor billing changes.
 
 ## Technical Approach
 - **Unified schema:** Single `subscriptions` table replaces `billing_accounts` + `customer_billing_profiles`. Related tables: `usage_records`, `billing_periods`, `discount_overrides`, `grandfathered_plans`.
@@ -37,8 +37,8 @@ On November 12, 2025, a billing calculation bug charged ~200 enterprise customer
 ## Key Tickets
 - PLAT-347: Unified billing data model (Done)
 - PLAT-348: Staging migration script (Done)
-- PLAT-350: Billing API — Create subscription (In Progress, Marcus)
-- PLAT-351: Billing API — Update subscription (In Progress, Alex)
-- PLAT-352: Billing API — Cancel/refund (To Do, Marcus)
-- PLAT-353: Billing API — Preview endpoint (To Do)
+- PLAT-350: Billing API - Create subscription (In Progress, Marcus)
+- PLAT-351: Billing API - Update subscription (In Progress, Alex)
+- PLAT-352: Billing API - Cancel/refund (To Do, Marcus)
+- PLAT-353: Billing API - Preview endpoint (To Do)
 - PLAT-354: Slow query fix (Done, Rachel)

@@ -21,4 +21,4 @@
 - During traffic spikes (typically 1.5-2x normal): 143-190 req/sec
 - Stripe rate limit exceeded → 429 errors → customer-facing failures
 
-## No shared client or caching layer exists — each team has their own Stripe SDK instance with independent connection pools
+## No shared client or caching layer exists - each team has their own Stripe SDK instance with independent connection pools

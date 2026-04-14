@@ -4,7 +4,7 @@ Fill out this template and submit as `human_baselines/<pseudonym>-<YYYY-MM-DD>.m
 
 ## Participant
 
-- **Role / background**: (e.g. "Staff PM, B2B SaaS, 9 yrs" — anonymize as desired)
+- **Role / background**: (e.g. "Staff PM, B2B SaaS, 9 yrs" - anonymize as desired)
 - **Pseudonym**: (optional; used on the leaderboard)
 - **Date completed**: YYYY-MM-DD
 
@@ -14,7 +14,7 @@ Fill out this template and submit as `human_baselines/<pseudonym>-<YYYY-MM-DD>.m
 - **Subset**: Superhuman 20 | Full 48 MCQ | Open-ended 20
 - **Total time spent**: HH:MM
 - **Time limit per scenario**: 3-5 minutes (specify what you used)
-- **External tools used**: none | (describe any — disqualifying unless explicitly noted)
+- **External tools used**: none | (describe any - disqualifying unless explicitly noted)
 - **pm-bench commit SHA**: (the commit you ran against)
 
 ## Overall score

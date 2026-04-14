@@ -8,9 +8,9 @@
 - Their actual subscription started Jan 15 but billing cycle starts Feb 1
 - Product spec (docs/billing-display-spec.md) says: 'Display subscription start date on the billing dashboard'
 - Engineering implemented: billing period start date (Feb 1)
-- Spec is ambiguous — 'subscription start date' could mean either:
-  1. The date the customer first subscribed (Jan 15) — what Acme expects
-  2. The current billing period start (Feb 1) — what engineering built
+- Spec is ambiguous - 'subscription start date' could mean either:
+  1. The date the customer first subscribed (Jan 15) - what Acme expects
+  2. The current billing period start (Feb 1) - what engineering built
 
 ## The fix
 - This is a spec ambiguity, not an engineering bug
