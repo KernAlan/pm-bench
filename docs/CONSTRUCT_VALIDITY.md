@@ -10,6 +10,7 @@ Source: `scenarios/scenarios.json` (IDs 49-68), fixtures in `fixtures/stories/` 
 - **Ambiguous / weak support for authored answer**: 0 scenarios are DISPUTED. A few have language in the answer that is slightly over-specified relative to the fixture (e.g., scenario 55 asserts "consensus" on pagination while the fixture only says "Alan agrees"), but none are wrong.
 - **Distractor quality**: 8 scenarios have strong distractors (all 3 wrong answers are grounded in workspace facts or are directly denied by them). 9 scenarios have mixed distractors (1-2 strong distractors + 1-2 that can be trivially ruled out because the named entity never appears in the workspace). 3 scenarios have weak distractors (most of the wrong answers are not grounded and can be ruled out by a reader who merely spots which option contains workspace-mentioned entities).
 - **Overall assessment**: The correct answers are well-authored and the workspace fixtures genuinely contain the evidence needed. The main construct-validity risk is the "named entity not in workspace" pattern for distractors — in several scenarios, a reader who knows nothing about PM work but has read the fixture can rule out 1-2 distractors purely by entity matching, reducing an intended 4-way question to a 2- or 3-way one. Scenarios 49, 52, 53, 54, 60, 61, 65, and 67 are most affected. Scenarios 51, 55, 56, 57, 58, 59, 62, 63, 64, 66, and 68 are well-designed with grounded distractors throughout.
+- **2026-04-13 revision**: Scenarios 49, 52, 53, 54, 60, 61, 65, and 67 have had their distractors rewritten so every wrong option references an entity that actually appears in the scenario's workspace. Correct-answer letters are unchanged. See per-scenario "REVISED" notes below.
 
 ## Per-scenario audit
 
@@ -23,6 +24,8 @@ Source: `scenarios/scenarios.json` (IDs 49-68), fixtures in `fixtures/stories/` 
   - C (webhooks): Alan's PR adds a `webhook_status` **column** to `events` — plausible distractor because "webhook" appears in the PR title. A careless reader might pick this. **Good distractor.**
   - D (billing_ledger): not mentioned anywhere — weak distractor.
 **Verdict:** Supported. Distractor quality mixed (1 strong, 2 weak). Recommend replacing A and D with tables implicit in the workspace (e.g., `customers`, `plans`) to raise difficulty.
+
+**REVISED 2026-04-13:** Distractors rewritten to use entities that appear verbatim in the log. A (`webhook_status`) and C (`delivery_attempts`) are column names Alan adds — a reader must realize these are columns on `events`, not tables. D (`subscription_events`) is a plausible fabrication of Sarah's "subscription event processing" phrasing. All three are grounded; B remains the only correct table reference.
 
 ### #50 calendar_blindspot
 **Question (abbrev):** Who is unavailable for the webhook meeting Thursday March 13?
@@ -57,6 +60,8 @@ Source: `scenarios/scenarios.json` (IDs 49-68), fixtures in `fixtures/stories/` 
   - D (85% includes users who abandoned and came back): not mentioned. Weak distractor.
 **Verdict:** Supported but distractors are weak. All three wrong options invent details not in the workspace. A test-taker who reads the fixture carefully sees that only B's specifics appear there, making this less a judgment question and more a "which option matches the fixture". Recommend grounding 1-2 distractors in fixture content (e.g., "The 30-day activation rate is not yet measured" — a true fact from line 20 that a naive reader might confuse for "misleading comparison").
 
+**REVISED 2026-04-13:** Distractors rewritten so all reference fixture content. A cites the "less than 7 days of data" line, C cites the explicit drop-off points (step 4 and step 6), and D cites the 35% → not-yet-measured activation rate. Each is grounded but incorrect as the *specific* cause that makes the 60%→85% comparison misleading — only B identifies the definitional change from step 8 to step 5 activation.
+
 ### #53 budget_interpreter
 **Question (abbrev):** Which staging environment was never used for its intended purpose?
 **Authored answer:** C (staging-3, last deploy Jan 22)
@@ -68,6 +73,8 @@ Source: `scenarios/scenarios.json` (IDs 49-68), fixtures in `fixtures/stories/` 
   - D (dev database production-sized): Fixture line 18 describes this but the question asks about staging environments, and dev is not staging. **Moderately plausible** as a trick distractor.
 **Verdict:** Supported. Distractors A and B are well-grounded. D is grounded but semantically out of scope (staging vs dev). **Minor risk**: a strict reader might argue B has "unused since Feb 10" which is ambiguous. The C option is unambiguously correct because it includes the verbatim "never actually used" language. Keep as-is with awareness.
 
+**REVISED 2026-04-13:** A and B now include their grounding details inline (the "$800/mo, used daily" note for staging-1, the "last deploy Feb 10" for staging-2) so readers must weigh actual usage against intended purpose. D replaces the dev-database option with the 90-day Elasticsearch retention that's only searched back 7 days — grounded in lines 22-25 but still not a "staging environment," which is the scope test the question asks for.
+
 ### #54 three_ticket_pattern
 **Question (abbrev):** What connects three billing tickets with different symptoms?
 **Authored answer:** B (all in migration batch-7, run Feb 25)
@@ -78,6 +85,8 @@ Source: `scenarios/scenarios.json` (IDs 49-68), fixtures in `fixtures/stories/` 
   - C (signed up in same month): 2025-06, 2025-09, 2025-11 — directly refutable. **Strong distractor.**
   - D (legacy billing API endpoint): not mentioned in any ticket. Weak distractor (entity absence).
 **Verdict:** Well-designed. A and C are strong distractors requiring the reader to cross-check fields. D is weak. Keep mostly as-is, but consider grounding D in something like "all three use the /v1/invoices endpoint" to link to TICKET-1046's docs bug mention.
+
+**REVISED 2026-04-13:** D now references the /v1/invoices endpoint from TICKET-1046 (line 28). Grounded but incorrect — TICKET-1046 is a separate, unrelated docs bug, and the three billing tickets don't mention that endpoint. A reader must cross-check the three ticket bodies to rule it out.
 
 ### #55 meeting_assassin
 **Question (abbrev):** How many open questions remain for Thursday's API v2 design review?
@@ -145,6 +154,8 @@ Source: `scenarios/scenarios.json` (IDs 49-68), fixtures in `fixtures/stories/` 
   - D (no signature verification): not mentioned either way. Weak distractor.
 **Verdict:** Supported. A is strong; B and D are weak (entity absence). The question stem includes "specific gap" which makes C obvious because the fixture uses the same language. Recommend grounding B or D by adding one or two covered items to the launch plan so readers have to cross-check each option.
 
+**REVISED 2026-04-13:** B now cites the "No customer-facing delivery log" gap from line 17 — a real gap but one customers would notice (not silent). D cites the March 12 production load test that hasn't run yet (line 10) — grounded but also not a silent-failure mechanism. Each wrong option now requires the reader to distinguish a real gap from the *silent* failure mode, rather than ruling them out by entity absence.
+
 ### #61 timezone_play
 **Question (abbrev):** Who should weigh in but hasn't been consulted?
 **Authored answer:** B (Takeshi at NovaTech)
@@ -155,6 +166,8 @@ Source: `scenarios/scenarios.json` (IDs 49-68), fixtures in `fixtures/stories/` 
   - C (VP of Sales): not mentioned. Weak distractor.
   - D (Maria): not in this fixture, appears in other fixtures as the new hire. Weak distractor.
 **Verdict:** Supported but distractors are weak. The correct answer is the only person named in the fixture, making this trivial by entity matching. This is a construct-validity concern — a reader who has read nothing else could guess B simply because it's the only option with a matching name. Recommend grounding distractors (e.g., mention Josh as "busy this week" or VP of Sales as "has opinions on API design" so they're in-play-but-wrong).
+
+**REVISED 2026-04-13:** Distractors now reference only people in the fixture (Alan, Sarah) and the fixture's own decision state. A and C propose consulting Alan or Sarah respectively — both are directly refutable since both have been in the 5-day thread. D proposes forcing a decision without new input, tied to the March 12 deadline. Entity matching no longer works; the reader must reason about *who is not yet in the conversation*, which is Takeshi.
 
 ### #62 debt_ledger
 **Question (abbrev):** Combined weekly time cost of 4 tech debt items?
@@ -204,6 +217,8 @@ Source: `scenarios/scenarios.json` (IDs 49-68), fixtures in `fixtures/stories/` 
   - D (missing migration): not mentioned. Weak distractor.
 **Verdict:** Supported but distractors are weak (all common-sounding generic bug types, none grounded in the fixture). Recommend grounding distractors in other items from related fixtures (e.g., the "stale subscription data" symptom from scenario 18 would be a plausible misattribution).
 
+**REVISED 2026-04-13:** A now cites the annual plan and billing cycle computation (both in the fixture). C cites docs/billing-display-spec.md by name (line 9) and proposes rewriting it — grounded but incorrect since the spec is ambiguous, not wrong. D cites the actual Jan 15 vs Feb 1 dates and proposes a data fix, which misses the "1-line UI change" framing. All three now require the reader to understand *why* the issue is a spec ambiguity (not a code or data bug).
+
 ### #66 lunch_decision
 **Question (abbrev):** If we add annual billing, what's the main scheduling conflict?
 **Authored answer:** B (conflicts with March 31 billing migration launch)
@@ -225,6 +240,8 @@ Source: `scenarios/scenarios.json` (IDs 49-68), fixtures in `fixtures/stories/` 
   - C (2 hours detection; flawed rollback): rollback worked perfectly per line 24. **Strong distractor** — contradicted but plausible.
   - D (5 minutes; Postgres bug): not a Postgres bug per line 17-19. Weak distractor.
 **Verdict:** Well-designed for the "process gap vs people failure" framing — A tests whether the reader accepts Alan's self-blame or the structural root cause. Keep as-is.
+
+**REVISED 2026-04-13:** D replaced with "4 hours detection; root cause was legacy pre-2025 subscriptions missing the plan_change_date field." Both fragments are grounded — 4 hours is the time-to-restore (line 7, not detection), and the plan_change_date symptom is real (lines 17-18) but it's the *symptom*, not the root-cause classification. The distractor now tests whether the reader distinguishes detection time from restore time, and symptom from root cause.
 
 ### #68 rate_limit_ghost
 **Question (abbrev):** % utilization and what happens during spike?
@@ -251,15 +268,17 @@ Source: `scenarios/scenarios.json` (IDs 49-68), fixtures in `fixtures/stories/` 
 - **#68 rate_limit_ghost** — clean math question with grounded numeric distractors
 
 ### Need distractor improvements (distractors too easily ruled out by entity-absence)
-- **#49 silent_collision** — A and D (subscriptions, billing_ledger) not in fixture; replace with tables named in the workspace
+- **#49 silent_collision** — A and D (subscriptions, billing_ledger) not in fixture; replace with tables named in the workspace. **REVISED 2026-04-13.**
 - **#51 unasked_question** — C (JWT refresh) and D (2FA) are inventions; ground at least one
-- **#52 misread_metric** — all three wrong options invent details not in fixture; ground 1-2 in actual fixture content (sample size = 7 days of data, old activation rate, etc.)
-- **#53 budget_interpreter** — B is slightly ambiguous (staging-2 last deploy Feb 10 — also under-used?). Tighten C's uniqueness or disambiguate B.
+- **#52 misread_metric** — all three wrong options invent details not in fixture; ground 1-2 in actual fixture content (sample size = 7 days of data, old activation rate, etc.). **REVISED 2026-04-13.**
+- **#53 budget_interpreter** — B is slightly ambiguous (staging-2 last deploy Feb 10 — also under-used?). Tighten C's uniqueness or disambiguate B. **REVISED 2026-04-13.**
+- **#54 three_ticket_pattern** — D (legacy billing API endpoint) not grounded. **REVISED 2026-04-13.**
 - **#56 first_day_briefing** — A, C, D are all invented filenames; ground at least one (e.g., reference `.env.test` from line 9 of the onboarding fixture)
 - **#59 thread_therapist** — A, C, D all inventions; ground A as Alan's actual position from the thread
-- **#60 silent_failure_premortem** — B and D (rate limiting, signature verification) not mentioned in launch plan; add 1-2 covered items so each option requires cross-checking
-- **#61 timezone_play** — A, C, D all reference people not in this fixture. The correct answer is identifiable purely by entity matching. Mention Josh/VP/Maria briefly as in-play-but-wrong.
-- **#65 reverse_escalation** — A, C, D are generic bug types not grounded. Ground in related workspace state.
+- **#60 silent_failure_premortem** — B and D (rate limiting, signature verification) not mentioned in launch plan; add 1-2 covered items so each option requires cross-checking. **REVISED 2026-04-13.**
+- **#61 timezone_play** — A, C, D all reference people not in this fixture. The correct answer is identifiable purely by entity matching. Mention Josh/VP/Maria briefly as in-play-but-wrong. **REVISED 2026-04-13.**
+- **#65 reverse_escalation** — A, C, D are generic bug types not grounded. Ground in related workspace state. **REVISED 2026-04-13.**
+- **#67 postmortem_reframe** — D (Postgres bug) not grounded; replaced with a 4-hour / plan_change_date distractor. **REVISED 2026-04-13.**
 
 ### DISPUTED — authors should review
 - **#64 roi_translator** — The authored correct answer C (Feature 5) is mathematically correct (5N = 15 + 2N → N = 5) but the fixture line 22 literally states "Break-even: feature 3". A careful reader trusting the fixture's own summary will pick B. **Fix the fixture to say "Break-even: feature 5"** or explicitly make this a "catch the fixture's own error" test in the methodology.

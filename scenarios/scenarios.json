@@ -781,7 +781,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "logs/2026-03-07.md": "@fixtures/stories/01-silent-collision-log.md"
       },
-      "trigger": "Alan and Sarah both have PRs up today. Which database table do both PRs modify?\nA) subscriptions\nB) events\nC) webhooks\nD) billing_ledger",
+      "trigger": "Alan and Sarah both have PRs up today. Which database table do both PRs modify?\nA) webhook_status\nB) events\nC) delivery_attempts\nD) subscription_events",
       "correct_answer": "B",
       "expected_tools": [],
       "scoring": "mcq"
@@ -827,7 +827,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/metrics.md": "@fixtures/stories/04-misread-metric.md"
       },
-      "trigger": "Onboarding completion went from 60% to 85%. What specific change makes this comparison misleading?\nA) The sample size is too small — less than 100 users\nB) The new flow removed 3 steps including the activation metric trigger, so 'completion' now means something different\nC) The old flow had a bug that undercounted completions\nD) The 85% includes users who abandoned and came back later",
+      "trigger": "Onboarding completion went from 60% to 85%. What specific change makes this comparison misleading?\nA) The new flow has less than 7 days of post-launch data, so the 85% is from too small a window\nB) The new flow removed 4 steps including 'first milestone' (the activation metric trigger), so 'completion' now means something different\nC) The old flow's 25% drop at step 4 (workspace setup) and 15% drop at step 6 inflated the low completion rate\nD) The 30-day activation rate fell from 35% to not-yet-measured, so completion rates aren't comparable yet",
       "correct_answer": "B",
       "expected_tools": [],
       "scoring": "mcq"
@@ -842,7 +842,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/infrastructure.md": "@fixtures/stories/05-cloud-costs.md"
       },
-      "trigger": "We need to cut cloud costs 30% without affecting production. Which staging environment was never used for its intended purpose?\nA) staging-1 — the production mirror\nB) staging-2 — created for billing migration testing\nC) staging-3 — created for load testing but never actually used for load testing (last deploy January 22)\nD) The dev database — it's production-sized for no reason",
+      "trigger": "We need to cut cloud costs 30% without affecting production. Which staging environment was never used for its intended purpose?\nA) staging-1 — the production mirror ($800/mo, used daily)\nB) staging-2 — created for billing migration testing (last deploy February 10)\nC) staging-3 — created for load testing but never actually used for load testing (last deploy January 22)\nD) The Elasticsearch log cluster with 90-day retention — team only searches the last 7 days",
       "correct_answer": "C",
       "expected_tools": [],
       "scoring": "mcq"
@@ -857,7 +857,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/support.md": "@fixtures/stories/06-support-tickets.md"
       },
-      "trigger": "Three billing tickets this week: wrong invoice amount, slow billing page, and plan showing as Free. Different customers, different symptoms. What connects them?\nA) All three customers are on the Enterprise plan\nB) All three were in migration batch-7, run on February 25\nC) All three signed up in the same month\nD) All three are using the legacy billing API endpoint",
+      "trigger": "Three billing tickets this week: wrong invoice amount, slow billing page, and plan showing as Free. Different customers, different symptoms. What connects them?\nA) All three customers are on the Enterprise plan\nB) All three were in migration batch-7, run on February 25\nC) All three signed up in the same month\nD) All three reference the /v1/invoices endpoint flagged in TICKET-1046 as a docs bug",
       "correct_answer": "B",
       "expected_tools": [],
       "scoring": "mcq"
@@ -950,7 +950,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/launch.md": "@fixtures/stories/13-launch-plan.md"
       },
-      "trigger": "Billing migration Phase 2 launch plan looks solid. What is the specific gap in the webhook delivery system that could cause silent failures weeks after launch?\nA) No retry logic for failed deliveries\nB) No rate limiting on webhook sends\nC) No delivery confirmation — if a webhook is sent and the customer's endpoint returns 200 but doesn't process it, neither side will know until invoices don't reconcile\nD) No webhook signature verification",
+      "trigger": "Billing migration Phase 2 launch plan looks solid. What is the specific gap in the webhook delivery system that could cause silent failures weeks after launch?\nA) No retry logic for failed deliveries\nB) No customer-facing delivery log — customers can't see what webhooks were sent or retry them\nC) No delivery confirmation — if a webhook is sent and the customer's endpoint returns 200 but doesn't process it, neither side will know until invoices don't reconcile\nD) The production-traffic load test hasn't run yet (scheduled March 12)",
       "correct_answer": "C",
       "expected_tools": [],
       "scoring": "mcq"
@@ -965,7 +965,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/timezone-decision.md": "@fixtures/stories/14-timezone-context.md"
       },
-      "trigger": "The webhook format thread has been going 5 days between Alan and Sarah with no resolution. According to the decision context, who else should weigh in but hasn't been consulted?\nA) Josh — he needs to approve all API decisions\nB) Takeshi at NovaTech in Tokyo — offered to review from an API consumer perspective, responds within 2 hours\nC) The VP of Sales — customers are waiting\nD) Maria — she'll be joining the team next week",
+      "trigger": "The webhook format thread has been going 5 days between Alan and Sarah with no resolution. According to the decision context, who else should weigh in but hasn't been consulted?\nA) Alan — his nested-structure rationale hasn't been fully articulated in the thread\nB) Takeshi at NovaTech in Tokyo — offered to review from an API consumer perspective, responds within 2 hours\nC) Sarah — she works M/W/F only and hasn't weighed in on the flat-structure proposal\nD) No one new — Alan and Sarah should just force a decision given the March 12 deadline",
       "correct_answer": "B",
       "expected_tools": [],
       "scoring": "mcq"
@@ -1025,7 +1025,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/escalation.md": "@fixtures/stories/18-reverse-escalation.md"
       },
-      "trigger": "VP of Sales wants a P0 for Acme's billing display issue. What is the actual root cause?\nA) A database query returning stale data from the cache\nB) The spec is ambiguous — 'subscription start date' could mean either signup date (Jan 15, what Acme expects) or billing period start (Feb 1, what engineering built). It's a 1-line UI label change.\nC) A timezone conversion bug in the billing calculation\nD) A missing database migration that didn't run in production",
+      "trigger": "VP of Sales wants a P0 for Acme's billing display issue. What is the actual root cause?\nA) A backend bug in how annual plan billing cycles are computed for Acme's account\nB) The spec is ambiguous — 'subscription start date' could mean either signup date (Jan 15, what Acme expects) or billing period start (Feb 1, what engineering built). It's a 1-line UI label change.\nC) docs/billing-display-spec.md itself is wrong and needs a rewrite before any code fix\nD) Acme's subscription start date is stored incorrectly in the database (Feb 1 instead of Jan 15) — a data fix",
       "correct_answer": "B",
       "expected_tools": [],
       "scoring": "mcq"
@@ -1056,7 +1056,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/incidents.md": "@fixtures/stories/20-failed-launch.md"
       },
-      "trigger": "The migration dry-run corrupted 200 records. How quickly did monitoring detect the issue, and what is the root cause classification?\nA) 30 minutes detection; root cause was a people failure by Alan\nB) 12 minutes detection; root cause was a process gap — no testing against production-scale data with historical records\nC) 2 hours detection; root cause was a flawed rollback script\nD) 5 minutes detection; root cause was a Postgres bug",
+      "trigger": "The migration dry-run corrupted 200 records. How quickly did monitoring detect the issue, and what is the root cause classification?\nA) 30 minutes detection; root cause was a people failure by Alan (per his retrospective comment)\nB) 12 minutes detection; root cause was a process gap — no testing against production-scale data with historical records\nC) 2 hours detection; root cause was a flawed rollback script\nD) 4 hours detection; root cause was legacy pre-2025 subscriptions missing the plan_change_date field",
       "correct_answer": "B",
       "expected_tools": [],
       "scoring": "mcq"
