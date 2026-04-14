@@ -1,5 +1,11 @@
 # PM-Bench
 
+[![CI](https://github.com/KernAlan/pm-bench/actions/workflows/ci.yml/badge.svg)](https://github.com/KernAlan/pm-bench/actions/workflows/ci.yml)
+[![Tests](https://img.shields.io/badge/tests-106_passed-green)](tests/)
+[![Version](https://img.shields.io/badge/version-1.0.0-blue)](VERSION)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+
 **A benchmark for AI PM judgment in a noisy engineering workspace.**
 
 PM-Bench tests whether an AI teammate operating in a messy, multi-channel engineering environment can notice the important thing, connect distributed context, react with the right level of intervention, and communicate it in a PM-shaped way.

@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+title: PM-Bench
+message: "If you use PM-Bench, please cite it as follows."
+type: software
+authors:
+  - family-names: Kern
+    given-names: Alan
+  - family-names: Reed
+    given-names: Josh
+version: 1.0.0
+date-released: 2026-04-13
+license: MIT
+repository-code: "https://github.com/KernAlan/pm-bench"
+keywords:
+  - benchmark
+  - llm-evaluation
+  - product-management
+  - ai-agents

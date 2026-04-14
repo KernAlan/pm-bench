@@ -248,7 +248,13 @@ class Validator:
         on_disk: set[str] = set()
         for p in self.fixtures_dir.rglob("*"):
             if p.is_file():
-                on_disk.add(p.relative_to(self.fixtures_dir).as_posix())
+                rel = p.relative_to(self.fixtures_dir).as_posix()
+                # The variants/ subtree is produced by
+                # tools/workspace_variants.py and is referenced only by
+                # the variant scenarios files, not by the canonical one.
+                if rel.startswith("variants/"):
+                    continue
+                on_disk.add(rel)
 
         for orphan in sorted(on_disk - referenced):
             self.err(f"Orphan fixture (not referenced): {orphan}")
