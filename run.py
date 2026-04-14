@@ -41,6 +41,20 @@ OPEN_ENDED_FILE = ROOT / "scenarios" / "open-ended.json"
 FIXTURES_DIR = ROOT / "fixtures"
 RESULTS_DIR = ROOT / "results"
 
+# Load .env from repo root if present. Keeps API keys out of shell history
+# and makes scripts work without requiring `export` each session.
+_ENV_FILE = ROOT / ".env"
+if _ENV_FILE.exists():
+    for _line in _ENV_FILE.read_text(encoding="utf-8").splitlines():
+        _line = _line.strip()
+        if not _line or _line.startswith("#") or "=" not in _line:
+            continue
+        _k, _, _v = _line.partition("=")
+        _k = _k.strip()
+        _v = _v.strip().strip('"').strip("'")
+        if _k and _k not in os.environ:
+            os.environ[_k] = _v
+
 # ---------------------------------------------------------------------------
 # Context resolution
 # ---------------------------------------------------------------------------
