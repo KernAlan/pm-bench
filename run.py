@@ -144,6 +144,14 @@ def call_anthropic(messages: list[dict], model: str, max_tokens: int = 1024) -> 
     return {"text": "\n".join(text_parts), "tool_calls": tool_calls}
 
 
+def _openai_token_param(model: str) -> str:
+    """gpt-5.* models replaced max_tokens with max_completion_tokens."""
+    m = model.lower()
+    if m.startswith("gpt-5") or m.startswith("o1") or m.startswith("o3") or m.startswith("o4"):
+        return "max_completion_tokens"
+    return "max_tokens"
+
+
 def call_openai(messages: list[dict], model: str, max_tokens: int = 1024) -> dict:
     try:
         from openai import OpenAI
@@ -151,7 +159,23 @@ def call_openai(messages: list[dict], model: str, max_tokens: int = 1024) -> dic
         print("Install the openai SDK:  pip install openai", file=sys.stderr)
         sys.exit(1)
     client = OpenAI()
-    resp = client.chat.completions.create(model=model, messages=messages, max_tokens=max_tokens)
+    kwargs = {"model": model, "messages": messages,
+              _openai_token_param(model): max_tokens}
+    try:
+        resp = client.chat.completions.create(**kwargs)
+    except Exception as e:
+        # Fall back to the other token parameter if the API rejects ours.
+        msg = str(e)
+        if "max_tokens" in msg and "max_completion_tokens" in msg:
+            kwargs.pop("max_tokens", None)
+            kwargs.pop("max_completion_tokens", None)
+            other = ("max_completion_tokens"
+                     if _openai_token_param(model) == "max_tokens"
+                     else "max_tokens")
+            kwargs[other] = max_tokens
+            resp = client.chat.completions.create(**kwargs)
+        else:
+            raise
     choice = resp.choices[0]
     tool_calls = []
     if choice.message.tool_calls:
