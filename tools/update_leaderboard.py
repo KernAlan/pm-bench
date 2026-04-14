@@ -115,9 +115,25 @@ def render_leaderboard(groups, scenario_count_full):
     out.append(render_table(groups, "agentic", "agentic20",
                "Agentic — Superhuman 20 (model uses list_files / read_file / grep)",
                None))
-    out.append(render_table(groups, "agentic", f"agentic{scenario_count_full}",
-               f"Agentic — Full {scenario_count_full} (tool-use evaluation)",
-               None))
+    # Detect the agentic full subset: largest agentic count > 20 scenarios.
+    # Agentic mode currently only scores MCQ items, so totals != mcq full count.
+    agentic_full_subset = None
+    largest = 0
+    for k in groups:
+        _, _, mode, subset = k
+        if mode == "agentic" and subset.startswith("agentic"):
+            try:
+                n = int(subset[len("agentic"):])
+            except ValueError:
+                continue
+            if n > 20 and n > largest:
+                largest = n
+                agentic_full_subset = subset
+    if agentic_full_subset:
+        n = agentic_full_subset[len("agentic"):]
+        out.append(render_table(groups, "agentic", agentic_full_subset,
+                   f"Agentic — Full benchmark ({n} MCQ-scored scenarios)",
+                   None))
 
     out.append("## Human Baselines\n\n"
                "Human-PM baselines help contextualize model scores. To "

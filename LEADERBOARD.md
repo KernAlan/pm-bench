@@ -48,11 +48,16 @@ PM-Bench v1.0.0. Scores cited as: mean across N iterations, with 95% CI = 1.96 �
 | 5 | `gpt-4.1-mini` | openai | 71.67% | ±14.24% | 3 |
 | 6 | `gpt-4.1-nano` | openai | 56.67% | ±11.78% | 3 |
 
-## Agentic — Full 48 (tool-use evaluation)
+## Agentic — Full benchmark (36 MCQ-scored scenarios)
 
 | Rank | Model | Provider | Score | 95% CI | Iterations |
 |------|-------|----------|-------|--------|------------|
-| — | (no submissions yet) | — | — | — | — |
+| 1 | `gpt-5.4-mini` | openai | 100.00% | n=1 | 1 |
+| 2 | `gpt-5-mini` | openai | 94.44% | n=1 | 1 |
+| 3 | `gpt-5-nano` | openai | 91.67% | n=1 | 1 |
+| 4 | `gpt-5.4-nano` | openai | 88.89% | n=1 | 1 |
+| 5 | `gpt-4.1-mini` | openai | 72.22% | n=1 | 1 |
+| 6 | `gpt-4.1-nano` | openai | 52.78% | n=1 | 1 |
 
 ## Human Baselines
 
