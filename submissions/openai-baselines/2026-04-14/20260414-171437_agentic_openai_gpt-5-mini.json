@@ -1,0 +1,632 @@
+{
+  "timestamp": "20260414-171437",
+  "mode": "agentic",
+  "provider": "openai",
+  "model": "gpt-5-mini",
+  "total": 20,
+  "correct": 18,
+  "scenarios": [
+    {
+      "id": 49,
+      "name": "silent_collision",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "B) events\n\nEvidence: The 2026-03-07 log shows Alan\u2019s PR #312 is an \"events table migration\" adding `webhook_status` and `delivery_attempts`, and Sarah\u2019s PR #313 alters the `events` table to add `delivery_state` and `processor_version`.",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - logs/2026-03-07.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "logs/2026-03-07.md"
+          },
+          "result_preview": "--- logs/2026-03-07.md ---\n# Daily Log \u2014 2026-03-07\n\n## #billing-migration\n- 09:00 Alan: Starting on the events table changes for webhook tracking. Adding a `webhook_status` column and a `delivery_att"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 50,
+      "name": "calendar_blindspot",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "C \u2014 Sarah. The team file shows she's a M/W/F-only contractor and is listed as off on Thursday March 13, so she won't be available for a Thursday meeting.",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/projects.md\n  - memory/team.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/team.md"
+          },
+          "result_preview": "--- memory/team.md ---\n# Team\n\n## People\n- **Alan**: Co-founder, billing lead. SF timezone (PST). Full-time.\n- **Josh**: Co-founder, product + docs. SF timezone (PST). Full-time.\n- **Sarah**: Auth/web"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 51,
+      "name": "unasked_question",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "B\n\nLogs show Josh told Acme they'd get SAML SSO after the auth migration, but Alan explicitly scoped it out (\u201cNo SAML in this phase\u201d), and the release notes only mention JWT tokens and OAuth2 (Google/GitHub) as shipped.",
+      "tool_calls": [
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "auth migration",
+            "path": ""
+          },
+          "result_preview": "logs/2026-02-20.md:5: - 14:05 Josh: One thing \u2014 their IT team specifically asked about SAML SSO. I told them we'd have that after the auth migration. They're expecting it by end of Q1.\nlogs/2026-02-20"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "logs/2026-02-20.md"
+          },
+          "result_preview": "--- logs/2026-02-20.md ---\n# Daily Log \u2014 2026-02-20\n\n## #sales\n- 14:00 Josh: Call with Acme Corp went well. They're very interested in upgrading to Enterprise tier.\n- 14:05 Josh: One thing \u2014 their IT "
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 52,
+      "name": "misread_metric",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "B\n\nThe new flow removed four steps \u2014 including \"first milestone,\" which was the old activation metric trigger \u2014 so \"completion\" no longer measures the same end state as before (memory/metrics.md shows the removed steps and that first milestone was the activation trigger).",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/metrics.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/metrics.md"
+          },
+          "result_preview": "--- memory/metrics.md ---\n# Onboarding Metrics\n\n## Old flow (pre-Feb 28)\n- 8 steps: signup \u2192 profile \u2192 team invite \u2192 workspace setup \u2192 integration connect \u2192 first project \u2192 first task \u2192 first mileston"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 53,
+      "name": "budget_interpreter",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "C \u2014 staging-3. The infrastructure notes state staging-3 was created for load testing, last deployed Jan 22, and was \"never actually used for load testing\" (memory/infrastructure.md).",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/infrastructure.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/infrastructure.md"
+          },
+          "result_preview": "--- memory/infrastructure.md ---\n# Infrastructure\n\n## Cloud spend breakdown (monthly)\n- Production environment: $2,400/mo\n  - API servers (2x c5.xlarge): $500\n  - Postgres RDS (db.r5.large): $400\n  - "
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 54,
+      "name": "three_ticket_pattern",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "B\n\nAll three tickets (TICKET-1041, TICKET-1043, TICKET-1047) show \"Last migration batch: batch-7, run 2026-02-25\" in memory/support.md, so they were all in migration batch-7.",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/support.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/support.md"
+          },
+          "result_preview": "--- memory/support.md ---\n# Support Tickets \u2014 Week of March 3\n\n## TICKET-1041 (March 3, 14:00)\n- Customer: Pinnacle Inc (Enterprise)\n- Issue: 'Our latest invoice shows $0 but we're on the Growth plan'"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 55,
+      "name": "meeting_assassin",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": false,
+      "response_text": "B \u2014 The design doc (memory/meetings.md) explicitly lists 2 open questions: cursor vs offset pagination and webhook payload format. The webhook-format thread (memory/threads/webhook-format.md) shows the webhook payload debate is still unresolved.",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/meetings.md\n  - memory/threads/webhook-format.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/meetings.md"
+          },
+          "result_preview": "--- memory/meetings.md ---\n# Upcoming Meetings\n\n## API v2 Design Review \u2014 Thursday March 9, 2pm PST\n- Attendees: Alan, Josh, Sarah, Maria (observer), plus 4 senior engineers\n- Duration: 1 hour (8 pers"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/threads/webhook-format.md"
+          },
+          "result_preview": "--- memory/threads/webhook-format.md ---\n# Thread: Webhook payload format (#billing-migration)\nStarted: 2026-03-03\n\n- Mar 3, 09:00 Alan: Proposal: nest all billing fields under a 'billing' key\n- Mar 3"
+        }
+      ],
+      "turns": 4,
+      "score_detail": {
+        "correct": false,
+        "chosen": "B",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 56,
+      "name": "first_day_briefing",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "B \u2014 The onboarding context file (memory/onboarding-context.md) says \u201cThe migration script maps between all three \u2014 Alan calls this 'the rosetta stone file' (src/billing/mapping.rs).\u201d",
+      "tool_calls": [
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "rosetta stone",
+            "path": ""
+          },
+          "result_preview": "memory/onboarding-context.md:6: - The migration script maps between all three \u2014 Alan calls this 'the rosetta stone file' (src/billing/mapping.rs)"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/onboarding-context.md"
+          },
+          "result_preview": "--- memory/onboarding-context.md ---\n# Active Context \u2014 March 8, 2026\n\n## Confusing naming conventions (legacy)\n- 'plan' and 'tier' and 'subscription' all refer to the same concept in different parts "
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 57,
+      "name": "scope_surgeon",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "B \u2014 CSV only. Josh's notes: all three prospects said CSV is sufficient (Acme: needs CSV for QuickBooks; Pinnacle: uses CSV for reconciliation; Waverly: would like Excel but CSV works). No customer requested PDF; Excel was pushed by a sales rep.",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/feature-requests.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/feature-requests.md"
+          },
+          "result_preview": "--- memory/feature-requests.md ---\n# Feature Request: Billing Export API\n\n## Request (from Sales, March 5)\n- Enterprise customers need to export billing data\n- Requested formats: CSV, PDF, Excel (.xls"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 58,
+      "name": "green_test_trap",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "C\n\nThe test report (memory/testing.md) shows:\n- Edge case tests: 0\n- End-to-end tests: 7\n\nIt also lists 280 unit tests (82%) and 55 integration tests (16%), matching the option's summary.",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/testing.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/testing.md"
+          },
+          "result_preview": "--- memory/testing.md ---\n# CI / Test Health \u2014 March 8\n\n## Test suite stats\n- Total tests: 342\n- Passing: 342 (100% green for 4 weeks straight)\n- Last failure: February 8 (flaky network test, now mock"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 59,
+      "name": "thread_therapist",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "B\n\nSarah suggested a middle ground: \"You can have JWT tokens that feel like API keys with long-lived tokens and bearer auth\" (memory/threads/auth-debate.md, Mar 7, 09:00), combining JWT security with API-key simplicity.",
+      "tool_calls": [
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "Sarah",
+            "path": ""
+          },
+          "result_preview": "memory/threads/auth-debate.md:5: - Mar 6, 10:00 Sarah: API keys are a security risk. No expiration, no rotation policy, customers will paste them in public repos. JWT with short-lived tokens is the in"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/threads/auth-debate.md"
+          },
+          "result_preview": "--- memory/threads/auth-debate.md ---\n# Thread: API authentication approach (#api-v2)\nStarted: 2026-03-06\n\n- Mar 6, 09:00 Alan: We should use API keys for v2. Simple, every developer knows how to use "
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 60,
+      "name": "silent_failure_premortem",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": false,
+      "response_text": "C\n\nThe launch notes explicitly call out: \"No delivery confirmation mechanism \u2014 if a webhook is sent and the customer's endpoint returns 200 but doesn't actually process it, we have no way to know.\" Retry logic and a dead-letter queue exist (so A is false), and while there's a pending load test, the silent, weeks-later undetected failures are caused by lack of delivery confirmation.",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/launch.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/launch.md"
+          },
+          "result_preview": "--- memory/launch.md ---\n# Billing Migration Phase 2 \u2014 Launch Plan\n\n## Pre-launch checklist\n- [x] Reconciliation script handles all edge cases\n- [x] Staging environment tested with production data sna"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": false,
+        "chosen": "A",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 61,
+      "name": "timezone_play",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "B \u2014 The decision file (memory/timezone-decision.md) notes that no one has asked the customer perspective yet and that Takeshi at NovaTech offered to review the proposal (available 9am\u20136pm JST, responds within 2 hours).",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/timezone-decision.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/timezone-decision.md"
+          },
+          "result_preview": "--- memory/timezone-decision.md ---\n# Webhook Format Decision \u2014 Stakeholder Input Needed\n\n## Decision needed by: March 12 (Wednesday)\n- Blocking: Webhook implementation (Alan), API v2 endpoint contrac"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 62,
+      "name": "debt_ledger",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "C \u2014 The memory/tech-debt.md lists ~1 hour/week for hardcoded URLs, ~45 min/week for retry logic, ~1 hour/week for generic error messages (total ~2.75 hours/week), with the skipped test causing additional missed-bug cost.",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/tech-debt.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/tech-debt.md"
+          },
+          "result_preview": "--- memory/tech-debt.md ---\n# Slack mentions of workarounds \u2014 last 30 days\n\n## Hardcoded API URL (from sprint Feb 10)\n- Feb 12, Alan: 'had to manually change the billing URL in 3 places for staging'\n-"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 63,
+      "name": "competitor_signal",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "C\n\nSales notes show two prospects in the last two weeks (Acme Corp on Mar 1 and Pinnacle Inc on Mar 4) asking about Ed25519. The repo memory notes that Sarah's webhook code already has a signature module, so adding another algorithm is localized to that module \u2014 a small change (roughly half a day).",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/competitive.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/competitive.md"
+          },
+          "result_preview": "--- memory/competitive.md ---\n# Competitive Intelligence\n\n## Competitor changelog \u2014 March 6\n- Rival Corp shipped webhook signature verification v2 with Ed25519 support\n- Also added: customer-facing we"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 64,
+      "name": "roi_translator",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "C\n\nPer memory/refactor.md: the refactor is 3 weeks (15 days). Current pace is 5 days/feature; refactored pace is 2 days/feature. For N=5:\n- without refactor = 5 \u00d7 5 = 25 days\n- with refactor = 15 + 5 \u00d7 2 = 25 days\n\nSo break-even occurs at feature 5.",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/refactor.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/refactor.md"
+          },
+          "result_preview": "--- memory/refactor.md ---\n# Payment Service Health\n\n## Current state\n- Average time to add a new billing feature: 5 days\n- Root causes of slowness:\n  - Billing logic spread across 4 files with circul"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 65,
+      "name": "reverse_escalation",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "B\n\nThe investigation in memory/escalation.md shows the product spec said \"Display subscription start date\" but engineering used the billing period start (Feb 1) while Acme expects the original signup date (Jan 15). The issue is an ambiguous spec/label \u2014 fixed with a 1-line UI change (rename to \"Billing period start\" or show both dates).",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/escalation.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/escalation.md"
+          },
+          "result_preview": "--- memory/escalation.md ---\n# Escalation: Acme Corp billing display issue\n\n## VP of Sales message (March 7, #leadership)\n- 'Acme Corp is seeing wrong dates on their billing dashboard. Their VP of Fin"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 66,
+      "name": "lunch_decision",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "B\n\nAdding annual billing would introduce proration/refund/dunning work that would collide with the Billing Migration timeline. Evidence: Alan raised annual billing in logs (logs/2026-03-07.md), and memory/projects.md shows the Billing Migration has a hard target of March 31 with no buffer and reconciliation risk (miss by Mar 15 \u2192 miss Mar 31). That makes additional billing work a direct scheduling conflict.",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - logs/2026-03-07.md\n  - memory/projects.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "logs/2026-03-07.md"
+          },
+          "result_preview": "--- logs/2026-03-07.md ---\n# Daily Log \u2014 2026-03-07\n\n## #leadership\n- 11:00 Alan: Just got off a call with two more prospects. Both asked about annual billing. We should probably support that.\n- 11:05"
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "annual billing",
+            "path": ""
+          },
+          "result_preview": "logs/2026-03-07.md:4: - 11:00 Alan: Just got off a call with two more prospects. Both asked about annual billing. We should probably support that."
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "March 31",
+            "path": ""
+          },
+          "result_preview": "memory/projects.md:6: - **Target**: March 31 launch\nmemory/projects.md:8: - **Risk**: If reconciliation slips past March 15, we miss the March 31 target. No buffer."
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/projects.md"
+          },
+          "result_preview": "--- memory/projects.md ---\n# Project State\n\n## Billing Migration (Phase 2)\n- **Owner**: Alan (lead), Sarah (auth/webhooks)\n- **Status**: In progress \u2014 Phase 1 shipped Feb 20\n- **Target**: March 31 lau"
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "proration",
+            "path": ""
+          },
+          "result_preview": "No matches for 'proration'."
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "dunning",
+            "path": ""
+          },
+          "result_preview": "No matches for 'dunning'."
+        }
+      ],
+      "turns": 8,
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 67,
+      "name": "postmortem_reframe",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "B\n\nThe incident log shows Sarah's monitoring alert fired at 09:12 (12 minutes after the 09:00 start), and the \"What went wrong\" and Root cause sections state the migration wasn't tested against production-scale historical data \u2014 legacy subscriptions lacked the plan_change_date field (a process/testing gap).",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/incidents.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/incidents.md"
+          },
+          "result_preview": "--- memory/incidents.md ---\n# Incident Report \u2014 March 6 billing migration dry-run failure\n\n## What happened\n- Ran billing migration dry-run against production data snapshot\n- Migration script corrupte"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 68,
+      "name": "rate_limit_ghost",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "C) 95% utilization at baseline; during typical 1.5-2x spikes the combined 143-190 req/sec exceeds the 100 limit, causing 429 errors\n\nExplanation: memory/api-usage.md shows combined peak = 60 + 35 = 95 req/sec (95% of our 100 req/sec limit) and notes 1.5\u20132x spikes \u2192 143\u2013190 req/sec, which would exceed Stripe's 100 req/sec limit and produce 429 errors.",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/api-usage.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/api-usage.md"
+          },
+          "result_preview": "--- memory/api-usage.md ---\n# Third-Party API Usage\n\n## Stripe API\n- Rate limit: 100 requests/second (our current plan)\n- Current usage (billing team): ~40 req/sec during peak (invoice generation)\n- C"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "INTENTS.md"
+          },
+          "result_preview": "--- INTENTS.md ---\n# What matters right now\n\n## The deadline\n\n**End of March 2026.** ~25 days. Everything we do between now and then either moves us toward first paying customers or it doesn't. There "
+        }
+      ],
+      "turns": 4,
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    }
+  ]
+}

@@ -20,20 +20,22 @@ PM-Bench tests whether an AI teammate operating in a messy, multi-channel engine
 - **[PAPER.md](PAPER.md)** — NeurIPS Datasets & Benchmarks-style paper draft
 - **[LEADERBOARD.md](LEADERBOARD.md)** — 6 OpenAI mini/nano models scored, see live results
 
-### Headline result: agentic mode reveals a 25-point capability gap MCQ hides
+### Headline result: agentic mode reveals a 31-point capability gap MCQ hides
 
 | Model | MCQ Superhuman 20 | **Agentic Superhuman 20** | Δ |
 |---|---|---|---|
-| `gpt-5.4-mini` | 100.00% | 95.00% | -5 |
-| `gpt-4.1-mini` | 98.00% | **70.00%** | **-28** |
-| `gpt-5-mini` | 96.88% | 90.00% | -7 |
-| `gpt-5-nano` | 95.00% | 95.00% | 0 |
-| `gpt-5.4-nano` | 91.25% | 80.00% | -11 |
-| `gpt-4.1-nano` | 88.00% | **65.00%** | **-23** |
+| `gpt-5-nano` | 95.00% (n=3) | **95.00%** (n=2) | **0** |
+| `gpt-5.4-mini` | 100.00% (n=4) | 92.50% (n=2) | -7.5 |
+| `gpt-5-mini` | 96.88% (n=8) | 90.00% (n=2) | -6.88 |
+| `gpt-5.4-nano` | 91.25% (n=4) | 85.00% (n=2) | -6.25 |
+| `gpt-4.1-mini` | 98.00% (n=5) | **71.67%** (n=3) | **-26.33** |
+| `gpt-4.1-nano` | 88.00% (n=5) | **56.67%** (n=3) | **-31.33** |
 
 In **agentic mode**, the workspace files are NOT in the prompt — the model must call `list_files`, `read_file`, and `grep` to investigate. This is what real PM agents do. The MCQ-only mode tests reading comprehension; agentic mode tests the actual capability.
 
-GPT-5 nano (a small reasoning model) ranks #1 alongside GPT-5.4 mini. GPT-4.1 mini drops 28 points without static context. Static MCQ benchmarks systematically inflate the apparent capability of non-reasoning models.
+**Reasoning models (GPT-5 family) are robust across modes.** GPT-5 nano holds 95% in both MCQ and agentic. **Non-reasoning models (GPT-4.1 family) collapse 26-31 points** when forced to navigate by tools instead of reading dumped context. This validates the construct: PM-Bench in agentic mode tests genuine PM capability, not reading comprehension.
+
+A user choosing a model to deploy as a real PM agent would be misled by MCQ-only scores: gpt-4.1-mini's 98% vs gpt-5-nano's 95% reverses to gpt-4.1-mini's 71.67% vs gpt-5-nano's 95% in agentic mode — a 23-point reversal in the right direction.
 
 ### Full leaderboard (see [LEADERBOARD.md](LEADERBOARD.md))
 
