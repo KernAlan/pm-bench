@@ -100,6 +100,148 @@ OPEN_ENDED_SYSTEM = (
     "workspace evidence."
 )
 
+AGENTIC_SYSTEM = (
+    "You are the acting PM for this team. You have access to the team's "
+    "workspace through the following tools: list_files (see what's available), "
+    "read_file (read a specific file by path), and grep (search for a pattern). "
+    "You will NOT be shown the workspace upfront — you must investigate. "
+    "Use tools to find what you need, then answer. Stop calling tools and "
+    "respond once you have enough evidence. For multiple-choice questions, "
+    "respond with the correct letter (A, B, C, or D) and a brief explanation "
+    "grounded in the files you read."
+)
+
+
+# ---------------------------------------------------------------------------
+# Agentic-mode workspace (file-system simulator)
+# ---------------------------------------------------------------------------
+
+class AgenticWorkspace:
+    """In-memory file system the model navigates via tools."""
+
+    def __init__(self, scenario: dict):
+        self.files: dict[str, str] = {}
+        for path, content_or_ref in scenario.get("workspace_files", {}).items():
+            self.files[path] = resolve_ref(content_or_ref)
+
+    def list_files(self) -> str:
+        if not self.files:
+            return "(workspace is empty)"
+        lines = sorted(self.files.keys())
+        return "Files in workspace:\n" + "\n".join(f"  - {p}" for p in lines)
+
+    def read_file(self, path: str) -> str:
+        if path in self.files:
+            content = self.files[path]
+            return f"--- {path} ---\n{content}"
+        # Try forgiving match (case-insensitive, basename match).
+        lower = path.lower()
+        candidates = [p for p in self.files if p.lower() == lower
+                      or p.lower().endswith("/" + lower)
+                      or p.lower().split("/")[-1] == lower]
+        if len(candidates) == 1:
+            content = self.files[candidates[0]]
+            return f"--- {candidates[0]} ---\n{content}"
+        if len(candidates) > 1:
+            return f"Ambiguous path '{path}'. Matches: {candidates}"
+        return (f"File '{path}' not found. "
+                f"Available files: {sorted(self.files.keys())}")
+
+    def grep(self, pattern: str, path: str | None = None) -> str:
+        import re as _re
+        results = []
+        targets = [path] if path else sorted(self.files.keys())
+        if path and path not in self.files:
+            return f"File '{path}' not found."
+        try:
+            regex = _re.compile(pattern, _re.IGNORECASE)
+        except _re.error as e:
+            return f"Invalid regex: {e}"
+        for p in targets:
+            content = self.files.get(p, "")
+            for i, line in enumerate(content.splitlines(), 1):
+                if regex.search(line):
+                    results.append(f"{p}:{i}: {line}")
+                    if len(results) >= 50:
+                        results.append("(truncated at 50 matches)")
+                        return "\n".join(results)
+        return "\n".join(results) if results else f"No matches for '{pattern}'."
+
+
+AGENTIC_TOOL_DEFS_OPENAI = [
+    {
+        "type": "function",
+        "function": {
+            "name": "list_files",
+            "description": "List all files in the workspace.",
+            "parameters": {"type": "object", "properties": {}},
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "read_file",
+            "description": "Read the full contents of a file by path.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "path": {"type": "string",
+                             "description": "Path of the file to read"},
+                },
+                "required": ["path"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "grep",
+            "description": "Search for a regex pattern in the workspace.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "pattern": {"type": "string", "description": "Regex pattern"},
+                    "path": {"type": "string",
+                             "description": "Optional: search only in this file"},
+                },
+                "required": ["pattern"],
+            },
+        },
+    },
+]
+
+
+AGENTIC_TOOL_DEFS_ANTHROPIC = [
+    {
+        "name": "list_files",
+        "description": "List all files in the workspace.",
+        "input_schema": {"type": "object", "properties": {}},
+    },
+    {
+        "name": "read_file",
+        "description": "Read the full contents of a file by path.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "path": {"type": "string", "description": "Path of the file to read"},
+            },
+            "required": ["path"],
+        },
+    },
+    {
+        "name": "grep",
+        "description": "Search for a regex pattern in the workspace.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "pattern": {"type": "string", "description": "Regex pattern"},
+                "path": {"type": "string", "description": "Optional: limit to one file"},
+            },
+            "required": ["pattern"],
+        },
+    },
+]
+
 
 def build_messages(scenario: dict, context: str, system: str) -> list[dict]:
     user_content = ""
@@ -192,6 +334,169 @@ def call_openai(messages: list[dict], model: str, max_tokens: int = 1024) -> dic
                 args = tc.function.arguments
             tool_calls.append({"name": tc.function.name, "arguments": args})
     return {"text": choice.message.content or "", "tool_calls": tool_calls}
+
+
+# ---------------------------------------------------------------------------
+# Agentic loop (multi-turn tool-calling)
+# ---------------------------------------------------------------------------
+
+def _execute_tool(name: str, args: dict, ws: AgenticWorkspace) -> str:
+    """Run a tool against the workspace and return its result as text."""
+    try:
+        if name == "list_files":
+            return ws.list_files()
+        if name == "read_file":
+            return ws.read_file(args.get("path", ""))
+        if name == "grep":
+            return ws.grep(args.get("pattern", ""), args.get("path"))
+        return f"Unknown tool: {name}"
+    except Exception as e:
+        return f"Tool error: {e}"
+
+
+def call_openai_tools(messages: list[dict], model: str,
+                      tools: list[dict], max_tokens: int = 1024) -> dict:
+    """OpenAI chat completion with tools. Returns choice.message dict."""
+    try:
+        from openai import OpenAI
+    except ImportError:
+        print("Install the openai SDK: pip install openai", file=sys.stderr)
+        sys.exit(1)
+    client = OpenAI()
+    token_param = _openai_token_param(model)
+    if token_param == "max_completion_tokens":
+        max_tokens = max(max_tokens * 8, 8192)
+    kwargs = {"model": model, "messages": messages, "tools": tools,
+              token_param: max_tokens}
+    try:
+        resp = client.chat.completions.create(**kwargs)
+    except Exception as e:
+        msg = str(e)
+        if "max_tokens" in msg and "max_completion_tokens" in msg:
+            kwargs.pop("max_tokens", None)
+            kwargs.pop("max_completion_tokens", None)
+            other = "max_completion_tokens" if token_param == "max_tokens" else "max_tokens"
+            kwargs[other] = max_tokens
+            resp = client.chat.completions.create(**kwargs)
+        else:
+            raise
+    return resp.choices[0].message
+
+
+def call_anthropic_tools(messages: list[dict], system: str, model: str,
+                         tools: list[dict], max_tokens: int = 4096) -> dict:
+    """Anthropic messages API with tools. Returns response object."""
+    try:
+        from anthropic import Anthropic
+    except ImportError:
+        print("Install the anthropic SDK: pip install anthropic", file=sys.stderr)
+        sys.exit(1)
+    client = Anthropic()
+    kwargs = {"model": model, "max_tokens": max_tokens, "messages": messages,
+              "tools": tools}
+    if system.strip():
+        kwargs["system"] = system.strip()
+    return client.messages.create(**kwargs)
+
+
+def run_agentic_loop(provider: str, model: str, scenario: dict,
+                     max_turns: int = 10) -> dict:
+    """Run an agentic tool-using loop. Returns {text, tool_calls, turns}."""
+    ws = AgenticWorkspace(scenario)
+    all_tool_calls: list[dict] = []
+    user_text = scenario["trigger"]
+
+    if provider == "openai":
+        messages = [
+            {"role": "system", "content": AGENTIC_SYSTEM},
+            {"role": "user", "content": user_text},
+        ]
+        for turn in range(max_turns):
+            msg = call_openai_tools(messages, model, AGENTIC_TOOL_DEFS_OPENAI)
+            tool_calls = msg.tool_calls or []
+            if not tool_calls:
+                # Final text answer.
+                return {"text": msg.content or "",
+                        "tool_calls": all_tool_calls,
+                        "turns": turn + 1}
+            # Execute tools, append assistant + tool results, loop.
+            messages.append({
+                "role": "assistant",
+                "content": msg.content,
+                "tool_calls": [
+                    {"id": tc.id, "type": "function",
+                     "function": {"name": tc.function.name,
+                                  "arguments": tc.function.arguments}}
+                    for tc in tool_calls
+                ],
+            })
+            for tc in tool_calls:
+                try:
+                    args = json.loads(tc.function.arguments)
+                except (json.JSONDecodeError, TypeError):
+                    args = {}
+                result = _execute_tool(tc.function.name, args, ws)
+                all_tool_calls.append({"name": tc.function.name,
+                                       "arguments": args,
+                                       "result_preview": result[:200]})
+                messages.append({
+                    "role": "tool",
+                    "tool_call_id": tc.id,
+                    "content": result,
+                })
+        return {"text": "(max turns exceeded)", "tool_calls": all_tool_calls,
+                "turns": max_turns}
+
+    if provider == "anthropic":
+        messages = [{"role": "user", "content": user_text}]
+        for turn in range(max_turns):
+            resp = call_anthropic_tools(messages, AGENTIC_SYSTEM, model,
+                                        AGENTIC_TOOL_DEFS_ANTHROPIC)
+            assistant_blocks = []
+            tool_uses = []
+            text_parts = []
+            for block in resp.content:
+                if block.type == "text":
+                    assistant_blocks.append({"type": "text", "text": block.text})
+                    text_parts.append(block.text)
+                elif block.type == "tool_use":
+                    assistant_blocks.append({
+                        "type": "tool_use", "id": block.id,
+                        "name": block.name, "input": block.input,
+                    })
+                    tool_uses.append(block)
+            if not tool_uses:
+                return {"text": "\n".join(text_parts),
+                        "tool_calls": all_tool_calls,
+                        "turns": turn + 1}
+            messages.append({"role": "assistant", "content": assistant_blocks})
+            tool_results = []
+            for tu in tool_uses:
+                result = _execute_tool(tu.name, tu.input, ws)
+                all_tool_calls.append({"name": tu.name, "arguments": tu.input,
+                                       "result_preview": result[:200]})
+                tool_results.append({
+                    "type": "tool_result", "tool_use_id": tu.id,
+                    "content": result,
+                })
+            messages.append({"role": "user", "content": tool_results})
+        return {"text": "(max turns exceeded)", "tool_calls": all_tool_calls,
+                "turns": max_turns}
+
+    # Mock provider: pretend to read everything.
+    if provider == "mock":
+        # Simulate "perfect" agent: list, read all, then return correct answer.
+        all_tool_calls.append({"name": "list_files", "arguments": {},
+                               "result_preview": ws.list_files()[:200]})
+        for path in list(ws.files.keys())[:5]:
+            all_tool_calls.append({"name": "read_file",
+                                   "arguments": {"path": path},
+                                   "result_preview": ws.read_file(path)[:200]})
+        correct = scenario.get("correct_answer", "A").strip().upper()
+        return {"text": f"{correct}. [mock agentic perfect]",
+                "tool_calls": all_tool_calls, "turns": 1}
+
+    raise ValueError(f"Unsupported provider for agentic mode: {provider}")
 
 
 def _deterministic_wrong_letter(scenario: dict) -> str:
@@ -358,7 +663,7 @@ def extract_mcq_choice(text: str) -> str | None:
 
     # 2. Explicit "answer is X" / "X is correct" / "X is right" / "X is the answer".
     m = re.search(
-        r"(?:the\s+)?(?:correct\s+)?answer\s*(?:is|:)\s*\(?([A-Da-d])\)?",
+        r"(?:the\s+)?(?:correct\s+)?answer\s*(?:is\s*:?|:)\s*\*{0,2}\(?([A-Da-d])\)?",
         stripped, re.IGNORECASE,
     )
     if m:
@@ -686,6 +991,56 @@ def run_mcq(args, scenarios: list[dict]) -> list[dict]:
     return results
 
 
+def run_agentic(args, scenarios: list[dict]) -> list[dict]:
+    """Tool-use mode: workspace NOT in prompt; model uses list_files/read_file/grep."""
+    results: list[dict] = []
+    for i, scenario in enumerate(scenarios, 1):
+        sid = scenario["id"]
+        name = scenario.get("name", str(sid))
+        cat = scenario.get("category", "?")
+        scoring = scenario.get("scoring", "mcq")
+        # Skip non-MCQ for now (agentic mode only scored on MCQ for v1).
+        if scoring != "mcq":
+            print(f"[{i}/{len(scenarios)}] #{sid} {name} -- skipping ({scoring} not yet scored in agentic mode)")
+            continue
+        print(f"[{i}/{len(scenarios)}] #{sid} {name}  ({cat}, agentic)")
+
+        if args.dry_run:
+            print(f"  trigger: {scenario['trigger'][:120]}")
+            print(f"  files available: {len(scenario.get('workspace_files', {}))}")
+            results.append({"id": sid, "name": name, "category": cat,
+                            "scoring": "agentic", "correct": False, "dry_run": True})
+            continue
+
+        try:
+            response = run_agentic_loop(args.provider, args.model, scenario,
+                                        max_turns=args.max_turns)
+        except Exception as e:
+            print(f"  ERROR: {e}")
+            results.append({"id": sid, "name": name, "category": cat,
+                            "scoring": "agentic", "correct": False, "error": str(e)})
+            continue
+
+        # Score the final text answer with MCQ extractor.
+        score = score_mcq(scenario, response)
+        correct = score["correct"]
+        n_calls = len(response["tool_calls"])
+        n_turns = response["turns"]
+        preview = response["text"][:80].replace("\n", " ") if response["text"] else "(empty)"
+        safe = preview.encode("ascii", errors="replace").decode("ascii")
+        print(f"  {'PASS' if correct else 'FAIL'}  turns={n_turns} calls={n_calls}  -> {safe}")
+
+        results.append({
+            "id": sid, "name": name, "category": cat, "scoring": "agentic",
+            "correct": correct, "response_text": response["text"],
+            "tool_calls": response["tool_calls"], "turns": n_turns,
+            "score_detail": score,
+        })
+        if i < len(scenarios) and args.provider != "mock":
+            time.sleep(0.5)
+    return results
+
+
 def run_open_ended(args, scenarios: list[dict]) -> list[dict]:
     judge_provider = args.judge_provider or args.provider
     if args.judge_model:
@@ -757,8 +1112,10 @@ def run_open_ended(args, scenarios: list[dict]) -> list[dict]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="PM-Bench: Evaluate AI models on PM judgment scenarios.")
-    parser.add_argument("--mode", choices=["mcq", "open-ended"], default="mcq",
-                        help="Evaluation mode (default: mcq)")
+    parser.add_argument("--mode", choices=["mcq", "open-ended", "agentic"], default="mcq",
+                        help="Evaluation mode (default: mcq). agentic = workspace files NOT in prompt; model uses list_files/read_file/grep tools to navigate.")
+    parser.add_argument("--max-turns", type=int, default=10,
+                        help="Agentic mode: max tool-call turns before giving up (default 10)")
     parser.add_argument("--provider", choices=["anthropic", "openai", "mock"], default="anthropic",
                         help="LLM provider. 'mock' runs end-to-end with no API key.")
     parser.add_argument("--mock-mode", choices=["perfect", "random", "weak"], default="perfect",
@@ -785,7 +1142,7 @@ def main() -> None:
         else:
             args.model = "gpt-4o"
 
-    if args.mode == "mcq":
+    if args.mode == "mcq" or args.mode == "agentic":
         all_scenarios = load_scenarios(SCENARIOS_FILE)
         scenarios = filter_scenarios_mcq(all_scenarios, args.scenario, args.category,
                                           args.superhuman_only)
@@ -802,6 +1159,8 @@ def main() -> None:
 
     if args.mode == "mcq":
         results = run_mcq(args, scenarios)
+    elif args.mode == "agentic":
+        results = run_agentic(args, scenarios)
     else:
         results = run_open_ended(args, scenarios)
 

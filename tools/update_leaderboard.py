@@ -47,6 +47,8 @@ def aggregate(runs):
         # Determine subset
         if mode == "open-ended":
             subset = "open20"
+        elif mode == "agentic":
+            subset = f"agentic{total}"
         elif total == 20:
             subset = "sh20"
         else:
@@ -108,6 +110,13 @@ def render_leaderboard(groups, scenario_count_full):
 
     out.append(render_table(groups, "open-ended", "open20",
                "Open-Ended — 20 scenarios (rubric + LLM-judge)",
+               None))
+
+    out.append(render_table(groups, "agentic", "agentic20",
+               "Agentic — Superhuman 20 (model uses list_files / read_file / grep)",
+               None))
+    out.append(render_table(groups, "agentic", f"agentic{scenario_count_full}",
+               f"Agentic — Full {scenario_count_full} (tool-use evaluation)",
                None))
 
     out.append("## Human Baselines\n\n"
