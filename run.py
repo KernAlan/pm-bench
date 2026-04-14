@@ -666,7 +666,9 @@ def run_mcq(args, scenarios: list[dict]) -> list[dict]:
 
         correct = score["correct"]
         preview = response["text"][:90].replace("\n", " ") if response["text"] else "(empty)"
-        print(f"  {'PASS' if correct else 'FAIL'}  -> {preview}")
+        # Strip non-ASCII for cross-platform terminal safety (Windows cp1252).
+        safe = preview.encode("ascii", errors="replace").decode("ascii")
+        print(f"  {'PASS' if correct else 'FAIL'}  -> {safe}")
 
         results.append({
             "id": sid, "name": name, "category": cat, "scoring": scoring,
@@ -726,11 +728,12 @@ def run_open_ended(args, scenarios: list[dict]) -> list[dict]:
         )
         correct = score["correct"]
         preview = response["text"][:90].replace("\n", " ") if response["text"] else "(empty)"
+        safe = preview.encode("ascii", errors="replace").decode("ascii")
         auto = score["automated"]
         judge = score["judge"]
         judge_verdict = judge.get("verdict") or "?"
         auto_pass = "Y" if auto["automated_pass"] else "N"
-        print(f"  {'PASS' if correct else 'FAIL'}  judge={judge_verdict} auto={auto_pass}  -> {preview}")
+        print(f"  {'PASS' if correct else 'FAIL'}  judge={judge_verdict} auto={auto_pass}  -> {safe}")
 
         results.append({
             "id": sid, "name": name, "category": cat, "scoring": "open-ended",

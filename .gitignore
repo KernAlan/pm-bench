@@ -17,3 +17,4 @@ scenarios/open-ended.v*.json
 fixtures/variants/
 .vscode/
 .idea/
+baseline_run.log
