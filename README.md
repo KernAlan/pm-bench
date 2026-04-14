@@ -4,7 +4,16 @@
 
 PM-Bench tests whether an AI teammate operating in a messy, multi-channel engineering environment can notice the important thing, connect distributed context, react with the right level of intervention, and communicate it in a PM-shaped way.
 
-68 scenarios across 10 categories, plus 5 context-assembly experiments. Grounded in realistic simulated team workspaces with real PM failure modes: hidden dependencies, misleading metrics, missing commitments, single-point-of-failure risk, and knowing when to stay quiet.
+- **68 MCQ/keyword scenarios** across 10 categories (48 auto-scored, 20 require tool harness)
+- **20 open-ended scenarios** with rubric + LLM-judge scoring — tests unprompted judgment
+- **5 context-assembly experiments** with explicit kill conditions
+- **Item Response Theory analysis** tooling (difficulty, discrimination, contamination)
+- **Multi-model answer-key validation** tooling
+- **[METHODOLOGY.md](METHODOLOGY.md)** — rigorous methodology documentation
+- **[PAPER.md](PAPER.md)** — NeurIPS Datasets & Benchmarks-style paper draft
+- **[LEADERBOARD.md](LEADERBOARD.md)** — awaiting first submissions
+
+Grounded in realistic simulated team workspaces with real PM failure modes: hidden dependencies, misleading metrics, missing commitments, single-point-of-failure risk, and knowing when to stay quiet.
 
 ---
 
@@ -128,8 +137,30 @@ python run.py --category "Memory Recall"
 # Run a single scenario by numeric ID
 python run.py --scenario 49
 
+# Open-ended mode (20 scenarios, LLM-judge scoring)
+python run.py --mode open-ended
+
+# Open-ended with a different-family judge (recommended)
+python run.py --mode open-ended --provider anthropic --judge-provider openai
+
 # Dry run -- print prompts without calling the API
 python run.py --dry-run
+```
+
+### Analysis tools
+
+```bash
+# Item Response Theory analysis (after running baselines)
+python tools/analyze.py
+
+# Cross-validate authored answers with multiple models as annotators
+python tools/validate_answers.py --models claude-sonnet-4-20250514 gpt-4o
+
+# Check for contamination via paraphrased variants
+python tools/contamination.py --model claude-sonnet-4-20250514 --n-scenarios 20
+
+# Multi-model baseline orchestration with variance estimation
+python tools/multi_run.py --iterations 3 --models claude-sonnet-4-20250514 gpt-4o
 ```
 
 ### Output
@@ -201,6 +232,19 @@ pm-bench/
 │   ├── HEARTBEAT.md
 │   ├── logs/                        # 7 days of channel activity
 │   └── memory/                      # Knowledge base files
+├── tools/                           # Analysis and validation scripts
+│   ├── analyze.py                   # Item Response Theory (difficulty/discrimination)
+│   ├── validate_answers.py          # Multi-model answer-key cross-validation
+│   ├── contamination.py             # Paraphrase-based memorization check
+│   └── multi_run.py                 # Multi-model baseline orchestrator
+├── submissions/                     # Community submission directory
+├── human_baselines/                 # Human baseline submissions
+├── METHODOLOGY.md                   # Rigorous methodology + construct validity
+├── PAPER.md                         # Academic paper draft (NeurIPS D&B track target)
+├── LEADERBOARD.md                   # Model scores (awaiting first submissions)
+├── SUBMISSIONS.md                   # How to submit model scores
+├── HUMAN_BASELINE.md                # How to contribute human baselines
+├── CONTRIBUTING.md                  # Contribution guidelines
 └── results/                         # Evaluation output
 ```
 

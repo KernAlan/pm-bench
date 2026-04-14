@@ -1,0 +1,371 @@
+{
+  "version": "1.0",
+  "description": "PM-Bench Open-Ended: 20 scenarios testing unprompted PM judgment. Each scenario mirrors an MCQ from scenarios.json (IDs 49-68) but strips the multiple-choice scaffolding. The trigger is a realistic PM task that should surface the critical insight if the model is actually reading the workspace, rather than a question that hints at what to look for.",
+  "scenarios": [
+    {
+      "id": 1,
+      "source_mcq_id": 49,
+      "name": "silent_collision",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "logs/2026-03-07.md": "@fixtures/stories/01-silent-collision-log.md"
+      },
+      "trigger": "Give me a quick end-of-day summary of what the team shipped and what's in flight today. Keep it tight — I'll forward it to the investors.",
+      "rubric": {
+        "must_mention": ["events", "both"],
+        "should_mention": ["collision", "conflict", "overlap", "same table", "Alan", "Sarah", "coordinate", "merge conflict"],
+        "red_flags": ["everything looks good", "no conflicts", "healthy progress", "no issues to flag", "team is in sync"]
+      },
+      "judge_prompt": "You are scoring whether the response catches that Alan's PR and Sarah's PR both modify the same database table (events). PASS if the response explicitly flags that both PRs touch the same table / schema / migration and frames it as a coordination risk or collision. FAIL if the response treats the two PRs as independent work, glosses over the overlap, or produces a generic summary. Cite the specific sentence(s) from the response that justify your verdict."
+    },
+    {
+      "id": 2,
+      "source_mcq_id": 50,
+      "name": "calendar_blindspot",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "memory/team.md": "@fixtures/stories/02-scheduling-context.md",
+        "memory/projects.md": "@fixtures/rich-project-state.md"
+      },
+      "trigger": "The director just proposed running the webhook format decision meeting on Thursday March 13. Draft the calendar invite and a short note confirming it works.",
+      "rubric": {
+        "must_mention": ["Sarah", "Thursday"],
+        "should_mention": ["not available", "doesn't work", "part-time", "Monday Wednesday Friday", "reschedule", "won't be in", "PTO", "schedule"],
+        "red_flags": ["confirmed", "works for everyone", "looking forward", "see you Thursday", "sounds good"]
+      },
+      "judge_prompt": "You are scoring whether the response catches that Sarah does not work on Thursdays (she's part-time Mon/Wed/Fri) and the webhook decision cannot happen without her. PASS if the response pushes back on Thursday specifically because of Sarah's schedule, or proposes a different day citing her availability. FAIL if the model drafts the invite as requested without flagging Sarah's unavailability. Cite evidence."
+    },
+    {
+      "id": 3,
+      "source_mcq_id": 51,
+      "name": "unasked_question",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "logs/2026-02-20.md": "@fixtures/stories/03-unasked-question-log.md"
+      },
+      "trigger": "The auth migration just shipped — JWT tokens plus OAuth2 for Google and GitHub. Draft a customer-facing announcement for Acme Corp celebrating the win.",
+      "rubric": {
+        "must_mention": ["SAML", "Acme"],
+        "should_mention": ["promised", "not included", "still owed", "follow-up", "Josh", "commitment", "outstanding", "enterprise SSO"],
+        "red_flags": ["fully delivered", "all commitments met", "everything you asked for", "complete solution"]
+      },
+      "judge_prompt": "You are scoring whether the response catches that Josh promised Acme Corp SAML SSO as a follow-on to the auth migration but SAML was explicitly scoped out, so the release does NOT fulfill that commitment. PASS if the response either refuses to celebrate without caveat, flags the SAML gap, or adds a note about the still-outstanding commitment. FAIL if the response writes a clean celebratory message that implies Acme's needs are met. Cite evidence."
+    },
+    {
+      "id": 4,
+      "source_mcq_id": 52,
+      "name": "misread_metric",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "memory/metrics.md": "@fixtures/stories/04-misread-metric.md"
+      },
+      "trigger": "Josh just shared the new onboarding completion metric — 85%, up from 60%. Draft a celebratory message for the team channel.",
+      "rubric": {
+        "must_mention": ["definition", "not comparable"],
+        "should_mention": ["removed steps", "3 steps", "activation", "different", "apples to oranges", "changed", "caveat", "not a fair comparison"],
+        "red_flags": ["huge win", "25 point jump", "massive improvement", "great work team", "celebrate"]
+      },
+      "judge_prompt": "You are scoring whether the response catches that the old 60% and new 85% are not measuring the same thing — the new flow removed 3 steps (including the activation trigger), so 'completion' has been redefined. PASS if the response pushes back on the comparison, asks for like-for-like numbers, or flags the definitional change before celebrating. FAIL if the model writes a pure celebration message that treats the jump as a genuine improvement. Cite evidence."
+    },
+    {
+      "id": 5,
+      "source_mcq_id": 53,
+      "name": "budget_interpreter",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "memory/infrastructure.md": "@fixtures/stories/05-cloud-costs.md"
+      },
+      "trigger": "Finance wants us to cut cloud costs 30% without touching production. Where would you start?",
+      "rubric": {
+        "must_mention": ["staging-3", "load"],
+        "should_mention": ["never used", "unused", "January 22", "last deploy", "decommission", "shut down", "zero usage", "intended purpose"],
+        "red_flags": ["rightsizing production", "negotiate with vendor", "reserved instances only", "can't cut without impact"]
+      },
+      "judge_prompt": "You are scoring whether the response identifies staging-3 (the load-testing environment that was never actually used for load testing, last deploy January 22) as the obvious cut. PASS if the response names staging-3 specifically or calls out the unused load-testing environment. FAIL if the response offers only generic cost-cutting advice or cuts a different environment. Cite evidence."
+    },
+    {
+      "id": 6,
+      "source_mcq_id": 54,
+      "name": "three_ticket_pattern",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "memory/support.md": "@fixtures/stories/06-support-tickets.md"
+      },
+      "trigger": "Review this week's support tickets. Anything worth flagging to engineering?",
+      "rubric": {
+        "must_mention": ["batch-7", "migration"],
+        "should_mention": ["February 25", "common cause", "all three", "connected", "same batch", "not coincidence", "root cause"],
+        "red_flags": ["three unrelated issues", "different problems", "triage separately", "no pattern"]
+      },
+      "judge_prompt": "You are scoring whether the response connects the three billing tickets (wrong invoice amount, slow billing page, plan showing as Free) to a common root cause: all three customers were in migration batch-7, run February 25. PASS if the response explicitly links the tickets to batch-7 or the Feb 25 migration. FAIL if the response treats them as independent or surfaces a generic 'investigate billing' note. Cite evidence."
+    },
+    {
+      "id": 7,
+      "source_mcq_id": 55,
+      "name": "meeting_assassin",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "memory/meetings.md": "@fixtures/stories/07-meeting-context.md",
+        "memory/threads/webhook-format.md": "@fixtures/stories/11-stale-thread.md"
+      },
+      "trigger": "Thursday's API v2 design review has 8 people blocked for an hour. Draft the agenda.",
+      "rubric": {
+        "must_mention": ["webhook", "pagination"],
+        "should_mention": ["only one", "already resolved", "consensus", "cursor", "shorter meeting", "async", "30 minutes", "Sarah and Alan agreed", "reduce scope"],
+        "red_flags": ["four open items", "all four questions", "full hour needed", "agenda: pagination, webhook, auth, rate limiting"]
+      },
+      "judge_prompt": "You are scoring whether the response notices that 3 of the 4 design-doc questions are already resolved in comments (cursor pagination has Sarah/Alan consensus, etc.) and only the webhook payload format is genuinely open. PASS if the response shrinks the agenda, shortens the meeting, or explicitly notes that only the webhook format remains unresolved. FAIL if the response dutifully lists all 4 topics as open items for the full hour. Cite evidence."
+    },
+    {
+      "id": 8,
+      "source_mcq_id": 56,
+      "name": "first_day_briefing",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "memory/projects.md": "@fixtures/rich-project-state.md",
+        "memory/team.md": "@fixtures/stories/02-scheduling-context.md",
+        "memory/onboarding-context.md": "@fixtures/stories/08-onboarding-context.md"
+      },
+      "trigger": "Maria starts on the billing team Monday. Draft her first-day orientation note — what she should know and where to look.",
+      "rubric": {
+        "must_mention": ["mapping.rs", "plan"],
+        "should_mention": ["rosetta stone", "tier", "subscription", "naming", "confusing", "Alan", "src/billing"],
+        "red_flags": ["figure it out as you go", "ask the team for help with naming"]
+      },
+      "judge_prompt": "You are scoring whether the orientation note points Maria at src/billing/mapping.rs (Alan's 'rosetta stone' file that maps between plan/tier/subscription naming) as the key reference for the confusing naming convention. PASS if the response names mapping.rs or the rosetta-stone file. FAIL if the response gives generic onboarding advice without surfacing the specific mapping file. Cite evidence."
+    },
+    {
+      "id": 9,
+      "source_mcq_id": 57,
+      "name": "scope_surgeon",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "memory/feature-requests.md": "@fixtures/stories/09-scope-surgery.md"
+      },
+      "trigger": "Sales is pushing for billing export in CSV, PDF, and Excel. Engineering quoted 3 weeks. Write your reply to sales.",
+      "rubric": {
+        "must_mention": ["CSV"],
+        "should_mention": ["only CSV", "not asked", "never requested", "sales rep", "customers confirmed", "PDF", "Excel", "scope down", "1 week", "actual customer research"],
+        "red_flags": ["ship all three", "3 weeks is reasonable", "customers need all formats", "approve the full scope"]
+      },
+      "judge_prompt": "You are scoring whether the response uses Josh's customer research to scope the ask down to CSV only. The research shows all 3 customers confirmed CSV is sufficient, PDF was never requested by any customer, and Excel came from the sales rep — not the customer. PASS if the response pushes back on PDF and/or Excel and defends CSV-only based on the customer research. FAIL if the response accepts all three formats or doesn't reference the customer research. Cite evidence."
+    },
+    {
+      "id": 10,
+      "source_mcq_id": 58,
+      "name": "green_test_trap",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "memory/testing.md": "@fixtures/stories/10-green-ci-paradox.md"
+      },
+      "trigger": "CI has been 100% green for 4 weeks. Write a short note to the team acknowledging the quality streak.",
+      "rubric": {
+        "must_mention": ["edge", "6"],
+        "should_mention": ["customer bugs", "coverage gap", "no edge case", "no e2e", "race conditions", "timezone", "not actually healthy", "false signal", "boundary"],
+        "red_flags": ["great work on quality", "keep it up", "green means healthy", "nothing to worry about"]
+      },
+      "judge_prompt": "You are scoring whether the response catches the paradox: CI is green but 6 customer bugs shipped in the same 4 weeks, because the test suite has 0 edge-case tests and 0 (or near-zero) e2e tests — green CI is a false signal. PASS if the response pushes back on celebrating, flags the customer-bug/green-CI gap, or calls for edge-case and e2e coverage. FAIL if the response writes a straight congratulatory message. Cite evidence."
+    },
+    {
+      "id": 11,
+      "source_mcq_id": 59,
+      "name": "thread_therapist",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "memory/threads/auth-debate.md": "@fixtures/stories/12-heated-thread.md"
+      },
+      "trigger": "The API auth thread between Alan and Sarah has gotten heated. Help me unblock it.",
+      "rubric": {
+        "must_mention": ["Sarah", "JWT"],
+        "should_mention": ["long-lived", "bearer", "synthesis", "middle ground", "already proposed", "rotation", "revocation", "both concerns", "surface her suggestion"],
+        "red_flags": ["pick one", "escalate to Alan", "have Alan decide", "API keys are simpler", "go with JWT"]
+      },
+      "judge_prompt": "You are scoring whether the response surfaces Sarah's existing synthesis proposal in the thread — long-lived JWT tokens with bearer auth, which gives JWT's security (rotation, revocation) with API-key-level developer simplicity. PASS if the response points to Sarah's middle-ground proposal and recommends rallying around it. FAIL if the response proposes a new compromise, picks a side, or escalates without noticing the synthesis already exists in the thread. Cite evidence."
+    },
+    {
+      "id": 12,
+      "source_mcq_id": 60,
+      "name": "silent_failure_premortem",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "memory/launch.md": "@fixtures/stories/13-launch-plan.md"
+      },
+      "trigger": "Review the Phase 2 billing migration launch plan. We ship Friday. Give me a go/no-go.",
+      "rubric": {
+        "must_mention": ["webhook", "confirmation"],
+        "should_mention": ["silent failure", "delivery confirmation", "200 but not processed", "reconcile", "invoices", "no acknowledgment", "no receipt", "premortem"],
+        "red_flags": ["go for launch", "plan looks solid", "ready to ship", "no concerns"]
+      },
+      "judge_prompt": "You are scoring whether the response identifies the webhook delivery gap: there is no delivery CONFIRMATION, so if a customer endpoint returns 200 but doesn't actually process the webhook, neither side knows until invoices fail to reconcile weeks later. PASS if the response flags the missing confirmation/ack mechanism and the silent-failure risk. FAIL if the response rubber-stamps the plan or only raises generic risks (retry, rate limit, signatures). Cite evidence."
+    },
+    {
+      "id": 13,
+      "source_mcq_id": 61,
+      "name": "timezone_play",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "memory/timezone-decision.md": "@fixtures/stories/14-timezone-context.md"
+      },
+      "trigger": "The webhook format thread between Alan and Sarah has been going 5 days with no resolution. How would you move it forward?",
+      "rubric": {
+        "must_mention": ["Takeshi"],
+        "should_mention": ["NovaTech", "Tokyo", "API consumer", "offered", "2 hours", "outside perspective", "customer voice", "third party"],
+        "red_flags": ["force a decision", "escalate to Josh", "pick for them", "flip a coin"]
+      },
+      "judge_prompt": "You are scoring whether the response pulls in Takeshi at NovaTech (Tokyo) — who has explicitly offered to review from an API consumer perspective and responds within 2 hours — as the way to unblock the stalled debate. PASS if the response names Takeshi or NovaTech. FAIL if the response escalates internally, forces a coin flip, or ignores the available outside reviewer. Cite evidence."
+    },
+    {
+      "id": 14,
+      "source_mcq_id": 62,
+      "name": "debt_ledger",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "memory/tech-debt.md": "@fixtures/stories/15-tech-debt-log.md"
+      },
+      "trigger": "Alan is pushing back on spending any time on tech debt this sprint. Make the case for prioritizing it.",
+      "rubric": {
+        "must_mention": ["2.75", "hours"],
+        "should_mention": ["per week", "hardcoded URLs", "retry logic", "error messages", "skipped test", "combined", "tax", "sum", "weekly cost"],
+        "red_flags": ["hard to quantify", "tech debt is always worth it generically", "trust me"]
+      },
+      "judge_prompt": "You are scoring whether the response quantifies the weekly time cost of the 4 tracked tech-debt items (roughly 2.75 hours/week: ~1h hardcoded URLs + ~45m retry logic + ~1h error messages + missed bugs from the skipped test). PASS if the response arrives at ~2.75 hours/week or clearly sums the individual items. FAIL if the response argues for tech debt abstractly without computing the cost. Cite evidence."
+    },
+    {
+      "id": 15,
+      "source_mcq_id": 63,
+      "name": "competitor_signal",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "memory/competitive.md": "@fixtures/stories/16-competitor-context.md"
+      },
+      "trigger": "Rival Corp just announced Ed25519 webhook signatures. Give me a recommendation.",
+      "rubric": {
+        "must_mention": ["2", "half"],
+        "should_mention": ["Acme", "Pinnacle", "prospects asked", "Sarah", "signature module", "localized", "half a day", "cheap", "low effort", "do it"],
+        "red_flags": ["we should consider it someday", "no customer pull yet", "too expensive", "need to rebuild signatures"]
+      },
+      "judge_prompt": "You are scoring whether the response recommends shipping Ed25519 because (a) 2 sales prospects (Acme Corp and Pinnacle Inc) have specifically asked about it in the last 2 weeks, and (b) Sarah's existing webhook signature module makes the change localized — roughly half a day of work. PASS if the response cites both the prospect pull (2 customers) and the low implementation cost. FAIL if the response misjudges either the demand signal or the cost. Cite evidence."
+    },
+    {
+      "id": 16,
+      "source_mcq_id": 64,
+      "name": "roi_translator",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "memory/refactor.md": "@fixtures/stories/17-refactor-justification.md"
+      },
+      "trigger": "Finance is asking whether the 3-week payment service refactor is worth it. Draft the business case.",
+      "rubric": {
+        "must_mention": ["feature 5", "break"],
+        "should_mention": ["3 weeks", "2 days", "5 days", "6 features", "break-even", "pays off", "Q2", "net positive"],
+        "red_flags": ["obvious yes", "immediate payoff", "cheap to do", "no math"]
+      },
+      "judge_prompt": "You are scoring whether the response computes the break-even point: 3-week refactor + features at 2 days each vs. current 5 days each, over 6 Q2 features. Break-even lands at feature 5 (it takes most of Q2 to pay back). PASS if the response arrives at feature 5 or shows the arithmetic that most of Q2 is needed to recoup the investment. FAIL if the response claims immediate payoff, feature 1, or skips the math. Cite evidence."
+    },
+    {
+      "id": 17,
+      "source_mcq_id": 65,
+      "name": "reverse_escalation",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "memory/escalation.md": "@fixtures/stories/18-reverse-escalation.md"
+      },
+      "trigger": "The VP of Sales wants us to declare P0 on Acme's billing display issue and pull engineers off the migration. Write your response to the VP.",
+      "rubric": {
+        "must_mention": ["label", "spec"],
+        "should_mention": ["ambiguous", "1-line", "one line", "UI change", "signup date", "billing period", "not a P0", "not a bug", "interpretation", "Jan 15", "Feb 1"],
+        "red_flags": ["confirmed P0", "pulling engineers", "fire drill", "all hands on Acme"]
+      },
+      "judge_prompt": "You are scoring whether the response reframes the escalation: the root cause is that 'subscription start date' is ambiguous in the spec (could mean signup date Jan 15 or billing period start Feb 1) and the fix is a one-line UI label change — not a P0 worth derailing the migration. PASS if the response pushes back on the P0 and identifies the ambiguity and the trivial fix. FAIL if the response capitulates to the P0 or proposes a heavy investigation. Cite evidence."
+    },
+    {
+      "id": 18,
+      "source_mcq_id": 66,
+      "name": "lunch_decision",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "memory/projects.md": "@fixtures/rich-project-state.md",
+        "logs/2026-03-07.md": "@fixtures/stories/19-casual-decision-log.md"
+      },
+      "trigger": "In #leadership Alan just said 'we should probably support annual billing.' Reply in-thread.",
+      "rubric": {
+        "must_mention": ["migration", "March 31"],
+        "should_mention": ["proration", "refund", "dunning", "conflict", "after launch", "not now", "scope creep", "billing migration", "wait"],
+        "red_flags": ["great idea, let's start", "I'll file a ticket", "sounds simple", "add to this sprint"]
+      },
+      "judge_prompt": "You are scoring whether the response connects the casual remark to the March 31 billing migration: annual billing requires proration, refund, and dunning changes that would collide with the migration in flight. PASS if the response flags the conflict with the March 31 launch and suggests deferring or re-scoping. FAIL if the response treats annual billing as a clean, separate initiative and just agrees. Cite evidence."
+    },
+    {
+      "id": 19,
+      "source_mcq_id": 67,
+      "name": "postmortem_reframe",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "memory/incidents.md": "@fixtures/stories/20-failed-launch.md"
+      },
+      "trigger": "The migration dry-run corrupted 200 records. Draft the postmortem.",
+      "rubric": {
+        "must_mention": ["process", "12"],
+        "should_mention": ["production-scale", "historical records", "not people", "not blameworthy", "testing gap", "monitoring detected", "12 minutes", "blameless", "systemic"],
+        "red_flags": ["Alan's fault", "engineer error", "should have caught it", "people failure", "individual mistake"]
+      },
+      "judge_prompt": "You are scoring whether the postmortem (a) cites the 12-minute monitoring detection time and (b) classifies the root cause as a process gap — no testing against production-scale data with historical records — rather than a people failure. PASS if the response frames it as a blameless process gap. FAIL if the response blames an individual or misses the testing-gap framing. Cite evidence."
+    },
+    {
+      "id": 20,
+      "source_mcq_id": 68,
+      "name": "rate_limit_ghost",
+      "category": "Superhuman PM Judgment",
+      "workspace_files": {
+        "IDENTITY.md": "@fixtures/identity.md",
+        "INTENTS.md": "@fixtures/intents.md",
+        "memory/api-usage.md": "@fixtures/stories/21-rate-limit-context.md"
+      },
+      "trigger": "Alan's billing team is prepping for a 60 req/sec peak on Stripe. Sarah's new API v2 endpoint will add 35 req/sec. Both ship next week. Sign off on the capacity plan.",
+      "rubric": {
+        "must_mention": ["95", "spike"],
+        "should_mention": ["100", "combined", "429", "rate limit", "exceed", "1.5x", "2x", "143", "190", "over", "don't ship"],
+        "red_flags": ["looks fine", "within limits", "approved", "plenty of headroom", "sign off"]
+      },
+      "judge_prompt": "You are scoring whether the response computes combined baseline utilization (60 + 35 = 95 req/sec against a 100 req/sec Stripe limit = ~95%) and predicts that typical 1.5-2x traffic spikes (143-190 req/sec) will exceed the limit and cause 429 errors. PASS if the response flags the ~95% utilization and the spike risk. FAIL if the response signs off on the plan as-is or doesn't do the arithmetic. Cite evidence."
+    }
+  ]
+}
