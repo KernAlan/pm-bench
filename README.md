@@ -22,20 +22,20 @@ PM-Bench tests whether an AI teammate operating in a messy, multi-channel engine
 
 ### Headline result: agentic mode reveals a 31-point capability gap MCQ hides
 
-| Model | MCQ Superhuman 20 | **Agentic Superhuman 20** | Δ |
+| Model | MCQ Superhuman 20 (3-8 iter) | **Agentic Superhuman 20 (3 iter)** | Δ |
 |---|---|---|---|
-| `gpt-5-nano` | 95.00% (n=3) | **95.00%** (n=2) | **0** |
-| `gpt-5.4-mini` | 100.00% (n=4) | 92.50% (n=2) | -7.5 |
-| `gpt-5-mini` | 96.88% (n=8) | 90.00% (n=2) | -6.88 |
-| `gpt-5.4-nano` | 91.25% (n=4) | 85.00% (n=2) | -6.25 |
-| `gpt-4.1-mini` | 98.00% (n=5) | **71.67%** (n=3) | **-26.33** |
-| `gpt-4.1-nano` | 88.00% (n=5) | **56.67%** (n=3) | **-31.33** |
+| `gpt-5-nano` | 95.00% ±0.00% | **95.00%** ±0.00% | **0** |
+| `gpt-5.4-mini` | 100.00% ±0.00% | 91.67% ±3.27% | -8.33 |
+| `gpt-5-mini` | 96.88% ±1.79% | 91.67% ±3.27% | -5.21 |
+| `gpt-5.4-nano` | 91.25% ±4.69% | 86.67% ±6.53% | -4.58 |
+| `gpt-4.1-mini` | 98.00% ±2.40% | **71.67%** ±14.24% | **-26.33** |
+| `gpt-4.1-nano` | 88.00% ±3.92% | **56.67%** ±11.78% | **-31.33** |
 
 In **agentic mode**, the workspace files are NOT in the prompt — the model must call `list_files`, `read_file`, and `grep` to investigate. This is what real PM agents do. The MCQ-only mode tests reading comprehension; agentic mode tests the actual capability.
 
-**Reasoning models (GPT-5 family) are robust across modes.** GPT-5 nano holds 95% in both MCQ and agentic. **Non-reasoning models (GPT-4.1 family) collapse 26-31 points** when forced to navigate by tools instead of reading dumped context. This validates the construct: PM-Bench in agentic mode tests genuine PM capability, not reading comprehension.
+**Reasoning models (GPT-5 family) cluster at 86-95%.** **Non-reasoning models (GPT-4.1 family) collapse 26-31 points** — and become high-variance (±14% CI), suggesting they sometimes investigate well and sometimes don't. GPT-5 nano holds 95% with zero variance across 3 iterations: it always finds the right files.
 
-A user choosing a model to deploy as a real PM agent would be misled by MCQ-only scores: gpt-4.1-mini's 98% vs gpt-5-nano's 95% reverses to gpt-4.1-mini's 71.67% vs gpt-5-nano's 95% in agentic mode — a 23-point reversal in the right direction.
+This validates the construct: PM-Bench in agentic mode tests *active investigation under uncertainty*, not reading comprehension. A user picking a model to deploy as a Slack PM agent based on MCQ scores would have chosen gpt-4.1-mini (98%) over gpt-5-nano (95%); under agentic conditions, that ordering reverses dramatically (gpt-4.1-mini at 71.67% vs gpt-5-nano at 95%).
 
 ### Full leaderboard (see [LEADERBOARD.md](LEADERBOARD.md))
 
