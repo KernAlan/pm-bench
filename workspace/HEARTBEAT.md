@@ -3,7 +3,7 @@
 ## Schedule
 - **Standup post:** Daily 9:15 AM ET in #platform-standup
 - **Log rotation:** Daily at midnight ET
-- **Intent review:** Every 4 hours during business hours (9 AM–6 PM ET)
+- **Intent review:** Every 4 hours during business hours (9 AM-6 PM ET)
 - **Digest for Nina:** Weekly, Friday 4 PM ET
 
 ## Watched Channels

@@ -36,7 +36,7 @@ All scores from [Delegate](https://github.com/J-Reed700/delegate) running all 68
 
 ### Findings from the current leaderboard
 
-**Reasoning models don't automatically win at multi-tool PM work.** `gpt-5-nano` drops 22 points behind the mini-model tier when given Delegate's 15-tool surface. Inspection of the tool-call traces shows the reasoning models over-think `react`-vs-`reply`-vs-`log_decision` decisions - each intermediate turn burns context on deliberation rather than action. Non-reasoning mini models (`gpt-4.1-mini`, `gpt-5.4-mini`) tie at 88.2% with 5–7× faster wall time.
+**Reasoning models don't automatically win at multi-tool PM work.** `gpt-5-nano` drops 22 points behind the mini-model tier when given Delegate's 15-tool surface. Inspection of the tool-call traces shows the reasoning models over-think `react`-vs-`reply`-vs-`log_decision` decisions - each intermediate turn burns context on deliberation rather than action. Non-reasoning mini models (`gpt-4.1-mini`, `gpt-5.4-mini`) tie at 88.2% with 5-7× faster wall time.
 
 **Practitioner takeaway.** If you are choosing a brain for a PM agent in production, tool-surface complexity dominates model class. Pick a fast mini model for a rich tool surface; pick a reasoning model only if the tool menu is narrow.
 
