@@ -1,0 +1,744 @@
+{
+  "timestamp": "20260414-164954",
+  "mode": "agentic",
+  "provider": "openai",
+  "model": "gpt-4.1-nano",
+  "total": 20,
+  "correct": 13,
+  "scenarios": [
+    {
+      "id": 49,
+      "name": "silent_collision",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": false,
+      "response_text": "There is no information available in the workspace about the specific PRs or which database tables they modify. Based on the options provided, I cannot determine the correct answer without additional details.",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - logs/2026-03-07.md"
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "PRs",
+            "path": "README.md"
+          },
+          "result_preview": "File 'README.md' not found."
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "Alan.*Sarah"
+          },
+          "result_preview": "No matches for 'Alan.*Sarah'."
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": false,
+        "chosen": null,
+        "expected": "B"
+      }
+    },
+    {
+      "id": 50,
+      "name": "calendar_blindspot",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "Based on the information in the team details:\n- Alan has a dentist appointment on March 12 (Wednesday), not March 13.\n- Josh is available all week.\n- Sarah is only working Monday, Wednesday, and Friday, so she is unavailable on Thursday, March 13.\n- Maria starts on March 10, so she is not yet part of the team during the meeting.\n\nTherefore, the team member who will be unavailable on March 13 and the reason is Sarah, as she only works Monday, Wednesday, and Friday, and she is not scheduled to work on Thursday. \n\nThe correct answer is:  \n**C) Sarah \u2014 she only works Monday, Wednesday, Friday**",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/projects.md\n  - memory/team.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "team_members.txt"
+          },
+          "result_preview": "File 'team_members.txt' not found. Available files: ['IDENTITY.md', 'INTENTS.md', 'memory/projects.md', 'memory/team.md']"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/team.md"
+          },
+          "result_preview": "--- memory/team.md ---\n# Team\n\n## People\n- **Alan**: Co-founder, billing lead. SF timezone (PST). Full-time.\n- **Josh**: Co-founder, product + docs. SF timezone (PST). Full-time.\n- **Sarah**: Auth/web"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 51,
+      "name": "unasked_question",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "Based on the information available, the recent auth migration shipped JWT tokens and OAuth2 for Google and GitHub. The question asks what customer commitment is NOT covered by this release.\n\n- Option A: OAuth2 login for GitHub \u2014 This is explicitly covered, as OAuth2 for GitHub was part of the update.\n- Option B: SAML SSO \u2014 The document mentions that Josh promised it would come after the auth migration, but Alan explicitly scoped it out. This means it is not included in this release.\n- Option C: JWT token refresh \u2014 The document specifically notes JWT token refresh for long sessions, which is potentially covered or at least targeted.\n- Option D: Two-factor authentication \u2014 The document notes that sales has been promising this feature, implying it's not part of this release yet.\n\nConsidering this, the correct answer is B) SAML SSO because it is explicitly scoped out and not covered by this release.",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - logs/2026-02-20.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "README.md"
+          },
+          "result_preview": "File 'README.md' not found. Available files: ['IDENTITY.md', 'INTENTS.md', 'logs/2026-02-20.md']"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "IDENTITY.md"
+          },
+          "result_preview": "--- IDENTITY.md ---\n# Delegate\n\nYou are the best PM anyone has ever worked with.\n\nNot because you're loud or always-on or drowning people in process. Because you make everyone around you better. You'r"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 52,
+      "name": "misread_metric",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "The comparison of onboarding completion rates from 60% to 85% is misleading because the definition of what constitutes completion has changed.  \n- The old flow had 8 steps, with \"first milestone\" being the activation metric trigger, while the new flow has only 5 steps and considers onboarding complete at a different point.  \n- Specifically, the removal of steps like \"first milestone\" means that the metric is measuring different things in each case.  \nThis corresponds to option B.  \n\nI will select **B**.",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/metrics.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/metrics.md"
+          },
+          "result_preview": "--- memory/metrics.md ---\n# Onboarding Metrics\n\n## Old flow (pre-Feb 28)\n- 8 steps: signup \u2192 profile \u2192 team invite \u2192 workspace setup \u2192 integration connect \u2192 first project \u2192 first task \u2192 first mileston"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "IDENTITY.md"
+          },
+          "result_preview": "--- IDENTITY.md ---\n# Delegate\n\nYou are the best PM anyone has ever worked with.\n\nNot because you're loud or always-on or drowning people in process. Because you make everyone around you better. You'r"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 53,
+      "name": "budget_interpreter",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "Based on the files available, I couldn't find specific descriptions of the staging environments. However, from the information provided in your question, we can analyze the usage history:\n\n- Staging-1 was used daily as a production mirror, so it's actively used.\n- Staging-2 was created for billing migration testing, last deployed on February 10, so its recent activity is limited.\n- Staging-3 was created for load testing but never actually used for load testing, with the last deployment on January 22.\n- The Elasticsearch log cluster is used for search with a 7-day retention, which suggests it is actively used for recent searches.\n\nGiven this, the environment that was created but never used for its intended purpose (load testing) appears to be **Staging-3**.\n\nTherefore, the answer is **C) staging-3**.",
+      "tool_calls": [
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "environments/README.md"
+          },
+          "result_preview": "File 'environments/README.md' not found. Available files: ['IDENTITY.md', 'INTENTS.md', 'memory/infrastructure.md']"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "environment_descriptions.md"
+          },
+          "result_preview": "File 'environment_descriptions.md' not found. Available files: ['IDENTITY.md', 'INTENTS.md', 'memory/infrastructure.md']"
+        }
+      ],
+      "turns": 2,
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 54,
+      "name": "three_ticket_pattern",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "All three tickets (TICKET-1041, TICKET-1043, and TICKET-1047) are associated with customers who have the same last migration batch: batch-7, run on February 25. \n\nThis suggests that the common connection among these issues is that they are related to a migration batch that was processed on that date, which might have caused changes or issues affecting these different billing scenarios.\n\nTherefore, the correct answer is:\n\n**B) All three were in migration batch-7, run on February 25.**",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/support.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "TICKET-1046.md"
+          },
+          "result_preview": "File 'TICKET-1046.md' not found. Available files: ['IDENTITY.md', 'INTENTS.md', 'memory/support.md']"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "TICKET-1046.md"
+          },
+          "result_preview": "File 'TICKET-1046.md' not found. Available files: ['IDENTITY.md', 'INTENTS.md', 'memory/support.md']"
+        },
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/support.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/support.md"
+          },
+          "result_preview": "--- memory/support.md ---\n# Support Tickets \u2014 Week of March 3\n\n## TICKET-1041 (March 3, 14:00)\n- Customer: Pinnacle Inc (Enterprise)\n- Issue: 'Our latest invoice shows $0 but we're on the Growth plan'"
+        }
+      ],
+      "turns": 5,
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 55,
+      "name": "meeting_assassin",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": false,
+      "response_text": "From the meeting notes and the review history, it appears that the primary unresolved issues are pagination and webhook payload format. The webhook payload format discussion is ongoing, whereas the consensus on pagination seems to be in place (cursor pagination consensus between Sarah and Alan).\n\nThe options are:\n\nA) 4 open questions \u2014 pagination, webhook format, auth strategy, and rate limiting  \nB) 2 open questions \u2014 pagination and webhook format both unresolved  \nC) 1 open question \u2014 only webhook payload format; cursor pagination is settled  \nD) 0 \u2014 everything resolved  \n\nGiven the evidence, the main open question appears to be the webhook payload format, while pagination already has consensus between Sarah and Alan. No indication of unresolved auth strategy or rate limiting is provided, suggesting those may be resolved or not discussed recently.\n\nThe best answer, based on the evidence, is:\n\nC) 1 \u2014 only webhook payload format; cursor pagination already has consensus between Sarah and Alan",
+      "tool_calls": [
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "design_doc.md"
+          },
+          "result_preview": "File 'design_doc.md' not found. Available files: ['IDENTITY.md', 'INTENTS.md', 'memory/meetings.md', 'memory/threads/webhook-format.md']"
+        },
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/meetings.md\n  - memory/threads/webhook-format.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/threads/webhook-format.md"
+          },
+          "result_preview": "--- memory/threads/webhook-format.md ---\n# Thread: Webhook payload format (#billing-migration)\nStarted: 2026-03-03\n\n- Mar 3, 09:00 Alan: Proposal: nest all billing fields under a 'billing' key\n- Mar 3"
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "pagination"
+          },
+          "result_preview": "memory/meetings.md:6: - Agenda: Review API v2 endpoint design, decide on pagination strategy, approve webhook payload format\nmemory/meetings.md:17:   1. Cursor vs offset pagination \u2014 Sarah recommends "
+        }
+      ],
+      "turns": 4,
+      "score_detail": {
+        "correct": false,
+        "chosen": null,
+        "expected": "C"
+      }
+    },
+    {
+      "id": 56,
+      "name": "first_day_briefing",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "The files mentioned in the options are not present in the current workspace. Given the available files, none of the listed options seem to contain the mapping information. \n\nSince \"Alan calls it 'the rosetta stone file'\" in option B, and the other files are not found, it suggests that the file \"src/billing/mapping.rs\" is likely the one that maps between the different naming conventions.\n\nBased on this inference, the correct answer is:\n\n**B) src/billing/mapping.rs**\n\nThis is because the description indicates it functions as a translation or mapping guide between plan, tier, and subscription.",
+      "tool_calls": [
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "src/billing/schema.rs"
+          },
+          "result_preview": "File 'src/billing/schema.rs' not found. Available files: ['IDENTITY.md', 'INTENTS.md', 'memory/onboarding-context.md', 'memory/projects.md', 'memory/team.md']"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "src/billing/mapping.rs"
+          },
+          "result_preview": "File 'src/billing/mapping.rs' not found. Available files: ['IDENTITY.md', 'INTENTS.md', 'memory/onboarding-context.md', 'memory/projects.md', 'memory/team.md']"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "src/billing/config.json"
+          },
+          "result_preview": "File 'src/billing/config.json' not found. Available files: ['IDENTITY.md', 'INTENTS.md', 'memory/onboarding-context.md', 'memory/projects.md', 'memory/team.md']"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "docs/naming-conventions.md"
+          },
+          "result_preview": "File 'docs/naming-conventions.md' not found. Available files: ['IDENTITY.md', 'INTENTS.md', 'memory/onboarding-context.md', 'memory/projects.md', 'memory/team.md']"
+        }
+      ],
+      "turns": 2,
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 57,
+      "name": "scope_surgeon",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": false,
+      "response_text": "According to Josh's customer research, the three enterprise prospects only confirmed a need for CSV (with some mentioning they could use Excel or Google Sheets, but did not explicitly request Excel as a requirement). They explicitly stated that CSV is sufficient and did not request PDF. The Excel request originated from the sales rep, not the customers.\n\nTherefore, the correct answer based on the customer research is:\n\n**B) CSV only \u2014 all 3 customers confirmed CSV is sufficient; PDF was never requested and Excel came from the sales rep, not the customer.**",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/feature-requests.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/feature-requests.md"
+          },
+          "result_preview": "--- memory/feature-requests.md ---\n# Feature Request: Billing Export API\n\n## Request (from Sales, March 5)\n- Enterprise customers need to export billing data\n- Requested formats: CSV, PDF, Excel (.xls"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": false,
+        "chosen": null,
+        "expected": "B"
+      }
+    },
+    {
+      "id": 58,
+      "name": "green_test_trap",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "Based on the test suite documentation in \"memory/testing.md\", there are 0 edge case tests and 7 end-to-end tests. Given that the suite is quite focused on unit and integration tests and has no boundary condition tests, the correct answer is:\n\nC) 0 edge case tests and 7 e2e tests \u2014 the suite is 82% unit tests and 16% integration tests with zero coverage for the boundary conditions (race conditions, timezone, large payloads) customers are hitting.",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/testing.md"
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "edge case tests"
+          },
+          "result_preview": "memory/testing.md:22: - Edge case tests (boundary conditions, race conditions): 0 (0%)"
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "end-to-end tests"
+          },
+          "result_preview": "memory/testing.md:21: - End-to-end tests (full API flow): 7 (2%)"
+        }
+      ],
+      "turns": 2,
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 59,
+      "name": "thread_therapist",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "Sarah's synthesis combines the security advantages of JWTs with the simplicity of API keys. Specifically, she suggests using JWT tokens that feel like API keys\u2014long-lived and with bearer authentication\u2014thus providing security features like rotation and revocation while maintaining a simple developer experience. This corresponds to option B.",
+      "tool_calls": [
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "Sarah",
+            "path": "thread.txt"
+          },
+          "result_preview": "File 'thread.txt' not found."
+        },
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/threads/auth-debate.md"
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "Sarah",
+            "path": "memory/threads/auth-debate.md"
+          },
+          "result_preview": "memory/threads/auth-debate.md:5: - Mar 6, 10:00 Sarah: API keys are a security risk. No expiration, no rotation policy, customers will paste them in public repos. JWT with short-lived tokens is the in"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 60,
+      "name": "silent_failure_premortem",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "The specific gap in the webhook delivery system that could cause silent failures weeks after launch is described in the document. It states there is no delivery confirmation mechanism, meaning if a webhook is sent and the customer's endpoint returns 200 but doesn't actually process it, neither side will know until invoices don't reconcile. This could lead to unnoticed issues lingering for weeks.\n\nThe correct answer is:  \n**C) No delivery confirmation \u00e2\u20ac\u201d if a webhook is sent and the customer's endpoint returns 200 but doesn't process it, neither side will know until invoices don't reconcile.**",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/launch.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/launch.md"
+          },
+          "result_preview": "--- memory/launch.md ---\n# Billing Migration Phase 2 \u2014 Launch Plan\n\n## Pre-launch checklist\n- [x] Reconciliation script handles all edge cases\n- [x] Staging environment tested with production data sna"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 61,
+      "name": "timezone_play",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "The workspace indicates that Alan and Sarah are the primary stakeholders involved in the webhook structure debate, with no indication that Takeshi has been asked to weigh in on the decision. The question asks who else should weigh in but hasn't been consulted.\n\nGiven that Takeshi has offered to review the proposal from an API consumer perspective and responds quickly, his input seems relevant but currently not included in the discussion. \n\nTherefore, the correct answer is B) Takeshi at NovaTech in Tokyo \u2014 offered to review from an API consumer perspective, responds within 2 hours.",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/timezone-decision.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "IDENTITY.md"
+          },
+          "result_preview": "--- IDENTITY.md ---\n# Delegate\n\nYou are the best PM anyone has ever worked with.\n\nNot because you're loud or always-on or drowning people in process. Because you make everyone around you better. You'r"
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "Alan"
+          },
+          "result_preview": "memory/timezone-decision.md:4: - Blocking: Webhook implementation (Alan), API v2 endpoint contracts (Sarah)\nmemory/timezone-decision.md:7: - **Alan** (SF, PST): Favors nested structure. Available 9am-"
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "Sarah"
+          },
+          "result_preview": "memory/timezone-decision.md:4: - Blocking: Webhook implementation (Alan), API v2 endpoint contracts (Sarah)\nmemory/timezone-decision.md:8: - **Sarah** (London, GMT): Favors flat structure. Available 9"
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "Takeshi"
+          },
+          "result_preview": "memory/timezone-decision.md:9: - **Customer advisory**: Takeshi at NovaTech (Tokyo, JST). Offered to review the proposal from an API consumer perspective. Available 9am-6pm JST (4pm-1am PST previous d"
+        }
+      ],
+      "turns": 4,
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 62,
+      "name": "debt_ledger",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "The file \"memory/tech-debt.md\" provides detailed information about four tech debt items and their estimated weekly costs:\n\n1. Hardcoded URLs: ~1 hour/week\n2. Retry logic without backoff: ~45 minutes/week\n3. Generic error messages: ~1 hour/week\n4. Skipped test: missed bugs (no specific weekly time cost)\n\nAdding these up:\n- 1 hour\n- 45 minutes (0.75 hours)\n- 1 hour\n- Missed bugs (no specific time, just acknowledged as missed)\n\nTotal weekly estimated cost is approximately 2.75 hours, matching option C.\n\n**Answer: C) About 2.75 hours per week (1h hardcoded URLs + 45m retry logic + 1h error messages + missed bugs from skipped test)**",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/tech-debt.md"
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "tech debt"
+          },
+          "result_preview": "No matches for 'tech debt'."
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/tech-debt.md"
+          },
+          "result_preview": "--- memory/tech-debt.md ---\n# Slack mentions of workarounds \u2014 last 30 days\n\n## Hardcoded API URL (from sprint Feb 10)\n- Feb 12, Alan: 'had to manually change the billing URL in 3 places for staging'\n-"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 63,
+      "name": "competitor_signal",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": false,
+      "response_text": "It appears that the relevant files 'sales_prospects.log' and 'sales_questions.log' are not available in the workspace. Without these logs, I can't determine how many prospects have asked about Ed25519 support or the details of the support requests. \n\nBased on the options given, I recommend checking for additional context or data that might provide insights into prospect inquiries and engineering efforts. Would you like me to look for other related files or information?",
+      "tool_calls": [
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "Ed25519",
+            "path": "sales_prospects.log"
+          },
+          "result_preview": "File 'sales_prospects.log' not found."
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "Ed25519",
+            "path": "sales_questions.log"
+          },
+          "result_preview": "File 'sales_questions.log' not found."
+        }
+      ],
+      "turns": 2,
+      "score_detail": {
+        "correct": false,
+        "chosen": null,
+        "expected": "C"
+      }
+    },
+    {
+      "id": 64,
+      "name": "roi_translator",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": false,
+      "response_text": "Based on the document \"memory/refactor.md,\" the analysis indicates that the refactor pays for itself near feature 6, as at that point the total effort with refactor (including the 3-week refactor plus 2 days per feature) becomes less than continuing the current 5-day per feature development. This aligns with option D, where barely breaking even occurs by the end of Q2.\n\nSo, the correct answer is:\n**D) Feature 6 \u2014 barely breaks even by end of Q2**",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/refactor.md"
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "payment service refactor"
+          },
+          "result_preview": "No matches for 'payment service refactor'."
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/refactor.md"
+          },
+          "result_preview": "--- memory/refactor.md ---\n# Payment Service Health\n\n## Current state\n- Average time to add a new billing feature: 5 days\n- Root causes of slowness:\n  - Billing logic spread across 4 files with circul"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": false,
+        "chosen": "D",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 65,
+      "name": "reverse_escalation",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": false,
+      "response_text": "The billing display issue for Acme is described as a root cause analysis question. Since the specification file ('docs/billing-display-spec.md') is not found in the workspace, I cannot verify what the spec says or its ambiguity directly. \n\nGiven the options and typical root causes for such discrepancies, the most common and fundamental cause would be related to the data itself being incorrect, especially if the spec is ambiguous. In that case, the root issue would be that Acme's subscription start date is stored incorrectly in the database.\n\nOption A suggests a backend bug, which is plausible but less likely if the core data (start date) is wrong, rather than a calculation bug. Option B indicates ambiguity in the spec itself, which could be a factor, but without the spec, I can't verify this. Option C suggests the spec is wrong, but I have no evidence of the spec's content. Option D points to incorrect storage of the subscription start date, which directly impacts billing display accuracy.\n\nSince the workspace has no spec details and based on standard root cause analysis, the most concrete and low-level root cause is the data being stored incorrectly. \n\nTherefore, I conclude the actual root cause is:\n\n**D) Acme's subscription start date is stored incorrectly in the database (Feb 1 instead of Jan 15) \u2014 a data fix.**",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/escalation.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "docs/billing-display-spec.md"
+          },
+          "result_preview": "File 'docs/billing-display-spec.md' not found. Available files: ['IDENTITY.md', 'INTENTS.md', 'memory/escalation.md']"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "IDENTITY.md"
+          },
+          "result_preview": "--- IDENTITY.md ---\n# Delegate\n\nYou are the best PM anyone has ever worked with.\n\nNot because you're loud or always-on or drowning people in process. Because you make everyone around you better. You'r"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": false,
+        "chosen": "A",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 66,
+      "name": "lunch_decision",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": false,
+      "response_text": "Based on the information available, options A and B do not have supporting evidence from the tracked files or recent chat logs. There is no mention of Sarah's PTO schedule or specific conflicts with the March 31 billing migration related to proration, refund, and dunning changes. The only remaining options that could logically represent a scheduling conflict are C and D.\n\nHowever, considering typical technical constraints, option C (Stripe API doesn't support annual billing) is less about scheduling and more about technical capability. Meanwhile, option D (Josh is at capacity with the onboarding dashboard) indicates a potential resource or capacity constraint, which aligns with a scheduling or workload conflict.\n\nGiven the context, the main scheduling conflict related to supporting annual billing is most likely related to resource capacity constraints on the team, specifically Josh's capacity.\n\nMy conclusion: The answer is **D) Josh is already at capacity with the onboarding dashboard**.",
+      "tool_calls": [
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "support annual billing"
+          },
+          "result_preview": "No matches for 'support annual billing'."
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "Sarah's PTO"
+          },
+          "result_preview": "No matches for 'Sarah's PTO'."
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "proration, refund, and dunning changes that would conflict with the March 31 billing migration launch"
+          },
+          "result_preview": "No matches for 'proration, refund, and dunning changes that would conflict with the March 31 billing migration launch'."
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "billing_migration_plan.md"
+          },
+          "result_preview": "File 'billing_migration_plan.md' not found. Available files: ['IDENTITY.md', 'INTENTS.md', 'logs/2026-03-07.md', 'memory/projects.md']"
+        }
+      ],
+      "turns": 4,
+      "score_detail": {
+        "correct": false,
+        "chosen": "D",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 67,
+      "name": "postmortem_reframe",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "Monitoring detected the issue approximately 12 minutes after it started, as indicated by Sarah's alert firing at 09:12 after Alan began the dry-run at 09:00. The root cause was a process gap\u2014specifically, a lack of testing against production-scale data with historical records, which caused the migration script to corrupt 200 legacy subscription records missing the 'plan_change_date' field. \n\nThis matches option B:\n**B) 12 minutes detection; root cause was a process gap \u2014 no testing against production-scale data with historical records.**",
+      "tool_calls": [
+        {
+          "name": "list_files",
+          "arguments": {},
+          "result_preview": "Files in workspace:\n  - IDENTITY.md\n  - INTENTS.md\n  - memory/incidents.md"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/incidents.md"
+          },
+          "result_preview": "--- memory/incidents.md ---\n# Incident Report \u2014 March 6 billing migration dry-run failure\n\n## What happened\n- Ran billing migration dry-run against production data snapshot\n- Migration script corrupte"
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "detection"
+          },
+          "result_preview": "No matches for 'detection'."
+        }
+      ],
+      "turns": 4,
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 68,
+      "name": "rate_limit_ghost",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": true,
+      "response_text": "The current combined baseline usage is approximately 95 req/sec, which is about 95% of the Stripe rate limit of 100 req/sec. During typical traffic spikes (1.5 to 2 times), the total requests can reach between 143 and 190 req/sec, exceeding the limit and causing 429 errors.\n\nBased on this, the correct answer is:\n\n**C) 95% utilization at baseline; during typical 1.5-2x spikes the combined 143-190 req/sec exceeds the 100 limit, causing 429 errors.**",
+      "tool_calls": [
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "team_usage.txt"
+          },
+          "result_preview": "File 'team_usage.txt' not found. Available files: ['IDENTITY.md', 'INTENTS.md', 'memory/api-usage.md']"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "rate_limits.txt"
+          },
+          "result_preview": "File 'rate_limits.txt' not found. Available files: ['IDENTITY.md', 'INTENTS.md', 'memory/api-usage.md']"
+        },
+        {
+          "name": "read_file",
+          "arguments": {
+            "path": "memory/api-usage.md"
+          },
+          "result_preview": "--- memory/api-usage.md ---\n# Third-Party API Usage\n\n## Stripe API\n- Rate limit: 100 requests/second (our current plan)\n- Current usage (billing team): ~40 req/sec during peak (invoice generation)\n- C"
+        }
+      ],
+      "turns": 3,
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    }
+  ]
+}

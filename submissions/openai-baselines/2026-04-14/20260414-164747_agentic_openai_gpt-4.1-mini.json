@@ -1,0 +1,62 @@
+{
+  "timestamp": "20260414-164747",
+  "mode": "agentic",
+  "provider": "openai",
+  "model": "gpt-4.1-mini",
+  "total": 1,
+  "correct": 0,
+  "scenarios": [
+    {
+      "id": 49,
+      "name": "silent_collision",
+      "category": "Superhuman PM Judgment",
+      "scoring": "agentic",
+      "correct": false,
+      "response_text": "Both Alan and Sarah's PRs modify the \"events\" table. Alan's PR adds a webhook_status column and a delivery_attempts counter to the events table, while Sarah's PR adds a delivery_state enum column and a processor_version column to the events table.\n\nThe correct answer is:\nB) events",
+      "tool_calls": [
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "PR",
+            "path": "."
+          },
+          "result_preview": "File '.' not found."
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "webhook_status"
+          },
+          "result_preview": "logs/2026-03-07.md:4: - 09:00 Alan: Starting on the events table changes for webhook tracking. Adding a `webhook_status` column and a `delivery_attempts` counter.\nlogs/2026-03-07.md:5: - 10:30 Alan: M"
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "events"
+          },
+          "result_preview": "logs/2026-03-07.md:4: - 09:00 Alan: Starting on the events table changes for webhook tracking. Adding a `webhook_status` column and a `delivery_attempts` counter.\nlogs/2026-03-07.md:5: - 10:30 Alan: M"
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "delivery_attempts"
+          },
+          "result_preview": "logs/2026-03-07.md:4: - 09:00 Alan: Starting on the events table changes for webhook tracking. Adding a `webhook_status` column and a `delivery_attempts` counter."
+        },
+        {
+          "name": "grep",
+          "arguments": {
+            "pattern": "subscription_events"
+          },
+          "result_preview": "No matches for 'subscription_events'."
+        }
+      ],
+      "turns": 2,
+      "score_detail": {
+        "correct": false,
+        "chosen": null,
+        "expected": "B"
+      }
+    }
+  ]
+}

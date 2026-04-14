@@ -323,6 +323,35 @@ The opposite case is gpt-4.1-nano: 88% MCQ, 80% open-ended. Here the MCQ format 
 
 **Implication for validity.** MCQ and open-ended modes are measuring overlapping but distinct capabilities. PM-Bench should report both, not collapse to one. The open-ended mode is closer to the construct (unprompted PM noticing) but more expensive to score. The MCQ mode is cheaper and more deterministic but introduces both extraction-format noise and scaffolding bias. We recommend running both modes for any serious model evaluation and reporting both.
 
+### 5.6 Agentic Mode: Tool-Use Evaluation
+
+PM-Bench v1.0 originally evaluated models in a *static-context* mode: the entire workspace dumped into the system prompt, model produces an answer. This tests reading comprehension. A real PM agent must *navigate* the workspace through tools (read_file, list_files, grep) — deciding what to look at, when, and why — much closer to how Terminal-Bench [1] and METR's RE-Bench [12] evaluate agentic capability. EQ-Bench is the one major reference that does not, and is the format static PM-Bench most resembled.
+
+We added a third evaluation mode (`--mode agentic`) where:
+1. The workspace is hidden from the prompt.
+2. The model receives three tools: `list_files`, `read_file(path)`, `grep(pattern, path?)`.
+3. The model investigates over multiple turns (max 10), then produces an MCQ answer.
+4. We score the final answer the same way MCQ mode does, and record per-scenario tool-call counts.
+
+**Table 8: Agentic vs MCQ — Superhuman 20 (single iteration).**
+
+| Model | MCQ | Agentic | Δ |
+|---|---|---|---|
+| gpt-5.4-mini | 100% | 95% | -5 |
+| gpt-4.1-mini | 98% | **70%** | **-28** |
+| gpt-5-mini | 96.88% | 90% | -6.88 |
+| gpt-5-nano | 95% | **95%** | **0** |
+| gpt-5.4-nano | 91.25% | 80% | -11.25 |
+| gpt-4.1-nano | 88% | **65%** | **-23** |
+
+**Headline finding: agentic mode reveals a 25-point capability gap that MCQ mode hides for non-reasoning models.** The two GPT-4.1 family models (4.1-nano, 4.1-mini) drop 23-28 points when forced to navigate via tools. The four GPT-5 family models (which are reasoning models) drop 0-11 points — substantially less. GPT-5 nano, the smallest model in the suite, ranks tied for #1 in agentic mode (95%), tied with the much larger gpt-5.4-mini.
+
+**Why this matters.** Static-context benchmarks systematically inflate the apparent PM capability of non-reasoning models. A user choosing a model to deploy as a real PM agent — where the agent must actively investigate Slack, Jira, docs, etc. — would dramatically overestimate gpt-4.1-mini if relying on MCQ-only PM-Bench scores. Agentic mode is the more validity-aligned measurement.
+
+**Why GPT-5 holds up.** Anecdotally inspecting tool-call traces, GPT-5 family models tend to call `grep` strategically (search for specific tables, names, dates) and use the results to focus their `read_file` calls. GPT-4.1 models tend to either read files exhaustively or guess without enough investigation. The reasoning-model architecture appears to confer better search strategy.
+
+We recommend agentic mode as the headline number for PM-Bench going forward, with MCQ retained as a cheaper screening test.
+
 ### 5.6 Context-Assembly Experiment Results
 
 In progress. The five experiments require Anthropic models for the original retrieval-bias and intent-lifecycle hypotheses, which use Claude as the reference model. Pending.

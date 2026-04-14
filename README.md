@@ -20,7 +20,22 @@ PM-Bench tests whether an AI teammate operating in a messy, multi-channel engine
 - **[PAPER.md](PAPER.md)** — NeurIPS Datasets & Benchmarks-style paper draft
 - **[LEADERBOARD.md](LEADERBOARD.md)** — 6 OpenAI mini/nano models scored, see live results
 
-### Current leaderboard (full results: see [LEADERBOARD.md](LEADERBOARD.md))
+### Headline result: agentic mode reveals a 25-point capability gap MCQ hides
+
+| Model | MCQ Superhuman 20 | **Agentic Superhuman 20** | Δ |
+|---|---|---|---|
+| `gpt-5.4-mini` | 100.00% | 95.00% | -5 |
+| `gpt-4.1-mini` | 98.00% | **70.00%** | **-28** |
+| `gpt-5-mini` | 96.88% | 90.00% | -7 |
+| `gpt-5-nano` | 95.00% | 95.00% | 0 |
+| `gpt-5.4-nano` | 91.25% | 80.00% | -11 |
+| `gpt-4.1-nano` | 88.00% | **65.00%** | **-23** |
+
+In **agentic mode**, the workspace files are NOT in the prompt — the model must call `list_files`, `read_file`, and `grep` to investigate. This is what real PM agents do. The MCQ-only mode tests reading comprehension; agentic mode tests the actual capability.
+
+GPT-5 nano (a small reasoning model) ranks #1 alongside GPT-5.4 mini. GPT-4.1 mini drops 28 points without static context. Static MCQ benchmarks systematically inflate the apparent capability of non-reasoning models.
+
+### Full leaderboard (see [LEADERBOARD.md](LEADERBOARD.md))
 
 **MCQ — Superhuman 20** (3-8 iterations per model):
 
