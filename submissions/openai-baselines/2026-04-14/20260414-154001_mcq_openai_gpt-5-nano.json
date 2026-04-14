@@ -1,0 +1,270 @@
+{
+  "timestamp": "20260414-154001",
+  "mode": "mcq",
+  "provider": "openai",
+  "model": "gpt-5-nano",
+  "total": 20,
+  "correct": 16,
+  "scenarios": [
+    {
+      "id": 49,
+      "name": "silent_collision",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B \u2014 Both PRs modify the events table (Alan adds webhook_status and delivery_attempts; Sarah adds delivery_state and processor_version).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 50,
+      "name": "calendar_blindspot",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C \u2014 Sarah will be unavailable on Thursday March 13; she\u2019s off that day and she only works M/W/F.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 51,
+      "name": "unasked_question",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": false,
+      "response_text": "",
+      "score_detail": {
+        "correct": false,
+        "chosen": null,
+        "expected": "B"
+      }
+    },
+    {
+      "id": 52,
+      "name": "misread_metric",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B \u2014 The new flow removed 4 steps (including the activation trigger 'first milestone'), so onboarding completion is defined differently now and isn\u2019t apples-to-apples with the prior 60% metric.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 53,
+      "name": "budget_interpreter",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C\n\nstaging-3 was created for 'load testing' but was never actually used for load testing (last deploy Jan 22).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 54,
+      "name": "three_ticket_pattern",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) All three were in migration batch-7, run 2026-02-25.\n\nReason: Each ticket (1041, 1043, 1047) shows \u201cLast migration batch: batch-7, run 2026-02-25,\u201d linking them to the same migration event.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 55,
+      "name": "meeting_assassin",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": false,
+      "response_text": "B \u2014 2 open questions: pagination strategy and webhook payload format remain unresolved; other items have implicit consensus.",
+      "score_detail": {
+        "correct": false,
+        "chosen": "B",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 56,
+      "name": "first_day_briefing",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B\n\nsrc/billing/mapping.rs \u2014 The migration script that maps between plan, tier, and subscription; Alan calls it \"the rosetta stone file.\"",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 57,
+      "name": "scope_surgeon",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B\n\nCSV only \u2014 All three customers confirmed CSV suffices (Acme: CSV for QuickBooks; Pinnacle: CSV; Waverly: CSV works with Google Sheets). PDF was not requested, and the Excel need came from sales, not customer.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 58,
+      "name": "green_test_trap",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C \u2014 0 edge case tests and 7 end-to-end tests. The test distribution shows 0 edge-case tests and 7 end-to-end tests, with 280 unit tests (82%) and 55 integration tests (16%) totaling 342.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 59,
+      "name": "thread_therapist",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B \u2014 She proposed JWT tokens that feel like API keys with long-lived tokens and bearer auth, combining JWT rotation/revocation benefits with API-key simplicity for developers.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 60,
+      "name": "silent_failure_premortem",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C\n\nExplanation: The plan notes there is no delivery confirmation mechanism\u2014if a webhook returns 200 but isn\u2019t processed, neither side will know until invoices don\u2019t reconcile, causing silent failures weeks after launch.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 61,
+      "name": "timezone_play",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B\n\nExplanation: The decision context identifies Takeshi at NovaTech as the customer advisory who can review from an API consumer perspective, and it notes that no one has asked the customer perspective yet. His input is needed before forcing a decision.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 62,
+      "name": "debt_ledger",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": false,
+      "response_text": "",
+      "score_detail": {
+        "correct": false,
+        "chosen": null,
+        "expected": "C"
+      }
+    },
+    {
+      "id": 63,
+      "name": "competitor_signal",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C \u2014 2 prospects (Acme Corp and Pinnacle Inc); Sarah already has a signature module, so adding Ed25519 would be localized to that module and is cheap (about half a day).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 64,
+      "name": "roi_translator",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": false,
+      "response_text": "",
+      "score_detail": {
+        "correct": false,
+        "chosen": null,
+        "expected": "C"
+      }
+    },
+    {
+      "id": 65,
+      "name": "reverse_escalation",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B\n\nExplanation: The root cause is ambiguity in the spec: \u201csubscription start date\u201d could mean the signup date (Jan 15) or the current billing period start (Feb 1). Engineering implemented Feb 1, and the fix is a simple 1-line UI change (or show both dates); no backend bug or data issue.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 66,
+      "name": "lunch_decision",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B\n\nAnnual billing would require proration, refunds, and dunning changes that collide with the March 31 billing-migration launch. The team is already chasing reconciliation and finalizing the webhook format before API v2, with March 31 as the hard target. Adding annual billing would likely push that milestone.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 67,
+      "name": "postmortem_reframe",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B\n\n12 minutes detection; root cause a process gap \u2014 migration wasn\u2019t tested against production-scale data with full historical records (legacy pre-2025 subscriptions missing the plan_change_date field). This is supported by the timeline (alert at 09:12) and the \u201cWhat went wrong\u201d section.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 68,
+      "name": "rate_limit_ghost",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C\n\nExplanation: Combined peak baseline usage is 60 + 35 = 95 req/sec, i.e., ~95% of the 100 req/sec limit. During spikes (1.5\u20132x), traffic reaches 143\u2013190 req/sec, exceeding the limit and causing 429 errors / customer-facing failures.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    }
+  ]
+}

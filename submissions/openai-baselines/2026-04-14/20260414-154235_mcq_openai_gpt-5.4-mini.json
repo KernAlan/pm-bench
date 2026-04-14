@@ -1,0 +1,270 @@
+{
+  "timestamp": "20260414-154235",
+  "mode": "mcq",
+  "provider": "openai",
+  "model": "gpt-5.4-mini",
+  "total": 20,
+  "correct": 20,
+  "scenarios": [
+    {
+      "id": 49,
+      "name": "silent_collision",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) events \u2014 both PRs explicitly alter the `events` table (`webhook_status`/`delivery_attempts` in Alan\u2019s PR and `delivery_state`/`processor_version` in Sarah\u2019s PR).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 50,
+      "name": "calendar_blindspot",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C) Sarah \u2014 she only works Monday, Wednesday, Friday.  \nThursday March 13 is a Thursday, so Sarah is unavailable by her normal part-time schedule.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 51,
+      "name": "unasked_question",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) SAML SSO \u2014 Josh told Acme Corp they'd get it after the auth migration, but Alan explicitly said SAML was not in this phase and would add 3 weeks.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 52,
+      "name": "misread_metric",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B \u2014 The new flow removed 4 steps, including **first milestone**, which used to be the activation trigger. So \u201ccompletion\u201d now means something different, making 60% vs 85% not apples-to-apples.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 53,
+      "name": "budget_interpreter",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C \u2014 staging-3. It was created for \u201cload testing\u201d but the workspace says it was never actually used for load testing.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 54,
+      "name": "three_ticket_pattern",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) All three were in migration batch-7, run on February 25.  \nThe tickets share different symptoms, but each customer record explicitly says \u201cLast migration batch: batch-7, run 2026-02-25,\u201d which points to a common migration-related root cause.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 55,
+      "name": "meeting_assassin",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C \u2014 Only the webhook payload format remains open. The workspace says cursor vs offset pagination has consensus: \u201cSarah recommends cursor, Alan agrees,\u201d and the design doc summary lists just 2 open questions with pagination effectively settled and webhook still debated.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 56,
+      "name": "first_day_briefing",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) `src/billing/mapping.rs` \u2014 Alan calls it the \u201crosetta stone file,\u201d and it maps between `plan_id`, `tier_id`, and `subscription`.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 57,
+      "name": "scope_surgeon",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) CSV only \u2014 all 3 customers confirmed CSV is sufficient; PDF was never requested and Excel came from the sales rep, not the customer.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 58,
+      "name": "green_test_trap",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C) 0 edge case tests and 7 e2e tests \u2014 the suite is 82% unit tests and 16% integration tests, with **0 edge case tests** and **7 end-to-end tests** per the workspace.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 59,
+      "name": "thread_therapist",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) Long-lived JWT tokens with bearer auth \u2014 Sarah\u2019s synthesis was that the developer experience can stay API-key-like while still getting JWT\u2019s rotation and revocation capabilities.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 60,
+      "name": "silent_failure_premortem",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C \u2014 The gap is **no delivery confirmation mechanism**. A webhook can return **200 OK** even if the customer doesn\u2019t actually process it, so the failure can stay silent until something like invoice reconciliation exposes it weeks later.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 61,
+      "name": "timezone_play",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) Takeshi at NovaTech in Tokyo \u2014 he was explicitly offered to review the proposal from an API consumer perspective and hasn\u2019t been consulted yet.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 62,
+      "name": "debt_ledger",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C \u2014 The workspace explicitly totals the four items at **~2.75 hours/week**: 1h hardcoded URLs + 45m retry logic + 1h generic error messages, plus missed bugs from the skipped test.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 63,
+      "name": "competitor_signal",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C) 2 prospects (Acme Corp and Pinnacle Inc); Sarah's existing webhook signature module means the change is localized \u2014 about half a day.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 64,
+      "name": "roi_translator",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C) Feature 5 \u2014 it breaks even at 5 features, and becomes net positive from feature 6 onward. The workspace explicitly shows: N=5 is 25 days either way, and N=6 is where refactor is 3 days ahead.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 65,
+      "name": "reverse_escalation",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B \u2014 The root cause is a spec ambiguity. The spec says \u201csubscription start date,\u201d but that could mean the customer\u2019s signup date (Jan 15) or the billing period start (Feb 1). Engineering built the latter, so this is a 1-line UI label/wording issue, not a backend or data bug.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 66,
+      "name": "lunch_decision",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) Annual billing requires proration, refund, and dunning changes that would conflict with the March 31 billing migration launch.\n\nThe workspace shows Billing Migration Phase 2 is already on a tight March 31 deadline with no buffer, and it\u2019s blocked on webhook format/reconciliation. Adding annual billing would pull the team into additional billing work right in the same window.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 67,
+      "name": "postmortem_reframe",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) 12 minutes detection; root cause was a process gap \u2014 no testing against production-scale data with historical records. The incident log says Sarah\u2019s alert fired at 09:12 after the 09:00 start, and the root cause was the script not being tested against production-scale data with legacy records missing the expected field.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 68,
+      "name": "rate_limit_ghost",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C) 95% utilization at baseline; during typical 1.5-2x spikes the combined 143-190 req/sec exceeds the 100 limit, causing 429 errors\n\nBaseline combined usage is 60 + 35 = 95 req/sec, which is 95% of the 100 req/sec limit. With 1.5\u20132x traffic spikes, that becomes 143\u2013190 req/sec, which exceeds the limit and will trigger 429 errors.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    }
+  ]
+}

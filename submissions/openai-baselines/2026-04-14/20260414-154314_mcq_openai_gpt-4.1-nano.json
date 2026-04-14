@@ -1,0 +1,270 @@
+{
+  "timestamp": "20260414-154314",
+  "mode": "mcq",
+  "provider": "openai",
+  "model": "gpt-4.1-nano",
+  "total": 20,
+  "correct": 17,
+  "scenarios": [
+    {
+      "id": 49,
+      "name": "silent_collision",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) events\n\nBoth Alan's and Sarah's PRs modify the `events` table. Alan adds the `webhook_status` column, and Sarah adds `delivery_state` and `processor_version`.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 50,
+      "name": "calendar_blindspot",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C) Sarah \u2014 she only works Monday, Wednesday, Friday\n\nSarah is unavailable on Thursday, March 13, because she only works M/W/F and has no scheduled hours that day. Alan and Josh are available, and Maria hasn't started yet.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 51,
+      "name": "unasked_question",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) SAML SSO \u2014 Josh promised Acme Corp it would come after the auth migration, but Alan explicitly scoped it out\n\nExplanation: The logs clearly state that SAML SSO was scoped out and would add 3 weeks, so it is not covered by the current release. The other options are either part of the current scope or commitments that are ongoing or expected to be addressed separately.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 52,
+      "name": "misread_metric",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) The new flow removed 4 steps including 'first milestone' (the activation metric trigger), so 'completion' now means something different\n\nThis change makes the comparison misleading because the definition of completion has shifted\u2014from completing the original 8-step process to completing a simplified 5-step process, including the removal of key steps that previously marked activation and completion.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 53,
+      "name": "budget_interpreter",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C) staging-3 \u2014 created for load testing but never actually used for load testing (last deploy January 22)\n\nThis staging environment was never used for its intended purpose, making it a candidate for cost reduction without impacting production.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 54,
+      "name": "three_ticket_pattern",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) All three were in migration batch-7, run on February 25\n\nThis links the billing issues directly to a specific migration batch, suggesting a potential root cause related to data migration or update processes. The other options are either incorrect or less directly connected based on the available information.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 55,
+      "name": "meeting_assassin",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": false,
+      "response_text": "B) 2 \u2014 pagination and webhook format are both unresolved\n\nExplanation: The design doc has two open questions\u2014pagination (Sarah recommends cursor, consensus between Sarah and Alan) and webhook payload format (still debated). The only other items have implicit consensus. The meeting is to resolve these remaining questions.",
+      "score_detail": {
+        "correct": false,
+        "chosen": "B",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 56,
+      "name": "first_day_briefing",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) src/billing/mapping.rs \u2014 Alan calls it 'the rosetta stone file'.  \nThis file is explicitly mentioned as mapping between 'plan', 'tier', and 'subscription' in the active context.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 57,
+      "name": "scope_surgeon",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) CSV only \u2014 all 3 customers confirmed CSV is sufficient; PDF was never requested and Excel came from the sales rep, not the customer\n\nBased on Josh's customer research, all three enterprise prospects need only CSV. Neither PDF nor Excel are explicitly required by the customers, making CSV the only essential format.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 58,
+      "name": "green_test_trap",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C) 0 edge case tests and 7 e2e tests \u2014 the suite is 82% unit tests and 16% integration tests with zero coverage for the boundary conditions (race conditions, timezone, large payloads) customers are hitting\n\nThe workspace details show 0 edge case tests and 7 end-to-end tests. Despite the high test coverage overall, specific customer bugs indicate missing tests for boundary conditions and race scenarios, which are not covered in the current suite.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 59,
+      "name": "thread_therapist",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) Long-lived JWT tokens with bearer auth \u2014 gives JWT security (rotation, revocation) with API-key simplicity for developers\n\nSarah's synthesis integrates the simplicity of API keys with the security features of JWT by proposing long-lived JWT tokens that resemble API keys, allowing for familiar developer experience while enabling security controls like rotation and revocation.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 60,
+      "name": "silent_failure_premortem",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": false,
+      "response_text": "B) No customer-facing delivery log \u2014 customers can't see what webhooks were sent or retry them\n\nThis gap means failures can happen silently without customer visibility or acknowledgment, potentially causing issues weeks after launch without anyone noticing.",
+      "score_detail": {
+        "correct": false,
+        "chosen": "B",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 61,
+      "name": "timezone_play",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) Takeshi at NovaTech in Tokyo \u2014 offered to review from an API consumer perspective, responds within 2 hours\n\nTakeshi's willingness to review from the customer perspective and his responsiveness makes his input critical for an informed decision. The decision context highlights the absence of the customer\u2019s view, which is necessary before proceeding.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 62,
+      "name": "debt_ledger",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C) About 2.75 hours per week. The total estimated weekly cost sums up from each item: ~1 hour (hardcoded URLs) + 45 min (retry logic) + 1 hour (error messages) + ~1 hour (missed bugs).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 63,
+      "name": "competitor_signal",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C) 2 prospects (Acme Corp and Pinnacle Inc); Sarah's existing webhook signature module means the change is localized \u2014 about half a day\n\nThe workspace shows two prospects explicitly asking about Ed25519 support, and since Sarah\u2019s code already includes a signature module, adding support would be a localized change, estimated at about half a day.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 64,
+      "name": "roi_translator",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": false,
+      "response_text": "B) Feature 3 \u2014 3 weeks (refactor) + 3 features \u00d7 2 days = 15 days (initial) + 6 days (features) = 21 days, which is less than the current 15 days for 3 features, so the break-even occurs slightly after feature 3, making this the point where the refactor pays for itself.",
+      "score_detail": {
+        "correct": false,
+        "chosen": "B",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 65,
+      "name": "reverse_escalation",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) The spec is ambiguous \u2014 'subscription start date' could mean either signup date (Jan 15, what Acme expects) or billing period start (Feb 1, what engineering built). It's a 1-line UI label change.\n\n**Explanation:** The root cause is a spec ambiguity causing the discrepancy, not a bug or data error. Engineering's current implementation reflects the billing period start, but the customer expects the subscription start date, making this an ambiguity issue rather than a bug.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 66,
+      "name": "lunch_decision",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) Annual billing requires proration, refund, and dunning changes that would conflict with the March 31 billing migration launch\n\nSupporting annual billing involves complex updates to billing logic, which could delay or interfere with the critical March 31 migration deadline. The current focus is on reconciliation and preparing for the migration, making this a schedule conflict.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 67,
+      "name": "postmortem_reframe",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) 12 minutes detection; root cause was a process gap \u2014 no testing against production-scale data with historical records\n\nThe monitoring alert fired in 12 minutes, which Sarah acknowledged. The root cause was the script assuming all subscriptions had a `plan_change_date`, and missing to test against legacy data, indicating a process gap.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 68,
+      "name": "rate_limit_ghost",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C) 95% utilization at baseline; during typical 1.5-2x spikes the combined 143-190 req/sec exceeds the 100 limit, causing 429 errors\n\nThis is supported by the workspace data: combined peak is 95 req/sec, which is 95% of the 100 req/sec limit, and during spikes (1.5-2x), the traffic exceeds the limit, leading to errors.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    }
+  ]
+}

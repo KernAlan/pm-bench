@@ -1,0 +1,270 @@
+{
+  "timestamp": "20260414-153917",
+  "mode": "mcq",
+  "provider": "openai",
+  "model": "gpt-5-nano",
+  "total": 20,
+  "correct": 18,
+  "scenarios": [
+    {
+      "id": 49,
+      "name": "silent_collision",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B\n\nBoth PRs reference changes to the events table (Alan: webhook_status and delivery_attempts; Sarah: delivery_state and processor_version on the events table).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 50,
+      "name": "calendar_blindspot",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C \u2014 Sarah. She only works Monday/Wednesday/Friday and is off March 13 (Thursday), so she\u2019ll be unavailable for the Thursday meeting.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 51,
+      "name": "unasked_question",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B\n\nExplanation: The logs state \u201cNo SAML in this phase \u2014 \u2026 would add 3 weeks\u201d and that SAML was scoped out, while the release covers JWT tokens and OAuth2 for Google/GitHub. SAML SSO commitments are not covered by this release.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 52,
+      "name": "misread_metric",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) The new flow removed 4 steps, including 'first milestone' (the activation trigger), so the definition of \"onboarding completion\" changed and the rates aren\u2019t directly comparable.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 53,
+      "name": "budget_interpreter",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C \u2014 staging-3 was created for 'load testing' but was never actually used for load testing (last deploy Jan 22).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 54,
+      "name": "three_ticket_pattern",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B \u2014 All three were in migration batch-7, run on 2026-02-25. The tickets TICKET-1041, TICKET-1043, and TICKET-1047 all list \u201cLast migration batch: batch-7, run 2026-02-25,\u201d linking them.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 55,
+      "name": "meeting_assassin",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": false,
+      "response_text": "B \u2014 2 open questions: pagination (cursor vs offset) and webhook payload format; the rest has implicit consensus per the design doc summary.",
+      "score_detail": {
+        "correct": false,
+        "chosen": "B",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 56,
+      "name": "first_day_briefing",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) src/billing/mapping.rs \u2014 Alan calls it 'the rosetta stone file'. It maps between plan, tier, and subscription naming conventions in the codebase.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 57,
+      "name": "scope_surgeon",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B\n\nCSV only \u2014 Josh\u2019s customer research shows all three prospects need CSV, PDF wasn\u2019t requested, and the Excel request came from the sales rep, not the customer; CSV with the right columns is sufficient.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 58,
+      "name": "green_test_trap",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C\n\n0 edge case tests and 7 end-to-end tests \u2014 the Test distribution shows Edge case tests: 0 and End-to-end tests: 7 (with 82% unit and 16% integration).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 59,
+      "name": "thread_therapist",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B \u2014 Long-lived JWT tokens with bearer auth \u2014 gives JWT security (rotation, revocation) with API-key simplicity for developers.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 60,
+      "name": "silent_failure_premortem",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C \u2014 No delivery confirmation \u2014 if a webhook is sent and the customer\u2019s endpoint returns 200 but doesn\u2019t actually process it, there\u2019s no way to know, leading to silent failures weeks after launch. This is explicitly listed in the webhook delivery notes.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 61,
+      "name": "timezone_play",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B\n\nTakeshi at NovaTech (Tokyo) should weigh in. He offered to review from an API consumer perspective, but no customer perspective has been consulted yet, and stakeholder input is needed per the decision context.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 62,
+      "name": "debt_ledger",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C \u2014 About 2.75 hours per week (1h hardcoded URLs + 45m retry logic + 1h error messages), plus missed bugs from the skipped test (as noted in the total).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 63,
+      "name": "competitor_signal",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C \u2014 2 prospects (Acme Corp and Pinnacle Inc); Sarah's existing webhook signature module means the change is localized to that module, so it\u2019s a small effort (about half a day).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 64,
+      "name": "roi_translator",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": false,
+      "response_text": "",
+      "score_detail": {
+        "correct": false,
+        "chosen": null,
+        "expected": "C"
+      }
+    },
+    {
+      "id": 65,
+      "name": "reverse_escalation",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B \u2014 The root cause is ambiguity in the spec: \u201csubscription start date\u201d could mean the signup date (Jan 15) or the billing period start (Feb 1). Engineering built Feb 1, so it\u2019s a 1-line UI change (label or show both dates), not a backend or data issue.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 66,
+      "name": "lunch_decision",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B\n\nExplanation: The March 31 Billing Migration launch is the current tight deadline. Implementing annual billing would require proration, refunds, and dunning changes that could delay or clash with that cutover, given the unreconciled legacy subscriptions and the webhook format dependency blocking API v2.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 67,
+      "name": "postmortem_reframe",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B \u2014 Monitoring detected in 12 minutes; root cause classified as a process gap \u2014 the migration script wasn\u2019t tested against production-scale data with historical/legacy records (missing plan_change_date field).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 68,
+      "name": "rate_limit_ghost",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C \u2014 95% utilization at baseline; during typical spikes (1.5\u20132x), 143\u2013190 req/sec exceed the 100 req/sec Stripe limit, causing 429 errors.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    }
+  ]
+}
