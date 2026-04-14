@@ -19,7 +19,11 @@
 - Planned Q2 billing features: 6 features
 - Current cost: 6 features x 5 days = 30 days
 - Post-refactor cost: 3 weeks refactor + 6 features x 2 days = 27 days
-- Break-even: feature 3 (estimated April delivery)
+- Cumulative cost per N features (do-the-math):
+  - N=3: without=15 days, with=15+6=21 days (refactor still behind)
+  - N=5: without=25 days, with=15+10=25 days (break-even)
+  - N=6: without=30 days, with=15+12=27 days (refactor 3 days ahead)
+- Break-even at feature 5; net positive from feature 6 onward
 
 ## CEO concern (from #leadership, March 5)
 - 'We cannot afford 3 weeks without shipping. Customers are waiting.'

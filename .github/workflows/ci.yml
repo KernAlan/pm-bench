@@ -28,3 +28,6 @@ jobs:
 
       - name: Run pytest
         run: python -m pytest tests/ -v
+
+      - name: Scoring integrity check (mock provider)
+        run: python tools/integrity_check.py
