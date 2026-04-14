@@ -24,8 +24,10 @@ Notes:
 """
 
 import argparse
+import hashlib
 import json
 import os
+import random
 import re
 import sys
 import time
@@ -148,9 +150,149 @@ def call_openai(messages: list[dict], model: str, max_tokens: int = 1024) -> dic
     return {"text": choice.message.content or "", "tool_calls": tool_calls}
 
 
-def dispatch(provider: str, messages: list[dict], model: str, max_tokens: int = 1024) -> dict:
+def _deterministic_wrong_letter(scenario: dict) -> str:
+    """Pick a stable wrong letter for a scenario (for 'weak' mode).
+
+    Hash the scenario id so results are reproducible across runs.
+    """
+    correct = (scenario.get("correct_answer") or "").strip().upper()
+    sid = scenario.get("id", 0)
+    h = int(hashlib.md5(str(sid).encode()).hexdigest(), 16)
+    choices = [c for c in "ABCD" if c != correct] or list("ABCD")
+    return choices[h % len(choices)]
+
+
+def _deterministic_random_letter(scenario: dict) -> str:
+    """Pick a deterministic pseudo-random letter keyed on scenario id.
+
+    Using the scenario id as seed keeps the run reproducible while giving
+    ~25% baseline accuracy across a balanced set.
+    """
+    sid = scenario.get("id", 0)
+    rng = random.Random(sid)
+    return rng.choice(list("ABCD"))
+
+
+def call_mock(
+    messages: list[dict],
+    model: str,
+    max_tokens: int = 1024,
+    scenario: dict | None = None,
+    mode: str = "perfect",
+    mcq_scenario_for_judge: dict | None = None,
+) -> dict:
+    """Deterministic offline provider for CI and reproducibility.
+
+    Behavior depends on the message shape and the `mode`:
+
+    - Judge call (system prompt includes "impartial grader"): always returns
+      ``VERDICT: PASS`` with evidence. This lets us test the open-ended
+      pipeline end to end without hitting a real LLM. Weakness of the judge
+      is out of scope for the mock — we want the pipeline's plumbing tested,
+      not the judge's discernment.
+
+    - Subject call for an MCQ scenario: returns the scenario's
+      ``correct_answer`` letter (``perfect``), a wrong letter (``weak``), or
+      a deterministic pseudo-random letter (``random``).
+
+    - Subject call for a keyword scenario: returns text containing the
+      expected keyword in ``perfect`` mode, an unrelated sentence in
+      ``weak``/``random`` mode.
+
+    - Subject call for an open-ended (rubric) scenario: joins all
+      ``must_mention`` keywords into one sentence in ``perfect`` mode,
+      emits a red flag in ``weak`` mode, or a vague sentence in ``random``.
+    """
+    # Detect judge calls by looking for the judge system prompt signature.
+    for m in messages:
+        if m.get("role") == "system" and "impartial grader" in m.get("content", ""):
+            return {
+                "text": (
+                    "VERDICT: PASS\n"
+                    "EVIDENCE: The response clearly addresses the rubric "
+                    "items and cites the relevant workspace evidence.\n"
+                    "MUST_MENTION_FOUND: all\n"
+                    "RED_FLAGS_FOUND: none"
+                ),
+                "tool_calls": [],
+            }
+
+    mode = (mode or "perfect").lower()
+    if mode not in {"perfect", "random", "weak"}:
+        mode = "perfect"
+
+    # No scenario context → we can't fake a targeted answer. Return something
+    # that won't accidentally score as correct for any letter/keyword.
+    if scenario is None:
+        return {"text": "[mock] no scenario context provided", "tool_calls": []}
+
+    # Open-ended scenarios have no 'scoring' field but carry a rubric.
+    has_rubric = bool(scenario.get("rubric"))
+    default_scoring = "rubric" if has_rubric else "mcq"
+    scoring = scenario.get("scoring", default_scoring)
+    if scoring == "mcq":
+        correct = (scenario.get("correct_answer") or "").strip().upper()
+        if mode == "perfect":
+            letter = correct or "A"
+        elif mode == "weak":
+            letter = _deterministic_wrong_letter(scenario)
+        else:  # random
+            letter = _deterministic_random_letter(scenario)
+        return {
+            "text": f"{letter}. [mock:{mode}]",
+            "tool_calls": [],
+        }
+
+    if scoring == "keyword":
+        keyword = (scenario.get("correct_answer") or "").strip()
+        if mode == "perfect":
+            text = f"The answer is {keyword}. [mock:{mode}]" if keyword else "[mock]"
+        else:
+            text = "[mock] deliberately unhelpful response."
+        return {"text": text, "tool_calls": []}
+
+    # Open-ended / rubric scoring.
+    rubric = scenario.get("rubric", {}) or {}
+    must = rubric.get("must_mention", []) or []
+    red_flags = rubric.get("red_flags", []) or []
+    if mode == "perfect":
+        # Emit every must_mention keyword so the automated rubric passes.
+        body = (
+            "Flagging the key concerns: "
+            + ", ".join(must)
+            + ". [mock:perfect]"
+        )
+        return {"text": body, "tool_calls": []}
+    if mode == "weak":
+        # Trigger a red flag if available, otherwise return a vacuous reply.
+        rf = red_flags[0] if red_flags else "no issues here"
+        return {"text": f"{rf}. [mock:weak]", "tool_calls": []}
+    # random
+    return {"text": "[mock:random] a generic noncommittal summary.", "tool_calls": []}
+
+
+def dispatch(
+    provider: str,
+    messages: list[dict],
+    model: str,
+    max_tokens: int = 1024,
+    scenario: dict | None = None,
+    mock_mode: str = "perfect",
+) -> dict:
+    """Dispatch to an LLM provider.
+
+    ``scenario`` and ``mock_mode`` are only consumed by the ``mock``
+    provider; real providers ignore them. This lets the mock provider
+    synthesize targeted responses without leaking test hooks into the
+    production code path.
+    """
     if provider == "anthropic":
         return call_anthropic(messages, model, max_tokens)
+    if provider == "openai":
+        return call_openai(messages, model, max_tokens)
+    if provider == "mock":
+        return call_mock(messages, model, max_tokens,
+                         scenario=scenario, mode=mock_mode)
     return call_openai(messages, model, max_tokens)
 
 
@@ -170,14 +312,28 @@ def extract_mcq_choice(text: str) -> str | None:
     if len(stripped) == 1 and stripped.upper() in "ABCD":
         return stripped.upper()
 
-    # 2. Explicit "answer is X" / "X is correct".
+    # 2. Explicit "answer is X" / "X is correct" / "X is right" / "X is the answer".
     m = re.search(
         r"(?:the\s+)?(?:correct\s+)?answer\s*(?:is|:)\s*\(?([A-Da-d])\)?",
         stripped, re.IGNORECASE,
     )
     if m:
         return m.group(1).upper()
-    m = re.search(r"\b([A-Da-d])\s+is\s+correct\b", stripped, re.IGNORECASE)
+    m = re.search(r"\b([A-Da-d])\s+is\s+(?:correct|right|the\s+(?:correct\s+)?answer)\b",
+                  stripped, re.IGNORECASE)
+    if m:
+        return m.group(1).upper()
+    # "ultimately, C is the answer" / "therefore, B"
+    m = re.search(
+        r"(?:ultimately|therefore|thus|hence|so)[,\s]+\(?([A-Da-d])\)?"
+        r"(?:\b|\s+is\s+(?:correct|right|the\s+answer))",
+        stripped, re.IGNORECASE,
+    )
+    if m:
+        return m.group(1).upper()
+    # "my answer: X" / "final answer: X"
+    m = re.search(r"\b(?:my|final)\s+answer\s*:\s*\(?([A-Da-d])\)?",
+                  stripped, re.IGNORECASE)
     if m:
         return m.group(1).upper()
 
@@ -290,7 +446,8 @@ def score_rubric_automated(scenario: dict, response: dict) -> dict:
 
 
 def score_with_judge(scenario: dict, response: dict,
-                     judge_provider: str, judge_model: str) -> dict:
+                     judge_provider: str, judge_model: str,
+                     mock_mode: str = "perfect") -> dict:
     """Use an LLM judge to score the response against the rubric."""
     rubric = scenario.get("rubric", {})
     prompt = JUDGE_TEMPLATE.format(
@@ -307,7 +464,9 @@ def score_with_judge(scenario: dict, response: dict,
         {"role": "user", "content": prompt},
     ]
     try:
-        judge_resp = dispatch(judge_provider, messages, judge_model, max_tokens=500)
+        judge_resp = dispatch(judge_provider, messages, judge_model,
+                              max_tokens=500, scenario=scenario,
+                              mock_mode=mock_mode)
     except Exception as e:
         return {"judge_error": str(e), "verdict": None}
 
@@ -324,9 +483,11 @@ def score_with_judge(scenario: dict, response: dict,
 
 
 def score_open_ended(scenario: dict, response: dict,
-                     judge_provider: str, judge_model: str) -> dict:
+                     judge_provider: str, judge_model: str,
+                     mock_mode: str = "perfect") -> dict:
     automated = score_rubric_automated(scenario, response)
-    judged = score_with_judge(scenario, response, judge_provider, judge_model)
+    judged = score_with_judge(scenario, response, judge_provider, judge_model,
+                              mock_mode=mock_mode)
     # Final score: judge verdict is authoritative when available.
     correct = (judged.get("verdict") == "PASS") if judged.get("verdict") else automated["automated_pass"]
     return {"correct": correct, "automated": automated, "judge": judged}
@@ -449,7 +610,11 @@ def run_mcq(args, scenarios: list[dict]) -> list[dict]:
             continue
 
         try:
-            response = dispatch(args.provider, messages, args.model)
+            response = dispatch(
+                args.provider, messages, args.model,
+                scenario=scenario,
+                mock_mode=getattr(args, "mock_mode", "perfect"),
+            )
         except Exception as e:
             print(f"  ERROR: {e}")
             results.append({"id": sid, "name": name, "category": cat,
@@ -470,16 +635,21 @@ def run_mcq(args, scenarios: list[dict]) -> list[dict]:
             "correct": correct, "response_text": response["text"],
             "score_detail": score,
         })
-        if i < len(scenarios):
+        if i < len(scenarios) and args.provider != "mock":
             time.sleep(0.5)
     return results
 
 
 def run_open_ended(args, scenarios: list[dict]) -> list[dict]:
     judge_provider = args.judge_provider or args.provider
-    judge_model = args.judge_model or (
-        "claude-sonnet-4-20250514" if judge_provider == "anthropic" else "gpt-4o"
-    )
+    if args.judge_model:
+        judge_model = args.judge_model
+    elif judge_provider == "anthropic":
+        judge_model = "claude-sonnet-4-20250514"
+    elif judge_provider == "mock":
+        judge_model = f"mock-{getattr(args, 'mock_mode', 'perfect')}-judge"
+    else:
+        judge_model = "gpt-4o"
     print(f"Subject: {args.provider}/{args.model}  |  Judge: {judge_provider}/{judge_model}\n")
 
     results: list[dict] = []
@@ -501,14 +671,21 @@ def run_open_ended(args, scenarios: list[dict]) -> list[dict]:
             continue
 
         try:
-            response = dispatch(args.provider, messages, args.model, max_tokens=1500)
+            response = dispatch(
+                args.provider, messages, args.model, max_tokens=1500,
+                scenario=scenario,
+                mock_mode=getattr(args, "mock_mode", "perfect"),
+            )
         except Exception as e:
             print(f"  ERROR (subject): {e}")
             results.append({"id": sid, "name": name, "category": cat,
                             "correct": False, "error": str(e)})
             continue
 
-        score = score_open_ended(scenario, response, judge_provider, judge_model)
+        score = score_open_ended(
+            scenario, response, judge_provider, judge_model,
+            mock_mode=getattr(args, "mock_mode", "perfect"),
+        )
         correct = score["correct"]
         preview = response["text"][:90].replace("\n", " ") if response["text"] else "(empty)"
         auto = score["automated"]
@@ -522,7 +699,7 @@ def run_open_ended(args, scenarios: list[dict]) -> list[dict]:
             "correct": correct, "response_text": response["text"],
             "score_detail": score,
         })
-        if i < len(scenarios):
+        if i < len(scenarios) and args.provider != "mock":
             time.sleep(0.5)
     return results
 
@@ -535,10 +712,14 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="PM-Bench: Evaluate AI models on PM judgment scenarios.")
     parser.add_argument("--mode", choices=["mcq", "open-ended"], default="mcq",
                         help="Evaluation mode (default: mcq)")
-    parser.add_argument("--provider", choices=["anthropic", "openai"], default="anthropic")
+    parser.add_argument("--provider", choices=["anthropic", "openai", "mock"], default="anthropic",
+                        help="LLM provider. 'mock' runs end-to-end with no API key.")
+    parser.add_argument("--mock-mode", choices=["perfect", "random", "weak"], default="perfect",
+                        help="Mock provider behavior: perfect (100%% correct), "
+                             "random (~25%% on MCQ), or weak (0%% correct).")
     parser.add_argument("--model", type=str, default=None,
                         help="Model override (default: claude-sonnet-4-20250514 / gpt-4o)")
-    parser.add_argument("--judge-provider", choices=["anthropic", "openai"], default=None,
+    parser.add_argument("--judge-provider", choices=["anthropic", "openai", "mock"], default=None,
                         help="Provider for judge model in open-ended mode")
     parser.add_argument("--judge-model", type=str, default=None,
                         help="Judge model (open-ended mode). Default matches --provider.")
@@ -550,7 +731,12 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.model is None:
-        args.model = "claude-sonnet-4-20250514" if args.provider == "anthropic" else "gpt-4o"
+        if args.provider == "anthropic":
+            args.model = "claude-sonnet-4-20250514"
+        elif args.provider == "mock":
+            args.model = f"mock-{args.mock_mode}"
+        else:
+            args.model = "gpt-4o"
 
     if args.mode == "mcq":
         all_scenarios = load_scenarios(SCENARIOS_FILE)

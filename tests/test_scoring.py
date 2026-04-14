@@ -187,29 +187,39 @@ class TestExtractMcqChoiceEdges:
         assert extract_mcq_choice(text) is None
 
 
-class TestExtractMcqChoiceKnownLimitations:
-    """These cases document implementation limitations.
+class TestExtractMcqChoiceDiscoursePatterns:
+    """Discourse-level answer patterns (hardened in v1.0.1)."""
 
-    The current regex-based extractor cannot handle discourse-level
-    patterns like 'I considered A and B but C is right' (because 'C is
-    right' is not 'C is correct', nor does it start the string).
-
-    If someone later strengthens the extractor, they should *relax* or
-    remove these assertions — not leave them silently passing with
-    `None`. These tests are here so that behavior change is intentional.
-    """
-
-    def test_plausible_but_ultimately(self):
-        # "ultimately, C is the answer" does not match "answer is X" (word
-        # order), nor "X is correct". This one returns None today.
+    def test_ultimately_c_is_the_answer(self):
         assert extract_mcq_choice(
             "This is a tough one. A looks plausible because... but "
             "ultimately, C is the answer."
-        ) is None
+        ) == "C"
 
     def test_considered_a_and_b_but_c_is_right(self):
-        # "C is right" != "C is correct" pattern.
-        assert extract_mcq_choice("I considered A and B but C is right") is None
+        assert extract_mcq_choice("I considered A and B but C is right") == "C"
+
+    def test_x_is_the_correct_answer(self):
+        assert extract_mcq_choice("After analysis, B is the correct answer.") == "B"
+
+    def test_therefore_b(self):
+        assert extract_mcq_choice("Therefore, B.") == "B"
+
+    def test_so_c_is_the_answer(self):
+        assert extract_mcq_choice("So C is the answer.") == "C"
+
+    def test_thus_b(self):
+        assert extract_mcq_choice("Thus B") == "B"
+
+    def test_my_answer_d(self):
+        assert extract_mcq_choice("My answer: D") == "D"
+
+    def test_final_answer_a(self):
+        assert extract_mcq_choice("Final answer: A") == "A"
+
+    def test_x_is_right_does_not_false_positive(self):
+        # "Not B. C is right." should still reject B and return C.
+        assert extract_mcq_choice("Not B. C is right.") == "C"
 
 
 # ---------------------------------------------------------------------------

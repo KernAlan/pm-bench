@@ -36,6 +36,34 @@ pm-bench --help
 
 It is an alias for `python run.py` and takes the same arguments.
 
+### Alternative: run in Docker
+
+If you'd rather not touch your host Python environment, PM-Bench ships a
+`Dockerfile` and `docker-compose.yml` that pin a reproducible runtime.
+
+```bash
+# Build the image (installs ".[all]" inside the container)
+docker build -t pm-bench .
+
+# Offline demo — no API key needed
+docker run --rm pm-bench python demo.py --no-color
+
+# End-to-end mock pipeline (deterministic, no API key needed)
+docker run --rm pm-bench python run.py --provider mock --superhuman-only
+
+# Real run — mount results/ so files persist on the host
+docker run --rm \
+    -e ANTHROPIC_API_KEY \
+    -v $(pwd)/results:/app/results \
+    pm-bench python run.py --superhuman-only
+
+# Or via docker-compose
+ANTHROPIC_API_KEY=sk-ant-... docker compose run --rm pm-bench
+```
+
+The image includes a `HEALTHCHECK` that runs `demo.py --no-color` to catch
+broken builds quickly.
+
 ---
 
 ## 3. Set your API key
@@ -66,6 +94,23 @@ python demo.py
 ```
 
 Expected output: a pretty-printed run over 2–3 scenarios with a score summary. No network, no cost.
+
+### Mock provider (full pipeline, no API key)
+
+For a complete end-to-end pipeline check — argument parsing, context
+assembly, scoring, result persistence — use the built-in `mock` provider:
+
+```bash
+python run.py --provider mock --superhuman-only            # 100% (perfect)
+python run.py --provider mock --mock-mode random           # ~25% baseline
+python run.py --provider mock --mock-mode weak             # 0% (failure path)
+python run.py --provider mock --mode open-ended --scenario 1
+```
+
+`--mock-mode perfect` (default) returns the correct answer for every
+scenario; `random` returns a deterministic pseudo-random letter seeded
+by scenario id; `weak` returns a wrong answer. Useful for CI, smoke
+tests, and reproducing pipeline bugs without burning tokens.
 
 ---
 
@@ -123,6 +168,16 @@ python tools/analyze.py
 ```
 
 Output goes to stdout and to `results/analysis/` (summary tables, per-category plots if `matplotlib` is installed).
+
+For a single-run markdown report with per-category ASCII bar charts and
+pass/fail detail, use `tools/report.py`:
+
+```bash
+python tools/report.py results/20260414-120000_mcq_anthropic_claude-sonnet-4.json
+```
+
+It prints to stdout and writes a companion `*_report.md` next to the
+results JSON. No extra dependencies.
 
 ---
 

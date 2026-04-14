@@ -6,6 +6,7 @@ __pycache__/
 venv/
 .DS_Store
 results/*.json
+results/*_report.md
 !results/.gitkeep
 analysis/
 
