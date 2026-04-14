@@ -1,0 +1,23 @@
+{
+  "timestamp": "20260414-160421",
+  "mode": "mcq",
+  "provider": "openai",
+  "model": "gpt-5-mini",
+  "total": 1,
+  "correct": 0,
+  "scenarios": [
+    {
+      "id": 55,
+      "name": "meeting_assassin",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": false,
+      "response_text": "B \u2014 2. The design-doc summary explicitly lists two open questions: pagination (cursor vs offset) and the webhook payload format (nested vs flat). Everything else has implicit consensus.",
+      "score_detail": {
+        "correct": false,
+        "chosen": "B",
+        "expected": "C"
+      }
+    }
+  ]
+}

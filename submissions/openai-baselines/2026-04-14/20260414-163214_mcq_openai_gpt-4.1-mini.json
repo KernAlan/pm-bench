@@ -1,0 +1,23 @@
+{
+  "timestamp": "20260414-163214",
+  "mode": "mcq",
+  "provider": "openai",
+  "model": "gpt-4.1-mini",
+  "total": 1,
+  "correct": 1,
+  "scenarios": [
+    {
+      "id": 30,
+      "name": "skill_missing_no_credentials",
+      "category": "Credential-Aware Integrations",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) Agent says it can't access Jira and suggests connecting the integration\n\nExplanation: The workspace shows that the Jira integration is available but not connected, so the agent cannot search Jira directly. The best response is to inform about the lack of access and recommend connecting the integration to proceed.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    }
+  ]
+}

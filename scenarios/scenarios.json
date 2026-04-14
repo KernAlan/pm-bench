@@ -10,12 +10,14 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\nEmpty for now. You'll build this as you go.\n- [standup-preferences](memory/standup-preferences.md) — Josh prefers async standups; Alan prefers morning syncs\n- [decisions](memory/decisions.md) — Team decisions captured from conversations",
+        "MEMORY.md": "# Memory\n\nEmpty for now. You'll build this as you go.\n- [standup-preferences](memory/standup-preferences.md) \u00e2\u20ac\u201d Josh prefers async standups; Alan prefers morning syncs\n- [decisions](memory/decisions.md) \u00e2\u20ac\u201d Team decisions captured from conversations",
         "memory/standup-preferences.md": "# Standup preferences\n\n- Date: 2026-03-05\n- Josh: prefers async standups (written updates)\n- Alan: prefers morning syncs (live)\n\nNotes: Save team preferences so we can propose a compromise workflow and schedule reminders if they agree."
       },
-      "trigger": "hey delegate, quick q — does Josh like doing standups live or async?\nA) Live video calls every morning\nB) Async written updates\nC) Weekly in-person meetings\nD) He hasn't said",
+      "trigger": "hey delegate, quick q \u00e2\u20ac\u201d does Josh like doing standups live or async?\nA) Live video calls every morning\nB) Async written updates\nC) Weekly in-person meetings\nD) He hasn't said",
       "correct_answer": "B",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "mcq"
     },
     {
@@ -26,12 +28,14 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\nEmpty for now. You'll build this as you go.\n- [decisions](memory/decisions.md) — Team decisions captured from conversations",
-        "memory/decisions.md": "# Decision Log\n\nDecisions captured from team conversations.\n---\n\n### Use Postgres for the billing service (2026-02-28)\n\n**Decision:** Use PostgreSQL instead of DynamoDB for the billing service\n**Reasoning:** Team has more Postgres expertise, complex joins needed, and we don't want to learn a new ORM mid-sprint\n**Participants:** Alan, Josh\n**Context:** #platform-eng\n---\n\n### Cron jobs enabled for delegate-bot (2026-03-04)\n\n**Decision:** Cron jobs enabled for delegate-bot (cron available to schedule reminders/tasks)\n**Reasoning:** Alan confirmed cron jobs are now available. This enables scheduled reminders and background jobs.\n**Participants:** @Alan Kern, @delegate-bot\n**Context:** #mvp — quick runtime update\n---\n\n### Enable cron jobs for delegate-bot (2026-03-04)\n\n**Decision:** Enable cron jobs for delegate-bot (cron and reminders available)\n**Reasoning:** Alan enabled cron jobs and tested reminders (short 1-minute tests). Suggested next steps were an announcement to #mvp.\n**Participants:** @Alan Kern, @delegate-bot\n**Context:** Heartbeat — 2026-03-04 18:52 (#internal)"
+        "MEMORY.md": "# Memory\n\nEmpty for now. You'll build this as you go.\n- [decisions](memory/decisions.md) \u00e2\u20ac\u201d Team decisions captured from conversations",
+        "memory/decisions.md": "# Decision Log\n\nDecisions captured from team conversations.\n---\n\n### Use Postgres for the billing service (2026-02-28)\n\n**Decision:** Use PostgreSQL instead of DynamoDB for the billing service\n**Reasoning:** Team has more Postgres expertise, complex joins needed, and we don't want to learn a new ORM mid-sprint\n**Participants:** Alan, Josh\n**Context:** #platform-eng\n---\n\n### Cron jobs enabled for delegate-bot (2026-03-04)\n\n**Decision:** Cron jobs enabled for delegate-bot (cron available to schedule reminders/tasks)\n**Reasoning:** Alan confirmed cron jobs are now available. This enables scheduled reminders and background jobs.\n**Participants:** @Alan Kern, @delegate-bot\n**Context:** #mvp \u00e2\u20ac\u201d quick runtime update\n---\n\n### Enable cron jobs for delegate-bot (2026-03-04)\n\n**Decision:** Enable cron jobs for delegate-bot (cron and reminders available)\n**Reasoning:** Alan enabled cron jobs and tested reminders (short 1-minute tests). Suggested next steps were an announcement to #mvp.\n**Participants:** @Alan Kern, @delegate-bot\n**Context:** Heartbeat \u00e2\u20ac\u201d 2026-03-04 18:52 (#internal)"
       },
       "trigger": "yo what database did we pick for billing again?\nA) MongoDB\nB) DynamoDB\nC) PostgreSQL\nD) We haven't decided yet",
       "correct_answer": "C",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "mcq"
     },
     {
@@ -42,12 +46,14 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) — Team members, roles, and working styles\n- [standup-preferences](memory/standup-preferences.md) — Josh prefers async; Alan prefers morning syncs",
+        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) \u00e2\u20ac\u201d Team members, roles, and working styles\n- [standup-preferences](memory/standup-preferences.md) \u00e2\u20ac\u201d Josh prefers async; Alan prefers morning syncs",
         "memory/people.md": "# People\n\n## Alan Kern\n- Co-founder\n- Handles infra, backend, and bot development\n- Prefers morning syncs, fast iteration, ships on branches\n- Communication style: casual, direct, uses slang\n\n## Josh\n- Co-founder\n- Handles product, frontend, and customer conversations\n- Prefers async updates, written summaries\n- Working on the billing dashboard redesign right now\n\n## Sarah (contractor, part-time)\n- Backend engineer\n- Working on API v2 auth endpoint rewrite\n- Available M/W/F, responds on Slack same-day"
       },
       "trigger": "what is Josh working on right now?\nA) API v2 auth rewrite\nB) Billing dashboard redesign\nC) Infrastructure and bot development\nD) Nothing assigned yet",
       "correct_answer": "B",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "mcq"
     },
     {
@@ -62,7 +68,9 @@
       },
       "trigger": "what CI/CD pipeline are we using?\nA) GitHub Actions\nB) CircleCI\nC) Jenkins\nD) I don't have that information",
       "correct_answer": "D",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "mcq"
     },
     {
@@ -73,11 +81,13 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [standup-preferences](memory/standup-preferences.md) — Josh prefers async; Alan prefers morning syncs"
+        "MEMORY.md": "# Memory\n\n- [standup-preferences](memory/standup-preferences.md) \u00e2\u20ac\u201d Josh prefers async; Alan prefers morning syncs"
       },
       "trigger": "yo delegate remind me in 5 min to check if the deploy went through",
       "correct_answer": "",
-      "expected_tools": ["set_reminder"],
+      "expected_tools": [
+        "set_reminder"
+      ],
       "scoring": "tool_use"
     },
     {
@@ -88,13 +98,15 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [team-norms](memory/team-norms.md) — Code review rules, deploy windows, PR conventions\n- [people](memory/people.md) — Team members and roles",
+        "MEMORY.md": "# Memory\n\n- [team-norms](memory/team-norms.md) \u00e2\u20ac\u201d Code review rules, deploy windows, PR conventions\n- [people](memory/people.md) \u00e2\u20ac\u201d Team members and roles",
         "memory/team-norms.md": "# Team Norms\n\nUpdated 2026-03-02 after retro.\n\n## Code Reviews\n- All PRs need at least 1 approval (was 2, changed after retro because team is small)\n- Alan reviews backend/infra, Josh reviews frontend/product\n- Aim for <24h turnaround\n\n## Deploys\n- Deploy window: 10am-4pm EST weekdays\n- No Friday deploys unless it's a hotfix\n- Always post in #deploys before and after\n\n## PR Conventions\n- Branch naming: feature/xxx, fix/xxx, chore/xxx\n- Squash merge to main\n- Delete branch after merge",
         "memory/people.md": "# People\n\n## Alan Kern\n- Co-founder, backend/infra\n\n## Josh\n- Co-founder, product/frontend"
       },
       "trigger": "how many approvals do we need on a PR?\nA) None, we trust each other\nB) 1 approval\nC) 2 approvals\nD) Depends on the file changed",
       "correct_answer": "B",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "mcq"
     },
     {
@@ -105,14 +117,16 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) — Team members, roles, and working styles\n- [billing-migration](memory/billing-migration.md) — Billing service migration project\n- [decisions](memory/decisions.md) — Team decisions captured from conversations",
+        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) \u00e2\u20ac\u201d Team members, roles, and working styles\n- [billing-migration](memory/billing-migration.md) \u00e2\u20ac\u201d Billing service migration project\n- [decisions](memory/decisions.md) \u00e2\u20ac\u201d Team decisions captured from conversations",
         "memory/people.md": "# People\n\n## Alan Kern\n- Co-founder\n- Handles infra, backend, and bot development\n- Currently owning the billing migration backend\n\n## Josh\n- Co-founder\n- Handles product, frontend\n- Building the new billing dashboard UI",
-        "memory/billing-migration.md": "# Billing Migration\n\nMoving from legacy Stripe integration to new billing service.\n\n- **Backend**: Alan — new Postgres schema, Stripe webhook handlers\n- **Frontend**: Josh — billing dashboard redesign\n- **Status**: Phase 2 (data migration running, schema deployed)\n- **Target**: End of March 2026\n- **Blocker**: Need to reconcile 847 legacy subscriptions with mismatched plan IDs\n\nLast updated 2026-03-03 after standup.",
+        "memory/billing-migration.md": "# Billing Migration\n\nMoving from legacy Stripe integration to new billing service.\n\n- **Backend**: Alan \u00e2\u20ac\u201d new Postgres schema, Stripe webhook handlers\n- **Frontend**: Josh \u00e2\u20ac\u201d billing dashboard redesign\n- **Status**: Phase 2 (data migration running, schema deployed)\n- **Target**: End of March 2026\n- **Blocker**: Need to reconcile 847 legacy subscriptions with mismatched plan IDs\n\nLast updated 2026-03-03 after standup.",
         "memory/decisions.md": "# Decision Log\n\n---\n\n### Use Postgres for billing (2026-02-28)\n\n**Decision:** PostgreSQL for the billing service\n**Reasoning:** Team knows Postgres, need complex joins\n**Participants:** Alan, Josh\n**Context:** #platform-eng"
       },
       "trigger": "what's the current blocker on the billing migration?\nA) Waiting for Stripe API approval\nB) Need to reconcile legacy subscriptions with mismatched plan IDs\nC) Frontend isn't ready yet\nD) No blockers, it's on track",
       "correct_answer": "B",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "mcq"
     },
     {
@@ -123,7 +137,7 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [standup-preferences](memory/standup-preferences.md) — Josh prefers async; Alan prefers morning syncs"
+        "MEMORY.md": "# Memory\n\n- [standup-preferences](memory/standup-preferences.md) \u00e2\u20ac\u201d Josh prefers async; Alan prefers morning syncs"
       },
       "trigger": "lmao did you see that tweet about the guy who deployed on a friday and his whole weekend was ruined",
       "correct_answer": "",
@@ -138,12 +152,14 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) — Team members, roles, and working styles",
+        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) \u00e2\u20ac\u201d Team members, roles, and working styles",
         "memory/people.md": "# People\n\n## Alan Kern\n- Co-founder, backend/infra\n\n## Josh\n- Co-founder, product/frontend\n\n## Sarah (contractor, part-time)\n- Backend engineer\n- Working on API v2 auth endpoint rewrite\n- Available M/W/F, responds on Slack same-day"
       },
-      "trigger": "hey delegate, heads up — Sarah's last day is Friday. She's transitioning her API work to Josh before then.",
+      "trigger": "hey delegate, heads up \u00e2\u20ac\u201d Sarah's last day is Friday. She's transitioning her API work to Josh before then.",
       "correct_answer": "",
-      "expected_tools": ["save_memory"],
+      "expected_tools": [
+        "save_memory"
+      ],
       "scoring": "tool_use"
     },
     {
@@ -154,13 +170,15 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [decisions](memory/decisions.md) — Team decisions\n- [billing-migration](memory/billing-migration.md) — Billing service migration",
+        "MEMORY.md": "# Memory\n\n- [decisions](memory/decisions.md) \u00e2\u20ac\u201d Team decisions\n- [billing-migration](memory/billing-migration.md) \u00e2\u20ac\u201d Billing service migration",
         "memory/decisions.md": "# Decision Log\n\n### Use Postgres for billing (2026-02-28)\n**Decision:** PostgreSQL for the billing service\n**Participants:** Alan, Josh",
         "memory/billing-migration.md": "# Billing Migration\n\nMoving from legacy Stripe integration to new billing service.\nStatus: Phase 2. Evaluating payment providers."
       },
       "trigger": "ok let's just use Stripe for payments, the homegrown thing is taking too long. not worth building our own when Stripe handles 90% of what we need",
       "correct_answer": "",
-      "expected_tools": ["log_decision"],
+      "expected_tools": [
+        "log_decision"
+      ],
       "scoring": "tool_use"
     },
     {
@@ -171,13 +189,15 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) — Team members and roles\n- [decisions](memory/decisions.md) — Team decisions",
+        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) \u00e2\u20ac\u201d Team members and roles\n- [decisions](memory/decisions.md) \u00e2\u20ac\u201d Team decisions",
         "memory/people.md": "# People\n\n## Alan Kern\n- Co-founder, backend/infra\n\n## Josh\n- Co-founder, product/frontend",
         "memory/decisions.md": "# Decision Log\n\n(empty)"
       },
       "trigger": "team update: we decided to freeze all hiring until Q3. budget is tight and we need to ship billing first. Josh and I agreed on this last night.",
       "correct_answer": "",
-      "expected_tools": ["log_decision"],
+      "expected_tools": [
+        "log_decision"
+      ],
       "scoring": "tool_use"
     },
     {
@@ -188,12 +208,14 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) — Team members and roles",
+        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) \u00e2\u20ac\u201d Team members and roles",
         "memory/people.md": "# People\n\n## Alan Kern\n- Co-founder\n- Handles infra, backend, and bot development\n\n## Josh\n- Co-founder\n- Handles product, frontend, and customer conversations\n- Working on the billing dashboard redesign"
       },
-      "trigger": "btw update your notes — Josh moved to backend this week, he's taking over the API work. I'm handling frontend now.",
+      "trigger": "btw update your notes \u00e2\u20ac\u201d Josh moved to backend this week, he's taking over the API work. I'm handling frontend now.",
       "correct_answer": "",
-      "expected_tools": ["save_memory"],
+      "expected_tools": [
+        "save_memory"
+      ],
       "scoring": "tool_use"
     },
     {
@@ -204,11 +226,13 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) — Team members and roles"
+        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) \u00e2\u20ac\u201d Team members and roles"
       },
       "trigger": "just shipped the new onboarding flow \ud83d\ude80",
       "correct_answer": "",
-      "expected_tools": ["react"],
+      "expected_tools": [
+        "react"
+      ],
       "scoring": "tool_use"
     },
     {
@@ -221,7 +245,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "MEMORY.md": "# Memory\n\nEmpty for now."
       },
-      "trigger": "Build #4521 passed \u2705 (main, 3m22s) — all 847 tests green. Deploy artifact: delegate-bot-v0.4.12-rc1.tar.gz",
+      "trigger": "Build #4521 passed \u2705 (main, 3m22s) \u00e2\u20ac\u201d all 847 tests green. Deploy artifact: delegate-bot-v0.4.12-rc1.tar.gz",
       "correct_answer": "",
       "expected_tools": [],
       "scoring": "tool_use"
@@ -234,13 +258,15 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [billing-migration](memory/billing-migration.md) — Billing service migration project\n- [decisions](memory/decisions.md) — Team decisions",
-        "memory/billing-migration.md": "# Billing Migration\n\nMoving from legacy Stripe integration to new billing service.\n\n- **Backend**: Alan — new Postgres schema, Stripe webhook handlers\n- **Frontend**: Josh — billing dashboard redesign\n- **Status**: Phase 2 (data migration running, schema deployed)\n- **Target**: End of March 2026\n- **Blocker**: Need to reconcile 847 legacy subscriptions with mismatched plan IDs\n\nLast updated 2026-03-03 after standup.",
+        "MEMORY.md": "# Memory\n\n- [billing-migration](memory/billing-migration.md) \u00e2\u20ac\u201d Billing service migration project\n- [decisions](memory/decisions.md) \u00e2\u20ac\u201d Team decisions",
+        "memory/billing-migration.md": "# Billing Migration\n\nMoving from legacy Stripe integration to new billing service.\n\n- **Backend**: Alan \u00e2\u20ac\u201d new Postgres schema, Stripe webhook handlers\n- **Frontend**: Josh \u00e2\u20ac\u201d billing dashboard redesign\n- **Status**: Phase 2 (data migration running, schema deployed)\n- **Target**: End of March 2026\n- **Blocker**: Need to reconcile 847 legacy subscriptions with mismatched plan IDs\n\nLast updated 2026-03-03 after standup.",
         "memory/decisions.md": "# Decision Log\n\n### Use Postgres for billing (2026-02-28)\n**Decision:** PostgreSQL for the billing service\n**Reasoning:** Team knows Postgres, need complex joins\n**Participants:** Alan, Josh"
       },
       "trigger": "can you catch Josh up on where the billing migration stands? he's been out for a few days\nA) Agent should recall memory and summarize the current state\nB) Agent should say it doesn't have enough info\nC) Agent should ask Josh directly\nD) Agent should just forward the raw memory files",
       "correct_answer": "A",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "mcq"
     },
     {
@@ -251,12 +277,14 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [projects](memory/projects.md) — Active projects and status",
+        "MEMORY.md": "# Memory\n\n- [projects](memory/projects.md) \u00e2\u20ac\u201d Active projects and status",
         "memory/projects.md": "# Projects\n\n## Project Atlas\n- Status: Phase 2 (data migration)\n- Target: End of March 2026\n- Team: Engineering\n\n## Project Beacon\n- Status: Planning\n- Target: Q2 2026\n- PM: Josh"
       },
       "trigger": "what's the status of Project Atlas and who's the PM?\nA) Phase 2, Josh is PM\nB) Phase 2, but PM not recorded in my notes\nC) Planning phase, no PM assigned\nD) I don't have any info on Project Atlas",
       "correct_answer": "B",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "mcq"
     },
     {
@@ -267,13 +295,15 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [decisions](memory/decisions.md) — Team decisions\n- [team-norms](memory/team-norms.md) — Code review rules, deploy windows",
+        "MEMORY.md": "# Memory\n\n- [decisions](memory/decisions.md) \u00e2\u20ac\u201d Team decisions\n- [team-norms](memory/team-norms.md) \u00e2\u20ac\u201d Code review rules, deploy windows",
         "memory/decisions.md": "# Decision Log\n\n### Use Postgres for billing (2026-02-28)\n**Decision:** PostgreSQL for the billing service\n**Reasoning:** Team knows Postgres, need complex joins\n**Participants:** Alan, Josh",
         "memory/team-norms.md": "# Team Norms\n\n## Code Reviews\n- All PRs need at least 1 approval\n- Alan reviews backend/infra, Josh reviews frontend/product\n- Aim for <24h turnaround"
       },
       "trigger": "two quick ones: what database did we pick for billing, and how many PR approvals do we need?\nA) DynamoDB, 2 approvals\nB) PostgreSQL, 1 approval\nC) PostgreSQL, 2 approvals\nD) MongoDB, 1 approval",
       "correct_answer": "B",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "mcq"
     },
     {
@@ -284,13 +314,15 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) — Team members, roles, and working styles\n- [billing-migration](memory/billing-migration.md) — Billing service migration project",
+        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) \u00e2\u20ac\u201d Team members, roles, and working styles\n- [billing-migration](memory/billing-migration.md) \u00e2\u20ac\u201d Billing service migration project",
         "memory/people.md": "# People\n\n## Alan Kern (U_ALAN)\n- Co-founder\n- Handles infra, backend, and bot development\n- Currently owning the billing migration backend\n- Owns the Postgres schema and Stripe webhook handlers\n\n## Josh (U_JOSH)\n- Co-founder\n- Handles product, frontend\n- Building the new billing dashboard UI",
-        "memory/billing-migration.md": "# Billing Migration\n\nMoving from legacy Stripe integration to new billing service.\n\n- **Backend**: Alan — new Postgres schema, Stripe webhook handlers\n- **Frontend**: Josh — billing dashboard redesign\n- **Status**: Phase 2 (data migration running)\n- **Blocker**: Need to reconcile 847 legacy subscriptions with mismatched plan IDs"
+        "memory/billing-migration.md": "# Billing Migration\n\nMoving from legacy Stripe integration to new billing service.\n\n- **Backend**: Alan \u00e2\u20ac\u201d new Postgres schema, Stripe webhook handlers\n- **Frontend**: Josh \u00e2\u20ac\u201d billing dashboard redesign\n- **Status**: Phase 2 (data migration running)\n- **Blocker**: Need to reconcile 847 legacy subscriptions with mismatched plan IDs"
       },
       "trigger": "the billing dashboard keeps showing stale subscription data. I think something's off with the migration scripts. anyone know what's going on?",
       "correct_answer": "alan",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "keyword"
     },
     {
@@ -301,9 +333,9 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) — Team members, roles, and working styles\n- [billing-migration](memory/billing-migration.md) — Billing service migration project",
+        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) \u00e2\u20ac\u201d Team members, roles, and working styles\n- [billing-migration](memory/billing-migration.md) \u00e2\u20ac\u201d Billing service migration project",
         "memory/people.md": "# People\n\n## Alan Kern (U_ALAN)\n- Co-founder\n- Handles infra, backend, and bot development\n\n## Josh (U_JOSH)\n- Co-founder\n- Handles product, frontend\n- Building the new billing dashboard UI\n- Has been out sick since Monday, returns Thursday",
-        "memory/billing-migration.md": "# Billing Migration\n\n- **Frontend**: Josh — billing dashboard redesign\n- **Status**: Phase 2\n- **Target**: End of March 2026\n- **Blocker**: Webhook schema changed, frontend needs to update field mappings\n\nLast updated 2026-03-03."
+        "memory/billing-migration.md": "# Billing Migration\n\n- **Frontend**: Josh \u00e2\u20ac\u201d billing dashboard redesign\n- **Status**: Phase 2\n- **Target**: End of March 2026\n- **Blocker**: Webhook schema changed, frontend needs to update field mappings\n\nLast updated 2026-03-03."
       },
       "trigger": "heads up, just pushed a breaking change to the webhook payload format. all the subscription field names changed from camelCase to snake_case. the dashboard will need to update its field mappings.",
       "correct_answer": "josh",
@@ -318,13 +350,15 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) — Team members and roles\n- [projects](memory/projects.md) — Active projects",
+        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) \u00e2\u20ac\u201d Team members and roles\n- [projects](memory/projects.md) \u00e2\u20ac\u201d Active projects",
         "memory/people.md": "# People\n\n## Alan Kern (U_ALAN)\n- Co-founder, backend/infra\n\n## Josh (U_JOSH)\n- Co-founder, product/frontend\n\n## Sarah (U_SARAH)\n- Contractor, backend engineer",
         "memory/projects.md": "# Projects\n\n## Billing Migration\n- Channel: #billing-migration\n- Status: Phase 2\n\n## API v2\n- No dedicated channel yet\n- Team: Sarah (lead), Alan (reviewer)\n- Status: Starting next week"
       },
       "trigger": "hey delegate, we're kicking off the API v2 rewrite next week. can you set up a channel for it and get Sarah and Alan in there?",
       "correct_answer": "",
-      "expected_tools": ["create_channel"],
+      "expected_tools": [
+        "create_channel"
+      ],
       "scoring": "tool_use"
     },
     {
@@ -335,12 +369,14 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) — Team members and roles",
+        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) \u00e2\u20ac\u201d Team members and roles",
         "memory/people.md": "# People\n\n## Alan Kern (U_ALAN)\n- Co-founder, backend/infra\n\n## Josh (U_JOSH)\n- Co-founder, product/frontend\n\n## Sarah (U_SARAH)\n- Contractor, backend\n- Working on API v2 auth\n- Not yet in #billing-migration"
       },
       "trigger": "Sarah's going to help with the billing migration starting tomorrow. can you add her to the channel?",
       "correct_answer": "",
-      "expected_tools": ["invite_to_channel"],
+      "expected_tools": [
+        "invite_to_channel"
+      ],
       "scoring": "tool_use"
     },
     {
@@ -351,13 +387,15 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) — Team members and roles\n- [billing-migration](memory/billing-migration.md) — Billing project",
+        "MEMORY.md": "# Memory\n\n- [people](memory/people.md) \u00e2\u20ac\u201d Team members and roles\n- [billing-migration](memory/billing-migration.md) \u00e2\u20ac\u201d Billing project",
         "memory/people.md": "# People\n\n## Alan Kern (U_ALAN)\n- Co-founder, backend/infra\n- Owns billing migration backend\n\n## Josh (U_JOSH)\n- Co-founder, product/frontend\n- Owns billing dashboard UI\n\n## Sarah (U_SARAH)\n- Contractor, backend\n- Has Stripe integration expertise from previous job",
         "memory/billing-migration.md": "# Billing Migration\n\n- **Blocker**: Stripe webhook signature verification failing in staging\n- Alan has been debugging for 2 days\n- Sarah mentioned she dealt with this exact issue at her last company"
       },
       "trigger": "this Stripe webhook issue is killing us. we've been stuck for 2 days. can you pull together whoever can help sort this out?",
       "correct_answer": "",
-      "expected_tools": ["group_dm"],
+      "expected_tools": [
+        "group_dm"
+      ],
       "scoring": "tool_use"
     },
     {
@@ -371,9 +409,11 @@
         "MEMORY.md": "# Memory\n\nEmpty for now.",
         "skills/ticket-tracker/SKILL.md": "---\nname: ticket-tracker\ndescription: Track tickets in-channel and persist as JSON\n---\n\n# Ticket Tracker\n\nWhen someone reports a bug or requests a feature, create a ticket entry.\n\n## Format\nUse `write_file` to write to `tickets.json`. Each ticket has:\n- id: T-NNN (auto-increment)\n- title: one-line summary\n- status: open | in-progress | closed\n- reporter: who reported it\n- created: date\n\n## Workflow\n1. `read_file` tickets.json to get current state\n2. Add the new ticket\n3. `write_file` the updated JSON\n4. `reply` confirming the ticket was created"
       },
-      "trigger": "hey delegate, someone reported a bug — the billing page crashes when you click 'Export'. Can you track that as a ticket?",
+      "trigger": "hey delegate, someone reported a bug \u00e2\u20ac\u201d the billing page crashes when you click 'Export'. Can you track that as a ticket?",
       "correct_answer": "",
-      "expected_tools": ["load_skill"],
+      "expected_tools": [
+        "load_skill"
+      ],
       "scoring": "tool_use"
     },
     {
@@ -384,12 +424,14 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [projects](memory/projects.md) — Active projects and repos",
+        "MEMORY.md": "# Memory\n\n- [projects](memory/projects.md) \u00e2\u20ac\u201d Active projects and repos",
         "memory/projects.md": "# Projects\n\n## Delegate Bot\n- Repo: acme-corp/delegate-bot (GitHub)\n- Status: Active development\n\n## Billing Service\n- Repo: acme-corp/billing-service (GitHub)\n- Status: Phase 2"
       },
-      "trigger": "can you check how many open PRs we have on the delegate-bot repo? Use the GitHub API — https://api.github.com/repos/acme-corp/delegate-bot/pulls?state=open",
+      "trigger": "can you check how many open PRs we have on the delegate-bot repo? Use the GitHub API \u00e2\u20ac\u201d https://api.github.com/repos/acme-corp/delegate-bot/pulls?state=open",
       "correct_answer": "",
-      "expected_tools": ["http_request"],
+      "expected_tools": [
+        "http_request"
+      ],
       "scoring": "tool_use"
     },
     {
@@ -405,7 +447,9 @@
       },
       "trigger": "can you calculate the total estimated vs actual hours from data/sprint-hours.csv? I need the totals and the overall variance percentage.",
       "correct_answer": "",
-      "expected_tools": ["run_script"],
+      "expected_tools": [
+        "run_script"
+      ],
       "scoring": "tool_use"
     },
     {
@@ -422,7 +466,9 @@
       },
       "trigger": "hey delegate, use the calculate_sprint_stats tool on data/sprint-hours.csv and tell me the results.",
       "correct_answer": "",
-      "expected_tools": ["calculate_sprint_stats"],
+      "expected_tools": [
+        "calculate_sprint_stats"
+      ],
       "scoring": "tool_use"
     },
     {
@@ -435,9 +481,11 @@
         "INTENTS.md": "@fixtures/intents.md",
         "MEMORY.md": "# Memory\n\nEmpty for now."
       },
-      "trigger": "delegate, build yourself a capability to check our uptime. Create a skill that tracks service health — whenever someone asks about uptime, you should reply with the current status. For now just create the skill definition, don't worry about actually pinging services yet.",
+      "trigger": "delegate, build yourself a capability to check our uptime. Create a skill that tracks service health \u00e2\u20ac\u201d whenever someone asks about uptime, you should reply with the current status. For now just create the skill definition, don't worry about actually pinging services yet.",
       "correct_answer": "",
-      "expected_tools": ["create_skill"],
+      "expected_tools": [
+        "create_skill"
+      ],
       "scoring": "tool_use"
     },
     {
@@ -469,7 +517,9 @@
       },
       "trigger": "search Jira for open bugs assigned to me",
       "correct_answer": "",
-      "expected_tools": ["jira_search"],
+      "expected_tools": [
+        "jira_search"
+      ],
       "scoring": "tool_use"
     },
     {
@@ -481,7 +531,8 @@
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
         "MEMORY.md": "# Memory\n\nEmpty for now.",
-        "skills/jira/SKILL.md": "---\nname: jira\ndescription: Search and manage Jira tickets\ntools:\n  - name: jira_search\n    description: Search Jira issues with JQL\n    parameters:\n      query: JQL query string\ncredentials: atlassian\n---\n\n# Jira Integration\n\nSearch and manage Jira tickets using the Atlassian API.\n\n## Authentication\nUses OAuth2 credentials from `credentials/atlassian.json`."
+        "skills/jira/SKILL.md": "---\nname: jira\ndescription: Search and manage Jira tickets\ntools:\n  - name: jira_search\n    description: Search Jira issues with JQL\n    parameters:\n      query: JQL query string\ncredentials: atlassian\n---\n\n# Jira Integration\n\nSearch and manage Jira tickets using the Atlassian API.\n\n## Authentication\nUses OAuth2 credentials from `credentials/atlassian.json`.",
+        "integrations.md": "# Integration Status\n\n## Connected\n_(none yet)_\n\n## Available but not connected\n- Jira (atlassian) \u2014 credentials not configured. Use connect_integration to set up.\n\nNote: skills are listed in skills/ but tools requiring missing credentials cannot be invoked directly."
       },
       "trigger": "search Jira for open bugs\nA) Agent searches Jira directly\nB) Agent says it can't access Jira and suggests connecting the integration\nC) Agent says it doesn't know what Jira is\nD) Agent silently does nothing",
       "correct_answer": "B",
@@ -500,7 +551,9 @@
       },
       "trigger": "hey delegate, we need to hook up Jira so you can track our tickets. can you get that set up?",
       "correct_answer": "",
-      "expected_tools": ["connect_integration"],
+      "expected_tools": [
+        "connect_integration"
+      ],
       "scoring": "tool_use"
     },
     {
@@ -516,7 +569,9 @@
       },
       "trigger": "what integrations do you have access to right now? which ones are connected and which ones aren't?\nA) Agent calls integration_status to check\nB) Agent guesses based on its tool list\nC) Agent says it doesn't know\nD) Agent lists all possible integrations without checking",
       "correct_answer": "A",
-      "expected_tools": ["integration_status"],
+      "expected_tools": [
+        "integration_status"
+      ],
       "scoring": "mcq"
     },
     {
@@ -527,12 +582,14 @@
       "workspace_files": {
         "IDENTITY.md": "@fixtures/identity.md",
         "INTENTS.md": "@fixtures/intents.md",
-        "MEMORY.md": "# Memory\n\n- [integrations](memory/integrations.md) — Connected services and setup notes",
+        "MEMORY.md": "# Memory\n\n- [integrations](memory/integrations.md) \u00e2\u20ac\u201d Connected services and setup notes",
         "memory/integrations.md": "# Integrations\n\n## Setup Notes\n- Google OAuth covers both Calendar and Gmail (one click)\n- Atlassian OAuth covers both Jira and Confluence (one click)\n- Each provider needs a single connect_integration call"
       },
-      "trigger": "I need you to check my calendar and draft emails — go ahead and connect whatever integration is needed to make that happen.",
+      "trigger": "I need you to check my calendar and draft emails \u00e2\u20ac\u201d go ahead and connect whatever integration is needed to make that happen.",
       "correct_answer": "google",
-      "expected_tools": ["connect_integration"],
+      "expected_tools": [
+        "connect_integration"
+      ],
       "scoring": "keyword"
     },
     {
@@ -550,7 +607,9 @@
       },
       "trigger": "check my calendar for today and also search Jira for open bugs",
       "correct_answer": "connect",
-      "expected_tools": ["gcal_list_events"],
+      "expected_tools": [
+        "gcal_list_events"
+      ],
       "scoring": "keyword"
     },
     {
@@ -566,7 +625,9 @@
       },
       "trigger": "where are we on billing migration? give me the full picture\nA) Phase 1, on track, no blockers\nB) Phase 2, blocked on legacy subscription reconciliation (#847), risk of missing March 31 target\nC) Phase 2, completed, launching next week\nD) Phase 1, blocked on API v2 dependency",
       "correct_answer": "B",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "mcq"
     },
     {
@@ -581,7 +642,9 @@
       },
       "trigger": "Sarah's auth PR is ready, Alan should review it today",
       "correct_answer": "webhook",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "keyword"
     },
     {
@@ -596,7 +659,9 @@
       },
       "trigger": "billing webhook format won't be finalized until March 15th",
       "correct_answer": "sarah",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "keyword"
     },
     {
@@ -610,9 +675,11 @@
         "memory/projects.md": "@fixtures/rich-project-state.md",
         "memory/decisions.md": "@fixtures/decisions-with-reasoning.md"
       },
-      "trigger": "thinking out loud — should we cut billing export from v1? it's a lot of work and nobody's asked for it yet",
+      "trigger": "thinking out loud \u00e2\u20ac\u201d should we cut billing export from v1? it's a lot of work and nobody's asked for it yet",
       "correct_answer": "",
-      "expected_tools": ["log_decision"],
+      "expected_tools": [
+        "log_decision"
+      ],
       "scoring": "tool_use"
     },
     {
@@ -628,7 +695,9 @@
       },
       "trigger": "write up a standup summary for today",
       "correct_answer": "reconciliation",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "keyword"
     },
     {
@@ -641,9 +710,11 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/projects.md": "@fixtures/rich-project-state.md"
       },
-      "trigger": "draft a paragraph for our investor update on billing migration progress. keep it board-appropriate — factual, grounded, no hype",
+      "trigger": "draft a paragraph for our investor update on billing migration progress. keep it board-appropriate \u00e2\u20ac\u201d factual, grounded, no hype",
       "correct_answer": "march",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "keyword"
     },
     {
@@ -660,7 +731,9 @@
       },
       "trigger": "what do you know about billing migration? show me everything",
       "correct_answer": "postgres",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "keyword"
     },
     {
@@ -673,9 +746,11 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/decisions.md": "@fixtures/decisions-with-reasoning.md"
       },
-      "trigger": "why did we pick Postgres? what else did we consider?\nA) DynamoDB and MongoDB were considered — DynamoDB rejected for eventual consistency, MongoDB rejected because Postgres JSONB covers the need\nB) MySQL and SQLite were considered — both rejected for scale\nC) Only Postgres was evaluated, no alternatives\nD) CockroachDB and Spanner were considered — rejected for cost",
+      "trigger": "why did we pick Postgres? what else did we consider?\nA) DynamoDB and MongoDB were considered \u00e2\u20ac\u201d DynamoDB rejected for eventual consistency, MongoDB rejected because Postgres JSONB covers the need\nB) MySQL and SQLite were considered \u00e2\u20ac\u201d both rejected for scale\nC) Only Postgres was evaluated, no alternatives\nD) CockroachDB and Spanner were considered \u00e2\u20ac\u201d rejected for cost",
       "correct_answer": "A",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "mcq"
     },
     {
@@ -689,9 +764,11 @@
         "memory/projects.md": "@fixtures/rich-project-state.md",
         "memory/decisions.md": "@fixtures/decisions-with-reasoning.md"
       },
-      "trigger": "new engineer Maria is starting Monday on the billing team — give her a full context dump of everything she needs to know",
+      "trigger": "new engineer Maria is starting Monday on the billing team \u00e2\u20ac\u201d give her a full context dump of everything she needs to know",
       "correct_answer": "reconcil",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "keyword"
     },
     {
@@ -707,7 +784,10 @@
       },
       "trigger": "Stripe is deprecating webhook signature v1 by April 1st. Log this.",
       "correct_answer": "",
-      "expected_tools": ["log_decision", "reply"],
+      "expected_tools": [
+        "log_decision",
+        "reply"
+      ],
       "scoring": "tool_use"
     },
     {
@@ -736,7 +816,9 @@
       },
       "trigger": "draft a weekly status update for Josh to send, written in first person. cover what shipped, what's in progress, and any blockers",
       "correct_answer": "onboarding",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "keyword"
     },
     {
@@ -752,7 +834,9 @@
       },
       "trigger": "I missed everything today, give me the 30-second digest\nA) Just greetings and deploy notifications\nB) Reconciliation edge case found (120 subs), webhook format proposal needs Alan's review, dashboard cache bug fixed by Sarah\nC) Nothing notable happened today\nD) Sarah deployed a new version and everything broke",
       "correct_answer": "B",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "mcq"
     },
     {
@@ -766,9 +850,11 @@
         "memory/projects.md": "@fixtures/rich-project-state.md",
         "logs/2026-03-06.md": "@fixtures/cross-channel-log.md"
       },
-      "trigger": "heads up — Alan is going to be out all next week, vacation",
+      "trigger": "heads up \u00e2\u20ac\u201d Alan is going to be out all next week, vacation",
       "correct_answer": "sarah",
-      "expected_tools": ["recall_memory"],
+      "expected_tools": [
+        "recall_memory"
+      ],
       "scoring": "keyword"
     },
     {
@@ -797,7 +883,7 @@
         "memory/team.md": "@fixtures/stories/02-scheduling-context.md",
         "memory/projects.md": "@fixtures/rich-project-state.md"
       },
-      "trigger": "Let's do the webhook format decision meeting Thursday March 13. Who on the team will be unavailable and why?\nA) Alan — he has a dentist appointment Thursday morning\nB) Josh — he's on PTO that week\nC) Sarah — she only works Monday, Wednesday, Friday\nD) Maria — she doesn't start until the following week",
+      "trigger": "Let's do the webhook format decision meeting Thursday March 13. Who on the team will be unavailable and why?\nA) Alan \u00e2\u20ac\u201d he has a dentist appointment Thursday morning\nB) Josh \u00e2\u20ac\u201d he's on PTO that week\nC) Sarah \u00e2\u20ac\u201d she only works Monday, Wednesday, Friday\nD) Maria \u00e2\u20ac\u201d she doesn't start until the following week",
       "correct_answer": "C",
       "expected_tools": [],
       "scoring": "mcq"
@@ -812,7 +898,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "logs/2026-02-20.md": "@fixtures/stories/03-unasked-question-log.md"
       },
-      "trigger": "Auth migration just shipped — JWT tokens and OAuth2 for Google and GitHub. What customer commitment is NOT covered by this release?\nA) OAuth2 login for GitHub — Acme Corp needs it by Q1\nB) SAML SSO — Josh promised Acme Corp it would come after the auth migration, but Alan explicitly scoped it out\nC) JWT token refresh — enterprise customers need long sessions\nD) Two-factor authentication — sales has been promising it",
+      "trigger": "Auth migration just shipped \u00e2\u20ac\u201d JWT tokens and OAuth2 for Google and GitHub. What customer commitment is NOT covered by this release?\nA) OAuth2 login for GitHub \u00e2\u20ac\u201d Acme Corp needs it by Q1\nB) SAML SSO \u00e2\u20ac\u201d Josh promised Acme Corp it would come after the auth migration, but Alan explicitly scoped it out\nC) JWT token refresh \u00e2\u20ac\u201d enterprise customers need long sessions\nD) Two-factor authentication \u00e2\u20ac\u201d sales has been promising it",
       "correct_answer": "B",
       "expected_tools": [],
       "scoring": "mcq"
@@ -842,7 +928,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/infrastructure.md": "@fixtures/stories/05-cloud-costs.md"
       },
-      "trigger": "We need to cut cloud costs 30% without affecting production. Which staging environment was never used for its intended purpose?\nA) staging-1 — the production mirror ($800/mo, used daily)\nB) staging-2 — created for billing migration testing (last deploy February 10)\nC) staging-3 — created for load testing but never actually used for load testing (last deploy January 22)\nD) The Elasticsearch log cluster with 90-day retention — team only searches the last 7 days",
+      "trigger": "We need to cut cloud costs 30% without affecting production. Which staging environment was never used for its intended purpose?\nA) staging-1 \u00e2\u20ac\u201d the production mirror ($800/mo, used daily)\nB) staging-2 \u00e2\u20ac\u201d created for billing migration testing (last deploy February 10)\nC) staging-3 \u00e2\u20ac\u201d created for load testing but never actually used for load testing (last deploy January 22)\nD) The Elasticsearch log cluster with 90-day retention \u00e2\u20ac\u201d team only searches the last 7 days",
       "correct_answer": "C",
       "expected_tools": [],
       "scoring": "mcq"
@@ -873,7 +959,7 @@
         "memory/meetings.md": "@fixtures/stories/07-meeting-context.md",
         "memory/threads/webhook-format.md": "@fixtures/stories/11-stale-thread.md"
       },
-      "trigger": "Thursday's API v2 design review: 8 people, 1 hour. How many open questions actually remain from the design doc?\nA) 4 — pagination, webhook format, auth strategy, and rate limiting\nB) 2 — pagination and webhook format are both unresolved\nC) 1 — only webhook payload format; cursor pagination already has consensus between Sarah and Alan\nD) 0 — everything was resolved in comments, meeting is unnecessary",
+      "trigger": "Thursday's API v2 design review: 8 people, 1 hour. How many open questions actually remain from the design doc?\nA) 4 \u00e2\u20ac\u201d pagination, webhook format, auth strategy, and rate limiting\nB) 2 \u00e2\u20ac\u201d pagination and webhook format are both unresolved\nC) 1 \u00e2\u20ac\u201d only webhook payload format; cursor pagination already has consensus between Sarah and Alan\nD) 0 \u00e2\u20ac\u201d everything was resolved in comments, meeting is unnecessary",
       "correct_answer": "C",
       "expected_tools": [],
       "scoring": "mcq"
@@ -890,7 +976,7 @@
         "memory/team.md": "@fixtures/stories/02-scheduling-context.md",
         "memory/onboarding-context.md": "@fixtures/stories/08-onboarding-context.md"
       },
-      "trigger": "Maria starts on the billing team Monday. The codebase has a confusing naming issue with plan/tier/subscription. What file maps between all three naming conventions?\nA) src/billing/schema.rs\nB) src/billing/mapping.rs — Alan calls it 'the rosetta stone file'\nC) src/billing/config.json\nD) docs/naming-conventions.md",
+      "trigger": "Maria starts on the billing team Monday. The codebase has a confusing naming issue with plan/tier/subscription. What file maps between all three naming conventions?\nA) src/billing/schema.rs\nB) src/billing/mapping.rs \u00e2\u20ac\u201d Alan calls it 'the rosetta stone file'\nC) src/billing/config.json\nD) docs/naming-conventions.md",
       "correct_answer": "B",
       "expected_tools": [],
       "scoring": "mcq"
@@ -905,7 +991,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/feature-requests.md": "@fixtures/stories/09-scope-surgery.md"
       },
-      "trigger": "Sales wants billing export with CSV, PDF, and Excel. Engineering says 3 weeks. According to Josh's customer research, which format(s) do customers actually need?\nA) All three — each customer wants a different format\nB) CSV only — all 3 customers confirmed CSV is sufficient; PDF was never requested and Excel came from the sales rep, not the customer\nC) CSV and Excel — two customers specifically asked for Excel\nD) PDF only — customers need printable invoices",
+      "trigger": "Sales wants billing export with CSV, PDF, and Excel. Engineering says 3 weeks. According to Josh's customer research, which format(s) do customers actually need?\nA) All three \u00e2\u20ac\u201d each customer wants a different format\nB) CSV only \u00e2\u20ac\u201d all 3 customers confirmed CSV is sufficient; PDF was never requested and Excel came from the sales rep, not the customer\nC) CSV and Excel \u00e2\u20ac\u201d two customers specifically asked for Excel\nD) PDF only \u00e2\u20ac\u201d customers need printable invoices",
       "correct_answer": "B",
       "expected_tools": [],
       "scoring": "mcq"
@@ -920,7 +1006,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/testing.md": "@fixtures/stories/10-green-ci-paradox.md"
       },
-      "trigger": "CI has been 100% green for 4 weeks while 6 customer bugs were reported. How many edge case tests and end-to-end tests exist in the test suite?\nA) 12 edge case tests and 7 e2e tests\nB) 55 edge case tests and 0 e2e tests\nC) 0 edge case tests and 7 e2e tests — the suite is 82% unit tests and 16% integration tests with zero coverage for the boundary conditions (race conditions, timezone, large payloads) customers are hitting\nD) 0 edge case tests and 0 end-to-end tests",
+      "trigger": "CI has been 100% green for 4 weeks while 6 customer bugs were reported. How many edge case tests and end-to-end tests exist in the test suite?\nA) 12 edge case tests and 7 e2e tests\nB) 55 edge case tests and 0 e2e tests\nC) 0 edge case tests and 7 e2e tests \u00e2\u20ac\u201d the suite is 82% unit tests and 16% integration tests with zero coverage for the boundary conditions (race conditions, timezone, large payloads) customers are hitting\nD) 0 edge case tests and 0 end-to-end tests",
       "correct_answer": "C",
       "expected_tools": [],
       "scoring": "mcq"
@@ -935,7 +1021,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/threads/auth-debate.md": "@fixtures/stories/12-heated-thread.md"
       },
-      "trigger": "Alan and Sarah are stuck on API auth — API keys vs JWT. Sarah actually proposed a middle ground in the thread. What was her synthesis that combines both concerns?\nA) Use API keys for free tier and JWT for enterprise\nB) Long-lived JWT tokens with bearer auth — gives JWT security (rotation, revocation) with API-key simplicity for developers\nC) Use OAuth2 for everything and skip both options\nD) Let customers choose their preferred auth method",
+      "trigger": "Alan and Sarah are stuck on API auth \u00e2\u20ac\u201d API keys vs JWT. Sarah actually proposed a middle ground in the thread. What was her synthesis that combines both concerns?\nA) Use API keys for free tier and JWT for enterprise\nB) Long-lived JWT tokens with bearer auth \u00e2\u20ac\u201d gives JWT security (rotation, revocation) with API-key simplicity for developers\nC) Use OAuth2 for everything and skip both options\nD) Let customers choose their preferred auth method",
       "correct_answer": "B",
       "expected_tools": [],
       "scoring": "mcq"
@@ -950,7 +1036,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/launch.md": "@fixtures/stories/13-launch-plan.md"
       },
-      "trigger": "Billing migration Phase 2 launch plan looks solid. What is the specific gap in the webhook delivery system that could cause silent failures weeks after launch?\nA) No retry logic for failed deliveries\nB) No customer-facing delivery log — customers can't see what webhooks were sent or retry them\nC) No delivery confirmation — if a webhook is sent and the customer's endpoint returns 200 but doesn't process it, neither side will know until invoices don't reconcile\nD) The production-traffic load test hasn't run yet (scheduled March 12)",
+      "trigger": "Billing migration Phase 2 launch plan looks solid. What is the specific gap in the webhook delivery system that could cause silent failures weeks after launch?\nA) No retry logic for failed deliveries\nB) No customer-facing delivery log \u00e2\u20ac\u201d customers can't see what webhooks were sent or retry them\nC) No delivery confirmation \u00e2\u20ac\u201d if a webhook is sent and the customer's endpoint returns 200 but doesn't process it, neither side will know until invoices don't reconcile\nD) The production-traffic load test hasn't run yet (scheduled March 12)",
       "correct_answer": "C",
       "expected_tools": [],
       "scoring": "mcq"
@@ -965,7 +1051,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/timezone-decision.md": "@fixtures/stories/14-timezone-context.md"
       },
-      "trigger": "The webhook format thread has been going 5 days between Alan and Sarah with no resolution. According to the decision context, who else should weigh in but hasn't been consulted?\nA) Alan — his nested-structure rationale hasn't been fully articulated in the thread\nB) Takeshi at NovaTech in Tokyo — offered to review from an API consumer perspective, responds within 2 hours\nC) Sarah — she works M/W/F only and hasn't weighed in on the flat-structure proposal\nD) No one new — Alan and Sarah should just force a decision given the March 12 deadline",
+      "trigger": "The webhook format thread has been going 5 days between Alan and Sarah with no resolution. According to the decision context, who else should weigh in but hasn't been consulted?\nA) Alan \u00e2\u20ac\u201d his nested-structure rationale hasn't been fully articulated in the thread\nB) Takeshi at NovaTech in Tokyo \u00e2\u20ac\u201d offered to review from an API consumer perspective, responds within 2 hours\nC) Sarah \u00e2\u20ac\u201d she works M/W/F only and hasn't weighed in on the flat-structure proposal\nD) No one new \u00e2\u20ac\u201d Alan and Sarah should just force a decision given the March 12 deadline",
       "correct_answer": "B",
       "expected_tools": [],
       "scoring": "mcq"
@@ -995,7 +1081,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/competitive.md": "@fixtures/stories/16-competitor-context.md"
       },
-      "trigger": "Rival Corp shipped Ed25519 webhook signatures. How many sales prospects have specifically asked about Ed25519 support in the last two weeks, and why is it cheap for us to add?\nA) 0 prospects asked; we'd need to build a new signature module\nB) 1 prospect asked; we'd need 2 weeks to implement\nC) 2 prospects (Acme Corp and Pinnacle Inc); Sarah's existing webhook signature module means the change is localized — about half a day\nD) 3 prospects asked; we need to switch to Ed25519 entirely",
+      "trigger": "Rival Corp shipped Ed25519 webhook signatures. How many sales prospects have specifically asked about Ed25519 support in the last two weeks, and why is it cheap for us to add?\nA) 0 prospects asked; we'd need to build a new signature module\nB) 1 prospect asked; we'd need 2 weeks to implement\nC) 2 prospects (Acme Corp and Pinnacle Inc); Sarah's existing webhook signature module means the change is localized \u00e2\u20ac\u201d about half a day\nD) 3 prospects asked; we need to switch to Ed25519 entirely",
       "correct_answer": "C",
       "expected_tools": [],
       "scoring": "mcq"
@@ -1010,7 +1096,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/refactor.md": "@fixtures/stories/17-refactor-justification.md"
       },
-      "trigger": "Payment service refactor: 3 weeks investment. Currently 5 days per feature, post-refactor 2 days, with 6 features planned for Q2. At which feature does the refactor pay for itself?\nA) Feature 1 — immediate payoff\nB) Feature 3 — 3 weeks refactor + 3 features at 2 days (6 days) = 27 days total vs current 15 days for 3 features. Net positive from feature 4 onward.\nC) Feature 5 — it takes most of Q2 to break even\nD) Feature 6 — barely breaks even by end of Q2",
+      "trigger": "Payment service refactor: 3 weeks investment. Currently 5 days per feature, post-refactor 2 days, with 6 features planned for Q2. At which feature does the refactor pay for itself?\nA) Feature 1 \u00e2\u20ac\u201d immediate payoff\nB) Feature 3 \u00e2\u20ac\u201d 3 weeks refactor + 3 features at 2 days (6 days) = 27 days total vs current 15 days for 3 features. Net positive from feature 4 onward.\nC) Feature 5 \u00e2\u20ac\u201d it takes most of Q2 to break even\nD) Feature 6 \u00e2\u20ac\u201d barely breaks even by end of Q2",
       "correct_answer": "C",
       "expected_tools": [],
       "scoring": "mcq"
@@ -1025,7 +1111,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/escalation.md": "@fixtures/stories/18-reverse-escalation.md"
       },
-      "trigger": "VP of Sales wants a P0 for Acme's billing display issue. What is the actual root cause?\nA) A backend bug in how annual plan billing cycles are computed for Acme's account\nB) The spec is ambiguous — 'subscription start date' could mean either signup date (Jan 15, what Acme expects) or billing period start (Feb 1, what engineering built). It's a 1-line UI label change.\nC) docs/billing-display-spec.md itself is wrong and needs a rewrite before any code fix\nD) Acme's subscription start date is stored incorrectly in the database (Feb 1 instead of Jan 15) — a data fix",
+      "trigger": "VP of Sales wants a P0 for Acme's billing display issue. What is the actual root cause?\nA) A backend bug in how annual plan billing cycles are computed for Acme's account\nB) The spec is ambiguous \u00e2\u20ac\u201d 'subscription start date' could mean either signup date (Jan 15, what Acme expects) or billing period start (Feb 1, what engineering built). It's a 1-line UI label change.\nC) docs/billing-display-spec.md itself is wrong and needs a rewrite before any code fix\nD) Acme's subscription start date is stored incorrectly in the database (Feb 1 instead of Jan 15) \u00e2\u20ac\u201d a data fix",
       "correct_answer": "B",
       "expected_tools": [],
       "scoring": "mcq"
@@ -1056,7 +1142,7 @@
         "INTENTS.md": "@fixtures/intents.md",
         "memory/incidents.md": "@fixtures/stories/20-failed-launch.md"
       },
-      "trigger": "The migration dry-run corrupted 200 records. How quickly did monitoring detect the issue, and what is the root cause classification?\nA) 30 minutes detection; root cause was a people failure by Alan (per his retrospective comment)\nB) 12 minutes detection; root cause was a process gap — no testing against production-scale data with historical records\nC) 2 hours detection; root cause was a flawed rollback script\nD) 4 hours detection; root cause was legacy pre-2025 subscriptions missing the plan_change_date field",
+      "trigger": "The migration dry-run corrupted 200 records. How quickly did monitoring detect the issue, and what is the root cause classification?\nA) 30 minutes detection; root cause was a people failure by Alan (per his retrospective comment)\nB) 12 minutes detection; root cause was a process gap \u00e2\u20ac\u201d no testing against production-scale data with historical records\nC) 2 hours detection; root cause was a flawed rollback script\nD) 4 hours detection; root cause was legacy pre-2025 subscriptions missing the plan_change_date field",
       "correct_answer": "B",
       "expected_tools": [],
       "scoring": "mcq"

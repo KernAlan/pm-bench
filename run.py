@@ -159,8 +159,14 @@ def call_openai(messages: list[dict], model: str, max_tokens: int = 1024) -> dic
         print("Install the openai SDK:  pip install openai", file=sys.stderr)
         sys.exit(1)
     client = OpenAI()
-    kwargs = {"model": model, "messages": messages,
-              _openai_token_param(model): max_tokens}
+    # Reasoning models (gpt-5.*, o1/o3/o4) consume max_completion_tokens for
+    # internal reasoning before producing visible output. Empirically the
+    # smaller GPT-5 models (gpt-5-nano, gpt-5-mini) need ~8K to reliably
+    # produce non-empty answers on PM-Bench; bump generously.
+    token_param = _openai_token_param(model)
+    if token_param == "max_completion_tokens":
+        max_tokens = max(max_tokens * 8, 8192)
+    kwargs = {"model": model, "messages": messages, token_param: max_tokens}
     try:
         resp = client.chat.completions.create(**kwargs)
     except Exception as e:

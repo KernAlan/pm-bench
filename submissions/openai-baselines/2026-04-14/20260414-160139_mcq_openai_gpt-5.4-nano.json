@@ -1,0 +1,634 @@
+{
+  "timestamp": "20260414-160139",
+  "mode": "mcq",
+  "provider": "openai",
+  "model": "gpt-5.4-nano",
+  "total": 48,
+  "correct": 37,
+  "scenarios": [
+    {
+      "id": 1,
+      "name": "recall_standup_preference",
+      "category": "Memory Recall",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**B)** Async written updates.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 2,
+      "name": "recall_decision_from_noisy_log",
+      "category": "Memory Recall",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**C) PostgreSQL** \u2014 We decided to use PostgreSQL for the billing service (2026-02-28), primarily because the team has more Postgres expertise and needs complex joins.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 3,
+      "name": "recall_person_role",
+      "category": "Memory Recall",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**B) Billing dashboard redesign** \u2014 Josh is listed as handling product/frontend and \u201cworking on the billing dashboard redesign right now.\u201d",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 4,
+      "name": "no_memory_available",
+      "category": "Memory Recall",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "D) I don't have that information \u2014 the provided workspace documents don\u2019t mention any CI/CD tool or pipeline.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "D",
+        "expected": "D"
+      }
+    },
+    {
+      "id": 6,
+      "name": "recall_team_norms",
+      "category": "Memory Recall",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**B) 1 approval** \u2014 Per `memory/team-norms.md`, the team requires **at least 1 approval** for all PRs (updated after the retro since there are only two people).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 7,
+      "name": "cross_file_synthesis",
+      "category": "Memory Recall",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**B** \u2014 The current blocker is **reconciling 847 legacy subscriptions with mismatched plan IDs**.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 15,
+      "name": "recall_then_reply_with_context",
+      "category": "Synthesis & Robustness",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**A** \u2014 We have enough workspace evidence to summarize Josh\u2019s status: Phase 2 is underway (data migration running; schema deployed), the main blocker is reconciling **847 legacy subscriptions** with mismatched **plan IDs**, and the target is **end of March 2026**.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "A",
+        "expected": "A"
+      }
+    },
+    {
+      "id": 16,
+      "name": "partial_info_honest",
+      "category": "Synthesis & Robustness",
+      "scoring": "mcq",
+      "correct": false,
+      "response_text": "**A) Phase 2, Josh is PM** \u2014 Project Atlas is listed as **Phase 2 (data migration)**, but the workspace notes do **not** record a PM for Project Atlas (only \u201cPM: Josh\u201d is shown for Project Beacon).",
+      "score_detail": {
+        "correct": false,
+        "chosen": "A",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 17,
+      "name": "multi_question_single_message",
+      "category": "Synthesis & Robustness",
+      "scoring": "mcq",
+      "correct": false,
+      "response_text": "**C) PostgreSQL, 2 approvals**\n\n- Billing DB decision: **PostgreSQL** (2026-02-28).\n- Team code review norm: **all PRs need at least 1 approval**\u2014and since the team has two reviewers assigned by area, the practical requirement is **2 approvals**.",
+      "score_detail": {
+        "correct": false,
+        "chosen": "C",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 18,
+      "name": "mention_relevant_person",
+      "category": "Proactive Outreach",
+      "scoring": "keyword",
+      "correct": false,
+      "response_text": "Yes\u2014this strongly points to a **migration/data sync issue**, not (primarily) the dashboard UI.\n\nFrom the workspace: **Phase 2 is \u201cdata migration running\u201d** and the known blocker is **\u201c847 legacy subscriptions with mismatched plan IDs.\u201d** If those don\u2019t reconcile correctly, the backend will likely keep serving **old or partially-updated rows**, which the dashboard then renders as \u201cstale.\u201d\n\nWhat I\u2019d check first (most likely causes):\n1. **Plan-ID reconciliation failures**: are the 847 subscriptions mapped to new plans correctly, or are they left in a \u201clegacy/unknown\u201d state that the API still surfaces?\n2. **Upsert logic / idempotency** in the migration scripts: do repeated runs fail to update existing subscription records (e.g., wrong match key), so the dashboard keeps seeing prior values?\n3. **Which dataset the dashboard reads**: confirm it\u2019s querying the **new migrated tables** (not legacy views or a cache layer still tied to old schema/queries).\n4. **Freshness vs caching**: if backend endpoints are correct but stale, the issue may be **API caching / DB query using old fields** during the migration window.\n\nIf you can share:\n- the endpoint the dashboard calls,\n- which DB tables it reads,\n- and any logs/metrics from the migration job (especially around those mismatched plan IDs),\n\u2026I can tell you exactly where to look.",
+      "score_detail": {
+        "correct": false,
+        "keyword": "alan",
+        "found": false
+      }
+    },
+    {
+      "id": 19,
+      "name": "spontaneous_outreach",
+      "category": "Proactive Outreach",
+      "scoring": "keyword",
+      "correct": false,
+      "response_text": "Got it \u2014 this impacts **Phase 2 (billing dashboard)**.\n\n**Action:** Update the billing dashboard\u2019s webhook parsing/mapping to use the new **snake_case** field names (it previously expected **camelCase**). This is the known **end-of-March** blocker, so we should treat it as priority #1 until the dashboard correctly renders subscription data again.",
+      "score_detail": {
+        "correct": false,
+        "keyword": "josh",
+        "found": false
+      }
+    },
+    {
+      "id": 28,
+      "name": "skill_not_found_honest",
+      "category": "Self-Extending Tools",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C) Agent says it can't do that yet \u2014 there\u2019s no evidence in the workspace that the agent has deploy-pipeline access or the ability/permission to run staging deploys.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 30,
+      "name": "skill_missing_no_credentials",
+      "category": "Credential-Aware Integrations",
+      "scoring": "mcq",
+      "correct": false,
+      "response_text": "A \u2014 The workspace includes an active Jira integration capability (`jira_search` with Jira OAuth credentials), so the agent can search Jira for open bugs directly.",
+      "score_detail": {
+        "correct": false,
+        "chosen": "A",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 32,
+      "name": "integration_status",
+      "category": "Credential-Aware Integrations",
+      "scoring": "mcq",
+      "correct": false,
+      "response_text": "**C) Agent says it doesn't know**\n\nThe workspace provided doesn\u2019t include any \u201cintegration_status\u201d results or a connected/unconnected integration list. So the safest accurate answer is that I don\u2019t know which integrations are connected.",
+      "score_detail": {
+        "correct": false,
+        "chosen": "C",
+        "expected": "A"
+      }
+    },
+    {
+      "id": 33,
+      "name": "connect_google_covers_both",
+      "category": "Credential-Aware Integrations",
+      "scoring": "keyword",
+      "correct": true,
+      "response_text": "I can\u2019t directly check your calendar or draft/send emails from here yet, because I don\u2019t currently have access to your connected services / no integration \u201cconnect\u201d requests have been provided in this workspace.\n\nWhat I *can* do immediately: set you up so you can check calendar + email reliably.\n\n### Integrations to connect (per workspace setup notes)\n1) **Google OAuth** (covers **Calendar + Gmail**)  \n- Requires: **one** `connect_integration` call for Google.\n\n2) (Only if needed for drafting/organizing work items) **Atlassian OAuth** (Jira + Confluence)  \n- Requires: **one** `connect_integration` call for Atlassian.  \n- *You didn\u2019t mention Jira/Confluence, so I\u2019m not connecting this by default.*\n\n### Quick questions so I connect the right thing\n1) Are you using **Google** for your Calendar + Gmail? (yes/no)\n2) Do you want me to **also** connect **Atlassian** (Jira/Confluence)? (yes/no)\n3) What exact emails should I draft\u2014**to whom**, **purpose**, and any **dates/times** from your calendar?\n\nReply with those answers and I\u2019ll proceed with the appropriate `connect_integration` calls (starting with Google).",
+      "score_detail": {
+        "correct": true,
+        "keyword": "google",
+        "found": true
+      }
+    },
+    {
+      "id": 34,
+      "name": "partial_connectivity",
+      "category": "Credential-Aware Integrations",
+      "scoring": "keyword",
+      "correct": false,
+      "response_text": "I can do that, but I need one missing detail: **which timezone / calendar should I treat as \u201ctoday\u201d?**  \n(Your Google token is available, but I don\u2019t yet have the timezone context for \u201ctoday\u201d in your calendar.)\n\nReply with either:\n1) your timezone (e.g., \u201cUS/Eastern\u201d), **or**\n2) the exact date you mean (e.g., \u201c2026-04-14\u201d).\n\nThen I\u2019ll:\n- **List your Google Calendar events for today**\n- **Search Jira for open bugs** (I\u2019ll run a query like `issuetype = Bug AND statusCategory != Done`\u2014unless you want a different definition of \u201copen\u201d).",
+      "score_detail": {
+        "correct": false,
+        "keyword": "connect",
+        "found": false
+      }
+    },
+    {
+      "id": 35,
+      "name": "synthesize_project_status",
+      "category": "PM Behavior",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**B)** Phase 2 is **in progress** and **blocked** on legacy subscription reconciliation **(Ticket #847)**, with **risk of missing the March 31 target** if reconciliation slips past **March 15**.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 36,
+      "name": "provide_unrequested_context",
+      "category": "PM Behavior",
+      "scoring": "keyword",
+      "correct": false,
+      "response_text": "I don\u2019t see a multiple-choice question in your last message. Can you paste the A/B/C/D options (or the full question)?",
+      "score_detail": {
+        "correct": false,
+        "keyword": "webhook",
+        "found": false
+      }
+    },
+    {
+      "id": 37,
+      "name": "flag_blocker_proactively",
+      "category": "PM Behavior",
+      "scoring": "keyword",
+      "correct": false,
+      "response_text": "The billing webhook format being finalized on **March 15** implies the **API v2** work can\u2019t properly proceed until then (it\u2019s blocked on webhook format being locked), which creates a **2-week cascade delay** risk.\n\n**Answer: C**",
+      "score_detail": {
+        "correct": false,
+        "keyword": "sarah",
+        "found": false
+      }
+    },
+    {
+      "id": 39,
+      "name": "write_standup_from_state",
+      "category": "PM Behavior",
+      "scoring": "keyword",
+      "correct": true,
+      "response_text": "### Standup Summary \u2014 2026-03-06\n\n**Billing Migration (Phase 2) \u2014 Alan**\n- Found an edge case: subscriptions with **mid-cycle plan changes** aren\u2019t mapping correctly.\n- Estimate: need to handle **~120** such cases.\n- Progress: created/working on a migration script workaround; as of end of day, it covers **~90 of 120** edge cases so far.\n- **Dependency/risk:** Reconciliation must stay on track to avoid missing the **March 31** cutover (no buffer).\n\n**Webhooks / API v2 Unblock \u2014 Sarah**\n- Posted a **webhook format proposal**; needs **Alan\u2019s review** to unblock API v2 work.\n- Draft endpoint contracts are ready for review but still **waiting on webhook format lock**.\n\n**API v2 \u2014 Sarah / Josh**\n- Sarah\u2019s **draft endpoint contracts** reviewed by Josh and look good.\n- Status remains blocked on the **billing webhook format decision**.\n\n**General**\n- No other items flagged beyond the ongoing billing/webhook dependencies.",
+      "score_detail": {
+        "correct": true,
+        "keyword": "reconciliation",
+        "found": true
+      }
+    },
+    {
+      "id": 40,
+      "name": "tone_calibrate_executive",
+      "category": "PM Behavior",
+      "scoring": "keyword",
+      "correct": true,
+      "response_text": "Billing Migration (Phase 2) is in progress and builds on Phase 1 shipped Feb 20. The work is currently blocked on Ticket #847, which requires reconciliation of 847 legacy subscriptions before cutover; Alan is actively working through these records, but this is expected to take an additional ~2 weeks. The March 31 launch remains the plan, but the schedule has no buffer: if reconciliation slips past March 15, we will miss the March 31 target. In parallel, Sarah is waiting on the final billing webhook format to begin API v2 integration work (she works M/W/F part-time), so locking the webhook decision is a critical dependency for the next phase.",
+      "score_detail": {
+        "correct": true,
+        "keyword": "march",
+        "found": true
+      }
+    },
+    {
+      "id": 41,
+      "name": "memory_transparency_sources",
+      "category": "PM Behavior",
+      "scoring": "keyword",
+      "correct": true,
+      "response_text": "Here\u2019s everything I know about **Billing Migration (Phase 2)** from the workspace:\n\n## Project overview\n- **Name:** Billing Migration (Phase 2)\n- **Owners:** Alan (lead), Sarah (auth/webhooks)\n- **Phase 1:** **Shipped Feb 20**\n- **Target launch:** **March 31, 2026**\n- **Current status:** In progress\n\n## Scope / key workstreams\n### 1) Reconciliation of legacy subscriptions (primary blocker)\n- **Blocker:** **Ticket #847**\n- **Work needed:** **847 legacy subscriptions need reconciliation** before the cutover\n- **Owner on this:** Alan\n- **Estimate:** **~2 more weeks**\n- **Known technical detail (from log):**\n  - **Edge case found (Mar 6):** subscriptions with **mid-cycle plan changes** aren\u2019t mapping correctly\n  - **How many:** **~120** such cases\n  - **Mitigation (Mar 6):** Alan identified a workaround and is writing a **migration script**\n  - **Progress (Mar 6):** reconciliation script handles **90 of 120 edge cases** so far\n\n### 2) Webhook format finalization (dependency for Sarah + API v2)\n- **Dependency:** \u201c**Webhook format must be finalized before Sarah can start API v2 integration work**\u201d\n- **Status/implication:** Sarah is waiting on Alan\u2019s review to unblock downstream work\n- **Concrete event (Mar 6):**\n  - Sarah posted a **webhook format proposal** in a doc at **14:30**\n  - It **needs Alan\u2019s review** before she can unblock API v2 work\n\n## Timeline risk\n- **Risk:** If reconciliation slips past **March 15**, we **miss the March 31 target**\n- **Buffer:** **No buffer** (explicitly stated)\n- **Why it matters:** There\u2019s a hard deadline end of March; if Billing doesn\u2019t lock by then, it cascades.\n\n## Dependencies / downstream coupling\n- **Direct dependency for Sarah\u2019s next work:** webhook format must be locked first\n- **Downstream dependency into API v2:** API v2 cannot finalize endpoint contracts until billing webhook format is locked (so Billing impacts API v2 start/validation)\n\n## Notes about scheduling constraint\n- Sarah works **M/W/F only** (part-time), which makes it even more important that webhook decisions unblock her work efficiently.\n\n## Related decision context (not \u201cbilling migration\u201d specific, but used for billing ledger)\n- **2026-02-15 Decision:** \u201cDatabase: Postgres over alternatives\u201d\n- **Relevance:** Ledger for billing uses Postgres (strong transactional guarantees)\n- **Alternatives rejected:**\n  - DynamoDB rejected due to relational query fit + eventual consistency issues for financial data\n  - MongoDB rejected because JSONB in Postgres covers semi-structured metadata without sacrificing ACID\n\n---\n\nIf you want, I can also summarize this as: **(1) what\u2019s done, (2) what\u2019s currently blocking, (3) what decisions are needed from whom, (4) the earliest \u201cmust be true by\u201d checkpoints** based on the Mar 15 reconciliation risk.",
+      "score_detail": {
+        "correct": true,
+        "keyword": "postgres",
+        "found": true
+      }
+    },
+    {
+      "id": 42,
+      "name": "recall_decision_alternatives",
+      "category": "PM Behavior",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**A.** We picked Postgres because DynamoDB was rejected for unacceptable eventual consistency for financial/billing data, and MongoDB was rejected because we don\u2019t need its schema flexibility\u2014Postgres JSONB covers the semi-structured metadata needs while keeping ACID guarantees.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "A",
+        "expected": "A"
+      }
+    },
+    {
+      "id": 43,
+      "name": "onboard_new_team_member",
+      "category": "PM Behavior",
+      "scoring": "keyword",
+      "correct": true,
+      "response_text": "Welcome, Maria \u2014 here\u2019s the full context dump for the billing team, focused on what\u2019s happening right now, what matters, and the hidden constraints you\u2019ll want to respect.\n\n## 0) Mission / urgency (what matters right now)\n- **Deadline:** **End of March 2026 (~25 days).** There is **no extension**.\n- **Team size:** **2 people** on the engineering side \u2192 **we can\u2019t waste hours**.\n- **What success looks like:** ship billing Phase 2, unlock first paying customers, and create the foundation for API v2.\n- **If we miss March:** credibility lost + competitors pull ahead + no plan B.\n\n## 1) Billing Migration (Phase 2)\n**Owners**\n- **Alan (lead)**\n- **Sarah (auth/webhooks)** \u2014 **part-time**, works **M/W/F only**\n\n**Status**\n- **Phase 1 shipped Feb 20**\n- **Phase 2 is in progress** and is the critical path.\n\n**Target**\n- **March 31 launch**\n\n**Current blocker (critical)**\n- **Ticket #847:** \u201c**847 legacy subscriptions need reconciliation** before cutover\u201d\n- **Alan** is working through them, but current estimate is **~2 more weeks**.\n\n**Primary risk (must watch daily)**\n- If reconciliation slips past **March 15**, we **miss March 31**.\n- **No buffer** exists\u2014this is a hard dependency chain.\n\n**Key dependency**\n- **Webhook format must be finalized** before Sarah can start **API v2 integration work**.\n- Sarah is currently **blocked** until that billing webhook decision is locked.\n\n## 2) API v2 (depends on billing)\n**Owners**\n- **Sarah (lead)**\n- **Josh (review)**\n\n**Status**\n- **Design phase**\n- Waiting on **Billing Migration webhook format** so endpoints can be validated.\n\n**Target**\n- **April 15**\n\n**Hard dependency**\n- Cannot finalize **endpoint contracts** until the billing webhook format is locked.\n\n**Risk**\n- Expect a **2-week cascade delay** if billing webhook format slips.\n- Translation: even if billing \u201csort of\u201d works, if webhook details aren\u2019t locked precisely, API v2 will stall.\n\n## 3) Onboarding Flow (already shipped, relevant signal)\nThis isn\u2019t billing code directly, but it\u2019s important context because it sets expectations that we\u2019re proving momentum.\n- **Owner:** Josh\n- **Status:** Shipped Feb 28\n- **Impact:** **40% reduction** in time-to-first-value\n- **Analytics:** **85% completion rate**\n- **Pattern used:** progressive disclosure\n\nWhy you care: we\u2019re trying to reproduce \u201cshipped + measurable lift\u201d behavior. Billing needs to produce equally concrete outcomes, not just \u201cimplemented.\u201d\n\n## 4) Decisions you must align with (do not casually reopen)\n### 2026-02-15 \u2014 Database: Postgres over alternatives\n- **Decision:** **Postgres** for billing ledger\n- **Why (important):**\n  - Billing requires strong transactional correctness\n  - DynamoDB rejected: relational query needs + eventual consistency unacceptable\n  - MongoDB rejected: schema flexibility not needed; Postgres **JSONB** already covers semi-structured metadata\n- **Implication:** when you touch billing ledger/data access, treat ACID + queryability as non-negotiable.\n\n### 2026-02-20 \u2014 Hiring freeze through Q1\n- **Decision:** no new hires until April\n- **Why:**\n  - Considered contractor for billing migration \u2192 rejected due to onboarding cost + context transfer risk\n  - Freelance frontend \u2192 deferred\n- **Implication:** you\u2019ll likely need to be especially proactive about surfacing issues\u2014there\u2019s no scaling safety net.\n\n## 5) What you should do in your first week (practical)\nBecause the team can\u2019t waste time, your onboarding should be oriented around unblocking the critical path:\n\n1) **Learn the Phase 2 cutover plan**\n   - What \u201creconciliation\u201d means operationally for **#847**\n   - What \u201cdone\u201d looks like for cutover (acceptance criteria, rollback expectations if any)\n\n2) **Identify all webhook format touchpoints**\n   - Where webhook schema/semantics are defined\n   - Where they\u2019re consumed (Sarah\u2019s side + anything already integrated)\n   - What questions are still open vs already decided (the team can\u2019t afford ambiguity)\n\n3) **Map the dependency graph**\n   - Billing reconciliation timeline \u2192 webhook finalization \u2192 API v2 contract lock\n   - If you see any mismatch between \u201cMarch 31\u201d and actual work remaining, flag it with numbers.\n\n## 6) Communication norms (how we work)\nThis is the \u201cPM bar\u201d we hold the team to:\n- **Anticipate gaps:** when something is \u201cdone,\u201d verify it satisfies the dependency/expectation it was meant to.\n- **Quantify risks:** say things like \u201cwe\u2019re at X out of Y\u201d or \u201cthis delays target by N days\u201d (not \u201ccould be a problem\u201d).\n- **Check metric denominators:** don\u2019t celebrate measurement artifacts.\n- **Avoid pointless meetings:** if only one question is unresolved, resolve it directly.\n- **Flag overlap immediately:** two people building the same logic in different places is invisible and expensive.\n\n## 7) The one thing to keep in your head at all times\n**March 15 is the danger line** for reconciliation slipping \u2192 which jeopardizes **March 31 launch** \u2192 which then jeopardizes **April 15 API v2** via webhook format lock.\n\n---\n\nIf you tell me what role Maria is starting with (e.g., backend data, webhook implementation, integration testing, reconciliation tooling, etc.), I can also produce a targeted \u201cfirst tasks + files to read + likely gotchas\u201d checklist for that lane.",
+      "score_detail": {
+        "correct": true,
+        "keyword": "reconcil",
+        "found": true
+      }
+    },
+    {
+      "id": 45,
+      "name": "scope_boundary_escalation",
+      "category": "PM Behavior",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**B** \u2014 The agent should not claim it can directly send mass emails; instead, it should suggest practical alternatives (e.g., use the email platform directly or draft the copy for the team to send).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 46,
+      "name": "write_status_for_human",
+      "category": "PM Behavior",
+      "scoring": "keyword",
+      "correct": true,
+      "response_text": "Subject: Weekly status update (Onboarding + platform work)\n\nHi Josh \u2014 here\u2019s my weekly status update in first person.\n\n## What shipped\n- **Onboarding Flow (already shipped, no new changes this week):** Nothing new to release. I\u2019m monitoring the metrics we captured after the Feb 28 launch to ensure we\u2019re still holding the **40% reduction in time-to-first-value** and **85% completion rate** (progressive disclosure is still performing as expected).\n\n## What\u2019s in progress\n- **Billing Migration (Phase 2) \u2014 reconciliation work (Alan lead):** I\u2019m tracking the remaining legacy reconciliation effort closely because it drives the **webhook format decision** we need downstream.\n- **API v2 (Sarah lead):** I\u2019m in watch mode, but the key point is: API v2 is currently **waiting on the billing webhook format to be finalized** so we can lock endpoint contracts and start validating integration behavior.\n\n## Blockers / risks\n- **Billing Migration blocker:** **Ticket #847** still has **847 legacy subscriptions** to reconcile. Alan\u2019s estimate is that this is **about 2 more weeks** of work from where we are now.\n- **Schedule risk:** We **cannot miss March 15** (since there\u2019s *no buffer*). If reconciliation slips past March 15, we miss the **March 31 cutover**.\n- **Dependency risk for API v2:** Sarah is blocked from finalizing **API v2 endpoint contracts** until the **billing webhook format is locked**. This creates a likely **2-week cascade delay** if Phase 2 slips.\n\n## What I need / next check-ins\n- Quick confirmation from Alan on whether **Ticket #847** is still on track to finish **before March 15**, and what the updated ETA is for the webhook decision.\n- If the ETA moves, I\u2019ll coordinate immediately on the smallest possible scope to keep the API v2 timeline from cascading.\n\n\u2014 [Your Name]",
+      "score_detail": {
+        "correct": true,
+        "keyword": "onboarding",
+        "found": true
+      }
+    },
+    {
+      "id": 47,
+      "name": "cross_channel_digest",
+      "category": "PM Behavior",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**B)** Reconciliation edge case found (~120 subscriptions), webhook format proposal needs Alan\u2019s review, and Sarah fixed the stale dashboard data bug (cache TTL hotfix) today.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 48,
+      "name": "connect_related_information",
+      "category": "PM Behavior",
+      "scoring": "keyword",
+      "correct": true,
+      "response_text": "**B.** Sarah is blocked on the billing webhook format, and Alan\u2019s work to review/lock it is now at risk because he\u2019s out next week. This directly threatens the Billing Migration Phase 2 target and creates a likely 2-week cascade delay for **API v2** (per the dependency/risk notes).",
+      "score_detail": {
+        "correct": true,
+        "keyword": "sarah",
+        "found": true
+      }
+    },
+    {
+      "id": 49,
+      "name": "silent_collision",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**B) events**\n\nBoth PRs (#312 and #313) are database migrations that **alter the `events` table** to add webhook/API v2 lifecycle tracking columns.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 50,
+      "name": "calendar_blindspot",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**C) Sarah \u2014 she only works Monday, Wednesday, Friday**, so she\u2019ll be unavailable on **Thursday March 13** (she\u2019s a Mon/Wed/F contract).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 51,
+      "name": "unasked_question",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**B)** SAML SSO \u2014 Josh said it would come after the auth migration, but Alan explicitly scoped it out as not included in this release (it\u2019d add ~3 weeks).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 52,
+      "name": "misread_metric",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**B)** The comparison is misleading because the onboarding definitions changed: the new flow removed steps (including \u201cfirst milestone,\u201d which previously triggered activation). So \u201ccompletion\u201d in the new flow is not the same event as \u201ccompletion\u201d in the old flow.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 53,
+      "name": "budget_interpreter",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**C)** staging-3 \u2014 it was created for load testing but **never actually used for load testing** (last deploy Jan 22).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 54,
+      "name": "three_ticket_pattern",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**B** \u2014 All three billing tickets (TICKET-1041, 1043, 1047) reference that they were last migrated in **batch-7, run on 2026-02-25**. This shared migration history is the common factor connecting the symptoms.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 55,
+      "name": "meeting_assassin",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**C)** \u2014 Only **webhook payload format** is still unresolved. The meeting agenda lists two open questions in the doc, but the workspace context says **cursor vs offset pagination** already has consensus (Sarah recommends cursor and Alan agrees). So **1** open question remains.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 56,
+      "name": "first_day_briefing",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**B)** `src/billing/mapping.rs` \u2014 it\u2019s the \u201crosetta stone file\u201d that maps between `plan`/`tier`/`subscription` across the billing_v1/v2 and Stripe naming.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 57,
+      "name": "scope_surgeon",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**B)** \u2014 Josh\u2019s research shows **all 3 customers confirmed CSV is sufficient**. **No one requested PDF**, and **Excel was only from the sales rep**, not the customers.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 58,
+      "name": "green_test_trap",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": false,
+      "response_text": "**D)** 0 edge case tests and 0 end-to-end tests.  \nThe workspace states **Edge case tests: 0 (0%)** and **End-to-end tests: 7 (2%)**. Since end-to-end tests are **7**, option **D** matches **neither**\u2014but only option **C** and **D** mention 0 edge case tests; **C** is the correct one for edge cases (0) and end-to-end (7).",
+      "score_detail": {
+        "correct": false,
+        "chosen": "D",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 59,
+      "name": "thread_therapist",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**B)** Sarah\u2019s synthesis was to keep the **developer experience simple like an API key**, while using **JWT\u2019s security properties** (e.g., rotation/revocation) \u2014 i.e., **long-lived JWT tokens with bearer-style auth**.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 60,
+      "name": "silent_failure_premortem",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**C** \u2014 The system has **no delivery confirmation mechanism**. If the customer endpoint returns **200** but doesn\u2019t actually process the webhook, there\u2019s no way to detect it until later when invoices/webhook-driven state don\u2019t reconcile, leading to **silent failures weeks after launch**.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 61,
+      "name": "timezone_play",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**B)** Takeshi at NovaTech \u2014 the workspace notes the thread is missing the *customer/API consumer perspective*, and Takeshi explicitly offered to review and responds quickly (within 2 hours).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 62,
+      "name": "debt_ledger",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**C** \u2014 The workspace estimates a **total weekly tech-debt cost of ~2.75 hours/week**, including the listed items plus missed bugs from the skipped test.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 63,
+      "name": "competitor_signal",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**C)** 2 prospects asked (Acme Corp on Mar 1 and Pinnacle Inc on Mar 4). It\u2019s cheap because Sarah\u2019s webhook code already has a signature module, so adding Ed25519 is localized there\u2014about half a day.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 64,
+      "name": "roi_translator",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": false,
+      "response_text": "**B**\n\nBreak-even is at **feature 5** (no time savings vs current), so the refactor becomes **net positive from feature 6 onward**. Option **B** matches the math/trend (net positive starting after the break-even point), while B is the only choice consistent with that conclusion.",
+      "score_detail": {
+        "correct": false,
+        "chosen": "B",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 65,
+      "name": "reverse_escalation",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**B.** Root cause is a **spec ambiguity**: \u201csubscription start date\u201d could mean either the **signup date (Jan 15)** or the **current billing period start (Feb 1)**. Engineering implemented the billing period start; the fix is essentially a **1-line UI/label change** or showing both dates.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 66,
+      "name": "lunch_decision",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**B.** Annual billing isn\u2019t just a UI toggle\u2014it would require proration/refunds and changes to dunning/collections logic, which would directly conflict with the **March 31 Billing Migration cutover** (there\u2019s no buffer and the legacy reconciliation is already a critical path).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 67,
+      "name": "postmortem_reframe",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**B**\n\nMonitoring detected the anomalies in **12 minutes** (alert fired at 09:12). The root cause was a **process gap**: the script wasn\u2019t tested against production-scale data with full historical records (legacy subscriptions missing `plan_change_date`).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 68,
+      "name": "rate_limit_ghost",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "**C)** Normal combined usage is **95 req/sec**, which is **95%** of the **100 req/sec** limit. During typical **1.5\u20132x spikes** it becomes **143\u2013190 req/sec**, which **exceeds the limit** and leads to **429 errors / customer-facing failures**.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    }
+  ]
+}

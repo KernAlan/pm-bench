@@ -1,0 +1,23 @@
+{
+  "timestamp": "20260414-163219",
+  "mode": "mcq",
+  "provider": "openai",
+  "model": "gpt-5-nano",
+  "total": 1,
+  "correct": 1,
+  "scenarios": [
+    {
+      "id": 30,
+      "name": "skill_missing_no_credentials",
+      "category": "Credential-Aware Integrations",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B\n\nThe workspace shows Jira is available but not connected; credentials are not configured. You need to connect the integration (authenticate) before you can search open bugs.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    }
+  ]
+}

@@ -1,0 +1,270 @@
+{
+  "timestamp": "20260414-162130",
+  "mode": "mcq",
+  "provider": "openai",
+  "model": "gpt-5-nano",
+  "total": 20,
+  "correct": 19,
+  "scenarios": [
+    {
+      "id": 49,
+      "name": "silent_collision",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B \u2014 Both PRs modify the events table. Alan\u2019s PR #312 adds webhook_status and delivery_attempts, and Sarah\u2019s PR #313 adds delivery_state and processor_version to the same events table.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 50,
+      "name": "calendar_blindspot",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C \u2014 Sarah. She only works Monday, Wednesday, and Friday, and she\u2019s off on Thursday, March 13, so she\u2019ll be unavailable for that meeting.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 51,
+      "name": "unasked_question",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B\n\nSAML SSO is explicitly out of scope for this phase. The engineering log states no SAML in this phase and that SAML would add about 3 weeks; the shipped release only included JWT tokens and OAuth2 for Google and GitHub.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 52,
+      "name": "misread_metric",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B \u2014 The new flow removed 4 steps (including the activation trigger), so \u201ccompletion\u201d now means finishing a different set of steps, not the same onboarding process as before. This makes the 60% vs 85% comparison apples-to-oranges.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 53,
+      "name": "budget_interpreter",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C \u2014 staging-3 was created for 'load testing' but never actually used for load testing (last deploy: Jan 22).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 54,
+      "name": "three_ticket_pattern",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B \u2014 All three were in migration batch-7, run on 2026-02-25. Evidence: Each ticket lists \u201cLast migration batch: batch-7, run 2026-02-25.\u201d",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 55,
+      "name": "meeting_assassin",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": false,
+      "response_text": "B \u2014 2 open questions remain: pagination strategy (cursor vs offset) and webhook payload format (nested vs flat); all other items have implicit consensus.",
+      "score_detail": {
+        "correct": false,
+        "chosen": "B",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 56,
+      "name": "first_day_briefing",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B) src/billing/mapping.rs \u2014 Alan calls it 'the rosetta stone file' and it maps the plan_id / tier_id / subscription naming across the three conventions.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 57,
+      "name": "scope_surgeon",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B \u2014 CSV only. Josh\u2019s research shows all three customers (Acme, Pinnacle, Waverly) need CSV; no customer explicitly requires PDF, and the Excel request came from sales, not from customers.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 58,
+      "name": "green_test_trap",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C \u2014 0 edge case tests and 7 end-to-end tests. The distribution lists Edge case tests as 0 (0%) and End-to-end tests as 7 (2%), with 82% unit and 16% integration tests.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 59,
+      "name": "thread_therapist",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B\n\nExplanation: Sarah proposed a middle ground: use long-lived JWT tokens that feel like API keys with bearer auth, combining JWT rotation/revocation security with API-key simplicity for developers.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 60,
+      "name": "silent_failure_premortem",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C \u2014 No delivery confirmation \u2014 if a webhook is sent and the customer\u2019s endpoint returns 200 but doesn\u2019t actually process it, neither side will know until invoices don\u2019t reconcile. This is the gap that can cause silent failures weeks after launch (workspace notes no delivery confirmation).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 61,
+      "name": "timezone_play",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B\n\nExplanation: The decision context notes that the customer advisory (Takeshi at NovaTech) offered to review from an API consumer perspective and has not yet been consulted. This perspective is needed alongside Alan and Sarah\u2019s positions.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 62,
+      "name": "debt_ledger",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C\n\nExplanation: The four items sum to about 2.75 hours/week (1h for hardcoded URLs + 45m for retry logic + 1h for generic error messages), with an additional, undefined cost from missed bugs due to the skipped test. The workspace notes total ~2.75 hours/week (+ missed bugs).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 63,
+      "name": "competitor_signal",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C\n\nTwo prospects asked (Acme Corp and Pinnacle Inc). Adding Ed25519 is cheap because Sarah\u2019s webhook code already has a signature module, so the change can be localized to that module rather than a full overhaul.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 64,
+      "name": "roi_translator",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C \u2014 Break-even at feature 5. The workspace notes show:\n\n- N=5: without = 25 days, with = 15 days (refactor) + 10 days = 25 days \u2192 break-even at feature 5, with net positives starting at feature 6.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    },
+    {
+      "id": 65,
+      "name": "reverse_escalation",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B \u2014 The root cause is spec ambiguity: 'subscription start date' could mean the signup date (Jan 15) or the billing period start (Feb 1). Engineering implemented Feb 1, and a 1-line UI change (or showing both dates) would fix it.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 66,
+      "name": "lunch_decision",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B\n\nExplanation: Annual billing would require proration, refund, and dunning changes that would clash with the March 31 billing-migration launch, which is already tightly scoped with reconciliation and webhook-format dependencies. This adds risk to the critical deadline.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 67,
+      "name": "postmortem_reframe",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "B \u2014 12 minutes detection; root cause was a process gap \u2014 the migration script wasn\u2019t tested against production-scale data with full historical/legacy records (legacy accounts missing plan_change_date).",
+      "score_detail": {
+        "correct": true,
+        "chosen": "B",
+        "expected": "B"
+      }
+    },
+    {
+      "id": 68,
+      "name": "rate_limit_ghost",
+      "category": "Superhuman PM Judgment",
+      "scoring": "mcq",
+      "correct": true,
+      "response_text": "C\n\nExplanation: Normal combined usage is 60 + 35 = 95 req/sec, which is 95% of the 100 req/sec Stripe limit. During spikes (1.5\u20132x), peak becomes 143\u2013190 req/sec, exceeding the limit and causing 429 errors / customer-facing failures.",
+      "score_detail": {
+        "correct": true,
+        "chosen": "C",
+        "expected": "C"
+      }
+    }
+  ]
+}

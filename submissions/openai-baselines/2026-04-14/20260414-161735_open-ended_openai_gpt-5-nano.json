@@ -1,0 +1,628 @@
+{
+  "timestamp": "20260414-161735",
+  "mode": "open-ended",
+  "provider": "openai",
+  "model": "gpt-5-nano",
+  "total": 20,
+  "correct": 19,
+  "scenarios": [
+    {
+      "id": 1,
+      "name": "silent_collision",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": true,
+      "response_text": "End-of-day snapshot (investors)\n\nShipped today\n- PR #312 merged: events table migration implemented for webhook tracking\n  - Added webhook_status column and delivery_attempts counter\n  - Enables reliable webhook delivery tracking and retries\n\nIn flight / next to land\n- PR #313 opened/being merged: API v2 event lifecycle tracking\n  - Adds delivery_state enum on events table and processor_version\n  - Migration file 20260307_add_delivery_state.sql prepared (adds delivery_state and processor_version)\n  - Focused on completing API v2 event lifecycle visibility\n\nRisks and mitigation\n- Schema churn on the same table (events) in close succession\n  - Risk: potential long locks or downtime during migrations\n  - Mitigation: validate run order, run migrations in a controlled window, consider online/zero-downtime options if supported\n- Data/backfill gaps\n  - Risk: new enum requires default mappings for existing rows\n  - Mitigation: confirm default values and any backfill plan as part of PR 313\n\nWhat\u2019s next\n- Complete PR #313 (merge in staging, run migrations, monitoring)\n- Verify no conflicts between the two migrations and confirm rollback/rollback coverage if needed\n\nIf you want, I can compress this into a one-liner for the investor deck.",
+      "score_detail": {
+        "correct": true,
+        "automated": {
+          "automated_pass": false,
+          "must_mention_hits": [
+            "events"
+          ],
+          "must_mention_missing": [
+            "both"
+          ],
+          "red_flag_hits": [
+            "no conflicts"
+          ],
+          "should_mention_hits": [
+            "conflict",
+            "same table"
+          ]
+        },
+        "judge": {
+          "verdict": "PASS",
+          "evidence": "The response explicitly identifies \"Schema churn on the same table (events) in close succession\" as a risk, mentioning \"Run migrations in a controlled window\" and \"Verify no conflicts between the two migrations\" which flags the overlap on the same table as a coordination risk.",
+          "judge_text": "VERDICT: PASS  \nEVIDENCE: The response explicitly identifies \"Schema churn on the same table (events) in close succession\" as a risk, mentioning \"Run migrations in a controlled window\" and \"Verify no conflicts between the two migrations\" which flags the overlap on the same table as a coordination risk.  \nMUST_MENTION_FOUND: events, both  \nRED_FLAGS_FOUND: none"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "name": "calendar_blindspot",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": true,
+      "response_text": "Here\u2019s a proposed calendar invite that respects availability and blockers, plus a short confirming note.\n\n1) Calendar invite draft\n\n- Subject: Webhook Format Decision \u2014 Finalize webhook spec (Billing Migration / API v2)\n- When: Friday, March 14, 2026, 9:30 AM \u2013 11:00 AM Pacific Time\n- Location: Zoom (link to be added)\n- Attendees:\n  - Alan (Billing Migration Lead)\n  - Josh (Product)\n  - Sarah (API/V2 Lead)\n  - Maria (New Engineer)\n- Description / agenda:\n  - Welcome and goals\n  - Review proposed webhook format options\n  - Lock the webhook format (final spec) and endpoint contracts\n  - Confirm dependencies for API v2 and downstream work\n  - Risks, blockers, and next steps\n  - Who does what by when (owners and due dates)\n- Pre-reads (attach or link in invite):\n  - Draft Webhook Format Spec v0.9\n  - API v2 design dependency map\n  - Billing Migration Phase 2 plan and 847 reconciliation status\n- Rationale notes (in body or description):\n  - The Thursday, March 13 option conflicts with Sarah\u2019s unavailability (off Thu, and standups are M/W/F). Friday Mar 14 keeps key players available and aligns with Sarah\u2019s M/W/F pattern.\n  - This decision is critical for unlocking API v2 work and preventing a cascade delay if webhook format shifts.\n  - Please come prepared with any final blocking questions or alternative constraints.\n\n2) Short confirm-it-works note\n\nSubject: Re: Webhook Format Decision \u2014 Time Confirmed\n\nThe webhook format decision meeting is scheduled for Friday, March 14, 2026, 9:30\u201311:00 AM PT. This timing respects Sarah\u2019s availability (she works M/W/F) and avoids the Thursday (Mar 13) unavailability. It also keeps us aligned with the dependency that the webhook format must be locked before API v2 work can proceed, while not blocking the Billing Migration 847 reconciliation plan. If this time needs adjustment, I can propose Wednesday Mar 12 after noon PT or Friday Mar 14 earlier/later as alternatives.",
+      "score_detail": {
+        "correct": true,
+        "automated": {
+          "automated_pass": false,
+          "must_mention_hits": [
+            "Sarah",
+            "Thursday"
+          ],
+          "must_mention_missing": [],
+          "red_flag_hits": [
+            "confirmed"
+          ],
+          "should_mention_hits": [
+            "schedule"
+          ]
+        },
+        "judge": {
+          "verdict": "PASS",
+          "evidence": "The response explicitly states \"The Thursday, March 13 option conflicts with Sarah\u2019s unavailability (off Thu, and standups are M/W/F)\" and proposes Friday, March 14 instead to ensure key attendees are available. Additionally, the confirm-it-works note reinforces that \"This timing respects Sarah\u2019s availability (she works M/W/F) and avoids the Thursday (Mar 13) unavailability.\"",
+          "judge_text": "VERDICT: PASS  \nEVIDENCE: The response explicitly states \"The Thursday, March 13 option conflicts with Sarah\u2019s unavailability (off Thu, and standups are M/W/F)\" and proposes Friday, March 14 instead to ensure key attendees are available. Additionally, the confirm-it-works note reinforces that \"This timing respects Sarah\u2019s availability (she works M/W/F) and avoids the Thursday (Mar 13) unavailability.\"  \nMUST_MENTION_FOUND: Sarah, Thursday  \nRED_FLAGS_FOUND: none"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "name": "unasked_question",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": true,
+      "response_text": "Subject: Authentication migration complete \u2014 Acme is live with JWT and Google/GitHub login\n\nDear Acme Team,\n\nWe\u2019re excited to announce that the authentication migration has shipped. Acme now benefits from JWT-based tokens and OAuth2 login with Google and GitHub, delivering faster sign-ins, stronger security, and a smoother onboarding experience for your users.\n\nWhat\u2019s included in this release\n- JWT-based session management for secure, stateless authentication\n- OAuth2 login flows implemented for Google and GitHub\n- A faster, more reliable sign-in experience with improved security posture\n\nWhat this means for Acme\n- Streamlined user provisioning and governance with modern authentication standards\n- Reduced login friction for teammates, helping accelerate onboarding\n- Improved security controls and easier maintenance for IT\n\nImportant note on SAML SSO\n- SAML SSO is not part of this release. We are prioritizing it as a follow-on update and will share a concrete timeline and plan as soon as it\u2019s defined. If you\u2019d like, we can schedule a short session to review the roadmap and align on security requirements.\n\nNext steps\n- We\u2019d love to walk you through the changes and answer any questions. Would you be available for a 30-minute session this week or next?\n- We\u2019ll provide an admin guide with instructions for managing OAuth2 connections and user sign-ins.\n- We\u2019ll follow up with a clear timeline for SAML SSO and how it will integrate with your existing IT controls.\n\nThank you for your partnership and trust in us. We\u2019re thrilled to help Acme move faster securely.\n\nBest regards,\n[Your Name]\nProduct & Engineering Team\n[Company]",
+      "score_detail": {
+        "correct": true,
+        "automated": {
+          "automated_pass": true,
+          "must_mention_hits": [
+            "SAML",
+            "Acme"
+          ],
+          "must_mention_missing": [],
+          "red_flag_hits": [],
+          "should_mention_hits": []
+        },
+        "judge": {
+          "verdict": "PASS",
+          "evidence": "The response explicitly includes an \"Important note on SAML SSO\" stating that \"SAML SSO is not part of this release,\" and that it is a \"follow-on update\" with a promised timeline to be shared. This acknowledges the outstanding commitment and the gap in the current release.",
+          "judge_text": "VERDICT: PASS  \nEVIDENCE: The response explicitly includes an \"Important note on SAML SSO\" stating that \"SAML SSO is not part of this release,\" and that it is a \"follow-on update\" with a promised timeline to be shared. This acknowledges the outstanding commitment and the gap in the current release.  \nMUST_MENTION_FOUND: SAML, Acme  \nRED_FLAGS_FOUND: none"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "name": "misread_metric",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": false,
+      "response_text": "Team \u2014 wow, what a win. Onboarding completion is now 85%, up from 60%! The redesign (5 steps) brought the median completion time down to ~4 minutes. Huge thanks to everyone who shipped this and moved users toward value so quickly.\n\nNote: activation rate data isn\u2019t fully measured yet (less than a week of data). We\u2019ll monitor activation closely over the next few days and share updates as soon as we have a signal. For now, let\u2019s celebrate and keep the momentum toward the March deadline.",
+      "score_detail": {
+        "correct": false,
+        "automated": {
+          "automated_pass": false,
+          "must_mention_hits": [],
+          "must_mention_missing": [
+            "definition",
+            "not comparable"
+          ],
+          "red_flag_hits": [
+            "celebrate"
+          ],
+          "should_mention_hits": [
+            "activation"
+          ]
+        },
+        "judge": {
+          "verdict": "FAIL",
+          "evidence": "The response celebrates the jump from 60% to 85% without noting that these metrics are not comparable or redefined due to the removal of steps and changes in measurement. The phrase \"what a win\" and \"Huge thanks\" indicate the PM treated the jump as a genuine improvement without flagging the definitional change or comparability issue.",
+          "judge_text": "VERDICT: FAIL  \nEVIDENCE: The response celebrates the jump from 60% to 85% without noting that these metrics are not comparable or redefined due to the removal of steps and changes in measurement. The phrase \"what a win\" and \"Huge thanks\" indicate the PM treated the jump as a genuine improvement without flagging the definitional change or comparability issue.  \nMUST_MENTION_FOUND:  \nRED_FLAGS_FOUND: huge win"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "name": "budget_interpreter",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": true,
+      "response_text": "Short answer: yes. You can hit the 30% target by focusing on non-production costs, using the explicit options in our infrastructure docs. The plan below pulls the biggest lever (staging) first, then targets dev and logging, with clear numbers and risks.\n\nCurrent snapshot (non-prod only)\n- Staging: 1,800/mo (staging-1 800; staging-2 500; staging-3 500)\n- Development: 900/mo (dev DB 400; dev Redis 300; monitoring 200)\n- Logging: 1,200/mo (Elasticsearch 800; log retention 90 days)\n\nTarget: at least 30% cut in non-prod spend (~$1,170/mo). We can exceed that with careful decommissioning and rightsizing.\n\nRecommended starting plan ( prioritize in the first 2\u20133 weeks)\n1) Decommission unused or underused staging environments\n- Action: Take down staging-2 and staging-3 immediately. If they\u2019re not required for a current migration or testing cycle, remove them from the budget.\n- Expected savings: 500 + 500 = 1,000/mo.\n- Rationale: They\u2019re not in heavy recent use (last deploys Jan 22 and Feb 10; daily usage only cited for staging-1). This is the highest, lowest-risk lever that is explicitly documented.\n- Risk/mitigation: If a test or migration unexpectedly requires a second staging mirror, re-create quickly but with a defined reset cost in the plan. Keep staging-1 as the sole non-prod mirror for ongoing QA.\n\n2) Rightsize development environment (dev)\n- Actions:\n  - Move dev DB from production-sized db.r5.large (or equivalent 400) to db.t3.medium (~$60). Savings: ~$340.\n  - Move dev Redis from cache.r5.large (~$300) to cache.t3.small (~$30). Savings: ~$270.\n  - Consider switching to basic monitoring instead of full Datadog agent. The doc notes you can operate with basic metrics; exact savings aren\u2019t priced in, but expect ~$100\u2013$200 target if feasible.\n- Expected net savings: ~$610 (plus up to ~$200 more if monitoring is downgraded).\n- Rationale: These are explicit-pathed reductions in the memory/documentation and are non-production environments.\n- Risk/mitigation: Ensure dev data compatibility and migrations don\u2019t rely on larger instances; verify that test suites still run with smaller DB/Redis profiles. Plan a rollback if a test is blocked.\n\n3) Reduce log storage/retention in the logging pipeline\n- Action: Reduce log retention from 90 days to 14 days; this moves the cost to the ~$250/mo range for retention (Elasticsearch cluster remains ~$800/mo, total ~1,050/mo for logging).\n- Expected savings: if current retention costs are around $400 (as inferred from the 90-day note), downgrading to 14 days would be ~-$150. With a fixed 800 for ES, the combined cost drops to ~1,050 vs ~1,200\u2014roughly $150 savings.\n- Rationale: The workspace explicitly notes 90-day retention is more than the team needs (they typically search last 7 days). This is a safe, low-risk, cost-leaning change.\n- Risk/mitigation: Retention cuts can hinder debugging after incidents. Keep a policy to export \u201cgolden\u201d or critical logs to cheaper long-term storage or a quarterly export for compliance/audit needs if applicable.\n\nConsolidated expected impact\n- Staging decommissioning: -$1,000\n- Dev rightsize (DB + Redis) + monitoring: roughly -$610 to -$810\n- Logging retention optimization: roughly -$150 (conservative)\n- Estimated total non-prod savings: ~-$1,760 to -$1,960 per month, depending on monitoring adjustments\n- This comfortably meets and likely exceeds the 30% target on non-prod spend (target ~-$1,170).\n\nWhat else to consider (risks and guardrails)\n- QA and test readiness risk if staging 2/3 are needed suddenly. Mitigation: keep a lightweight, documented plan to recreate staging-2/3 on demand with a defined icebox of time (e.g., 24\u201348 hours) and cost cap.\n- Development velocity risk if dev DB/Redis are downsized too aggressively. Mitigation: run parallel smoke tests on the smaller stack and keep a rollback path; monitor test runtimes and failures for a week.\n- Logging/incident-response risk if retention is too short. Mitigation: establish a policy to export critical events (e.g., errors, security alerts) to external storage for a defined window (e.g., 90 days) while keeping primary log storage lean.\n- Timeline risk: implementing all changes in one sprint could be tight. Split into two waves: Week 1 (decommission staging 2/3 + dev rightsizing), Week 2 (logging retention and monitoring adjustments). Monitor spend after Week 2 and adjust if needed.\n\nDecision-ready plan and owners (proposed)\n- Owner: DevOps/Platform lead to execute staging rightsizing and decommissioning; Eng lead to backfill if staging is needed again.\n- Milestones:\n  - Week 1: Decommission staging-2 and staging-3; implement dev DB/Redis rightsizing; switch to basic monitoring if feasible.\n  - Week 2: Implement logging retention reduction to 14 days; confirm no business-critical debugging needs rely on long-term logs.\n  - Week 3: Review spend against target; adjust any remaining non-prod resources (e.g., stage 1 sizing, ephemeral environments).\n- Metrics to track: monthly non-prod spend; time-to-recovery for test environments; incident response times with shorter logs; test suite duration after dev-rightsize changes.\n\nBottom line\n- If you implement these steps, you\u2019ll target a 30%+ cut in non-prod costs with explicit, workspace-backed levers. The biggest savings come from decommissioning staging-2 and staging-3, followed by dev rightsize (DB + Redis) and a conservative reduction in logging retention. This plan minimizes risk to production while delivering clear cost improvement ahead of the end-of-March deadline.\n\nIf you want, I can turn this into a one-page rollout checklist with owners, a quick risk matrix, and a dashboard for monitoring monthly spend.",
+      "score_detail": {
+        "correct": true,
+        "automated": {
+          "automated_pass": false,
+          "must_mention_hits": [
+            "staging-3"
+          ],
+          "must_mention_missing": [
+            "load"
+          ],
+          "red_flag_hits": [],
+          "should_mention_hits": [
+            "unused",
+            "last deploy",
+            "decommission"
+          ]
+        },
+        "judge": {
+          "verdict": "PASS",
+          "evidence": "The response explicitly names staging-3 in the paragraph \"1) Decommission unused or underused staging environments - Action: Take down staging-2 and staging-3 immediately,\" and calls out their last deploy dates (Jan 22 and Feb 10), highlighting staging-3 as an underused environment. This aligns with identifying the unused load-testing environment as the obvious cut.",
+          "judge_text": "VERDICT: PASS\nEVIDENCE: The response explicitly names staging-3 in the paragraph \"1) Decommission unused or underused staging environments - Action: Take down staging-2 and staging-3 immediately,\" and calls out their last deploy dates (Jan 22 and Feb 10), highlighting staging-3 as an underused environment. This aligns with identifying the unused load-testing environment as the obvious cut.\nMUST_MENTION_FOUND: staging-3, load\nRED_FLAGS_FOUND: none"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "name": "three_ticket_pattern",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": true,
+      "response_text": "Here's the quick flagging for engineering from this week\u2019s support tickets, with a focus on impact and likely root causes.\n\nHigh priority risks (customer impact and potential revenue risk)\n- 1041 Pinnacle Inc: \u201cLatest invoice shows $0 but we\u2019re on Growth plan.\u201d\n  - Why it matters: enterprise customer + direct revenue integrity risk if invoices are incorrect.\n  - Likely root cause hint: last migration batch (batch-7, run 2026-02-25) appears in multiple tickets as the context; could be a data/mapping issue in billing.\n  - What to do for Eng:\n    - Reproduce with this account and the batch-7 data in a staging/test environment.\n    - Compare the generated invoice against expected plan, usage, discounts, and taxes; verify there\u2019s no data-loss in the migration.\n    - Check billing data pipeline: account-plan mapping, invoice line items, and the connection to the Payments/Stripe layer.\n    - Audit recent batch-7 changes for any schema or mapping regressions.\n    - Provide a hotfix path and a rollback/patch plan if data is corrupt.\n- 1047 Redstone Analytics: \u201cMy plan shows as Free tier but I am definitely paying you.\u201d\n  - Why it matters: another billing misalignment; customer-facing impact with potential churn.\n  - Likely root cause hint: same batch-7 migration context; could be tier mapping or entitlement flag not persisting after migration.\n  - What to do for Eng:\n    - Reproduce with account acct_redstone_447; validate tier entitlement vs. actual invoice history.\n    - Check tier mapping rules and any feature-flag gates tied to post-migration data.\n    - Validate data synchronization between billing records and user-facing plan status.\n    - Identify whether this is a data issue or a UI/API read issue.\n\nHigh priority risks (performance and reliability)\n- 1043 Waverly Labs: \u201cBilling page takes 30+ seconds to load, sometimes times out.\u201d\n  - Why it matters: customer friction, potential abandonment; could impact end-of-month billing reviews.\n  - Likely root cause: could be a slow query, paginated billing history fetch, or a backend service/resource contention in the billing stack (often correlated with batch-ops or migrations).\n  - What to do for Eng:\n    - Capture end-to-end timings for the billing page, with breakdown (API latency, DBQuery time, downstream calls).\n    - Identify hot paths and any recently changed code around batch-7 data access or billing summary generation.\n    - Load-test and profile during peak usage; add targeted instrumentation if missing.\n    - Quick wins: add caching for repeatable data, optimize slow queries, or enable shorter timeouts with better user feedback if a backend spike occurs.\n- Cross-cutting insight: the batch-7 migration thread appears in 1041, 1043, and 1047. This strongly suggests a systemic impact from migration data changes on both billing correctness and performance.\n\nMedium priority (or \u0432\u0438\u0442al but less urgent)\n- 1046 API docs have wrong endpoint for /v1/invoices (docs bug)\n  - Why it matters: can mislead integrators; higher risk if customers copy-paste incorrect endpoints.\n  - What to do for Eng: fix doc, add a quick cross-check between docs and actual API surface; consider a small doc-qa pass after billing changes.\n- 1045 Cannot upload CSV larger than 10MB (known limitation)\n  - Why it matters: known limitation; customer-facing; not an emergent bug.\n  - What to do for Eng/Product: confirm backlog priority; decide whether to raise scope to remove limit or improve UX around larger files (e.g., chunked uploads) in a future sprint.\n- 1044 Dark mode (feature request)\n  - Not urgent given current top-line goal (March deadline). Capture for backlog but do not derail billing fixes.\n\nLow priority / informational\n- 1042 Password reset issue resolved (not in flight)\n- 1046/1044/1045 as noted above can be deprioritized relative to the billing/data integrity work.\n\nSuggested plan and next steps\n- Immediate triage kick-off (60 minutes):\n  - Lead: Eng (Billing/Data Platform) with Billing Product Owner.\n  - Objectives: confirm if batch-7 is the shared culprit; identify exact data mappings affected; reproduce the three high-priority ticket scenarios in a test/staging environment.\n  - Outcomes: prioritize fixes, assign owners, and set a remediation timeline.\n- Data integrity task for batch-7:\n  - Run a post-migration reconciliation across accounts affected by batch-7; verify plan-to-invoice mappings and account entitlements.\n  - Build a rollback/patch plan if data divergence is detected.\n- Performance investigation for 1043:\n  - Instrument and isolate latency hotspots; propose a quick optimization path (caching, query tuning) and safer user feedback if a call is slow.\n- Communication guardrails:\n  - Prepare customer-facing status updates for any outages or notable delays in invoicing; avoid promises you can\u2019t keep before fix verification.\n  - Update internal docs to reflect that batch-7 data changes may affect billing until fixes are deployed.\n\nBottom line\nThe strongest, most urgent signal is that batch-7 migration data seems to be driving multiple billing inconsistencies (1041, 1047) and possibly contributing to the slow billing page (1043). Treat those as the top engineering priorities, with a dedicated triage session to reproduce, diagnose, and remediate data mapping and billing pipeline issues. Simultaneously address the 1046 docs bug to prevent customer integration problems. The rest can be surfaced to backlog as needed, but do not lose focus on these high-impact items before the March deadline.",
+      "score_detail": {
+        "correct": true,
+        "automated": {
+          "automated_pass": true,
+          "must_mention_hits": [
+            "batch-7",
+            "migration"
+          ],
+          "must_mention_missing": [],
+          "red_flag_hits": [],
+          "should_mention_hits": [
+            "same batch",
+            "root cause"
+          ]
+        },
+        "judge": {
+          "verdict": "PASS",
+          "evidence": "The response explicitly links the tickets to \"the batch-7 migration thread\" and notes it \"appears in 1041, 1043, and 1047,\" describing it as a \"strongly suggest[ing] a systemic impact from migration data changes.\" It also references the batch-7 migration date \"run 2026-02-25\" and includes a cross-cutting insight tying the three high priority risks together.",
+          "judge_text": "VERDICT: PASS\nEVIDENCE: The response explicitly links the tickets to \"the batch-7 migration thread\" and notes it \"appears in 1041, 1043, and 1047,\" describing it as a \"strongly suggest[ing] a systemic impact from migration data changes.\" It also references the batch-7 migration date \"run 2026-02-25\" and includes a cross-cutting insight tying the three high priority risks together.\nMUST_MENTION_FOUND: batch-7,migration\nRED_FLAGS_FOUND: none"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "name": "meeting_assassin",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": true,
+      "response_text": "Here\u2019s a concise, action-oriented draft agenda for Thursday\u2019s API v2 design review (60 minutes).\n\nTitle: API v2 Design Review \u2013 Pagination and Webhook Payload\n\nWhen/Where: Thursday March 9, 2:00 PM PST | Virtual\n\nAttendees (per memory):\n- Alan\n- Josh\n- Sarah (author)\n- Maria (observer)\n- 4 senior engineers\n\nContext (why this meeting matters): The design doc for API v2 identifies two open questions that block progress and a hard deadline for webhook format lock (March 15). The session should finalize or clearly assign owners for these decisions to avoid slipping the schedule.\n\nObjectives:\n- Decide on pagination strategy for API v2 endpoints (cursor vs offset).\n- Decide on webhook payload format (nested vs flat) and outline the migration/compatibility plan.\n- Surface any cross-cutting concerns (compatibility, rollout plan, risk, next steps) and assign owners.\n\nPre-reads to review before the meeting:\n- Sarah\u2019s API v2 design doc (shared March 4, 12 pages)\n- Thread on webhook payload format (Mar 3\u2013Mar 7)\n\nAgenda (60 minutes total)\n1) Opening, context, and goals (3 minutes)\n   - Facilitator: PM\n   - Confirm desired outcomes and decision criteria (compatibility, DX, upgrade path, timelines).\n\n2) Pagination design deep-dive (15 minutes)\n   - Lead: Sarah (advocating cursor)\n   - Quick recap of current positions: Sarah for cursor; Alan aligned with cursor per notes.\n   - Key considerations to cover:\n     - Performance and consistency under high load\n     - Backwards compatibility and pagination token semantics\n     - Impact on existing endpoints and client DX\n     - Acceptance criteria for a final decision\n   - Target outcome: Clear decision on pagination approach and documented rationale.\n\n3) Webhook payload format decision (22 minutes)\n   - Lead: Sarah and Alan (debate: nested vs flat)\n   - Quick recap of the thread status and what each option buys/ costs (DX, versioning, payload size).\n   - Key considerations to cover:\n     - Customer expectations (Stripe-style patterns) vs. maintainability and versioning\n     - Complexity of flat vs nested structures and impact on parsing\n     - Migration path and deprecation plan (timeline, messaging)\n     - Implications for March 15 webhook format lock\n   - Target outcome: A recommended format (with rationale) and an agreed plan for migration/versioning.\n\n4) Cross-cutting concerns and risk review (10 minutes)\n   - Lead: Eng/PM\n   - Topics:\n     - Backwards compatibility risk and migration strategy\n     - Timeline risk if decisions slip\n     - Dependencies on downstream teams (docs, clients, internal SDKs)\n   - Target outcome: A clarified risk posture and a set of action items to mitigate.\n\n5) Decisions, owners, and next steps (10 minutes)\n   - Capture the final decisions (or decision in principle if not fully resolvable)\n   - Assign owners and timelines for any follow-up work (e.g., updated design doc, webhook spec, migration plan)\n   - Agree on quick follow-up cadence if needed (e.g., asynchronous sign-off or a short follow-up meeting)\n\nOutput artifacts to produce after the meeting\n- Updated API v2 design doc with the chosen pagination and webhook payload format (and rationale)\n- Webhook payload specification (nested or flat) including sample payloads\n- Migration/compatibility plan and timeline (if changes affect customers or existing integrations)\n- Action items with owners and due dates\n\nKey risks to flag during the meeting\n- The 8-person, one-hour format is tight for a two-open-questions agenda; risk of rushed decisions.\n- The March 15 deadline for webhook format lock is tight if consensus isn\u2019t reached; plan for a clear fallback (asynchronous decision or rapid follow-up).\n- Potential misalignment between what customers expect (Stripe-like familiarity) and internal maintainability (payload structure); ensure we document a defensible trade-off.\n- Ensure pre-read coverage; if some participants haven\u2019t read Sarah\u2019s design doc or the webhook thread, consider a quick 2-minute recap at the top.\n\nIf you want, I can also tailor the agenda to fit a 60-minute, 75-minute, or two-phase format (e.g., split into two shorter sessions) based on availability and risk tolerance.",
+      "score_detail": {
+        "correct": true,
+        "automated": {
+          "automated_pass": true,
+          "must_mention_hits": [
+            "webhook",
+            "pagination"
+          ],
+          "must_mention_missing": [],
+          "red_flag_hits": [],
+          "should_mention_hits": [
+            "consensus",
+            "cursor",
+            "async"
+          ]
+        },
+        "judge": {
+          "verdict": "PASS",
+          "evidence": "The agenda states \"Quick recap of current positions: Sarah for cursor; Alan aligned with cursor per notes,\" indicating cursor pagination consensus and focusing decision time on the webhook payload format. The PM also flags \"The 8-person, one-hour format is tight for a two-open-questions agenda,\" implicitly recognizing that fewer issues remain open.",
+          "judge_text": "VERDICT: PASS  \nEVIDENCE: The agenda states \"Quick recap of current positions: Sarah for cursor; Alan aligned with cursor per notes,\" indicating cursor pagination consensus and focusing decision time on the webhook payload format. The PM also flags \"The 8-person, one-hour format is tight for a two-open-questions agenda,\" implicitly recognizing that fewer issues remain open.  \nMUST_MENTION_FOUND: webhook, pagination  \nRED_FLAGS_FOUND: none"
+        }
+      }
+    },
+    {
+      "id": 8,
+      "name": "first_day_briefing",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": true,
+      "response_text": "Maria, welcome to the Billing team. Here\u2019s a concise first-day orientation to get you up to speed quickly and reduce early blockers.\n\nContext summary (why your work matters)\n- This is pivotal: Billing Migration Phase 2 targets a March 31 launch. Success depends on reconciling legacy subscriptions (Ticket #847) and locking the webhook format before API v2 work can proceed.\n- There are tight deadlines and real risk if reconciliation slips past March 15; there\u2019s no built-in buffer.\n- Sarah (auth/webhooks) is part-time and only available Mon/Wed/Fri. Coordination around her schedule is essential.\n\nWho\u2019s who and how we work together\n- Alan: Billing lead, full-time, based in PST. Owns reconciliation work and related blockers.\n- Josh: Product + docs, full-time, based in PST. Best first partner for getting you onboarded to the codebase.\n- Sarah: Auth/webhooks engineer, part-time (Mon/Wed/Fri; in GMT). Important for webhook format and API v2 integration.\n- Maria: You\u2019re joining to own and accelerate the Billing Migration work and API v2 readiness once webhook decisions are locked.\n\nWhat you should know on day one\n- Immediate priorities to read and understand:\n  - memory/projects.md: Billing Migration (Phase 2) status, blockers, and risks.\n  - memory/onboarding-context.md: Tribal knowledge, critical caveats, and current team dynamics.\n  - The \u201crosetta stone\u201d mapping in src/billing/mapping.rs (the cross-reference between plan/tier/subscription concepts across v1/v2/Stripe).\n  - The warning in the onboarding context: Never run billing tests against production Stripe keys; use the .env.test pattern.\n- Key blockers and dependencies to internalize:\n  - Blocker: Ticket #847 \u2014 reconciliation of 847 legacy subscriptions. Alan is driving; estimate ~2 more weeks. If this slips past March 15, the March 31 target is in danger.\n  - Dependency: Billing webhook format must be finalized before API v2 endpoint contracts can be validated. Sarah is blocked until webhook format is locked.\n  - The API v2 design is waiting on the webhook format; risk cascades if webhook timing slips (2 weeks downstream).\n\nWhere to look (your first navigation maps)\n- Project state and blockers:\n  - memory/projects.md (Billing Migration Phase 2, Blocker #847, risk, and dependencies).\n  - memory/onboarding-context.md (confusing naming, tribal knowledge, and team dynamics you\u2019ll need to navigate).\n- Code and design references:\n  - src/billing/mapping.rs (rosetta stone for plan/tier/subscription naming across systems).\n  - Any webhook format documentation or drafts referenced in the project notes (coordination with Sarah will surface these).\n- Testing guidance:\n  - Be mindful of the rule: do not run billing tests against production Stripe keys; use the .env.test pattern and documented test environments.\n- Team rituals and constraints:\n  - Standups: daily 9am PST / 5pm GMT (M/W/F only, due to Sarah\u2019s schedule).\n  - Weekly planning: Mondays 10am PST.\n  - Sarah\u2019s availability: note her off days (March 11 and March 13); plan around her Mon/Wed/Fri window.\n\nFirst-week plan (what you\u2019ll do to hit the ground running)\n- Days 1\u20132\n  - Pair with Josh to walk through the codebase references (rosetta mapping and the Billing Migration flow).\n  - Read memory/projects.md and memory/onboarding-context.md end-to-end.\n  - Review Ticket #847 context, current reconciliation progress, and any open sub-tickets.\n  - Confirm webhook format stakeholders and schedule a quick sync with Sara (Sarah) if possible within her M/W/F window.\n- Days 3\u20134\n  - Start mapping the current gaps between v1, v2, and Stripe naming in the mapping.rs file; prepare questions for Sarah and Alan.\n  - Review the API v2 design draft and identify where webhook format decisions will constrain endpoint contracts.\n  - Prepare a one-page risk snapshot for the March 15 reconciliation deadline.\n- Day 5\n  - Share a synthesis with Alan and Josh: what\u2019s blocked, who needs to act, and concrete next steps with dates.\n  - Set up access to test environments and confirm not to touch production Stripe keys.\n  - Schedule any needed follow-ups for the following week (focus on aligning webhook format with API v2).\n\nWhat good looks like by end of Week 1\n- You understand the reconciliations status, blockers, and exact date sensitivities (especially March 15 vs March 31).\n- You have a clear, written plan for how you\u2019ll help unblock webhook format decisions and how you\u2019ll coordinate with Sarah.\n- You\u2019ve identified any overlapping work or risk areas across Billing Migration and API v2 and suggested concrete mitigations.\n- You\u2019ve established a regular cadence with Josh (and with Alan for blockers) and have a clear path to access and test environments.\n\nTips for effective early contribution\n- Be explicit about dependencies when you flag risks (quantify impact where possible, e.g., \u201creconciliation slips by 5 days delays API v2 by ~2 weeks\u201d).\n- When two people disagree, reframe around what each is optimizing for and surface a synthesis aligned with the March deadline.\n- Watch for overlapping or duplicate work across channels; flag it early so you don\u2019t double-work.\n\nRequests you\u2019ll likely get soon and how to handle them\n- Documentation and onboarding: Expect to consolidate the current state and share a weekly read-me for new teammates. Start by curating the notes above into a shareable doc.\n- Blocker management: You\u2019ll help track Ticket #847 progress and push for alignment on webhook format timing. Schedule regular syncs with Alan and with Sarah to avoid drift.\n- Technical decision pacing: Given Sarah\u2019s limited schedule, expect decisions to be gated. Push for a small, decision-focused meeting with Sarah and the relevant owners when a decision point is near.\n\nIf you want, I can turn this into a one-page onboarding checklist you can keep at your desk or in your repo for Maria. Welcome aboard \u2014 your timing is critical here, and your growth in decoding cross-team signals will help keep us on track for the March targets.",
+      "score_detail": {
+        "correct": true,
+        "automated": {
+          "automated_pass": true,
+          "must_mention_hits": [
+            "mapping.rs",
+            "plan"
+          ],
+          "must_mention_missing": [],
+          "red_flag_hits": [],
+          "should_mention_hits": [
+            "rosetta stone",
+            "tier",
+            "subscription",
+            "naming",
+            "confusing",
+            "Alan",
+            "src/billing"
+          ]
+        },
+        "judge": {
+          "verdict": "PASS",
+          "evidence": "The response explicitly directs Maria to \"memory/projects.md,\" \"memory/onboarding-context.md,\" and most importantly \"src/billing/mapping.rs (the cross-reference between plan/tier/subscription concepts across v1/v2/Stripe)\" described as the \u201crosetta stone\u201d mapping, making it clear this file is the key reference for confusing naming.",
+          "judge_text": "VERDICT: PASS  \nEVIDENCE: The response explicitly directs Maria to \"memory/projects.md,\" \"memory/onboarding-context.md,\" and most importantly \"src/billing/mapping.rs (the cross-reference between plan/tier/subscription concepts across v1/v2/Stripe)\" described as the \u201crosetta stone\u201d mapping, making it clear this file is the key reference for confusing naming.  \nMUST_MENTION_FOUND: mapping.rs, plan  \nRED_FLAGS_FOUND: none"
+        }
+      }
+    },
+    {
+      "id": 9,
+      "name": "scope_surgeon",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": true,
+      "response_text": "Subject: Billing Export API \u2013 MVP CSV now; PDF/Excel later only if demand proves out\n\nSales Team,\n\nThanks for calling this out. I went through the workspace evidence and here\u2019s my judgment and proposed path.\n\nWhat the data says\n- Customer need: All three enterprise prospects said CSV with the right columns is sufficient. PDF was not needed by any customer, and Excel was requested by Sales but not by customers (March 5\u20136 notes in memory/feature-requests.md).\n- Engineering impact: CSV export is ~2 days; PDF ~5 days; Excel ~5 days (plus testing 3 days). If we attempt all three formats, we\u2019re looking at roughly 3 weeks of work, which delays revenue and adds risk given we\u2019re in a high-impact window.\n- Team capacity: The team is two people. Shipping three formats would consume a large chunk of our limited bandwidth and push back critical milestones.\n\nRecommendation\n- Do Phase 1 now: ship a CSV export MVP first.\n  - Why: It directly aligns with customer needs, unlocks revenue sooner (and supports QuickBooks/Sheets workflows you\u2019ve cited), and minimizes risk given our two-person team.\n  - Scope (Phase 1 CSV): Provide a CSV export with the columns customers need for reconciliation. We\u2019ll finalize the exact header set with you, but expect essentials like customer_id, customer_name, billing_date, period_start, period_end, invoice_number, currency, amount, tax, total, and status.\n  - Timeline: ~2 days to implement the CSV endpoint and streaming, ~1 day for end-to-end testing, ~0.5 day for docs. We can land this quickly and start collecting real customer feedback.\n\n- Defer PDF and Excel to Phase 2 unless there is verifiable, multi-customer demand.\n  - If you can prove 2+ customers require PDF or Excel in a short window, we can re-scope to include those formats. Estimated independent effort: ~5 days each (PDF and Excel) plus testing, which would push us into the 3-week ballpark.\n  - Rationale: Features should be driven by actual demand, not internal preference, especially with a small team and a tight deadline.\n\nWhat I need from you to move Phase 1 today\n- Confirm the CSV header set you want included (or approve our proposed minimum as described above).\n- Any branding/format considerations (e.g., QuickBooks-import-friendly field order).\n- If you have a preferred release note or early-access note for customers, I can draft it.\n\nBottom line\n- I recommend shipping CSV now to maximize revenue impact and keep the door open for PDF/Excel only if validated by customer demand. This aligns with the evidence in the workspace and respects our limited capacity.\n\nPlease confirm you\u2019re comfortable with Phase 1 CSV MVP and the proposed header scope, and I\u2019ll lock in the plan and start today.\n\nBest,\n[Your Name]\nActing PM",
+      "score_detail": {
+        "correct": true,
+        "automated": {
+          "automated_pass": true,
+          "must_mention_hits": [
+            "CSV"
+          ],
+          "must_mention_missing": [],
+          "red_flag_hits": [],
+          "should_mention_hits": [
+            "PDF",
+            "Excel"
+          ]
+        },
+        "judge": {
+          "verdict": "PASS",
+          "evidence": "The response clearly scopes down the delivery to CSV only based on customer research: \"All three enterprise prospects said CSV with the right columns is sufficient. PDF was not needed by any customer, and Excel was requested by Sales but not by customers.\" It also defers PDF and Excel to Phase 2 only if there is verifiable multi-customer demand.",
+          "judge_text": "VERDICT: PASS  \nEVIDENCE: The response clearly scopes down the delivery to CSV only based on customer research: \"All three enterprise prospects said CSV with the right columns is sufficient. PDF was not needed by any customer, and Excel was requested by Sales but not by customers.\" It also defers PDF and Excel to Phase 2 only if there is verifiable multi-customer demand.  \nMUST_MENTION_FOUND: CSV  \nRED_FLAGS_FOUND: none"
+        }
+      }
+    },
+    {
+      "id": 10,
+      "name": "green_test_trap",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": true,
+      "response_text": "Team, amazing discipline on the CI front \u2014 342 tests, 100% green for 4 consecutive weeks, with 78% line coverage. This stability is a critical asset as we push toward the end-of-March milestone and our first revenue.\n\nThat said, green CI isn\u2019t a guarantee. We\u2019ve still got active customer bugs (BUG-201, BUG-204, BUG-207, BUG-211, BUG-215, BUG-218) and we\u2019re currently at 0 edge-case tests (even though we\u2019re catching a lot with general tests). These gaps can bite in production despite the streak, especially as we\u2019re two people deep.\n\nQuick priorities to guard the streak and the release:\n- Triage the top 3 customer bugs, assign owners, and agree on immediate fix or workaround plus regression tests.\n- Add at least one targeted edge-case/boundary test for each high-risk area (billing/proration, webhooks, race conditions, performance hotspots).\n- Schedule a short sync to confirm blockers and a path to cover the biggest remaining risks before end of March.\n\nThank you for the hard work and focus\u2014let\u2019s keep the quality bar high as we ship.",
+      "score_detail": {
+        "correct": true,
+        "automated": {
+          "automated_pass": false,
+          "must_mention_hits": [
+            "edge"
+          ],
+          "must_mention_missing": [
+            "6"
+          ],
+          "red_flag_hits": [],
+          "should_mention_hits": [
+            "customer bugs",
+            "race conditions",
+            "boundary"
+          ]
+        },
+        "judge": {
+          "verdict": "PASS",
+          "evidence": "The response explicitly notes that \"green CI isn\u2019t a guarantee\" due to \"0 edge-case tests,\" highlights active customer bugs, and prioritizes adding edge-case/boundary tests to address risk, thus clearly indicating the false signal represented by a green CI and the gap between test coverage and production quality.",
+          "judge_text": "VERDICT: PASS  \nEVIDENCE: The response explicitly notes that \"green CI isn\u2019t a guarantee\" due to \"0 edge-case tests,\" highlights active customer bugs, and prioritizes adding edge-case/boundary tests to address risk, thus clearly indicating the false signal represented by a green CI and the gap between test coverage and production quality.  \nMUST_MENTION_FOUND: edge, 6  \nRED_FLAGS_FOUND: none"
+        }
+      }
+    },
+    {
+      "id": 11,
+      "name": "thread_therapist",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": true,
+      "response_text": "Here\u2019s a senior PM read on unblock and a concrete plan you can start today.\n\nWhat\u2019s the core issue\n- Alan vs. Sarah dispute is about how customers authenticate to the public API: API keys (simplicity) vs. JWTs (security, rotation, revocation).\n- Two-person team, tight March deadline framing, and a growing risk: no clear decision so work is blocked, and both sides are entrenched.\n- Evidence: Sarah argues that API keys invite leakage liability and that rotation/revocation are fundamentally different from \u201cAPI keys.\u201d Alan wants a simple, curl-friendly public API. The thread ends with \u201csomeone just needs to make a call.\u201d\n\nWhat I recommend (the decision you should own and unblock today)\n- Decision: Move forward with JWT-based authentication for the public API, using short-lived access tokens plus a refresh mechanism (i.e., a client credentials flow or similar), with a plan to support revocation/rotation. Do not ship with plain API keys as the public surface. This aligns with Sarah\u2019s risk concerns (rotation/revocation are essential) and with the team\u2019s direction to have internal auth use JWT anyway, while still keeping onboarding friction manageable through a simple, developer-friendly token flow.\n\nWhy this is the right move given evidence\n- It addresses the explicit risk: without rotation/revocation, a leaked token is a liability. JWT with exp and refresh tokens gives you control and auditability.\n- It satisfies \u201cinternal auth can use JWT all day\u201d and avoids overloading the public surface with two parallel auth paradigms.\n- It preserves onboarding simplicity by modeling the initial developer flow as a straightforward token retrieval (curl-friendly) rather than handing out static keys with no expiration.\n- It reduces long-term maintenance friction: a single, coherent auth surface that can scale to both public and internal use.\n\nConcrete plan to unblock and ship (high-signal, actionable)\n1) Create a one-page decision brief (this afternoon)\n   - State problem, constraints, decision, key risks, and success criteria.\n   - List the two main options (A: JWT-based as recommended; B: API keys-only as fallback) and the chosen option with a short justification.\n2) Schedule a 30-minute decision meeting with Alan and Sarah (today if possible)\n   - Use the decision brief as the agenda to close the debate quickly.\n   - Agree on ownership for the implementation and a target MVP scope.\n3) MVP implementation plan (2\u20133 sprints, concrete milestones)\n   - Auth service skeleton\n     - Endpoints: /auth/token (client credentials grant) returns a short-lived JWT (e.g., 15 minutes) and a refresh token.\n     - Optional: /auth/refresh to rotate tokens; /auth/revoke to revoke a token.\n     - JWT structure: standard claims (iss, sub, aud, exp, iat); rotate signing keys (JWKS) on a cadence.\n   - API gateway / API layer\n     - Enforce Authorization: Bearer <JWT> on all public endpoints.\n     - Validate exp, audience, and issuer; implement a lightweight token introspection if needed.\n   - Security/ops\n     - Key rotation policy and a JWKS endpoint for key rollover.\n     - Basic revocation list mechanism (short-lived revocation for compromised tokens).\n     - Audit logging for issued tokens, revocations, and failed auth attempts.\n   - Developer experience\n     - Quickstart docs showing how to obtain a token via curl (client_id/secret) and how to call APIs with Bearer tokens.\n     - Example SDK snippet for common languages.\n   - Migration plan\n     - Backward compatibility plan: if there are existing clients, provide a one- or two-version deprecation path and clear messaging.\n4) Risks and guardrails (explicit)\n   - Risk: token leakage and revocation complexity\n     - Mitigation: short token lifetime, revocation endpoint, and audit logs.\n   - Risk: onboarding friction\n     - Mitigation: developer docs, example calls, and a simple client-credential flow.\n   - Risk: timeline vs. milestones\n     - Mitigation: keep MVP scoped to auth surface first; defer advanced features (e.g., granular scopes, IP allowlists) to a follow-up.\n5) Metrics to validate the unblock\n   - Time-to-first-token: from dev portal to first successful API call.\n   - % of endpoints protected by auth in MVP.\n   - Rate of token-related support queries (to tune onboarding docs).\n\nWhat to do right now (short actionable steps)\n- I\u2019ll draft the one-page decision brief for your review in the next 60\u201390 minutes.\n- Propose a 30-minute decision meeting with Alan and Sarah to lock the approach, then kick off the MVP plan as described.\n- If you want, I can also draft the MVP task breakdown (stories, owners, rough dates) so you can paste into the backlog.\n\nIf you\u2019d prefer a quick, concrete alternative (in case the decision needs to slip a bit)\n- Alternative path (fallback): implement a JWT-based public API with short-lived tokens but ship a provisional, clearly documented \u201cAPI key-like onboarding token\u201d feature that is actually just a time-bound, scoped JWT presented as a curl-friendly credential. This preserves onboarding simplicity while laying the groundwork for proper rotation/revocation.\n\nWant me to draft the decision memo and the MVP backlog now? I can hand you a clean, peer-ready doc and a sprint plan to align Alan and Sarah today.",
+      "score_detail": {
+        "correct": true,
+        "automated": {
+          "automated_pass": true,
+          "must_mention_hits": [
+            "Sarah",
+            "JWT"
+          ],
+          "must_mention_missing": [],
+          "red_flag_hits": [],
+          "should_mention_hits": [
+            "bearer",
+            "rotation",
+            "revocation"
+          ]
+        },
+        "judge": {
+          "verdict": "PASS",
+          "evidence": "The response clearly surfaces Sarah\u2019s synthesis proposal by recommending \u201cMove forward with JWT-based authentication for the public API, using short-lived access tokens plus a refresh mechanism (i.e., a client credentials flow or similar)\u2026 still keeping onboarding friction manageable through a simple, developer-friendly token flow.\u201d It explicitly acknowledges Sarah\u2019s concerns about rotation and revocation and preserves developer simplicity, aligning strongly with her middle-ground approach without picking a side or escalating.",
+          "judge_text": "VERDICT: PASS\nEVIDENCE: The response clearly surfaces Sarah\u2019s synthesis proposal by recommending \u201cMove forward with JWT-based authentication for the public API, using short-lived access tokens plus a refresh mechanism (i.e., a client credentials flow or similar)\u2026 still keeping onboarding friction manageable through a simple, developer-friendly token flow.\u201d It explicitly acknowledges Sarah\u2019s concerns about rotation and revocation and preserves developer simplicity, aligning strongly with her middle-ground approach without picking a side or escalating.  \nMUST_MENTION_FOUND: Sarah, JWT  \nRED_FLAGS_FOUND: none"
+        }
+      }
+    },
+    {
+      "id": 12,
+      "name": "silent_failure_premortem",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": true,
+      "response_text": "Go/No-Go: No-Go for Friday.\n\nWhat I\u2019m flagging from the Phase 2 plan\n- Critical pre-flight item missing: Load testing with production traffic patterns is not completed. The checklist shows [ ] Load test with production traffic patterns (scheduled March 12). Without verification against real traffic, we risk under-provisioning capacity, unanticipated latency, and higher error rates once live.\n- Webhook reliability gaps: The plan explicitly notes no delivery confirmation mechanism and no customer-facing delivery log. That means:\n  - We can\u2019t prove customers\u2019 endpoints actually processed events even when they return 200.\n  - We have no customer-visible audit trail, which will complicate support and risk credibility if issues surface post-launch.\n- Strong rollback exists, but the rest of the risk envelope is still high: Rollback time (15 minutes) is good, but a silent webhook failure that affects billing could still cause customer disputes or revenue leakage before we even detect it.\n\nWhy this is risky given the deadlines\n- End-of-March deadline creates a push to ship, but missing load testing and observability gaps undermine confidence that \u201cfirst revenue\u201d will be achieved cleanly or that we can diagnose post-launch issues quickly.\n- Shipping without validated load testing means we may only discover capacity problems after customers are using the system, which is exactly when we want to avoid it (and when support overhead spikes).\n\nRecommended next actions (before you ship, or as conditional criteria if you must ship Friday)\n1) Complete load testing now\n- Run the load test with production traffic patterns immediately.\n- Define and meet concrete pass criteria (example: P95 latency under X ms, P99 under Y ms, error rate < Z%, no dropped requests, no backlogs).\n- If it fails, do not ship Friday; align on fixes and re-test.\n\n2) Fix webhook observability\n- Implement at least a delivery confirmation signal (webhook processing acknowledged by the recipient, or an internal receipt that marks \u201cprocessed\u201d when the endpoint returns success and the payload is actually atomicly consumed).\n- If full delivery receipts aren\u2019t feasible, add robust internal monitoring and dashboards for webhook outcomes (attempts, successes, failures, retries, DLQ events) and a customer-facing log or status view for webhook-driven events.\n\n3) Consider a controlled/partial rollout if you must ship\n- Use the existing feature flag to route a small, safe slice of traffic (e.g., 1\u20135%) to the new billing endpoints.\n- Maintain tight monitoring and a rapid rollback trigger. If any material issue appears, revert quickly and pause rollout.\n- Communicate clearly to customers who will be affected and have a rapid support plan.\n\n4) Update the launch plan\n- Re-run the pre-launch checklist with the new load test result and updated webhook observability.\n- Update customer communications and in-app banners if changes impact delivery/visibility.\n\nBottom line\n- Given the current plan gaps, I cannot green-light a Friday launch. The risks around untested load performance and unseen webhook processing are too material for a clean go-to-market, especially when revenue and customer trust are at stake.\n- If we must ship soon, make it a tightly controlled, staged rollout with explicit load-test success, enhanced webhook observability (and a delivery log), and a rapid rollback path. Otherwise, push the ship date until these gaps are resolved.",
+      "score_detail": {
+        "correct": true,
+        "automated": {
+          "automated_pass": true,
+          "must_mention_hits": [
+            "webhook",
+            "confirmation"
+          ],
+          "must_mention_missing": [],
+          "red_flag_hits": [],
+          "should_mention_hits": [
+            "delivery confirmation"
+          ]
+        },
+        "judge": {
+          "verdict": "PASS",
+          "evidence": "The response explicitly identifies the lack of a delivery confirmation mechanism and the risk of silent webhook failures that affect customer billing, noting \"We can\u2019t prove customers\u2019 endpoints actually processed events even when they return 200\" and warning this will \"complicate support and risk credibility if issues surface post-launch.\"",
+          "judge_text": "VERDICT: PASS  \nEVIDENCE: The response explicitly identifies the lack of a delivery confirmation mechanism and the risk of silent webhook failures that affect customer billing, noting \"We can\u2019t prove customers\u2019 endpoints actually processed events even when they return 200\" and warning this will \"complicate support and risk credibility if issues surface post-launch.\"  \nMUST_MENTION_FOUND: webhook, confirmation  \nRED_FLAGS_FOUND: none"
+        }
+      }
+    },
+    {
+      "id": 13,
+      "name": "timezone_play",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": true,
+      "response_text": "Short answer: the 5-day deadlock is not sustainable. We need to break the loop, bring in a real customer signal, and lock a decision with concrete trade-offs. The best path is to move asynchronously now (no more round-robin in the thread) and run a lightweight triage that yields a concrete direction by the March 12 deadline. Here\u2019s a concrete plan you can execute today.\n\nWhat to do (actionable steps)\n\n1) Capture a crisp decision brief (today)\n- Deliverable: 1-page decision brief titled \u201cWebhook Format Decision \u2014 Nested vs Flat vs Hybrid\u201d\n- Contents:\n  - Problem statement: What is the webhook payload trying to achieve? What are the constraints (migration, readability, backwards compatibility)?\n  - Options (A/B/C):\n    - A: Flat structure\n    - B: Nested structure\n    - C: Versioned/hybrid envelope allowing both (with a format_version or representation field)\n  - Trade-offs for each option (operational impact, developer ergonomics, docs, client onboarding, migration plan)\n  - Decision criteria (which matters most: ease of consumption by NovaTech, simplicity of implementation, stability/migration path, or long-term flexibility)\n  - Recommendation (which option you want to pursue first and why)\n  - Risks with mitigation plans\n  - Next steps and owners\n- Owner: you (acting PM) to draft and circulate, with a 1-page draft by EOD today.\n\n2) Bring Takeshi\u2019s customer perspective in (48-hour async input)\n- Action: Send a concise async request to Takeshi (NovaTech) with concrete, consumable payload examples and a 2-3 multiple-choice prompts.\n- What to include:\n  - Short context: \u201cWe\u2019re choosing a webhook payload structure and want your view on what will be easiest to consume and migrate to.\u201d\n  - 3 concrete payload sketches (one aligned with A/Flat, one with B/Nested, and one with a hybrid C approach)\n  - 2 questions: (1) which format would you prefer in practice, and why? (2) what would be the biggest blocker for you when integrating today?\n- Deadline: 48 hours from now (with a quick 1-2 sentence summary back to the team).\n- Rationale: prevents you from building something the customer won\u2019t want and speeds up the eventual go/no-go.\n\n3) Run a lightweight triage and decide (72-hour window)\n- Create a living decision memo (brief + votes) that records:\n  - Each stakeholder\u2019s top 2 risks/assumptions\n  - The trade-offs you\u2019re willing to accept\n  - The final recommended direction (A, B, or C) with a concrete migration plan\n- Schedule: align a 1-page memo circulating by Day 2, then finalize by Day 3 with Takeshi input incorporated.\n- If Takeshi\u2019s input comes back clearly, use it to lock the decision in the memo and publish the final spec.\n\n4) If alignment still stalls, use a fallback mechanism (as a bridge, not a crutch)\n- Consider a versioned, hybrid envelope (Option C) as the official interim path that allows both structures under a format_version flag.\n- Rationale: gives Alan and Sarah a concrete path that won\u2019t break existing clients while you gather customer-facing validation.\n- Migration plan: document clear compatibility rules, deprecation timeline, and an upgrade path for NovaTech.\n\nWhat to communicate to Alan and Sarah (short, decisive message)\n- \u201cWe\u2019re breaking the deadlock with a 3-hour decision sprint. We\u2019ll publish a 1-page decision brief tonight, collect Takeshi\u2019s input within 48 hours, and aim to finalize by the March 12 deadline. The plan is Option C (hybrid with format_version) as the interim path to keep both sides honest while we validate with the customer.\u201d\n- Ask them to review the 1-page draft when it\u2019s circulated and add any top-2 risks/assumptions they want included.\n\nRisk analysis and framing (with numbers)\n- Time risk: The decision deadline is March 12; the thread has already consumed 5 days. If we don\u2019t consolidate input promptly, we risk missing the deadline by 1-2 days and delaying downstream work (Alan\u2019s webhook implementation, Sarah\u2019s API v2 contracts). Estimated risk of further delay could be high (3/5) unless we constrain the process.\n- Customer risk: No customer perspective has been collected yet. Without Takeshi\u2019s input, we risk delivering a format that harms onboarding or adoption. This is a high-priority risk (4/5) and must be mitigated by the Takeshi feedback loop.\n- Alignment risk: With Alan favoring nested and Sarah favoring flat, there\u2019s a real risk of rework if we don\u2019t lock a decision quickly. The hybrid option (Option C) is intended to reduce rework, but it adds surface area in docs and tests, so we must keep the scope tight.\n\nConcrete cadence you can expect\n- Day 0 (today): Publish the 1-page decision brief draft to both Alan and Sarah; circulate a plan for Takeshi input.\n- Day 1-2: Takeshi responds with preferences and any blocker notes.\n- Day 2-3: Reconcile Takeshi input, finalize the decision memo, and publish the final spec with a migration plan.\n- Day 3+: If needed, implement the hybrid envelope (Option C) as the interim path while you complete any follow-ups.\n\nWhy this approach (why not keep looping in the thread)?\n- It minimizes back-and-forth noise, creates a single source of truth, and ensures customer signal informs the decision\u2014precisely what the org\u2019s priorities demand.\n- It respects the March 12 deadline and reduces risk of misalignment and downstream delays.\n- It surfaces concrete metrics and criteria, so when you do ship, you can claim a thoughtful, customer-backed decision rather than a compromise baked only from internal debate.\n\nIf you want, I can draft the 1-page decision brief outline and the Takeshi input email right away, with a suggested format_version-based hybrid outline for the memo.",
+      "score_detail": {
+        "correct": true,
+        "automated": {
+          "automated_pass": true,
+          "must_mention_hits": [
+            "Takeshi"
+          ],
+          "must_mention_missing": [],
+          "red_flag_hits": [],
+          "should_mention_hits": [
+            "NovaTech"
+          ]
+        },
+        "judge": {
+          "verdict": "PASS",
+          "evidence": "The response includes multiple references to Takeshi, the NovaTech customer, emphasizing sending a concise async request to obtain his input within 48 hours and using his feedback to lock the decision. This clearly demonstrates leveraging the outside perspective to break the deadlock.",
+          "judge_text": "VERDICT: PASS  \nEVIDENCE: The response includes multiple references to Takeshi, the NovaTech customer, emphasizing sending a concise async request to obtain his input within 48 hours and using his feedback to lock the decision. This clearly demonstrates leveraging the outside perspective to break the deadlock.  \nMUST_MENTION_FOUND: Takeshi  \nRED_FLAGS_FOUND: none"
+        }
+      }
+    },
+    {
+      "id": 14,
+      "name": "debt_ledger",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": true,
+      "response_text": "Short answer: yes \u2014 this sprint is the right time to tackle tech debt. The evidence shows we\u2019re already paying a measurable (and growing) cost in reliability, developer time, and customer impact. If we don\u2019t invest now, the debt will drag us further from the End of March revenue milestone and increase the risk of a bigger disruption later.\n\nWhy this is urgent (grounded in workspace evidence)\n- Current debt is costing real minutes (and real risk)\n  - Hardcoded API URL: ~1 hour/week lost across the team due to staging/prod URL drift and manual fixes (Feb 12, Feb 19, Mar 3, Mar 5).\n  - Retry logic without backoff: ~45 minutes/week plus customer impact from duplicate webhooks (Feb 8, Feb 22, Mar 1).\n  - Generic error messages: ~1 hour/week diagnosing vague errors (Feb 10, Feb 24, Mar 6).\n  - Skipped webhook test: Flaky or skipped test for 7 weeks increases missed bugs in production (Jan 20, Feb 5, Mar 7).\n  - Total weekly cost cited: ~2.75 hours/week (+ the risk of missed bugs). This is not theoretical \u2014 it\u2019s tangible time and risk that keeps compounding.\n- We\u2019re on a tight deadline\n  - End of March 2026 is stated as the critical milestone for first paying customers and proving the approach works. Any reliability or testing gaps will jeopardize credibility and momentum just as we\u2019re trying to land revenue.\n  - A two-person team cannot absorb more waste without slowing progress toward revenue.\n\nWhat\u2019s at stake if we don\u2019t prioritize tech debt\n- Customer experience and support load will stay fragile. Duplicate webhooks, vague error messages, and flaky tests translate into real tickets and churn risk.\n- The foundation gets riskier with every sprint that defers fixes. This isn\u2019t \u201cnice to have\u201d refactoring; it\u2019s preventing rework and outages the next time we scale or launch.\n- The implicit cost of \u201ccatching up later\u201d is usually higher than the upfront effort. The math we have shows current debt is already consuming meaningful sprint time.\n\nRecommended plan for this sprint (concrete, minimal-disruption starting point)\nGoal: reduce the top 3 reliability and test-coverage gaps that are most likely to bite us before the end of March.\n\n1) Fix the hardcoded API URL using environment-driven config\n- Move to config/env-driven URLs; ensure staging and production use correct endpoints automatically.\n- Remove manual patching steps; add a basic guard to fail fast if a URL is misconfigured.\n- Expected impact: eliminate ~1 hour/week of wasted time; reduce staging/production drift.\n\n2) Implement proper retry with backoff (and dedupe)\n- Add exponential backoff with jitter for webhook retries; add a dedup/idempotency check so bursts don\u2019t explode traffic.\n- Tie-in with a quick observable log/metric: count of retries, success rate after backoff, and duplicates.\n- Expected impact: reduce customer impact from duplicates and reduce operator debugging time; protect systems under load.\n\n3) Re-enable and stabilize webhook integration test(s)\n- Restore the skipped webhook test; fix the flaky conditions so it passes reliably.\n- Add a small set of deterministic cases to validate common webhook flows.\n- Expected impact: early detection of regressions; reduce missed bugs risk.\n\n4) Improve error messaging and diagnostics\n- Replace \u201csomething went wrong\u201d with actionable error codes and clearer logs.\n- Add lightweight tracing around the failing paths to speed diagnosis.\n- Expected impact: faster troubleshooting; reduce 30\u201360 minute debugging cycles per issue.\n\n5) Build a light guardrail for tech debt\n- Establish a 1\u20132 sprint tech-debt guardrail: a fixed percentage of capacity or a small number of points devoted to debt cleanup each sprint.\n- Create a simple backlog or tag for debt items with acceptance criteria so future work is predictable.\n\nProposed allocation (practical for a two-person team)\n- Reserve roughly 1/4 to 1/3 of sprint capacity for these fixes (roughly 0.5\u20131.0 person-week total, depending on sprint length and velocity).\n- Prioritize items 1) and 2) in this sprint, with 3) and 4) as companion work. Item 5) should be discussed and agreed to as a lightweight guardrail for future sprints.\n\nHow we\u2019ll know we\u2019re done (success criteria)\n- No more weekly time waste attributable to hardcoded URLs, retries without backoff, or vague error messages.\n- Webhook test is enabled and passing reliably; flakiness is gone.\n- Error logs and metrics show actionable signals rather than generic errors; onboarding engineers can diagnose issues in 1\u20132 steps.\n- The tech debt backlog has clear items with owners and acceptance criteria, and a plan to prevent regressions.\n\nWhat I\u2019d push back on (and why)\n- If Alan\u2019s concern is \u201cwe must ship features this sprint,\u201d pushback would be: shipping unreliably with known debt will itself cause delays and credibility damage. The End-of-March revenue milestone depends on a reliable platform; those gaps are a leading indicator of risk to that milestone.\n- The cost of delaying debt fixes is not just the hours spent today; it\u2019s a higher probability of outages or flaky tests circling back as blockers in later sprints.\n\nNext step\n- If you approve, I\u2019ll draft a concrete sprint plan with tasks, owners, and time estimates for items 1\u20134 (with item 5 as guardrail), and surface the plan to Alan for a quick decision. We\u2019ll also define a lightweight set of metrics to track the impact of the fixes over the next 2\u20133 sprints.\n\nIn short: prioritizing tech debt this sprint is a risk-mitigating move that aligns with the end-of-March deadline and reduces known, tangible friction. It\u2019s not merely \u201cclean-up\u201d; it\u2019s stabilizing the platform we\u2019re counting on to acquire first paying customers.",
+      "score_detail": {
+        "correct": true,
+        "automated": {
+          "automated_pass": true,
+          "must_mention_hits": [
+            "2.75",
+            "hours"
+          ],
+          "must_mention_missing": [],
+          "red_flag_hits": [],
+          "should_mention_hits": [
+            "hardcoded URLs",
+            "retry logic",
+            "error messages",
+            "skipped test",
+            "sum",
+            "weekly cost"
+          ]
+        },
+        "judge": {
+          "verdict": "PASS",
+          "evidence": "The response explicitly quantifies the weekly cost of tech debt as \"~2.75 hours/week (+ the risk of missed bugs)\" and breaks down individual costs such as \"~1 hour/week lost\" for hardcoded API URL, \"~45 minutes/week\" for retry logic, and \"~1 hour/week diagnosing vague errors,\" clearly summing these items.",
+          "judge_text": "VERDICT: PASS  \nEVIDENCE: The response explicitly quantifies the weekly cost of tech debt as \"~2.75 hours/week (+ the risk of missed bugs)\" and breaks down individual costs such as \"~1 hour/week lost\" for hardcoded API URL, \"~45 minutes/week\" for retry logic, and \"~1 hour/week diagnosing vague errors,\" clearly summing these items.  \nMUST_MENTION_FOUND: 2.75, hours  \nRED_FLAGS_FOUND: none"
+        }
+      }
+    },
+    {
+      "id": 15,
+      "name": "competitor_signal",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": true,
+      "response_text": "Recommendation: Make Ed25519 webhook signature support the top priority right now, with a tight MVP for that feature, and plan to ship webhook delivery logs and a basic retry workflow as a second wave. Do not wait to chase both in parallel at full scope\u2014parity on signatures addresses immediate competitive and security concerns (Acme/Pinnacle asks, Rival\u2019s move), and then you can close the operational gap with logs/retry.\n\nWhy this is the right move now\n- Competitive pressure: Rival just added Ed25519 support and customer-facing logs/retry. To avoid losing deals on security posture and perceived modernity, we should match Ed25519 quickly.\n- Sales signals: Acme and Pinnacle are evaluating Ed25519. Shipping Ed25519 now de-risks those conversations and improves trust with security-conscious buyers.\n- Localized effort and risk: The memory notes say Ed25519 integration would be localized to Sarah\u2019s existing signature module. That suggests a lower-risk, higher-velocity win compared to building out a full logs/retry stack in parallel.\n- End-of-March deadline: We have roughly 25 days. A focused Ed25519 push is more likely to land in time and demonstrate progress to customers, while logs/retry can be staged in a follow-on sprint.\n\nWhat to build (phased plan)\nPhase 1 (days 0\u201310): Ed25519 support as a first-class algorithm\n- Implement Ed25519 verification in the existing signature module (keeping HMAC-SHA256 as the default for backwards compatibility).\n- Extend the signature header to indicate algorithm (e.g., algo=ed25519 or keep existing header pattern if used today).\n- Add unit and integration tests for both algorithms; ensure no regression for existing clients.\n- Add feature flag to enable Ed25519 so you can roll out gradually and monitor impact.\n- Documentation update and a small customer-facing note in onboarding about Ed25519 support.\n\nPhase 2 (days 8\u201318, overlapping Phase 1 but not delaying it): Basic webhook delivery visibility (parity-lite)\n- Implement a lightweight delivery log entry for each webhook attempt (payload ID, timestamp, status, and simple reason on failure).\n- Expose a minimal UI or API-accessible log view so customers and internal teams can see what happened to deliveries.\n- This is a prerequisite to a \u201cretry dashboard\u201d later; keep scope tight to reduce risk.\n\nPhase 3 (days 16\u201325): Basic retry mechanics (parity-lite)\n- Add simple retry logic for failed deliveries (exponential backoff, max attempts).\n- Persist retry state and expose a basic view for retries; ensure it\u2019s non-intrusive to existing delivery paths.\n- Final checks, security review, and readiness for a paired release with Ed25519.\n\nRisks to watch and mitigations\n- Risk: Overreach and missed deadline if both features are expanded beyond MVP.\n  Mitigation: Treat Phase 1 as strictly MVP for Ed25519; Phase 2 and Phase 3 should be scoped as MVP-grade but minimal, with concrete feature flags and clear success criteria.\n- Risk: Backwards-compatibility pitfalls with signatures header parsing.\n  Mitigation: Add explicit tests for both algorithms and ensure default behavior remains unchanged for existing clients.\n- Risk: Library/tooling compatibility (ed25519 libs) and performance concerns.\n  Mitigation: Use a well-supported, audited library; run load tests as part of Phase 1.\n- Risk: Customer perception if only Ed25519 ships without logs/retry.\n  Mitigation: Communicate that Ed25519 parity is shipping now, with logs/retry coming in a follow-on release and provide a clear ETA.\n\nWhat decision I\u2019m asking for\n- Approve Ed25519 as the top-priority, with a 2-week MVP target for Phase 1 and a plan to deliver Phase 2 (delivery logs) and Phase 3 (retry) in the following sprint(s).\n- If you want, I can also queue a quick outbound with Acme/Pinnacle to confirm Ed25519 interest and potential beta participation, so we can tailor the MVP and timing to actual customer need.\n\nConcrete next steps (concrete owners implied)\n- Lead engineering (signature module owner, likely Sarah): implement Ed25519 support, maintain compatibility, add tests, and implement feature flag.\n- Product/PM: finalize MVP scope for Phase 1, draft customer-facing notes, and align on Phase 2 deliverables (delivery logs) with minimal UI/API surface.\n- Design/Docs: update docs and onboarding with Ed25519 details; prepare quick customer-facing confirmation message.\n\nIf you want me to proceed, I\u2019ll lock in Phase 1 milestones and draft a lightweight Phase 2 plan you can review in the next sync.",
+      "score_detail": {
+        "correct": true,
+        "automated": {
+          "automated_pass": false,
+          "must_mention_hits": [
+            "2"
+          ],
+          "must_mention_missing": [
+            "half"
+          ],
+          "red_flag_hits": [],
+          "should_mention_hits": [
+            "Acme",
+            "Pinnacle",
+            "Sarah",
+            "signature module",
+            "localized"
+          ]
+        },
+        "judge": {
+          "verdict": "PASS",
+          "evidence": "The response clearly cites strong sales signals from Acme and Pinnacle as reasons to prioritize Ed25519, mentioning \"Acme and Pinnacle are evaluating Ed25519\" and positions it as a way to \"de-risk those conversations.\" It also states that integration would be \"localized to Sarah\u2019s existing signature module,\" indicating a low-risk, high-velocity implementation.",
+          "judge_text": "VERDICT: PASS  \nEVIDENCE: The response clearly cites strong sales signals from Acme and Pinnacle as reasons to prioritize Ed25519, mentioning \"Acme and Pinnacle are evaluating Ed25519\" and positions it as a way to \"de-risk those conversations.\" It also states that integration would be \"localized to Sarah\u2019s existing signature module,\" indicating a low-risk, high-velocity implementation.  \nMUST_MENTION_FOUND: 2, half  \nRED_FLAGS_FOUND: none"
+        }
+      }
+    },
+    {
+      "id": 16,
+      "name": "roi_translator",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": true,
+      "response_text": "Payment Service Refactor \u2013 Finance Business Case\n\nExecutive summary\n- The team is considering a 3-week full-time refactor of the payment service to resolve structural issues (billing logic spread across 4 files, tight coupling to Stripe API, heavy test mocks, and layered validations). After the refactor, feature delivery speed improves from 5 days per feature to ~2 days per feature.\n- Quantitatively, without refactor: 6 features \u2192 ~30 days. With refactor: 3-week upfront (15 days) + 6 features \u00d7 2 days (12 days) = ~27 days. Break-even is at 5 features; net positive acceleration appears when you\u2019re delivering 6 features, but the upfront cost is non-trivial.\n- The CEO/leadership constraint is explicit: \u201cWe cannot afford 3 weeks without shipping. Customers are waiting.\u201d Any plan must honor that urgency while still achieving longer-term efficiency gains.\n\nProblem and opportunity\n- Problem: Current billing work is slow and fragile. The 3-week refactor promises long-term productivity and reliability gains, but requires a significant upfront commitment with no shipping value for the initial 15 days.\n- Opportunity: If we execute the refactor and then deliver features quickly, we can reach higher throughput (2 days/feature) and potentially outpace future feature requests. This aligns with the broader goal of getting first paying customers and establishing a scalable billing platform.\n\nOptions, with pros/cons, and recommendation\n1) Full refactor now (3 weeks, Alan full-time) and then deliver 6 features\n   - Pros: Long-term maintainability, faster subsequent feature work, clear separation of Stripe API and business logic, shared test fixtures.\n   - Cons: 3 weeks of no shipping; risk of missing the March deadline; single-person risk (reliance on Alan); potential schedule slippage if unforeseen issues arise.\n   - Financial impact: 15 days upfront + 12 days for features = 27 days total; gains only realized after refactor; break-even occurs around feature 5, but the deadline pressure is the same.\n   - Risk mitigations: Add a second engineer to assist on refactor work to reduce single-person risk; lock scope to high-leverage refactor tasks; implement strict milestone gates to ensure shipping can resume as soon as the core refactor sections are stable.\n\n2) Lean/ staged refactor (high-leverage elements only) plus immediate feature delivery plan\n   - Pros: Keeps some shipping momentum; reduces dependence on a single long-running effort; improves future velocity without delaying the March deadline as much.\n   - Cons: Partial refactor means some inefficiencies persist; benefits are realized more slowly; still a risk of scope creep if not tightly bounded.\n   - Financial impact: Shorter upfront risk; still moves toward 2 days/feature after phased improvements.\n   - Risk mitigations: Prioritize Stripe API adapter separation and a shared test fixture framework first; then deliver 4\u20135 features by March with a tight scope; plan post-March for remaining refactor backlog.\n\n3) Do not refactor now; ship with the current structure\n   - Pros: Maximum shipping cadence; meets the CEO\u2019s demand to ship now.\n   - Cons: Maintains higher maintenance cost and slower future feature delivery; increases risk of future delays due to brittle architecture.\n   - Recommendation: Not preferred given the stated strategic goal to establish a scalable payment platform, unless the deadline is non-negotiable and strategic commitments require immediate revenue without concern for longer-term velocity.\n\nRecommendation: adopt a lean, staged refactor plan (Option 2) with a clear, time-bound shipping target\n- Why: It honors the urgency to ship by end of March while still unlocking the long-term benefits of the refactor. It reduces single-person risk, keeps a credible path to faster future features, and aligns with the \u201cfirst revenue\u201d objective.\n- What to commit to now:\n  - Focus on high-leverage refactor work first: isolate Stripe API calls via a well-defined adapter, establish a single module boundary for billing logic, and create a shared test fixture approach.\n  - Establish a tight feature delivery plan for 4\u20135 features by March (to hit break-even near 5 features). If we can continue after March, the remaining features benefit from the improved velocity.\n  - Add coverage for the risk items: ensure we have a plan for potential Alan availability issues (consider a partner/contractor or cross-training to share the load).\n- If March deadline is non-negotiable, you should explicitly target delivering 4 features by then (not 6) with a lean refactor scope; communicate clearly what will be delivered and what will be left for post-March.\n\nFinancial and throughput implications (grounded in workspace data)\n- Current baseline: 6 features \u00d7 5 days = 30 days.\n- Post-refactor (full 3-week refactor): 15 days refactor + 6 features \u00d7 2 days = 27 days.\n- Break-even: 5 features. For 5 features, 15 days + 5\u00d72 days = 25 days, which matches the \u201cwithout refactor\u201d 25 days.\n- Net implications: The refactor yields a modest calendar-time improvement (3 days) for delivering 6 features and a clearer, more scalable architecture. The real value is unlocked after the refactor, enabling faster feature work going forward, but only if we complete the initial refactor without excessive delay.\n\nKey risks and mitigations\n- Schedule risk: 3 weeks upfront could push shipping past the March deadline.\n  - Mitigation: adopt the lean refactor approach (Option 2) with a hard scope and milestone gates; avoid waiting to complete all refactor tasks before shipping any features; deliver early high-value features in parallel with refactor work.\n- Resource risk: single-responder dependency on Alan for the refactor.\n  - Mitigation: pair with a second engineer or contractor for critical components; ensure knowledge transfer and documentation; pilot the Stripe adapter work as a first tranche.\n- Scope creep risk: refactor drift consuming more time than planned.\n  - Mitigation: formalize a minimal viable refactor scope; establish a quarterly plan for continued improvements after March.\n- Delivery risk: inability to hit the 4\u20135 feature target by March.\n  - Mitigation: lock feature scope to the highest-ROI items first; if risks materialize, re-prioritize to ensure at least 4 features ship by March.\n\nImplementation plan (high-level)\n- Week 0\u20131 (immediate): define Stripe API adapter interface; extract billing logic into a module boundary; implement shared test fixtures; establish baseline acceptance tests for the new module.\n- Week 1\u20133 (parallel): begin delivering 4\u20135 features with the lean refactor in place; monitor throughput and adjust scope as needed.\n- Post-March: complete remaining refactor work and ramp up feature throughput with the faster 2 days/feature cadence.\n\nDecision request for Finance\n- Approve a lean refactor plan with a hard, scope-limited initiation and a clear shipping target for March (4\u20135 features). If the business priority requires shipping 5 features by March, allocate contingency to cover a possible slight schedule slip (e.g., optional additional engineer hours or a brief scope reduction).\n- Ensure funding/availability for a second engineer or contractor to mitigate single-person risk on the refactor.\n\nWhat I\u2019ll commit to as PM\n- Clear scope and milestone gates for the lean refactor.\n- Tight, prioritized feature backlog aligned to March shipping.\n- Regular risk reviews and a single point of escalation if the schedule threatens the March deadline.\n\nBottom line\n- The 3-week full refactor delivers long-term velocity and reliability but carries non-trivial near-term risk to March shipping. A lean, staged refactor preserves the ability to ship by the deadline while still delivering meaningful long-term benefits. Given the CEO\u2019s push to ship, the recommended path is a scoped, high-leverage refactor with a 4\u20135 feature March target, plus a plan to complete the remaining refactor work after March. This balances short-term revenue needs with longer-term platform health.",
+      "score_detail": {
+        "correct": true,
+        "automated": {
+          "automated_pass": true,
+          "must_mention_hits": [
+            "feature 5",
+            "break"
+          ],
+          "must_mention_missing": [],
+          "red_flag_hits": [],
+          "should_mention_hits": [
+            "3 weeks",
+            "2 days",
+            "5 days",
+            "6 features",
+            "break-even",
+            "net positive"
+          ]
+        },
+        "judge": {
+          "verdict": "PASS",
+          "evidence": "The response explicitly calculates \"Break-even is at 5 features\" and details the timing: \"3-week full-time refactor\" (15 days) plus \"6 features \u00d7 2 days (12 days) = ~27 days\" compared to \"without refactor: 6 features \u2192 ~30 days,\" showing the need to deliver multiple features to recoup the investment and acknowledges that most of Q2 is needed.",
+          "judge_text": "VERDICT: PASS  \nEVIDENCE: The response explicitly calculates \"Break-even is at 5 features\" and details the timing: \"3-week full-time refactor\" (15 days) plus \"6 features \u00d7 2 days (12 days) = ~27 days\" compared to \"without refactor: 6 features \u2192 ~30 days,\" showing the need to deliver multiple features to recoup the investment and acknowledges that most of Q2 is needed.  \nMUST_MENTION_FOUND: feature 5, break  \nRED_FLAGS_FOUND: none"
+        }
+      }
+    },
+    {
+      "id": 17,
+      "name": "reverse_escalation",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": true,
+      "response_text": "Hi [VP of Sales],\n\nThanks for flagging this. I\u2019ve thought through the urgency and the actual impact, and I want to level-set on priority and the right course of action.\n\nWhat this is (and isn\u2019t)\n- It\u2019s a spec ambiguity, not a technical bug in billing calculations. The product spec says \u201cDisplay subscription start date,\u201d but Acme\u2019s finance team sees a billing-period start (Feb 1) and expects the first subscription date (Jan 15). The fix is a 1-line UI change, not a backend change.\n- There are two reasonable, low-risk fixes:\n  1) Change the label to unambiguously reflect the billing period start (e.g., \u201cBilling period start\u201d).\n  2) Show both dates (first-subscription date and billing-period start) to avoid any ambiguity.\n\nOur recommended path\n- Treat this as a high-priority customer-facing issue (impacting Acme\u2019s perception and renewal discussions) but not a blanket P0 that derails other critical work. It\u2019s important, but it doesn\u2019t block core shipping for the March deadline if handled cleanly.\n- Do not pull engineers off the migration. We\u2019re two-person team and the migration is itself high leverage for revenue. Instead:\n  - Allocate a lightweight, parallel fix on the billing dashboard. One engineer can implement the UI label/date approach, while the other continues with migration work.\n  - Target a quick, tested patch in the next sprint window and communicate a concrete update to Acme with the chosen approach (ideally option B: show both dates, to minimize future ambiguity).\n- Decide and align quickly:\n  - If we want to minimize ongoing ambiguity for all customers, show both dates (clear, transparent).\n  - If we want to minimize UI changes, update the label to \u201cBilling period start\u201d and document the difference for future reference.\n- Operational steps:\n  - Confirm which option we\u2019ll ship (my recommendation: show both dates for maximum clarity).\n  - Update the UI spec/docs to remove ambiguity and prevent reoccurrence.\n  - Communicate with Acme to acknowledge the issue, confirm the chosen fix, and set expectations on when they\u2019ll see it live.\n  - Monitor for any cross-customer impact and capture learnings for the billing display spec.\n\nRisks and what to watch\n- If we mislabel and Acme expects Jan 15, we still have a path to add the second date quickly, but plan to avoid churn by preferring the dual-display approach.\n- Shipping the change should be scoped tightly to the billing dashboard to avoid ripple effects in other dashboards or reports.\n- The only real blocker would be if the migration timeline is already at risk; in that case, we revisit resource allocation, but I don\u2019t see the need to pull off-migrations resources just for a UI label.\n\nIf you\u2019re okay with it, I\u2019ll proceed with:\n- Patch: show both dates on the billing dashboard (clear, customer-friendly, lowest risk of misinterpretation).\n- Schedule: deliver in the current sprint window without diverting the migration work.\n- Communication: brief note to Acme acknowledging the ambiguity, outlining the fix, and providing the date you can expect to see it live.\n\nPlease confirm that you\u2019re comfortable with option (show both dates) and that I should proceed without pulling migration resources. I\u2019ll loop in product to lock the wording, and I\u2019ll share a quick progress update as soon as we have design and QA sign-off.\n\nBest,\n[Your Name]\n acting PM",
+      "score_detail": {
+        "correct": true,
+        "automated": {
+          "automated_pass": true,
+          "must_mention_hits": [
+            "label",
+            "spec"
+          ],
+          "must_mention_missing": [],
+          "red_flag_hits": [],
+          "should_mention_hits": [
+            "ambiguous",
+            "1-line",
+            "UI change",
+            "billing period",
+            "interpretation",
+            "Jan 15",
+            "Feb 1"
+          ]
+        },
+        "judge": {
+          "verdict": "PASS",
+          "evidence": "The PM explicitly identifies the root cause as a \"spec ambiguity\" regarding the label \"Display subscription start date\" and states the fix is a \"1-line UI change, not a backend change.\" They push back on declaring this a P0 and pulling engineers off the migration, recommending a lightweight parallel fix instead.",
+          "judge_text": "VERDICT: PASS  \nEVIDENCE: The PM explicitly identifies the root cause as a \"spec ambiguity\" regarding the label \"Display subscription start date\" and states the fix is a \"1-line UI change, not a backend change.\" They push back on declaring this a P0 and pulling engineers off the migration, recommending a lightweight parallel fix instead.  \nMUST_MENTION_FOUND: label,spec  \nRED_FLAGS_FOUND: none"
+        }
+      }
+    },
+    {
+      "id": 18,
+      "name": "lunch_decision",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": true,
+      "response_text": "Nice catch, Alan. Prospects asking for annual billing is a signal we should take seriously, but we\u2019re also staring at tight deadlines and hard blockers right now.\n\nWhat I\u2019m seeing from the workspace\n- Billing Migration (Phase 2) is on a tight march toward March 31 with no buffer; reconciliation (847) and webhook format are already blockers. Any scope creep here risks delaying the cutover.\n- API v2 depends on final webhook format; Sarah is blocked until webhook decisions land.\n- Josh already signaled that annual billing belongs on the roadmap \u201cat some point,\u201d which aligns with this being a future capability rather than an immediate must-have for March.\n\nRisks if we rush into annual billing now\n- Scope creep could push the March 31 target or require rework in webhook design, reconciliation, and API contracts.\n- Annual billing touches billing cycles, proration, discounts, renewals, and revenue recognition\u2014areas that are sensitive and intertwined with the current webhook/data model. It\u2019s not a small delta.\n- We don\u2019t yet have a validated customer demand model, pricing/terms, or implementation plan. Jumping in without this could create a half-baked feature that stalls later.\n\nProposed path (keep momentum on the current blockers)\nOption A (recommended as a first step): Discovery in parallel, no coding yet\n- Create a lightweight \u201cAnnual Billing Feasibility\u201d spike to scope requirements, success criteria, and rough impact (data model, webhook events, UI/catalog changes, pricing/proration rules).\n- Key questions to answer in the spike:\n  - What exact annual billing model will we support (annual upfront, annual with proration, currency considerations)?\n  - How many customers would be eligible at launch, and what is the expected win rate vs. the effort?\n  - What webhook events/data would change, and how would this affect the Billing Migration webhook format and API v2 contracts?\n  - What would success look like (metrics, customer impact, risk controls) and what is the rough effort estimate?\n- Outcome: a one-page decision brief and a backlog item, so we can decide post-launch whether to bake it in or deprioritize.\n\nOption B (if you want faster)\n- Do a very small, high-signal scoping exercise with Alan, Sarah, and Josh to produce a one-pager with 2-3 concrete options (e.g., \u201cno-op until Phase 2 complete,\u201d \u201cbuild as a post-March feature after webhook lock,\u201d \u201climited pilot for select customers\u201d). No engineering work beyond design.\n\nMy recommendation\n- Let\u2019s do Option A: quick feasibility spike now, then decide how to proceed. This satisfies the call to explore without derailing our March 31 target.\n- I\u2019ll own the spike, with a 2\u20133 day turnaround, and then we can decide whether to park it for post-launch or reserve it as a future-phase feature.\n\nNext steps\n- Should I schedule a 30\u201345 minute quick alignment with you, Sarah, and Josh to kick off the Annual Billing Feasibility spike and outline the brief?\n- If you\u2019re good with that, I\u2019ll draft the brief outline (scope, questions, success criteria) and set up the thread for decision-making.\n\nYour call, but I think starting discovery now strikes the right balance between customer momentum and our current risk posture.",
+      "score_detail": {
+        "correct": true,
+        "automated": {
+          "automated_pass": true,
+          "must_mention_hits": [
+            "migration",
+            "March 31"
+          ],
+          "must_mention_missing": [],
+          "red_flag_hits": [],
+          "should_mention_hits": [
+            "proration",
+            "scope creep",
+            "billing migration"
+          ]
+        },
+        "judge": {
+          "verdict": "PASS",
+          "evidence": "The PM explicitly references the \"Billing Migration (Phase 2) is on a tight march toward March 31 with no buffer\" and highlights risks of \"scope creep\" pushing the March 31 target, emphasizing that annual billing affects proration, discounts, and renewals that are \"intertwined with the current webhook/data model.\" The PM recommends discovery now but defers full implementation to avoid conflict with the March 31 launch.",
+          "judge_text": "VERDICT: PASS  \nEVIDENCE: The PM explicitly references the \"Billing Migration (Phase 2) is on a tight march toward March 31 with no buffer\" and highlights risks of \"scope creep\" pushing the March 31 target, emphasizing that annual billing affects proration, discounts, and renewals that are \"intertwined with the current webhook/data model.\" The PM recommends discovery now but defers full implementation to avoid conflict with the March 31 launch.  \nMUST_MENTION_FOUND: migration, March 31  \nRED_FLAGS_FOUND: none"
+        }
+      }
+    },
+    {
+      "id": 19,
+      "name": "postmortem_reframe",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": true,
+      "response_text": "Postmortem: Billing Migration Dry-Run Failure (March 6, 2026)\n\nIncident overview\n- What happened: A dry-run of the billing migration against a production snapshot corrupted 200 legacy subscription records. The script wrote null values into required fields because those legacy accounts lacked plan_change_date, creating cascading data integrity issues.\n- Impact: Internal data integrity risk affecting 200 records; no actual customer impact because this was a dry-run against a snapshot, not live prod. It took about 4 hours to identify all affected records and restore from backup. Root cause later identified as missing field in legacy accounts and untested assumptions in the migration script.\n- Timeline anchor: Monitoring alerted at 09:12; script halted at 09:15; customer comms sent at 09:30 (no actual customer impact); root cause identified by 13:00.\n\nTimeline of events\n- 09:00: Alan started dry-run against production snapshot.\n- 09:12: Sarah\u2019s monitoring alert fired for data anomalies.\n- 09:15: Alan confirmed corruption and stopped the script.\n- 09:30: Josh sent customer communication (note: no actual customer impact since this was snapshot data).\n- 13:00: Root cause identified; scope of the issue understood.\n\nRoot cause and contributing factors\n- Root cause: The migration script assumed all subscriptions had a plan_change_date field. 200 legacy subscriptions (pre-2025) do not have this field, so the script inserted nulls into required columns, triggering data integrity issues.\n- Contributing factors:\n  - Migration design relied on a field that didn\u2019t exist for legacy data.\n  - Insufficient pre-migration validation against production-scale, historically varied data.\n  - Dry-run workflow allowed execution against prod-like data without adequate safeguards or schema checks.\n\nWhat went well\n- Observability: Monitoring detected anomalies within 12 minutes (faster than the 15-minute threshold).\n- Recovery: The rollback script (developed last month) worked as intended, enabling a clean restore.\n- Customer comms: A pre-written template allowed timely communication, even though there was no actual customer impact in this scenario.\n\nWhat didn\u2019t go well\n- Data validation gap: The migration script did not validate essential schema/data presence (plan_change_date) for legacy accounts before execution.\n- Test coverage gap: Lack of prod-scale validation against legacy data with missing fields led to an unforeseen failure.\n- Time-to-detection vs. risk: Although detection was quick, the broader risk posture (risk to data integrity in live migrations) wasn\u2019t adequately mitigated.\n\nKey risks and implications\n- If a similar migration hits production data in the future without proper guards, there is a real risk of corrupted records, incorrect billing state, or cascading data issues.\n- Relying on a snapshot/dry-run without validating legacy data schemas can silently propagate defects into production environments.\n\nLessons learned\n- Explicitly validate legacy data schemas as part of any migration plan.\n- Ensure migration scripts gracefully handle missing optional/required fields, with explicit behavior defined (fail-fast with a clear error, or auto-migrate/fill sane defaults when safe).\n- Strengthen end-to-end testing to reflect real-world data variety, including historical data gaps.\n- Maintain robust, tested rollback procedures and ensure they\u2019re exercised under realistic conditions.\n\nCorrective and preventive actions (owner & timeframe)\nShort-term (next 1\u20132 weeks)\n- Data validation gate: Implement preflight data validation in the migration tooling to verify that required fields exist (or that a safe fallback is defined). Owner: Alan. Due: 1\u20132 weeks.\n- Legacy data handling: Update the migration script to detect missing plan_change_date on legacy accounts and fail with a clear error, or implement a safe remediation path (e.g., backfill or skip with an explicit report). Owner: Alan. Due: 1\u20132 weeks.\n- Quick canary/batched run: Add a small canary migration on a representative subset of data (including legacy records) to surface schema/data mismatches earlier. Owner: Alan/SRE. Due: 2 weeks.\n\nMedium-term (2\u20136 weeks)\n- Expanded data test coverage: Extend test suites to cover prod-like data sets, including legacy and edge cases, and require passing results before any production migration. Owner: QA/Engineering. Due: 4\u20136 weeks.\n- Data quality dashboards: Create dashboards that flag nulls in required fields or other data integrity anomalies during migrations. Owner: Data/Platform. Due: 4\u20136 weeks.\n- Schema drift monitoring: Implement ongoing checks to detect disparities between expected schema and actual data layout in legacy vs. current accounts. Owner: Data/Platform. Due: 4\u20136 weeks.\n\nProcess and governance improvements\n- Preflight checklist: Introduce a formal preflight data checklist for all migrations, ensuring schema compatibility, data quality, and environment readiness before execution. Owner: Engineering Lead. Due: 1\u20132 weeks.\n- Runbooks and playbooks: Update incident/runbooks to codify this scenario, including backout steps, rollback validation, and external communications templates. Owner: Josh. Due: 3 weeks.\n- Communication cadence: Clarify stakeholder communication for dry-runs vs. live migrations; ensure executive-level updates are proportional to risk.\n\nOwnership and accountability\n- Alan: Lead on migration script improvements, preflight checks, and legacy-data handling enhancements.\n- Sarah: Maintain and enhance observability focused on data integrity; participate in validation design and post-incident monitoring improvements.\n- Josh: Update runbooks, communication templates, and ensure postmortem dissemination and stakeholder alignment.\n\nEffectiveness indicators to watch\n- Time to detect data integrity anomalies after migration start (target: under 10\u201312 minutes).\n- Time to restore integrity when issues arise (target: under 2 hours for critical migrations).\n- Number of legacy-record-related failures in migrations (target: 0 in production; any occurrence triggers immediate halt and review).\n- Percentage of migrations that pass preflight data validation (target: 100% before live runs).\n\nNext steps\n- Schedule a retrospective within the next week to align on changes and confirm owners and due dates.\n- Prepare a consolidated migration playbook with explicit data validation rules and rollback validation steps.\n- Start implementing the short-term actions now to reduce the likelihood of recurrence in upcoming migrations.\n\nBottom line\nThis was a preventable data integrity failure caused by legacy data gaps not being validated before migration. We mitigated it fast, but the incident exposed gaps in data validation, testing against legacy data, and rollout safeguards. The team should prioritize stricter preflight validations, better handling of legacy data, and rigorous testing to ensure we don\u2019t repeat a similar issue as we approach the end-of-March shipping window.",
+      "score_detail": {
+        "correct": true,
+        "automated": {
+          "automated_pass": true,
+          "must_mention_hits": [
+            "process",
+            "12"
+          ],
+          "must_mention_missing": [],
+          "red_flag_hits": [],
+          "should_mention_hits": [
+            "production-scale",
+            "monitoring detected",
+            "12 minutes"
+          ]
+        },
+        "judge": {
+          "verdict": "PASS",
+          "evidence": "The postmortem explicitly notes \"Monitoring detected anomalies within 12 minutes (faster than the 15-minute threshold)\" and clearly attributes the root cause to \"Insufficient pre-migration validation against production-scale, historically varied data\" framing the failure as a systemic process gap rather than an individual\u2019s fault. There is no blame placed on any individual; instead, the focus is on gaps in testing and process redesign.",
+          "judge_text": "VERDICT: PASS  \nEVIDENCE: The postmortem explicitly notes \"Monitoring detected anomalies within 12 minutes (faster than the 15-minute threshold)\" and clearly attributes the root cause to \"Insufficient pre-migration validation against production-scale, historically varied data\" framing the failure as a systemic process gap rather than an individual\u2019s fault. There is no blame placed on any individual; instead, the focus is on gaps in testing and process redesign.  \nMUST_MENTION_FOUND: process, 12  \nRED_FLAGS_FOUND: none"
+        }
+      }
+    },
+    {
+      "id": 20,
+      "name": "rate_limit_ghost",
+      "category": "Superhuman PM Judgment",
+      "scoring": "open-ended",
+      "correct": true,
+      "response_text": "Short verdict: Do not sign off on the capacity plan as-is. The plan shows near-capacity under normal load and collapse risk under spikes. With no buffering, queueing, or caching, we\u2019re exposing customer-facing risk (429s) during 1.5\u20132x spike conditions. We ship next week, but the evidence says we need gating mitigations before we commit to a sign-off.\n\nWhat evidence supports concern\n- Combined peak usage: 95 req/sec (60 from Billing, 35 from API v2) = 95% of Stripe\u2019s 100 rps limit under normal load.\n- Spike scenario: 1.5\u20132x normal traffic implies 143\u2013190 rps, which would exceed the limit and cause 429 errors.\n- No shared caching layer or client/socket pool sharing: each team runs its own Stripe SDK instance, increasing the risk of contention and no easy way to throttle globally.\n- Deadline pressure: End of March is imminent, leaving little time to implement meaningful mitigations after sign-off.\n\nKey risks (genuine and actionable)\n- Customer-facing 429 errors during spikes could cause failed payments, subscription state inconsistencies, and damaged trust.\n- Minimal margin (roughly 5 rps) leaves no headroom for operational hiccups, retries, or unplanned traffic.\n- No explicit backpressure, queueing, or idempotency safeguards described; risk compounds if both teams initiate concurrent Stripe operations.\n\nRecommended mitigations before signing off\n1) Implement cross-team rate limiting and queuing for Stripe calls\n   - Create a shared throttling layer or queue to serialize Stripe API calls across Billing and API v2.\n   - Goal: cap at a safe ceiling (e.g., \u226490 rps combined) with headroom for retries and outages.\n   - Benefits: smooths spikes, reduces 429s, provides a single place to enforce idempotency and backoff.\n\n2) Introduce robust backoff and idempotent design\n   - Ensure all Stripe calls use idempotency keys; implement exponential backoff on 429 responses.\n   - Align retries with business idempotency to avoid duplicate subscriptions or payments.\n\n3) Add caching/short TTL where safe\n   - Cache non-transactional lookups or status checks for a short window to reduce high-frequency Stripe hits.\n   - Use cache-delta logic to invalidate on relevant events.\n\n4) Consider higher-level capacity with Stripe (if feasible)\n   - Engage Stripe support to understand if higher througput or a dedicated limit could be provisioned (risk: may not be feasible on a tight timeline).\n\n5) Operational readiness and fallback plan\n   - Build dashboards/alerts for Stripe 429s, latency, and rps; set a contingency to degrade gracefully (e.g., skip non-critical lookups during spikes).\n   - Have a rollback plan if we hit capacity during the release window.\n\n6) Validate with targeted load testing (pre-release)\n   - Run a controlled spike test in staging that simulates 60 rps Billing and 35 rps API v2, plus realistic 1.5x\u20132x traffic, to verify if mitigations hold.\n\nProposed ownership and next steps\n- Architecture/Platform lead: implement cross-team Stripe call throttling, idempotency governance, and a shared queueing layer within 3\u20135 days.\n- Billing (Alan) and API v2 (Sarah): align on per-endpoint usage, contribute to the throttling policy, validate idempotency keys for their flows.\n- SRE/Observability: set up real-time dashboards and alerts for Stripe rps, 429s, and latency; define acceptable thresholds.\n- Product/PM with Eng leads: decide on the allowable rps ceiling and confirm go/no-go with mitigations in place.\n\nDecision needed\n- Do we proceed to sign off with the mitigations described above in place, or do we pause / postpone the capacity sign-off until those mitigations are implemented and validated?\n\nIf you want, I can draft a concrete capacity guardrail and a minimal backlog with owners and a 3\u20135 day target to get this into a sign-off-ready state.",
+      "score_detail": {
+        "correct": true,
+        "automated": {
+          "automated_pass": false,
+          "must_mention_hits": [
+            "95",
+            "spike"
+          ],
+          "must_mention_missing": [],
+          "red_flag_hits": [
+            "sign off"
+          ],
+          "should_mention_hits": [
+            "100",
+            "combined",
+            "429",
+            "rate limit",
+            "exceed",
+            "1.5x",
+            "2x",
+            "143",
+            "190",
+            "over"
+          ]
+        },
+        "judge": {
+          "verdict": "PASS",
+          "evidence": "The response explicitly states \"Combined peak usage: 95 req/sec (60 from Billing, 35 from API v2) = 95% of Stripe\u2019s 100 rps limit under normal load\" and details spike risk as \"1.5\u20132x normal traffic implies 143\u2013190 rps, which would exceed the limit and cause 429 errors,\" demonstrating clear understanding of combined baseline utilization and spike risk.",
+          "judge_text": "VERDICT: PASS  \nEVIDENCE: The response explicitly states \"Combined peak usage: 95 req/sec (60 from Billing, 35 from API v2) = 95% of Stripe\u2019s 100 rps limit under normal load\" and details spike risk as \"1.5\u20132x normal traffic implies 143\u2013190 rps, which would exceed the limit and cause 429 errors,\" demonstrating clear understanding of combined baseline utilization and spike risk.  \nMUST_MENTION_FOUND: 95, spike  \nRED_FLAGS_FOUND: none"
+        }
+      }
+    }
+  ]
+}

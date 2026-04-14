@@ -1,10 +1,11 @@
 # PM-Bench
 
 [![CI](https://github.com/KernAlan/pm-bench/actions/workflows/ci.yml/badge.svg)](https://github.com/KernAlan/pm-bench/actions/workflows/ci.yml)
-[![Tests](https://img.shields.io/badge/tests-106_passed-green)](tests/)
+[![Tests](https://img.shields.io/badge/tests-122_passed-green)](tests/)
 [![Version](https://img.shields.io/badge/version-1.0.0-blue)](VERSION)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Models on leaderboard](https://img.shields.io/badge/leaderboard-6_models-orange)](LEADERBOARD.md)
 
 **A benchmark for AI PM judgment in a noisy engineering workspace.**
 
@@ -17,7 +18,49 @@ PM-Bench tests whether an AI teammate operating in a messy, multi-channel engine
 - **Multi-model answer-key validation** tooling
 - **[METHODOLOGY.md](METHODOLOGY.md)** — rigorous methodology documentation
 - **[PAPER.md](PAPER.md)** — NeurIPS Datasets & Benchmarks-style paper draft
-- **[LEADERBOARD.md](LEADERBOARD.md)** — awaiting first submissions
+- **[LEADERBOARD.md](LEADERBOARD.md)** — 6 OpenAI mini/nano models scored, see live results
+
+### Current leaderboard (full results: see [LEADERBOARD.md](LEADERBOARD.md))
+
+**MCQ — Superhuman 20** (3-8 iterations per model):
+
+| Model | Score | 95% CI |
+|---|---|---|
+| `gpt-5.4-mini` | 100.00% | ±0.00% (n=4) |
+| `gpt-4.1-mini` | 98.00% | ±2.40% (n=5) |
+| `gpt-5-mini` | 96.88% | ±1.79% (n=8) |
+| `gpt-5-nano` | 95.00% | ±0.00% (n=3) |
+| `gpt-5.4-nano` | 91.25% | ±4.69% (n=4) |
+| `gpt-4.1-nano` | 88.00% | ±3.92% (n=5) |
+
+**MCQ — Full 48** (1-3 iterations):
+
+| Model | Score | 95% CI |
+|---|---|---|
+| `gpt-5-nano` | 93.75% | n=1 |
+| `gpt-5.4-mini` | 91.67% | ±2.36% (n=3) |
+| `gpt-5-mini` | 91.67% | n=1 |
+| `gpt-4.1-mini` | 90.97% | ±1.36% (n=3) |
+| `gpt-4.1-nano` | 81.25% | ±4.08% (n=3) |
+| `gpt-5.4-nano` | 80.56% | ±4.91% (n=3) |
+
+**Open-Ended — 20** (rubric + LLM-judge `gpt-4.1-mini`):
+
+| Model | Score | 95% CI |
+|---|---|---|
+| `gpt-5.4-nano` | 100.00% | n=1 |
+| `gpt-5-mini` | 100.00% | n=1 |
+| `gpt-5.4-mini` | 98.33% | ±3.27% (n=3) |
+| `gpt-4.1-mini` | 95.00% | n=1 |
+| `gpt-5-nano` | 95.00% | n=1 |
+| `gpt-4.1-nano` | 80.00% | n=1 |
+
+**Headline findings from item analysis:**
+- The Superhuman 20 has clearer ranking signal than expected from initial pilot data (12-point spread across mini/nano tier; gpt-4.1-nano at 88% vs gpt-5.4-mini at 100%).
+- Two scenarios do most of the discrimination work: **#55 meeting_assassin** (discrimination 0.742) and **#64 roi_translator** (discrimination 0.814).
+- **Open-ended is more discriminating than MCQ:** gpt-4.1-nano scores 80% open-ended vs 88% MCQ; the gap suggests the open-ended mode catches PM-judgment failures that MCQ scaffolding hides.
+- 1 floor item identified and **fixed** during baseline runs (#30 needed an explicit credentials-status indicator since static context can't simulate runtime credential filtering).
+- Anthropic and Google baselines pending — open issue welcomes contributions.
 
 Grounded in realistic simulated team workspaces with real PM failure modes: hidden dependencies, misleading metrics, missing commitments, single-point-of-failure risk, and knowing when to stay quiet.
 
