@@ -20,7 +20,21 @@ PM-Bench tests whether an AI teammate operating in a messy, multi-channel engine
 - **[PAPER.md](PAPER.md)** — NeurIPS Datasets & Benchmarks-style paper draft
 - **[LEADERBOARD.md](LEADERBOARD.md)** — 6 OpenAI mini/nano models scored, see live results
 
-### Headline result: agentic mode reveals a 31-point capability gap MCQ hides
+### Ultimate test: Delegate (the real AI PM agent) running PM-Bench end-to-end
+
+PM-Bench was derived from [Delegate](https://github.com/J-Reed700/delegate), an AI PM agent that lives in Slack. The right integration test is: does Delegate *itself* — with its real agent loop, its real tool surface (`recall_memory`, `save_memory`, `log_decision`, `reply`, `react`, `channel_history`, `connect_integration`, `jira_search`, `gcal_list_events`, `load_skill`, `create_skill`, `http_request`, `run_script`, `invite_to_channel`, `create_channel`, `group_dm`) — score well on the benchmark built from its own failure modes?
+
+| Brain (OpenAI) | Score on Delegate+PM-Bench | Mean call time |
+|---|---|---|
+| `gpt-4.1-mini` | **60/68 = 88.2%** | 3.3s/scenario |
+| `gpt-5.4-mini` | **60/68 = 88.2%** | 2.6s/scenario |
+| `gpt-5-nano` | 45/68 = 66.2% | 17.7s/scenario (5× slower) |
+
+**Non-obvious result: reasoning models don't automatically win at multi-tool PM work.** gpt-5-nano topped PM-Bench agentic mode with simple `list_files`/`read_file`/`grep` tools at 95%, but drops to 66% when driving Delegate's 15-tool PM-specific surface. The tool-selection problem gets harder as the tool menu grows — reasoning models appear to over-think `react`-vs-`reply`-vs-`log_decision` calls. The mini (non-reasoning) models stay at 88.2% on both PM-Bench agentic (71.67%) and Delegate's full tool surface (88.2%).
+
+This is a real practitioner finding: the "best brain for a PM agent" depends on how complex the tool surface is. Simple file-navigation → reasoning models. PM-specific tools with judgment-laden selection → mini (non-reasoning) models hold up better.
+
+### Headline result (static PM-Bench): agentic mode reveals a 31-point capability gap MCQ hides
 
 | Model | MCQ Superhuman 20 (3-8 iter) | **Agentic Superhuman 20 (3 iter)** | Δ |
 |---|---|---|---|
