@@ -4,6 +4,31 @@ All notable changes to PM-Bench will be documented here. Follows [Keep a Changel
 
 ## [Unreleased]
 
+### Added
+- Open-ended evaluation mode with rubric + LLM-judge scoring (20 scenarios)
+- Mock LLM provider for end-to-end pipeline testing without API keys
+  (`--provider mock`, `--mock-mode perfect|random|weak`)
+- HuggingFace dataset preparation (`huggingface/`)
+- Workspace variant generator for contamination resistance (`tools/workspace_variants.py`)
+- Post-run report generator (`tools/report.py`)
+- Result comparison/diff tool (`tools/compare_results.py`)
+- Integrity regression test (`tools/integrity_check.py`)
+- Scenario self-audit (`docs/CONSTRUCT_VALIDITY.md`)
+- Dockerfile + docker-compose for reproducibility
+- Discourse-level MCQ answer patterns ("ultimately, X is the answer",
+  "therefore B", "X is right", "my answer: X", "final answer: X")
+
+### Fixed (post-audit)
+- Scenario #64 (roi_translator) fixture contradicted itself ("break-even:
+  feature 3" vs actual math showing feature 5). Fixture now shows
+  step-by-step cumulative-cost derivation. Authored correct_answer unchanged.
+
+### Documented
+- Distractor quality audit in docs/CONSTRUCT_VALIDITY.md: ~9 of 20
+  Superhuman scenarios have at least one "entity-absence" distractor
+  (names something not in the workspace, making it rule-out-able without
+  PM reasoning). Planned for v1.1 improvement.
+
 ## [1.0.0] — 2026-04-13
 
 ### Added
