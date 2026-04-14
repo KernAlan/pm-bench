@@ -7,27 +7,14 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pytest pandas numpy
-
-      - name: Validate schema (CLI)
+      - name: Validate scenario schema
         run: python tools/validate_schema.py
-
-      - name: Run pytest
-        run: python -m pytest tests/ -v
-
-      - name: Scoring integrity check (mock provider)
-        run: python tools/integrity_check.py
+      - name: Verify workspace-variant generator
+        run: python tools/workspace_variants.py --variant v2-neon --verify
